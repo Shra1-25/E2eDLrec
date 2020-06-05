@@ -10,7 +10,7 @@
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 using namespace std;
 
-int main()
+int hello_tp()
 {
  std::cout<<"Hello"<<endl; 
  return 0;
