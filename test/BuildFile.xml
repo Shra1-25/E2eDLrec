@@ -3,3 +3,6 @@
   <use name="PhysicsTools/TensorFlow"/>
   <use name="catch2"/>
 </bin>
+<export>
+    <lib name="tp1" />
+</export>
