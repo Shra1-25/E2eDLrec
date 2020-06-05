@@ -6,7 +6,8 @@
 #include <vector>
 //#include "tensorflow/core/public/session.h"
 //#include "tensorflow/core/graph/default_device.h"
-using namespace tensorflow;
+//using namespace tensorflow;
+#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 using namespace std;
 
 int main()
