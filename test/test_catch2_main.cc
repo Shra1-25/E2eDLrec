@@ -1,17 +1,25 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include <iostream>
+/*#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <stdexcept>
+#include <cppunit/extensions/HelperMacros.h>
+#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
+#include "testBase.h"
 //#include "tensorflow/core/public/session.h"
 //#include "tensorflow/core/graph/default_device.h"
 //using namespace tensorflow;
-#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 using namespace std;
 
-int hello_tp()
-{
- std::cout<<"Hello"<<endl; 
- return 0;
-}
+class testGraphLoading : public test_graphs {
+  CPPUNIT_TEST_SUITE(testGraphLoading);
+  CPPUNIT_TEST(checkAll);
+  CPPUNIT_TEST_SUITE_END();
+
+public:
+  std::string pyScript() const override;
+  void checkAll() override;
+};
+*/
