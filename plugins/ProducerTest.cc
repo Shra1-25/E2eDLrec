@@ -127,7 +127,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iSetup.get<SetupRecord>().get(pSetup);
 */
  tensorflow::Session* session;
- //tensorflow::GraphDef graph_def;
+ tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
  std::vector<tensorflow::Tensor> outputs; // Store outputs
  
