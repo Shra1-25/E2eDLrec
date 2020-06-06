@@ -61,7 +61,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       //virtual void endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
 
       // ----------member data ---------------------------
-      //std::string graph_definition="graph3.pb"; 
+      std::string graph_definition="graph3.pb"; 
 };
 
 //
@@ -138,7 +138,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
  _XTensor.setRandom();
  _YTensor.setRandom();
  
- TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_def, &graph_def));
+ TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
  //tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef("graph3.pb");
  // Set GPU options
