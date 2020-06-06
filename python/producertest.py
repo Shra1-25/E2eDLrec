@@ -10,7 +10,7 @@ process.source = cms.Source("PoolSource",
     # replace 'myfile.root' with the source file you want to use
     #fileNames = cms.untracked.vstring(
     #   'file:/afs/cern.ch/cms/Tutorials/TWIKI_DATA/CMSDataAnaSch_RelValZMM536.root'
-    )
+    #)
 )
 
 #from ProdTutorial.TrackAndPointsProducer.trackandpointsproducer_cfi import *
