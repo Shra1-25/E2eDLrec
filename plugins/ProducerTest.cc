@@ -53,6 +53,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       //virtual void endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
 
       // ----------member data ---------------------------
+      std::string graph_definition="graph3.pb"; 
 };
 
 //
@@ -117,7 +118,49 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    ESHandle<SetupData> pSetup;
    iSetup.get<SetupRecord>().get(pSetup);
 */
+ tensorflow::Session* session;
+ tensorflow::GraphDef graph_def;
+ tensorflow::SessionOptions opts;
+ std::vector<Tensor> outputs; // Store outputs
  
+ tensorflow::Tensor x(DT_FLOAT, TensorShape({100, 32}));
+ tensorflow::Tensor y(DT_FLOAT, TensorShape({100, 8}));
+ auto _XTensor = x.matrix<float>();
+ auto _YTensor = y.matrix<float>();
+ _XTensor.setRandom();
+ _YTensor.setRandom();
+ 
+ TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
+ // Set GPU options
+ //graph::SetDefaultDevice("/gpu:0", &graph_def);
+ //opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
+ //opts.config.mutable_gpu_options()->set_allow_growth(true);
+ 
+ // create a new session
+ TF_CHECK_OK(NewSession(opts, &session));
+ 
+ // Load graph into session
+ TF_CHECK_OK(session->Create(graph_def));
+ 
+ // Initialize our variables
+ TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
+ 
+ for (int i = 0; i < 10; ++i) {
+        
+  TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
+  float cost = outputs[0].scalar<float>()(0);
+  std::cout << "Cost: " <<  cost << std::endl;
+  TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
+  outputs.clear();
+  
+  session->Close();
+  delete session;
+  //std::cout<<_YTensor(0,0)<<" "<<_YTensor(0,1)<<" "<<_YTensor(0,2)<<" "<<_YTensor(0,3)<<" "<<_YTensor(0,4)<<" "<<_YTensor(0,5)<<" "<<_YTensor(0,6)<<" "<<_YTensor(0,7)<<" "<<_YTensor(0,8)<<" "<<_YTensor(0,9)<<endl;
+  //std::cout<<_YTensor(1,0)<<" "<<_YTensor(1,1)<<" "<<_YTensor(1,2)<<" "<<_YTensor(1,3)<<" "<<_YTensor(1,4)<<" "<<_YTensor(1,5)<<" "<<_YTensor(1,6)<<" "<<_YTensor(1,7)<<" "<<_YTensor(1,8)<<" "<<_YTensor(1,9)<<endl;
+  std::cout<<"All done"<<endl;
+    }
+
+
 }
 
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
