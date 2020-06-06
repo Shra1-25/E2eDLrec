@@ -157,24 +157,23 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
  
  // Initialize our variables
  //TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
- tensorflow::run(session, {}, {}, {"init_all_vars_op"}, nullptr);
+ tensorflow::run(session, {}, {"init_all_vars_op"}, nullptr);
  
- for (int i = 0; i < 10; ++i) {
+ //for (int i = 0; i < 10; ++i) {
         
-  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
-  tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, {}, &outputs);
-  float cost = outputs[0].scalar<float>()(0);
-  std::cout << "Cost: " <<  cost << std::endl;
-  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
-  tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
-  outputs.clear();
+ //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
+ tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
+ float cost = outputs[0].scalar<float>()(0);
+ std::cout << "Cost: " <<  cost << std::endl;
+ //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
+ //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
+ outputs.clear();
   
-  session->Close();
-  delete session;
-  //std::cout<<_YTensor(0,0)<<" "<<_YTensor(0,1)<<" "<<_YTensor(0,2)<<" "<<_YTensor(0,3)<<" "<<_YTensor(0,4)<<" "<<_YTensor(0,5)<<" "<<_YTensor(0,6)<<" "<<_YTensor(0,7)<<" "<<_YTensor(0,8)<<" "<<_YTensor(0,9)<<endl;
-  //std::cout<<_YTensor(1,0)<<" "<<_YTensor(1,1)<<" "<<_YTensor(1,2)<<" "<<_YTensor(1,3)<<" "<<_YTensor(1,4)<<" "<<_YTensor(1,5)<<" "<<_YTensor(1,6)<<" "<<_YTensor(1,7)<<" "<<_YTensor(1,8)<<" "<<_YTensor(1,9)<<endl;
-  std::cout<<"All done"<<endl;
- }
+ session->Close();
+ delete session;
+ //std::cout<<_YTensor(0,0)<<" "<<_YTensor(0,1)<<" "<<_YTensor(0,2)<<" "<<_YTensor(0,3)<<" "<<_YTensor(0,4)<<" "<<_YTensor(0,5)<<" "<<_YTensor(0,6)<<" "<<_YTensor(0,7)<<" "<<_YTensor(0,8)<<" "<<_YTensor(0,9)<<endl;
+ //std::cout<<_YTensor(1,0)<<" "<<_YTensor(1,1)<<" "<<_YTensor(1,2)<<" "<<_YTensor(1,3)<<" "<<_YTensor(1,4)<<" "<<_YTensor(1,5)<<" "<<_YTensor(1,6)<<" "<<_YTensor(1,7)<<" "<<_YTensor(1,8)<<" "<<_YTensor(1,9)<<endl;
+ std::cout<<"All done"<<endl;
 }
 
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
