@@ -138,9 +138,9 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
  _XTensor.setRandom();
  _YTensor.setRandom();
  
- //TF_CHECK_OK(ReadBinaryProto(tensorflow::Env::Default(), graph_definition, &graph_def));
+ TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
- tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef("graph3.pb");
+ //tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef("graph3.pb");
  // Set GPU options
  //graph::SetDefaultDevice("/gpu:0", &graph_def);
  //opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
@@ -150,19 +150,19 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
  //TF_CHECK_OK(NewSession(opts, &session));
  
  // Load graph into session
- //TF_CHECK_OK(session->Create(graph_def));
+ TF_CHECK_OK(session->Create(graph_def));
  
  // create a session
- session = tensorflow::createSession(graphDef);
+ //session = tensorflow::createSession(graphDef);
  
  // Initialize our variables
- //TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
- tensorflow::run(session, {}, {"init_all_vars_op"}, nullptr);
+ TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
+ //tensorflow::run(session, {}, {"init_all_vars_op"}, nullptr);
  
  //for (int i = 0; i < 10; ++i) {
         
- //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
- tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
+ TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
+ //tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
  float cost = outputs[0].scalar<float>()(0);
  std::cout << "Cost: " <<  cost << std::endl;
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
