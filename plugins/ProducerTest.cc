@@ -153,7 +153,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
  //TF_CHECK_OK(session->Create(graph_def));
  
  // create a session
- tensorflow::Session* session = tensorflow::createSession(graphDef);
+ session = tensorflow::createSession(graphDef);
  
  // Initialize our variables
  //TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
