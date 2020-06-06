@@ -19,6 +19,10 @@
 
 // system include files
 #include <memory>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
 // user include files
 #include "FWCore/Framework/interface/Frameworkfwd.h"
@@ -29,7 +33,9 @@
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/Utilities/interface/StreamID.h"
-using namespace tensorflow;
+#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
+
+//using namespace tensorflow;
 using namespace std;
 
 
