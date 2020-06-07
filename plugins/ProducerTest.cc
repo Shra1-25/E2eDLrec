@@ -61,7 +61,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       //virtual void endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
 
       // ----------member data ---------------------------
-      std::string graph_definition="graph3.pb"; 
+      std::string graph_definition="/home/cmsusr/CMSSW_10_6_8/src/ProdTutorial/ProducerTest/test/graph3.pb"; 
 };
 
 //
