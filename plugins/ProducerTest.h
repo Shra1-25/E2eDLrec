@@ -14,7 +14,7 @@ using namespace std;
 
 class ProducerTest : public edm::stream::EDProducer<> {
    public:
-      explicit void ProducerTest();
+      explicit ProducerTest();
       //explicit ProducerTest(const edm::ParameterSet&);
       ~ProducerTest();
       
