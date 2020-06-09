@@ -18,7 +18,7 @@
 
 
 // system include files
-#include <memory>
+/*#include <memory>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -32,7 +32,8 @@
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
-#include "FWCore/Utilities/interface/StreamID.h"
+#include "FWCore/Utilities/interface/StreamID.h"*/
+#include "ProducerTest.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 
 using namespace tensorflow;
