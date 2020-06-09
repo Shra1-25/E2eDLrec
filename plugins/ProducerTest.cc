@@ -44,7 +44,7 @@ using namespace std;
 // class declaration
 //
 
-class ProducerTest : public edm::stream::EDProducer<> {
+/*class ProducerTest : public edm::stream::EDProducer<> {
    public:
       explicit ProducerTest(const edm::ParameterSet&);
       ~ProducerTest();
@@ -63,7 +63,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
 
       // ----------member data ---------------------------
        
-};
+};*/
 
 //
 // constants, enums and typedefs
