@@ -32,8 +32,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
 
       // ----------member data ---------------------------
        
-ProducerTest(const edm::ParameterSet& iConfig);
-~ProducerTest();
+
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
 void produce()
 //void beginStream(edm::StreamID);
