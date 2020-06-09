@@ -31,12 +31,11 @@ class ProducerTest : public edm::stream::EDProducer<> {
 
       // ----------member data ---------------------------
        
+ProducerTest(const edm::ParameterSet& iConfig);
+~ProducerTest();
+void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
+void beginStream(edm::StreamID);
+void endStream();
+void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 };
-
-ProducerTest::ProducerTest(const edm::ParameterSet& iConfig);
-ProducerTest::~ProducerTest();
-void ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
-void ProducerTest::beginStream(edm::StreamID);
-void ProducerTest::endStream();
-void ProducerTest::fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 DEFINE_FWK_MODULE(ProducerTest);
