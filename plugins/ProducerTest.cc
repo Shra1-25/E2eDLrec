@@ -136,7 +136,7 @@ void ProducerTest::produce()
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
  std::vector<tensorflow::Tensor> outputs; // Store outputs
- std::string graph_definition="/home/cmsusr/CMSSW_10_6_8/src/ProdTutorial/ProducerTest/plugins/graph3.pb";
+ std::string graph_definition="\\home\\cmsusr\\CMSSW_10_6_8\\src\\ProdTutorial\\ProducerTest\\plugins\\graph3.pb";
  
  tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 32}));
  tensorflow::Tensor y(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 8}));
