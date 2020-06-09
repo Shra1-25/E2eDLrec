@@ -34,7 +34,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
        
 
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
-void produce()
+void produce();
 //void beginStream(edm::StreamID);
 //void endStream();
 //void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
