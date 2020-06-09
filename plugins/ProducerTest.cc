@@ -112,9 +112,8 @@ ProducerTest::~ProducerTest()
 //
 
 // ------------ method called to produce the data  ------------
-//void
-//ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
-void ProducerTest::produce()
+void
+ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
 /* This is an event example
@@ -132,6 +131,8 @@ void ProducerTest::produce()
    ESHandle<SetupData> pSetup;
    iSetup.get<SetupRecord>().get(pSetup);
 */
+}
+void ProducerTest::predict_tf(){
  tensorflow::Session* session;
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
