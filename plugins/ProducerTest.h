@@ -22,7 +22,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
 
    private:
       virtual void beginStream(edm::StreamID) override;
-      //virtual void produce(edm::Event&, const edm::EventSetup&) override;
+      virtual void produce(edm::Event&, const edm::EventSetup&) override;
       virtual void endStream() override;
 
       //virtual void beginRun(edm::Run const&, edm::EventSetup const&) override;
@@ -34,7 +34,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
        
 
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
-void produce();
+void predict_tf();
 //void beginStream(edm::StreamID);
 //void endStream();
 //void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
