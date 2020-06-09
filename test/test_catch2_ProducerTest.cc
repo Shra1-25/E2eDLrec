@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "/home/cmsusr/CMSSW_10_6_8/src/demo/plugins/ProducerTest.h"
+#include "\\home\\cmsusr\\CMSSW_10_6_8\\src\\demo\\plugins\\ProducerTest.h"
 #include "FWCore/TestProcessor/interface/TestProcessor.h"
 #include "FWCore/Utilities/interface/Exception.h"
 
