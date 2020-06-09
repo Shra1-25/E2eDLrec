@@ -36,8 +36,8 @@ ProducerTest(const edm::ParameterSet& iConfig);
 ~ProducerTest();
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
 void produce()
-void beginStream(edm::StreamID);
-void endStream();
-void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
+//void beginStream(edm::StreamID);
+//void endStream();
+//void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 };
 DEFINE_FWK_MODULE(ProducerTest);
