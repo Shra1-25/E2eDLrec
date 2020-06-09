@@ -77,7 +77,7 @@ using namespace std;
 //
 // constructors and destructor
 //
-ProducerTest::ProducerTest()
+void ProducerTest::ProducerTest()
 {
  
 }
