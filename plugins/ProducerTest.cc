@@ -109,7 +109,8 @@ ProducerTest::~ProducerTest()
 
 // ------------ method called to produce the data  ------------
 void
-ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+//ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+ProducerTest::produce()
 {
    using namespace edm;
 /* This is an event example
