@@ -14,9 +14,10 @@ using namespace std;
 
 class ProducerTest : public edm::stream::EDProducer<> {
    public:
+      explicit ProducerTest();
       explicit ProducerTest(const edm::ParameterSet&);
       ~ProducerTest();
-
+      
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
    private:
@@ -33,7 +34,8 @@ class ProducerTest : public edm::stream::EDProducer<> {
        
 ProducerTest(const edm::ParameterSet& iConfig);
 ~ProducerTest();
-void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
+//void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
+void produce()
 void beginStream(edm::StreamID);
 void endStream();
 void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
