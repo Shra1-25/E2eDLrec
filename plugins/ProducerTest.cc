@@ -77,12 +77,9 @@ using namespace std;
 //
 // constructors and destructor
 //
-ProducerTest::ProducerTest()
+
+ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
 {
- 
-}
-//ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
-//{
    //register your products
 /* Examples
    produces<ExampleData2>();
@@ -95,7 +92,7 @@ ProducerTest::ProducerTest()
 */
    //now do what ever other initialization is needed
   
-//}
+}
 
 
 ProducerTest::~ProducerTest()
