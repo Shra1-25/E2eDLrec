@@ -61,7 +61,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       //virtual void endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
 
       // ----------member data ---------------------------
-      std::string graph_definition="/home/cmsusr/CMSSW_10_6_8/src/ProdTutorial/ProducerTest/test/graph3.pb"; 
+       
 };
 
 //
@@ -130,6 +130,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
  std::vector<tensorflow::Tensor> outputs; // Store outputs
+ std::string graph_definition="/home/cmsusr/CMSSW_10_6_8/src/ProdTutorial/ProducerTest/plugins/graph3.pb";
  
  tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 32}));
  tensorflow::Tensor y(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 8}));
