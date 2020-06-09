@@ -1,8 +1,18 @@
 #include "catch.hpp"
+#include "/home/cmsusr/CMSSW_10_6_8/src/demo/plugins/ProducerTest.h"
 #include "FWCore/TestProcessor/interface/TestProcessor.h"
 #include "FWCore/Utilities/interface/Exception.h"
 
-static constexpr auto s_tag = "[ProducerTest]";
+int test_tf(){
+  ProducerTest pred=new ProducerTest();
+  pred.produce();
+  return 1;
+}
+
+TEST_CASE("Testing sum and product","[sum_product]"){
+  REQUIRE(test_tf()==1);
+}
+/*static constexpr auto s_tag = "[ProducerTest]";
 
 TEST_CASE("Standard checks of ProducerTest", s_tag) {
   const std::string baseConfig{
@@ -49,3 +59,4 @@ process.moduleToTest(process.toTest)
 }
 
 //Add additional TEST_CASEs to exercise the modules capabilities
+*/
