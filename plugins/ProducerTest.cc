@@ -83,7 +83,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
    std::cout << " >> Assuming EventLevel Config. " << std::endl;
    doJets_ = false;
  }
- usesResource("TFileService");
+ //usesResource("TFileService");
  edm::Service<TFileService> fs;
  RHTree = fs->make<TTree>("RHTree", "RecHit tree");
  branchesEB           ( RHTree, fs );
