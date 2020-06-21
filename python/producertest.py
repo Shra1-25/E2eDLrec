@@ -14,7 +14,7 @@ options.register('processMode',
     info = "process mode: JetLevel or EventLevel")
 options.parseArguments()
 
-process = cms.Process("FEVTProducer_tf")
+process = cms.Process("FEVTProducer")
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load("Configuration.StandardSequences.GeometryDB_cff")
