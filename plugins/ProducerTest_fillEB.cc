@@ -12,7 +12,7 @@ std::vector<float> vEB_energy_;
 std::vector<float> vEB_time_;
 
 // Initialize branches _____________________________________________________//
-void RecHitAnalyzer::branchesEB ( TTree* tree, edm::Service<TFileService> &fs ) {
+void ProducerTest::branchesEB ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   // Branches for images
   tree->Branch("EB_energy", &vEB_energy_);
@@ -29,7 +29,7 @@ void RecHitAnalyzer::branchesEB ( TTree* tree, edm::Service<TFileService> &fs ) 
 } // branchesEB()
 
 // Fill EB rechits _________________________________________________________________//
-void RecHitAnalyzer::fillEB ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void ProducerTest::fillEB ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   int iphi_, ieta_, idx_; // rows:ieta, cols:iphi
   float energy_;
