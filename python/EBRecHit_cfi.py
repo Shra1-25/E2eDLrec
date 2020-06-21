@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms 
 
-fevt_tf = cms.EDProducer('EBRecHitProducer'
+fevt_tf = cms.EDProducer('ProducerTest'
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
     , mode = cms.string("JetLevel")
     # Jet level cfg
