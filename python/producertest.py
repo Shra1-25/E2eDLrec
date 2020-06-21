@@ -1,27 +1,37 @@
 import FWCore.ParameterSet.Config as cms
 
-process = cms.Process("EXAMPLE1")
+options = VarParsing.VarParsing('analysis')
+options.register('skipEvents', 
+    default=0, 
+    mult=VarParsing.VarParsing.multiplicity.singleton,
+    mytype=VarParsing.VarParsing.varType.int,
+    info = "skipEvents")
+# TODO: put this option in cmsRun scripts
+options.register('processMode', 
+    default='JetLevel', 
+    mult=VarParsing.VarParsing.multiplicity.singleton,
+    mytype=VarParsing.VarParsing.varType.string,
+    info = "process mode: JetLevel or EventLevel")
+options.parseArguments()
+
+process = cms.Process("FEVTProducer_tf")
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
+process.load("Configuration.StandardSequences.GeometryDB_cff")
+process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) ) #options.maxEvents
 
 process.source = cms.Source("PoolSource",
-    # replace 'myfile.root' with the source file you want to use
-    fileNames = cms.untracked.vstring()
-    #   'file:/afs/cern.ch/cms/Tutorials/TWIKI_DATA/CMSDataAnaSch_RelValZMM536.root'
-    #)
-)
+    fileNames = cms.untracked.vstring(
+      "file:/afs/cern.ch/user/s/schaudha/public/CMSSW_10_6_8/src/demo/ZprimeToTT_M-2000_W-20_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_AODSIM_PUMoriond17.root"
+      )#options.inputFiles
+    , skipEvents = cms.untracked.uint32(0)#options.skipEvents
+    )
+print (" >> Loaded",len(options.inputFiles),"input files from list.")
 
-#from ProdTutorial.TrackAndPointsProducer.trackandpointsproducer_cfi import *
-process.test1 = cms.EDProducer('ProducerTest'
-        #,src    =cms.InputTag('globalMuons')
-
-)
-
-#process.TrackTrackPoints = cms.EDProducer('TrackAndPointsProducer'
-#        ,src    =cms.InputTag('generalTracks')
-#)
+process.load("ProdTutorial.ProducerTest.EBRecHit_cfi")
+process.fevt.mode = cms.string('JetLevel')#options.processMode
 
 process.out = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string('myOutputFile.root')
@@ -32,8 +42,9 @@ process.out = cms.OutputModule("PoolOutputModule",
       "keep *_TrackTrackPoints_*_*")
 
 )
+print " >> Processing as:",(process.fevt.mode)
+process.TFileService = cms.Service("TFileService",
+    fileName = cms.string("myoutput.root")#options.outputFile
+    )
 
-
-process.p = cms.Path(process.test1)
-
-process.e = cms.EndPath(process.out)
+process.p = cms.Path(process.fevt_tf)
