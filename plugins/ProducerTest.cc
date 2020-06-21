@@ -65,42 +65,35 @@ using namespace std;
        
 };*/
 
-//
-// constants, enums and typedefs
-//
-
-
-//
-// static data member definitions
-//
-
-//
-// constructors and destructor
-//
-
 ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
 {
-   //register your products
-/* Examples
-   produces<ExampleData2>();
-
-   //if do put with a label
-   produces<ExampleData2>("label");
- 
-   //if you want to put into the Run
-   produces<ExampleData2,InRun>();
-*/
-   //now do what ever other initialization is needed
-  
+ EBRecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEBRecHitCollection"));
+ mode_      = iConfig.getParameter<std::string>("mode");
+ minJetPt_  = iConfig.getParameter<double>("minJetPt");
+ maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
+ z0PVCut_   = iConfig.getParameter<double>("z0PVCut");
+ std::cout << " >> Mode set to " << mode_ << std::endl;
+ if ( mode_ == "JetLevel" ) {
+   doJets_ = true;
+   nJets_ = iConfig.getParameter<int>("nJets");
+   std::cout << "\t>> nJets set to " << nJets_ << std::endl;
+ } else if ( mode_ == "EventLevel" ) {
+   doJets_ = false;
+ } else {
+   std::cout << " >> Assuming EventLevel Config. " << std::endl;
+   doJets_ = false;
+ }
+ usesResource("TFileService");
+ edm::Service<TFileService> fs;
+ RHTree = fs->make<TTree>("RHTree", "RecHit tree");
+ branchesEB           ( RHTree, fs );
+ std::cout<<"BranchesEB done "<<std::endl;
 }
 
 
 ProducerTest::~ProducerTest()
 {
  
-   // do anything here that needs to be done at destruction time
-   // (e.g. close files, deallocate resources etc.)
-
 }
 
 
@@ -113,23 +106,30 @@ void
 ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
-/* This is an event example
-   //Read 'ExampleData' from the Event
-   Handle<ExampleData> pIn;
-   iEvent.getByLabel("example",pIn);
+   nTotal++;
+   // ----- Apply event selection cuts ----- //
 
-   //Use the ExampleData to create an ExampleData2 which 
-   // is put into the Event
-   iEvent.put(std::make_unique<ExampleData2>(*pIn));
-*/
+   bool passedSelection = false;
+   if ( doJets_ ) {
+     //passedSelection = runEvtSel_jet( iEvent, iSetup );
+   } else {
+     //passedSelection = runEvtSel( iEvent, iSetup );
+   }
 
-/* this is an EventSetup example
-   //Read SetupData from the SetupRecord in the EventSetup
-   ESHandle<SetupData> pSetup;
-   iSetup.get<SetupRecord>().get(pSetup);
-*/
+   if ( !passedSelection ) {
+     //h_sel->Fill( 0. );;
+     //return;
+   }
+
+   fillEB( iEvent, iSetup );
+   std::cout<<"FillEB done "<<std::endl;
+    // Fill RHTree
+   RHTree->Fill();
+   //h_sel->Fill( 1. );
+   nPassed++;
+   return;
 }
-void ProducerTest::predict_tf(){
+/*void ProducerTest::predict_tf(){
  tensorflow::Session* session;
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
@@ -182,17 +182,21 @@ void ProducerTest::predict_tf(){
  // cleanup
  //tensorflow::closeSession(session);
  //delete graphDef;
-}
+}*/
 
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
 void
 ProducerTest::beginStream(edm::StreamID)
 {
+ nTotal = 0;
+ nPassed = 0;
+ std::cout<<"Stream began"<<std::endl;
 }
 
 // ------------ method called once each stream after processing all runs, lumis and events  ------------
 void
 ProducerTest::endStream() {
+ std::cout << " selected: " << nPassed << "/" << nTotal << std::endl;
 }
 
 // ------------ method called when starting to processes a run  ------------
