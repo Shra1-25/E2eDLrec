@@ -33,7 +33,7 @@
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/Utilities/interface/StreamID.h"*/
-#include "ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 
 using namespace tensorflow;
