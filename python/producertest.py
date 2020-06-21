@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms
-
-options = VarParsing.VarParsing('analysis')
+import FWCore.ParameterSet.VarParsing as VarParsing
+options = VarParsing.VarParsing('produce')
 options.register('skipEvents', 
     default=0, 
     mult=VarParsing.VarParsing.multiplicity.singleton,
