@@ -9,21 +9,32 @@ void ProducerTest::predict_tf(){
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
  std::vector<tensorflow::Tensor> outputs; // Store outputs
- std::string graph_definition="\\home\\cmsusr\\CMSSW_10_6_8\\src\\ProdTutorial\\ProducerTest\\plugins\\graph3.pb";
+ TF_CHECK_OK(NewSession(opts, &session));
+ 
+ std::string graph_definition="ProducerTest/plugins/tf_1_graph.pb";
  std::cout<<"Done1"<<endl;
  
- tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 32}));
+ /*tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 32}));
  tensorflow::Tensor y(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 8}));
  auto _XTensor = x.matrix<float>();
  auto _YTensor = y.matrix<float>();
  _XTensor.setRandom();
  _YTensor.setRandom();
- std::cout<<"Done2"<<endl;
+ std::cout<<"Done2"<<endl;*/
  
  //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
- tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef("ProducerTest/plugins/graph3.pb");
- std::cout<<"Done3"<<endl;
+ tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef(graph_definition);
+ std::cout<<"Done2"<<endl;
+ tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({28, 28}));   
+ auto _XTensor = tmp.matrix<float>();
+  _XTensor.setRandom();
+ std::cout<<endl<<"Welcome to the digit classifier."<<endl
+  
+  tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({1, 28, 28, 1}));
+  if(!x.CopyFrom(tmp, tensorflow::TensorShape({1, 28, 28, 1}))){
+    std::cout<<"Reshape not successfull."<<endl;
+  }
  // Set GPU options
  //graph::SetDefaultDevice("/gpu:0", &graph_def);
  //opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
@@ -45,13 +56,26 @@ void ProducerTest::predict_tf(){
  
  //for (int i = 0; i < 10; ++i) {
         
- TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
+ //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
+ TF_CHECK_OK(session->Run({{"x", x}/*, {"y", y}*/}, {"dense_2_out"}, {}, &outputs)); // Get output
  //tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
  std::cout<<"Done6"<<endl;
- float cost = outputs[0].scalar<float>()(0);
- std::cout << "Cost: " <<  cost << std::endl;
+ //float cost = outputs[0].scalar<float>()(0);
+ //std::cout << "Cost: " <<  cost << std::endl;
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
  //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
+ int max_idx=0;
+ float max_out = outputs[0].matrix<float>()(0,0);
+ //std::cout << "Output 0: " <<  max_out << std::endl;
+ for (int idx=1;idx<10;idx++){
+     float idx_out = outputs[0].matrix<float>()(0,idx);
+     //std::cout << "Output "<<idx<<": " <<  idx_out << std::endl;
+     if (idx_out>max_out){
+         max_out=idx_out;
+         max_idx=idx;
+     }
+ }
+ std::cout<<"The digit is: "<<max_idx<<endl;
  outputs.clear();
   
  session->Close();
