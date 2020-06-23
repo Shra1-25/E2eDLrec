@@ -50,7 +50,7 @@ void ProducerTest::predict_tf(){
  session = tensorflow::createSession(graphDef);
  std::cout<<"Done4"<<endl;
  // Initialize our variables
- TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
+ //TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
  std::cout<<"Done5"<<endl;
  //tensorflow::run(session, {}, {"init_all_vars_op"}, nullptr);
  
