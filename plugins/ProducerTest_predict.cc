@@ -44,8 +44,8 @@ void ProducerTest::predict_tf(){
  
  //for (int i = 0; i < 10; ++i) {
         
- //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
- tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
+ TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
+ //tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
  std::cout<<"Done5"<<endl;
  float cost = outputs[0].scalar<float>()(0);
  std::cout << "Cost: " <<  cost << std::endl;
