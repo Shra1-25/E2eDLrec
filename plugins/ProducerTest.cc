@@ -127,6 +127,8 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    RHTree->Fill();
    //h_sel->Fill( 1. );
    nPassed++;
+   predict_tf();
+   std::cout<<"TF_predict done "<<std::endl;
    return;
 }
 /*void ProducerTest::predict_tf(){
