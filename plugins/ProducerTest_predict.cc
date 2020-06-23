@@ -28,8 +28,31 @@ void ProducerTest::predict_tf(){
  std::cout<<"Done2"<<endl;
  tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({28, 28}));   
  auto _XTensor = tmp.matrix<float>();
-  _XTensor.setRandom();
- std::cout<<endl<<"Welcome to the digit classifier."<<endl;
+  //_XTensor.setRandom();
+ std::cout<<endl<<"Welcome to the digit classifier."<<endl<<"Please enter the csv filename to predict."<<endl;
+ std::string file_name;
+ cin>>file_name;
+ std::ifstream  data(file_name);
+ std::string line;
+ int i_idx=0;
+ while(std::getline(data,line))
+ {
+     std::stringstream lineStream(line);
+     std::string cell;
+     //std::vector<float> parsedRow;
+     int j_idx=0;
+        
+     while(std::getline(lineStream,cell,','))
+     {
+         _XTensor(i_idx,j_idx)=std::stof(cell);
+         //parsedRow.push_back(std::stof(cell));
+         j_idx++;
+     }
+     //X_vec.push_back(parsedRow);
+     i_idx++;
+ }
+ std::cout<<"Reading input data file done."<<endl;
+
   
   tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({1, 28, 28, 1}));
   if(!x.CopyFrom(tmp, tensorflow::TensorShape({1, 28, 28, 1}))){
