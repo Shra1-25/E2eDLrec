@@ -39,14 +39,15 @@ void ProducerTest::predict_tf(){
  session = tensorflow::createSession(graphDef);
  std::cout<<"Done4"<<endl;
  // Initialize our variables
- //TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
+ TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
+ std::cout<<"Done5"<<endl;
  //tensorflow::run(session, {}, {"init_all_vars_op"}, nullptr);
  
  //for (int i = 0; i < 10; ++i) {
         
  TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
  //tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
- std::cout<<"Done5"<<endl;
+ std::cout<<"Done6"<<endl;
  float cost = outputs[0].scalar<float>()(0);
  std::cout << "Cost: " <<  cost << std::endl;
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
