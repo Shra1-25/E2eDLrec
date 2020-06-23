@@ -29,7 +29,7 @@ void ProducerTest::predict_tf(){
  tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({28, 28}));   
  auto _XTensor = tmp.matrix<float>();
   _XTensor.setRandom();
- std::cout<<endl<<"Welcome to the digit classifier."<<endl
+ std::cout<<endl<<"Welcome to the digit classifier."<<endl;
   
   tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({1, 28, 28, 1}));
   if(!x.CopyFrom(tmp, tensorflow::TensorShape({1, 28, 28, 1}))){
