@@ -4,11 +4,11 @@ using namespace std;
 
 std::vector<float>& read_vEB_energy(int vec_size)
  {
- 
-    TFile *fr = TFile::Open("ECAL_Rechit.root","READ");
-    if (!fr) { return 0; }
- 
     std::vector<float> *vEB_energy_read = 0;
+    TFile *fr = TFile::Open("ECAL_Rechit.root","READ");
+    if (!fr) { return vEB_energy_read; }
+ 
+    
     TTree *tr = (TTree*)fr->Get("vec_tree");
     tr->SetBranchAddress("vEB_energy_vec",&vEB_energy_read);
     for (int i=0;i<vec_size;i++){
