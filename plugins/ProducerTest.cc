@@ -127,8 +127,11 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    RHTree->Fill();
    //h_sel->Fill( 1. );
    nPassed++;
-   predict_tf();
-   std::cout<<"TF_predict done "<<std::endl;
+   //predict_tf();
+   //std::cout<<"TF_predict done "<<std::endl;
+   int vec_size=61200;
+   std::vector<float> vEB_energy;
+   vEB_energy=read_vEB_energy(vec_size);
    return;
 }
 /*void ProducerTest::predict_tf(){
