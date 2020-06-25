@@ -45,6 +45,11 @@
 #include "TCanvas.h"
 #include "TStyle.h"
 #include "TMath.h"
+#include "TFile.h"
+#include "TFrame.h"
+#include "TBenchmark.h"
+#include "TRandom.h"
+#include "TSystem.h"
 #include "DataFormats/Math/interface/deltaR.h"
 #include "DataFormats/Math/interface/deltaPhi.h"
 
