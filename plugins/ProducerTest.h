@@ -82,7 +82,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
       void predict_tf         ();
       //void write_root         ();
-      void read_vEB_energy     (int vec_size);
+      std::vector<float> read_vEB_energy     (int);
       std::string mode_;  // EventLevel / JetLevel
       bool doJets_;
       int  nJets_;
