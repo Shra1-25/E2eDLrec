@@ -81,8 +81,8 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
       void predict_tf         ();
-      void write_root         ();
-      void read_root          ();
+      //void write_root         ();
+      void read_vEB_energy          ();
       std::string mode_;  // EventLevel / JetLevel
       bool doJets_;
       int  nJets_;
