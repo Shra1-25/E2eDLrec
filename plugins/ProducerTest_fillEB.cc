@@ -61,7 +61,7 @@ void ProducerTest::fillEB ( const edm::Event& iEvent, const edm::EventSetup& iSe
     vEB_time_[idx_] = iRHit->time();
 
   } // EB rechits
-  //std::cout<<"idx_0: "<<vEB_energy_[0]<<" "<<"idx_1: "<<vEB_energy_[1]<<" "<<"idx_2: "<<vEB_energy_[2]<<" "<<"idx_10: "<<vEB_energy_[10]<<" "<<"idx_11: "<<vEB_energy_[11]<<" "<<"idx_12: "<<vEB_energy_[12]<<" "<<"idx_100: "<<vEB_energy_[100]<<" "<<"idx_101: "<<vEB_energy_[101]<<" "<<"idx_102: "<<vEB_energy_[102]<<" "<<"idx_1000: "<<vEB_energy_[1000]<<" "<<"idx_1001: "<<vEB_energy_[1001]<<" "<<"idx_1002: "<<vEB_energy_[1002]<<" "<<"idx_61197: "<<vEB_energy_[61197]<<" "<<"idx_61198: "<<vEB_energy_[61198]<<" "<<"idx_61199: "<<vEB_energy_[61199]<<" "<<" -> size is "<<vEB_energy_.size()<<endl;
+  std::cout<<vEB_energy_[0]<<" "<<vEB_energy_[1]<<" "<<vEB_energy_[2]<<" "<<vEB_energy_[3]<<" "<<vEB_energy_[4]<<" "<<vEB_energy_[5]<<" "<<vEB_energy_[6]<<" "<<vEB_energy_[7]<<" "<<vEB_energy_[8]<<" "<<vEB_energy_[9]<<" -> size is "<<vEB_energy_.size()<<endl;
   TFile *fw = TFile::Open("ECAL_Rechit.root","RECREATE");
   if (!fw) { return; }
   //std::vector<float> temp_vec;
