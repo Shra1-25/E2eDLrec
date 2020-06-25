@@ -6,7 +6,7 @@ std::vector<float>& read_vEB_energy(int vec_size)
  {
     std::vector<float> *vEB_energy_read = 0;
     TFile *fr = TFile::Open("ECAL_Rechit.root","READ");
-    if (!fr) { return vEB_energy_read; }
+    if (!fr) { return *vEB_energy_read; }
  
     
     TTree *tr = (TTree*)fr->Get("vec_tree");
