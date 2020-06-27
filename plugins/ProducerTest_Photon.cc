@@ -1,8 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
-#include <iostream>
-using namespace std;
-using pat::PhotonCollection;
-using pat::PhotonRef;
+
 
 void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup ){
  edm::Handle<EcalRecHitCollection> EBRecHitsH;
