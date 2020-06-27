@@ -55,8 +55,10 @@
 #include "TSystem.h"
 #include "DataFormats/Math/interface/deltaR.h"
 #include "DataFormats/Math/interface/deltaPhi.h"
-
-//using namespace std;
+#include <iostream>
+using namespace std;
+using pat::PhotonCollection;
+using pat::PhotonRef;
 
 class ProducerTest : public edm::stream::EDProducer<> {
    public:
