@@ -41,7 +41,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   Emax = 0.;
   iphi_Emax = -1;
   ieta_Emax = -1;
-
+  int iphi_, ieta_;
   // Loop over SC hits of photon
   for(unsigned iH(0); iH != SCHits.size(); ++iH) {
 
