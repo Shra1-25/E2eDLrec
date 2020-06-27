@@ -5,6 +5,21 @@ using namespace std;
 void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup ){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
+ 
+ std::vector<int> vPreselPhoIdxs_;
+ static const int nPhotons = 2;
+ int nTotal, nPreselPassed, nPassed;
+ nPho = 0;
+ int iphi_Emax, ieta_Emax;
+ float Emax;
+ vPreselPhoIdxs_.clear();
+ GlobalPoint pos_Emax;
+ std::vector<GlobalPoint> vPos_Emax;
+ vIphi_Emax_.clear();
+ vIeta_Emax_.clear();
+ vRegressPhoIdxs_.clear();
+ 
+ nTotal += nPhotons;
  for ( unsigned int iP : vPreselPhoIdxs_ ) {
   PhotonRef iPho( photons, iP );
   //vRegressPhoIdxs_.push_back( iP );
