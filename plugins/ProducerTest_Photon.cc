@@ -1,11 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 
-std::vector<float> vSC_eta_;
-std::vector<float> vSC_phi_;
-std::vector<int> vPreselPhoIdxs_;
-std::vector<float> vIphi_Emax_;
-std::vector<float> vIeta_Emax_;
-
 // Initialize branches _____________________________________________________//
 void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
 {
@@ -47,6 +41,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
  vIphi_Emax_.clear();
  vIeta_Emax_.clear();
  vPreselPhoIdxs_.clear();
+ int iphi_, ieta_; // rows:ieta, cols:iphi
  
  for ( unsigned int iP = 0; iP < photons->size(); iP++ ) {
   PhotonRef iRecoPho( photons, iP );
@@ -60,6 +55,8 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   Emax = 0.;
   iphi_Emax = -1;
   ieta_Emax = -1;
+ 
+   
   // Loop over SC hits of photon
   for(unsigned iH(0); iH != SCHits.size(); ++iH) {
 
