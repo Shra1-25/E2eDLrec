@@ -1,6 +1,7 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 #include <iostream>
 using namespace std;
+using pat::PhotonCollection;
 
 void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup ){
  edm::Handle<PhotonCollection> photons;
