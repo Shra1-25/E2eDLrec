@@ -2,14 +2,19 @@
 #include <iostream>
 using namespace std;
 using pat::PhotonCollection;
+using pat::PhotonRef;
 
 void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup ){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
+ std::vector<int> vRegressPhoIdxs_;
+ std::vector<float> vIphi_Emax_;
+ std::vector<float> vIeta_Emax_;
  std::vector<int> vPreselPhoIdxs_;
  static const int nPhotons = 2;
  int nTotal, nPreselPassed, nPassed;
+ unsigned int nPho;
  nPho = 0;
  int iphi_Emax, ieta_Emax;
  float Emax;
