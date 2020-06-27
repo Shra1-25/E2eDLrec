@@ -32,7 +32,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   // Get underlying super cluster
   reco::SuperClusterRef const& iSC = iPho->superCluster();
   //EcalRecHitCollection::const_iterator iRHit_( EBRecHitsH->find(iSC->seed()->seed()) );
-  std::cout << "Seed E: " << iRHit_->energy() << std::endl;
+  //std::cout << "Seed E: " << iRHit_->energy() << std::endl;
   std::vector<std::pair<DetId, float>> const& SCHits( iSC->hitsAndFractions() );
   std::cout << " >> SChits.size: " << SCHits.size() << std::endl;
 
@@ -75,4 +75,5 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
     std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
     nPho++;
  }
+ return;
 }
