@@ -5,6 +5,8 @@ using pat::PhotonCollection;
 using pat::PhotonRef;
 
 void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup ){
+ edm::Handle<EcalRecHitCollection> EBRecHitsH;
+ iEvent.getByToken(EBRecHitCollectionT_, EBRecHitsH);
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
