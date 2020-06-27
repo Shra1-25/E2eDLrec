@@ -80,6 +80,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       TTree* RHTree;
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
+      void get_photons        ( const edm::Event&, const edm::EventSetup& );
       void predict_tf         ();
       //void write_root         ();
       std::vector<float>& read_vEB_energy     (int);
