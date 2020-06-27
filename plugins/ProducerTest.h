@@ -87,6 +87,8 @@ class ProducerTest : public edm::stream::EDProducer<> {
       TH1F *h_sel;
       TH1F * hSC_pT;
       TTree* RHTree;
+      unsigned int nPho;
+      
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
@@ -101,6 +103,11 @@ class ProducerTest : public edm::stream::EDProducer<> {
       double maxJetEta_;
       double z0PVCut_;
       std::vector<int> vJetIdxs;
+      std::vector<float> vIphi_Emax_;
+      std::vector<float> vIeta_Emax_;
+      std::vector<float> vSC_eta_;
+      std::vector<float> vSC_phi_;
+      std::vector<int> vPreselPhoIdxs_;
       int nTotal, nPassed;
       
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
