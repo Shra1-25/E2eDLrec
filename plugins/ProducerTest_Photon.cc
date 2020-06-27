@@ -32,9 +32,9 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   // Get underlying super cluster
   reco::SuperClusterRef const& iSC = iPho->superCluster();
   //EcalRecHitCollection::const_iterator iRHit_( EBRecHitsH->find(iSC->seed()->seed()) );
-  //std::cout << "Seed E: " << iRHit_->energy() << std::endl;
+  std::cout << "Seed E: " << iRHit_->energy() << std::endl;
   std::vector<std::pair<DetId, float>> const& SCHits( iSC->hitsAndFractions() );
-  //std::cout << " >> SChits.size: " << SCHits.size() << std::endl;
+  std::cout << " >> SChits.size: " << SCHits.size() << std::endl;
 
   // Get Emax crystal
   Emax = 0.;
@@ -63,11 +63,11 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
         ieta_Emax = ieta_;
         //pos_Emax = caloGeom->getPosition(ebId);
       }
-      //std::cout << " >> " << iH << ": iphi_,ieta_,E: " << iphi_ << ", " << ieta_ << ", " << iRHit->energy() << std::endl;
+      std::cout << " >> " << iH << ": iphi_,ieta_,E: " << iphi_ << ", " << ieta_ << ", " << iRHit->energy() << std::endl;
     } // SC hits
 
     // Apply selection on position of shower seed
-    //std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
+    std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
     if ( Emax <= zs ) continue;
     if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 ) continue; // seed centered on [15,15] so must be padded by 15 below and 16 above
     vIphi_Emax_.push_back( iphi_Emax );
