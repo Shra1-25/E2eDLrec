@@ -82,6 +82,8 @@ class ProducerTest : public edm::stream::EDProducer<> {
       // Tokens
       edm::EDGetTokenT<EcalRecHitCollection> EBRecHitCollectionT_; 
       edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
+      static const int nPhotons = 2;
+   
       TH1F *h_sel;
       TH1F * hSC_pT;
       TTree* RHTree;
