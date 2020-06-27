@@ -83,6 +83,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<EcalRecHitCollection> EBRecHitCollectionT_; 
       edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       TH1F *h_sel;
+      TH1F * hSC_pT;
       TTree* RHTree;
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
@@ -98,6 +99,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       double z0PVCut_;
       std::vector<int> vJetIdxs;
       int nTotal, nPassed;
+      
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
 //void predict_tf();
 //void beginStream(edm::StreamID);
