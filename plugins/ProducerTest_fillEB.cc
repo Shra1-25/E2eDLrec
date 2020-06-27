@@ -4,10 +4,10 @@
 // Store event rechits in a vector of length equal
 // to number of crystals in EB (ieta:170 x iphi:360)
 
-TProfile2D *hEB_energy;
-TProfile2D *hEB_time;
-std::vector<float> vEB_energy_;
-std::vector<float> vEB_time_;
+//TProfile2D *hEB_energy;
+//TProfile2D *hEB_time;
+//std::vector<float> vEB_energy_;
+//std::vector<float> vEB_time_;
 
 // Initialize branches _____________________________________________________//
 void ProducerTest::branchesEB ( TTree* tree, edm::Service<TFileService> &fs ) {
