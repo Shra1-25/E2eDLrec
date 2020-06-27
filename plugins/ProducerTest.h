@@ -76,6 +76,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       // ----------member data ---------------------------
       // Tokens
       edm::EDGetTokenT<EcalRecHitCollection> EBRecHitCollectionT_; 
+      edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       TH1F *h_sel;
       TTree* RHTree;
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
