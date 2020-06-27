@@ -1,6 +1,4 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
-#include <iostream>
-using namespace std;
 
 // Fill EB rec hits ////////////////////////////////
 // Store event rechits in a vector of length equal
