@@ -36,7 +36,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
  const CaloGeometry* caloGeom = caloGeomH.product();*/
  
  nPho = 0;
- int iphi_Emax, ieta_Emax;
+ //int iphi_Emax, ieta_Emax;
  float Emax;
  vIphi_Emax_.clear();
  vIeta_Emax_.clear();
