@@ -107,6 +107,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       std::string mode_;  // EventLevel / JetLevel
       bool doJets_;
       int  nJets_;
+      int iphi_Emax, ieta_Emax;
       double minJetPt_;
       double maxJetEta_;
       double z0PVCut_;
