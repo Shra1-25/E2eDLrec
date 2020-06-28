@@ -108,8 +108,10 @@ class ProducerTest : public edm::stream::EDProducer<> {
       bool doJets_;
       int  nJets_;
       int iphi_Emax, ieta_Emax;
-      int vEB_energy_height, vEB_energy_width;
-      int vEB_frame_height, vEB_frame_width;
+      static unsigned int vEB_energy_height=170;
+      static unsigned int vEB_energy_width=360;
+      static unsigned int vEB_frame_height=32;
+      static unsigned int vEB_frame_width=32;
       double minJetPt_;
       double maxJetEta_;
       double z0PVCut_;
