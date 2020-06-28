@@ -133,6 +133,12 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    RHTree->Fill();
    //h_sel->Fill( 1. );
    nPassed++;
+   for (int frame_x=0; frame_x<vEB_frame_height;frame_x++){
+    for (int frame_y=0;frame_y<vEB_frame_width;frame_y++){
+     std::cout<<"yes "<<
+    }
+   }
+   std::cout<<std::endl;
    //predict_tf();
    //std::cout<<"TF_predict done "<<std::endl;
    //int vec_size=61200;
