@@ -166,7 +166,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      std::cout<<"("<<x_idx-start_x<<","<<y-start_y<<"): "<<vEB_frame[x_idx-start_x][y_idx-start_y]<<" ";
     }
    }
-   std::cout<<endl<<"size of frame is:"<<vEB_frame.size()<<endl;
+   std::cout<<endl<<"size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
    // Fill RHTree
    RHTree->Fill();
    //h_sel->Fill( 1. );
