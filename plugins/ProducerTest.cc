@@ -133,10 +133,13 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    RHTree->Fill();
    //h_sel->Fill( 1. );
    nPassed++;
-   for (int frame_x=0; frame_x<vEB_frame_height;frame_x++){
+   /*for (int frame_x=0; frame_x<vEB_frame_height;frame_x++){
     for (int frame_y=0;frame_y<vEB_frame_width;frame_y++){
      std::cout<<"yes "<<
     }
+   }*/
+   for (int i=0;i<vEB_energy_.size();i++){
+    std::cout<<"( "<<i/frame_widthvEB_<<", "<<i%frame_width<<" ) = "<<vEB_energy_[i]<<" ";
    }
    std::cout<<std::endl;
    //predict_tf();
