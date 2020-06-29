@@ -163,10 +163,11 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    for (int x_idx = start_x; x_idx<=end_x;x_idx++){
     for (int y_idx = start_y; y_idx<=end_y;y_idx++){
      vEB_frame[x_idx-start_x][y_idx-start_y]=vEB_energy_[x_idx*vEB_energy_height+y_idx];
-     std::cout<<"("<<x_idx-start_x<<","<<y_idx-start_y<<"): "<<vEB_frame[x_idx-start_x][y_idx-start_y]<<" "<<vEB_energy_[x_idx*vEB_energy_height+y_idx]<<" ";
+     std::cout<<"("<<x_idx-start_x<<","<<y_idx-start_y<<"): "<<vEB_frame[x_idx-start_x][y_idx-start_y]<<" "<<vEB_energy_[x_idx*vEB_energy_width+y_idx]<<" ";
     }
    }
    std::cout<<endl<<"size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
+   std::cout<<"E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
    // Fill RHTree
    RHTree->Fill();
    //h_sel->Fill( 1. );
