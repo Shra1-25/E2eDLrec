@@ -86,7 +86,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   vIphi_Emax_.push_back( iphi_Emax );
   vIeta_Emax_.push_back( ieta_Emax );
   std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
-  std::cout<<"EB_energy at iphi_Emax,ieta_Emax: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
+  std::cout<<" >> EB_energy at iphi_Emax,ieta_Emax: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   nPho++;
  }
  return;
