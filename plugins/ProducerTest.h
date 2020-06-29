@@ -60,10 +60,10 @@ using namespace std;
 using pat::PhotonCollection;
 using pat::PhotonRef;
 
-static const unsigned int vEB_energy_height=170;
-static const unsigned int vEB_energy_width=360;
-static const unsigned int vEB_frame_height=32;
-static const unsigned int vEB_frame_width=32;
+static const int vEB_energy_height=170;
+static const int vEB_energy_width=360;
+static const int vEB_frame_height=32;
+static const int vEB_frame_width=32;
 
 class ProducerTest : public edm::stream::EDProducer<> {
    public:
