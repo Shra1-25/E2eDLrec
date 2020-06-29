@@ -60,6 +60,11 @@ using namespace std;
 using pat::PhotonCollection;
 using pat::PhotonRef;
 
+static const unsigned int vEB_energy_height=170;
+static const unsigned int vEB_energy_width=360;
+static const unsigned int vEB_frame_height=32;
+static const unsigned int vEB_frame_width=32;
+
 class ProducerTest : public edm::stream::EDProducer<> {
    public:
       
@@ -88,7 +93,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       TProfile2D *hEB_time;
       std::vector<float> vEB_energy_;
       std::vector<float> vEB_time_;
-      std::vector<std::vector<float>> vEB_frame;
+      std::vector<std::vector<float>> vEB_frame(vEB_frame_height,std::vector<float> (vEB_frame_width));
       
       TH1F *h_sel;
       TH1F * hSC_pT;
@@ -137,10 +142,7 @@ static const int nTIB = 4;
 static const int nTID = 3;
 static const int nBPIX = 4;
 static const int nFPIX = 3;
-static const unsigned int vEB_energy_height=170;
-static const unsigned int vEB_energy_width=360;
-static const unsigned int vEB_frame_height=32;
-static const unsigned int vEB_frame_width=32;
+
 
 static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
 static const int EB_IPHI_MAX = EBDetId::MAX_IPHI;//360;
