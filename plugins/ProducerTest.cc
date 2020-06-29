@@ -138,8 +138,8 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      std::cout<<"yes "<<
     }
    }*/
-   for (int i=0;i<vEB_energy_.size();i++){
-    std::cout<<"( "<<i/frame_widthvEB_<<", "<<i%frame_width<<" ) = "<<vEB_energy_[i]<<" ";
+   for (unsigned int i=0;i<vEB_energy_.size();i++){
+    std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
    }
    std::cout<<std::endl;
    //predict_tf();
