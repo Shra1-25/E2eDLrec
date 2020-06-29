@@ -59,10 +59,10 @@ void ProducerTest::fillEB ( const edm::Event& iEvent, const edm::EventSetup& iSe
     vEB_time_[idx_] = iRHit->time();
 
   } // EB rechits
-  for (auto& i : vEB_energy_){
+  /*for (auto& i : vEB_energy_){
   //std::cout<<vEB_energy_[0]<<" "<<vEB_energy_[1]<<" "<<vEB_energy_[2]<<" "<<vEB_energy_[3]<<" "<<vEB_energy_[4]<<" "<<vEB_energy_[5]<<" "<<vEB_energy_[6]<<" "<<vEB_energy_[7]<<" "<<vEB_energy_[8]<<" "<<vEB_energy_[9]<<" -> size is "<<vEB_energy_.size()<<endl;
   std::cout<<i<<" ";}
-  std::cout<<std::endl;
+  std::cout<<std::endl;*/
   /*TFile *fw = TFile::Open("ECAL_Rechit.root","RECREATE");
   if (!fw) { return; }
   //std::vector<float> temp_vec;
