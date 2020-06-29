@@ -126,9 +126,9 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }
    
    fillEB( iEvent, iSetup );
-   for (unsigned int i=0;i<vEB_energy_.size();i++){
+   /*for (unsigned int i=0;i<vEB_energy_.size();i++){
     std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
-   }
+   }*/
    std::cout<<"FillEB done "<<std::endl;
    // PhotonCollection 
    get_photons(iEvent, iSetup );
