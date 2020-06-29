@@ -132,7 +132,42 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<"FillEB done "<<std::endl;
    // PhotonCollection 
    get_photons(iEvent, iSetup );
-    // Fill RHTree
+   int start_x=0;
+   int end_x=0;
+   int start_y=0;
+   int end_y=0;
+   if (iphi_Emax<vEB_frame_width/2-1){
+    start_y=0;
+   }
+   else {
+    start_y=iphi_Emax-vEB_frame_width/2+1;
+   }
+   if (iphi_Emax>vEB_energy_width-vEB_frame_width/2-1){
+    end_y=vEB_energy_width-1;
+   }
+   else {
+    end_y=iphi_Emax+vEB_frame_width/2;
+   }
+   if (ieta_Emax<vEB_frame_height/2-1){
+    start_x=0;
+   }
+   else {
+    start_x=ieta_Emax-vEB_frame_height/2+1;
+   }
+   if (ieta_Emax>vEB_energy_height-vEB_frame_height/2-1){
+    end_x=vEB_energy_height-1;
+   }
+   else {
+    end_x=ieta_Emax+vEB_frame_height/2;
+   }
+   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
+    for (int y_idx = start_y; y_idx<end_y;y_idx++){
+     vEB_frame[x_idx][y_idx]=vEB_energy_[x_idx*vEB_energy_height+y_idx];
+     std::cout<<"(x,y): "<<vEB_energy[x_idx][y_idx]<<" ";
+    }
+   }
+   std::cout<<endl<<"size of frame is:"<<vEB_frame.size()<<endl;
+   // Fill RHTree
    RHTree->Fill();
    //h_sel->Fill( 1. );
    nPassed++;
