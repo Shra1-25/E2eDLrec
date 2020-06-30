@@ -1,4 +1,6 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include <fstream>
+#include <sstream>
 
 // Initialize branches _____________________________________________________//
 void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
@@ -116,11 +118,16 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   else {
    end_x=ieta_Emax+vEB_frame_height/2;
   }
+  std::string filename = "frame_" + std::to_string(iP) + ".csv";
+  std::ofstream frame_file(filename);
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = start_y; y_idx<=end_y;y_idx++){
     vEB_frame[x_idx-start_x][y_idx-start_y]=vEB_energy_[x_idx*vEB_energy_width+y_idx];
     std::cout<<"("<<x_idx-start_x<<","<<y_idx-start_y<<"): "<<vEB_frame[x_idx-start_x][y_idx-start_y]<<" "<<vEB_energy_[x_idx*vEB_energy_width+y_idx]<<" ";
+    frame_file<<vEB_frame[x_idx-start_x][y_idx-start_y];
+    if (y_idx<end_y){frame_file<<",";}
    }
+    frame_file<<"\n";
   }
   std::cout<<endl<<"size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<"E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
