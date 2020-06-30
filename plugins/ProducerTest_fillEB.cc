@@ -15,7 +15,7 @@ void ProducerTest::branchesEB ( TTree* tree, edm::Service<TFileService> &fs ) {
   // Branches for images
   tree->Branch("EB_energy", &vEB_energy_);
   tree->Branch("EB_time",   &vEB_time_);
-  tree->Branch("Photon_Collection"), &vEB_frame);
+  tree->Branch("Photon_Collection", &vEB_frame);
 
   // Histograms for monitoring
   hEB_energy = fs->make<TProfile2D>("EB_energy", "E(i#phi,i#eta);i#phi;i#eta",
