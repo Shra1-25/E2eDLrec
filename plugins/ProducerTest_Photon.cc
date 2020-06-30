@@ -118,7 +118,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   else {
    end_x=ieta_Emax+vEB_frame_height/2;
   }
-  std::string filename = "frame_" + std::to_string(iP) + ".csv";
+  std::string filename = "frame_" + std::to_string(iP) + "_" + "nPassed" + ".csv";
   std::ofstream frame_file(filename);
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = start_y; y_idx<=end_y;y_idx++){
