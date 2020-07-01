@@ -2,7 +2,7 @@ import FWCore.ParameterSet.Config as cms
 import FWCore.ParameterSet.VarParsing as VarParsing
 options = VarParsing.VarParsing('analysis')
 options.register('skipEvents', 
-    default=7, 
+    default=0, 
     mult=VarParsing.VarParsing.multiplicity.singleton,
     mytype=VarParsing.VarParsing.varType.int,
     info = "skipEvents")
@@ -20,7 +20,7 @@ process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load("Configuration.StandardSequences.GeometryDB_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(3) ) #options.maxEvents
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) ) #options.maxEvents
 
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
