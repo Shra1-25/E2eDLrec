@@ -94,11 +94,15 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   int end_x=0;
   int start_y=0;
   int end_y=0;
+  int buff_x=0;
+  int buff_y=0;
   if (iphi_Emax<vEB_frame_width/2-1){
    start_y=0;
+   buff_y=vEB_frame_width/2-1-iphi_Emax;
   }
   else {
    start_y=iphi_Emax-vEB_frame_width/2+1;
+   buff_y=0;
   }
   if (iphi_Emax>vEB_energy_width-vEB_frame_width/2-1){
    end_y=vEB_energy_width-1;
@@ -108,9 +112,11 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   }
   if (ieta_Emax<vEB_frame_height/2-1){
    start_x=0;
+   buff_x=vEB_frame_height/2-1-ieta_Emax;
   }
   else {
    start_x=ieta_Emax-vEB_frame_height/2+1;
+    buff_x=0;
   }
   if (ieta_Emax>vEB_energy_height-vEB_frame_height/2-1){
    end_x=vEB_energy_height-1;
@@ -122,9 +128,9 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::ofstream frame_file(filename);
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = start_y; y_idx<=end_y;y_idx++){
-    vEB_frame[x_idx-start_x][y_idx-start_y]=vEB_energy_[x_idx*vEB_energy_width+y_idx];
-    std::cout<<"("<<x_idx-start_x<<","<<y_idx-start_y<<"): "<<vEB_frame[x_idx-start_x][y_idx-start_y]<<" "<<vEB_energy_[x_idx*vEB_energy_width+y_idx]<<" ";
-    frame_file<<vEB_frame[x_idx-start_x][y_idx-start_y];
+    vEB_frame[x_idx-start_x+buff_x][y_idx-start_y+buff_y]=vEB_energy_[x_idx*vEB_energy_width+y_idx];
+    std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx-start_y+buff_y<<"): "<<vEB_frame[x_idx-start_x+buff_x][y_idx-start_y+buff_y]<<" "<<vEB_energy_[x_idx*vEB_energy_width+y_idx]<<" ";
+    frame_file<<vEB_frame[x_idx-start_x+buff_x][y_idx-start_y+buff_y];
     if (y_idx<end_y){frame_file<<",";}
    }
     frame_file<<"\n";
