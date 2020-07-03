@@ -51,6 +51,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   // Get underlying super cluster
   reco::SuperClusterRef const& iSC = iRecoPho->superCluster();
   std::vector<std::pair<DetId, float>> const& SCHits( iSC->hitsAndFractions() );
+  std::cout<<"Processing photon "<<iP+1<<"/"<<photons->size()<<" of the event "<<nPassed+1<<":"<<endl;
   std::cout << " >> SChits.size: " << SCHits.size() << std::endl;
   
   // Get Emax crystal
@@ -139,8 +140,8 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
    }
     frame_file<<"\n";
   }*/
-  std::cout<<endl<<"size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
-  std::cout<<"E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
+  std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
+  std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   predict_tf();
  }
  return;
