@@ -13,42 +13,23 @@ void ProducerTest::predict_tf(){
  // create a new session
  TF_CHECK_OK(NewSession(opts, &session));
  
- std::string graph_definition="ProducerTest/plugins/tf_1_graph.pb";
+ std::string graph_definition="ProducerTest/plugins/e_vs_ph_model.pb";
+ std::cout<<endl<<"Welcome to the electron vs photon classifier."<<endl;
  
  //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
  tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef(graph_definition);
- 
- tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({28, 28}));   
- auto _XTensor = tmp.matrix<float>();
+ tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({32, 32}));   
+ std::copy_n(vec.begin(), vec.size(), tmp.flat<float>().data())
+ //auto _XTensor = tmp.matrix<float>();
   //_XTensor.setRandom();
- std::cout<<endl<<"Welcome to the digit classifier."<<endl<<"Please enter the csv filename to predict."<<endl;
- std::string file_name;
- cin>>file_name;
- std::ifstream  data(file_name);
- std::string line;
- int i_idx=0;
- while(std::getline(data,line))
- {
-     std::stringstream lineStream(line);
-     std::string cell;
-     //std::vector<float> parsedRow;
-     int j_idx=0;
-        
-     while(std::getline(lineStream,cell,','))
-     {
-         _XTensor(i_idx,j_idx)=std::stof(cell);
-         //parsedRow.push_back(std::stof(cell));
-         j_idx++;
-     }
-     //X_vec.push_back(parsedRow);
-     i_idx++;
- }
+ 
+ //_XTensor(i_idx,j_idx)=std::stof(cell);
  std::cout<<"Reading input data file done."<<endl;
 
   
-  tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({1, 28, 28, 1}));
-  if(!x.CopyFrom(tmp, tensorflow::TensorShape({1, 28, 28, 1}))){
+  tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({1, 32, 32, 1}));
+  if(!x.CopyFrom(tmp, tensorflow::TensorShape({1, 32, 32, 1}))){
     std::cout<<"Reshape not successfull."<<endl;
   }
  // Set GPU options
@@ -72,25 +53,17 @@ void ProducerTest::predict_tf(){
 
         
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
- TF_CHECK_OK(session->Run({{"x", x}/*, {"y", y}*/}, {"dense_2_out"}, {}, &outputs)); // Get output
+ TF_CHECK_OK(session->Run({{"inputs", x}/*, {"y", y}*/}, {"softmax_1"}, {}, &outputs)); // Get output
  //tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
  
  //float cost = outputs[0].scalar<float>()(0);
  //std::cout << "Cost: " <<  cost << std::endl;
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
  //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
- int max_idx=0;
- float max_out = outputs[0].matrix<float>()(0,0);
+ float classifier_out = outputs[0].matrix<float>()(0,0);
  //std::cout << "Output 0: " <<  max_out << std::endl;
- for (int idx=1;idx<10;idx++){
-     float idx_out = outputs[0].matrix<float>()(0,idx);
-     //std::cout << "Output "<<idx<<": " <<  idx_out << std::endl;
-     if (idx_out>max_out){
-         max_out=idx_out;
-         max_idx=idx;
-     }
- }
- std::cout<<"The digit is: "<<max_idx<<endl;
+ 
+ std::cout<<"Class: "<<classifier_out<<endl;
  outputs.clear();
   
  session->Close();
