@@ -19,12 +19,14 @@ void ProducerTest::predict_tf(){
  //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
  tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef(graph_definition);
- tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({32, 32}));   
- std::copy_n(vEB_frame.begin(), vEB_frame.size(), tmp.flat<float>().data());
- //auto _XTensor = tmp.matrix<float>();
-  //_XTensor.setRandom();
- 
- //_XTensor(i_idx,j_idx)=std::stof(cell);
+ tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({32, 32}));
+ auto _XTensor = tmp.matrix<float>();
+ //std::copy_n(vEB_frame.begin(), vEB_frame.size(), tmp.flat<float>().data());
+ for (int frame_row=0;frame_row<vEB_frame.size();frame_row++){
+  for (int frame_col=0;frame_col<vEB_frame[0].size();frame_col++){
+   _XTensor(frame_row,frame_col)=vEB_frame[frame_row][frame_col];
+  }
+ }
  std::cout<<"Reading input data file done."<<endl;
 
   
