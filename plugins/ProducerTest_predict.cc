@@ -55,7 +55,7 @@ void ProducerTest::predict_tf(){
 
         
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
- TF_CHECK_OK(session->Run({{"inputs", x}/*, {"y", y}*/}, {"softmax_1"}, {}, &outputs)); // Get output
+ TF_CHECK_OK(session->Run({{"inputs", x}/*, {"y", y}*/}, {"softmax_1/Sigmoid"}, {}, &outputs)); // Get output
  //tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
  
  //float cost = outputs[0].scalar<float>()(0);
