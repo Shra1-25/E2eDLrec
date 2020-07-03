@@ -20,7 +20,7 @@ void ProducerTest::predict_tf(){
  // load the graph definition, i.e. an object that contains the computational graph
  tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef(graph_definition);
  tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({32, 32}));   
- std::copy_n(vEB_frame.begin(), vEB_frame.size(), tmp.flat<float>().data())
+ std::copy_n(vEB_frame.begin(), vEB_frame.size(), tmp.flat<float>().data());
  //auto _XTensor = tmp.matrix<float>();
   //_XTensor.setRandom();
  
