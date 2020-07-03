@@ -79,7 +79,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
      iphi_Emax = iphi_;
      ieta_Emax = ieta_;
    }
-   std::cout << " >> " << iH << ": iphi_,ieta_,E: " << iphi_ << ", " << ieta_ << ", " << iRHit->energy() << std::endl;
+   //std::cout << " >> " << iH << ": iphi_,ieta_,E: " << iphi_ << ", " << ieta_ << ", " << iRHit->energy() << std::endl;
   }//SCHits
   // Apply selection on position of shower seed
   std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
