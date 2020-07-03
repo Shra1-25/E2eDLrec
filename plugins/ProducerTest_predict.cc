@@ -14,7 +14,7 @@ void ProducerTest::predict_tf(){
  TF_CHECK_OK(NewSession(opts, &session));
  
  std::string graph_definition="ProducerTest/plugins/e_vs_ph_model.pb";
- std::cout<<endl<<" >> Welcome to the electron vs photon classifier."<<endl;
+ std::cout<<" >> Welcome to the electron vs photon classifier."<<endl;
  
  //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
@@ -70,7 +70,7 @@ void ProducerTest::predict_tf(){
   
  session->Close();
  delete session;
- std::cout<<" >> All done"<<endl;
+ std::cout<<" >> All done"<<endl<<endl;
  // cleanup
  //tensorflow::closeSession(session);
  //delete graphDef;
