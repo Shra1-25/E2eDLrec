@@ -14,7 +14,7 @@ void ProducerTest::predict_tf(){
  TF_CHECK_OK(NewSession(opts, &session));
  
  std::string graph_definition="ProducerTest/plugins/e_vs_ph_model.pb";
- std::cout<<endl<<"Welcome to the electron vs photon classifier."<<endl;
+ std::cout<<endl<<" >> Welcome to the electron vs photon classifier."<<endl;
  
  //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
@@ -27,12 +27,12 @@ void ProducerTest::predict_tf(){
    _XTensor(frame_row,frame_col)=vEB_frame[frame_row][frame_col];
   }
  }
- std::cout<<"Reading input data file done."<<endl;
+ std::cout<<" >> Reading input data file done."<<endl;
 
   
   tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({1, 32, 32, 1}));
   if(!x.CopyFrom(tmp, tensorflow::TensorShape({1, 32, 32, 1}))){
-    std::cout<<"Reshape not successfull."<<endl;
+    std::cout<<" >> Reshape not successfull."<<endl;
   }
  // Set GPU options
  //graph::SetDefaultDevice("/gpu:0", &graph_def);
@@ -65,12 +65,12 @@ void ProducerTest::predict_tf(){
  float classifier_out = outputs[0].matrix<float>()(0,0);
  //std::cout << "Output 0: " <<  max_out << std::endl;
  
- std::cout<<"Class: "<<classifier_out<<endl;
+ std::cout<<" >> Class: "<<classifier_out<<endl;
  outputs.clear();
   
  session->Close();
  delete session;
- std::cout<<"All done"<<endl;
+ std::cout<<" >> All done"<<endl;
  // cleanup
  //tensorflow::closeSession(session);
  //delete graphDef;
