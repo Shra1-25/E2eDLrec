@@ -131,16 +131,17 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
     vEB_frame[x_idx-start_x+buff_x][y_idx-start_y+buff_y]=vEB_energy_[x_idx*vEB_energy_width+y_idx];
    }
   }
-  for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
+  /*for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
    for (int y_idx=0;y_idx<vEB_frame_width;y_idx++){ 
     std::cout<<"("<<x_idx<<","<<y_idx<<"): "<<vEB_frame[x_idx][y_idx]<<" ";
     frame_file<<vEB_frame[x_idx][y_idx];
     if (y_idx<(vEB_frame_width-1)){frame_file<<",";}
    }
     frame_file<<"\n";
-  }
+  }*/
   std::cout<<endl<<"size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<"E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
+  predict_tf();
  }
  return;
 }
