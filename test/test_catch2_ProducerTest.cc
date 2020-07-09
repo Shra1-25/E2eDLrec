@@ -12,7 +12,7 @@ int test_tf(){
 TEST_CASE("Testing sum and product","[sum_product]"){
   REQUIRE(test_tf()==1);
 }
-/*static constexpr auto s_tag = "[ProducerTest]";
+static constexpr auto s_tag = "[ProducerTest]";
 
 TEST_CASE("Standard checks of ProducerTest", s_tag) {
   const std::string baseConfig{
