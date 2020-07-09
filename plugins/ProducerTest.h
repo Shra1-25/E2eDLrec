@@ -89,6 +89,12 @@ class ProducerTest : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       static const int nPhotons = 2;
       
+      TFile *fw = TFile::Open("EB_frame.root","RECREATE");
+      if (!fw) { return; }
+      //std::vector<float> temp_vec;
+      // Create a TTree
+      TTree *tw = new TTree("photon_frames","Tree with photon frames");
+   
       TProfile2D *hEB_energy;
       TProfile2D *hEB_time;
       //TProfile2D *hEB_frame;
