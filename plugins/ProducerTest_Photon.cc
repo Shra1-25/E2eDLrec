@@ -143,7 +143,8 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
-  tw->Branch("vEB_frame_"+std::to_string(nPassed+1)+"_"+std::to_string(iP+1),&vEB_frame);
+  std::string branchname="vEB_frame_"+std::to_string(nPassed+1)+"_"+std::to_string(iP+1);
+  tw->Branch(branchname,&vEB_frame);
   tw->Fill();
   fw->Write();
   //fw->Close();
