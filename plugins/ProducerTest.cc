@@ -224,6 +224,7 @@ ProducerTest::beginStream(edm::StreamID)
 void
 ProducerTest::endStream() {
  std::cout << " selected: " << nPassed << "/" << nTotal << std::endl;
+ fw->Close();
 }
 
 // ------------ method called when starting to processes a run  ------------
