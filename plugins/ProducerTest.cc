@@ -220,6 +220,7 @@ ProducerTest::beginStream(edm::StreamID)
 void
 ProducerTest::endStream() {
  std::cout << " selected: " << nPassed << "/" << nTotal << std::endl;
+ fw->Write();
  fw->Close();
 }
 
