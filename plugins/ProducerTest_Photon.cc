@@ -147,7 +147,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   const char* branchname=branchstr.c_str();
   tw->Branch(branchname,&vEB_frame);
   tw->Fill();
-  fw->Write();
+  //fw->Write();
   //fw->Close();
   //predict_tf();
   }
