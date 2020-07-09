@@ -92,6 +92,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
  std::cout<<"BranchesEB done "<<std::endl;
+ if (!fw) { return; }
 }
 
 
