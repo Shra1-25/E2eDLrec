@@ -92,11 +92,6 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
  std::cout<<"BranchesEB done "<<std::endl;
- TFile *fw = TFile::Open("EB_frame.root","RECREATE");
- if (!fw) { return; }
- //std::vector<float> temp_vec;
- // Create a TTree
- TTree *tw = new TTree("photon_frames","Tree with photon frames");
 }
 
 
