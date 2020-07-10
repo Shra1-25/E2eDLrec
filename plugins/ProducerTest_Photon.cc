@@ -141,7 +141,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
    }
     frame_file<<"\n";
   }*/
-  vEB_photon_frames.push_back(EB_frame);
+  vEB_photon_frames.push_back(vEB_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
