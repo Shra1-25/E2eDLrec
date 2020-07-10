@@ -15,8 +15,8 @@ void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &
   //tree->Branch("SC_pT",     &vSC_pT_);
   tree->Branch("SC_eta",    &vSC_eta_);
   tree->Branch("SC_phi",    &vSC_phi_);
-  tree->Branch("photon_frames",&vEB_photon_frames);
-
+  tree->Branch("photon_frames_1",&vEB_photon_frames[0]);
+  tree->Branch("photon_frames_2",&vEB_photon_frames[1]);
 }
 // Define struct to handle mapping for gen pho<->matched reco photons<->matched presel photons
 struct pho_map {
