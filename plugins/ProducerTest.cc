@@ -132,7 +132,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }*/
    std::cout<<"FillEB done "<<std::endl;
    // PhotonCollection 
-   get_photons(iEvent, iSetup, RHTree, fs );
+   get_photons(iEvent, iSetup );
    
    // Fill RHTree
    RHTree->Fill();
