@@ -24,7 +24,7 @@ struct pho_map {
 };
 std::vector<pho_map> vPhos;
 
-void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup, TTree* tree, edm::Service<TFileService> &fs ){
+void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
@@ -148,7 +148,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
  for (int idx=0;idx<int(vEB_photon_frames.size());idx++){ 
   std::string str="photon_frames_"+std::to_string(idx);
   const char* branchname=str.c_str();
-  tree->Branch(branchname,&vEB_photon_frames[0]);
+  RHTree->Branch(branchname,&vEB_photon_frames[0]);
  }
  return;
 }
