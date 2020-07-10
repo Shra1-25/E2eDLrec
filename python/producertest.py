@@ -31,7 +31,7 @@ process.source = cms.Source("PoolSource",
 print (" >> Loaded",len(options.inputFiles),"input files from list.")
 
 process.load("ProdTutorial.ProducerTest.EBRecHit_cfi")
-process.fevt_tf.mode = cms.string('JetLevel')#options.processMode
+#process.fevt_tf.mode = cms.string('JetLevel')#options.processMode
 
 process.out = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string('myOutputFile.root')
@@ -42,7 +42,7 @@ process.out = cms.OutputModule("PoolOutputModule",
       "keep *_TrackTrackPoints_*_*")
 
 )
-print " >> Processing as:",(process.fevt_tf.mode)
+#print " >> Processing as:",(process.fevt_tf.mode)
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string("myoutput.root")#options.outputFile
     )
