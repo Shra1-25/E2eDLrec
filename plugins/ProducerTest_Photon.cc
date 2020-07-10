@@ -149,7 +149,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::string str="photon_frames_"+std::to_string(idx);
   std::cout<<" >> ">>str>>std::endl;
   const char* branchname=str.c_str();
-  RHTree->Branch(branchname,&vEB_photon_frames[0]);
+  RHTree->Branch(branchname,&vEB_photon_frames[i]);
  }
  return;
 }
