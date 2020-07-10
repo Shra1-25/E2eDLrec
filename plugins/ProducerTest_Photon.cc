@@ -5,9 +5,9 @@
 // Initialize branches _____________________________________________________//
 void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
 {
-  hSC_pT = fs->make<TH1F>("SC_pT", "Pt", 27, 15., 150.);
+  /*hSC_pT = fs->make<TH1F>("SC_pT", "Pt", 27, 15., 150.);
   hMinDRgenRecoPho = fs->make<TH1F>("minDRgenRecoPho", "#DeltaR(#gamma_{gen},#gamma_{reco})_{min};#DeltaR;N", 100, 0., 25*0.0174);
-  hMinDRrecoPtoGenPt = fs->make<TH1F>("minDRrecoPtoGenPt", "#DeltaR(#gamma_{gen},#gamma_{reco})_{min}, p_{T,reco}/p_{T,gen};p_{T,reco}/p_{T,gen};N", 60, -10., 10.);
+  hMinDRrecoPtoGenPt = fs->make<TH1F>("minDRrecoPtoGenPt", "#DeltaR(#gamma_{gen},#gamma_{reco})_{min}, p_{T,reco}/p_{T,gen};p_{T,reco}/p_{T,gen};N", 60, -10., 10.);*/
 
   //tree->Branch("SC_mass",   &vSC_mass_);
   //tree->Branch("SC_DR",     &vSC_DR_);
