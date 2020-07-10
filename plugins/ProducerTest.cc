@@ -69,7 +69,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
 {
  EBRecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEBRecHitCollection"));
  photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
- mode_      = iConfig.getParameter<std::string>("mode");
+ /*mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
  maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
  z0PVCut_   = iConfig.getParameter<double>("z0PVCut");
@@ -83,7 +83,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  } else {
    std::cout << " >> Assuming EventLevel Config. " << std::endl;
    doJets_ = false;
- }
+ }*/
  //usesResource("TFileService");
  edm::Service<TFileService> fs;
  RHTree = fs->make<TTree>("RHTree", "RecHit tree");
@@ -92,7 +92,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
  std::cout<<"BranchesEB done "<<std::endl;
- if (!fw) { return; }
+ //if (!fw) { return; }
 }
 
 
@@ -114,7 +114,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    nTotal++;
    // ----- Apply event selection cuts ----- //
 
-   bool passedSelection = false;
+   /*bool passedSelection = false;
    if ( doJets_ ) {
      //passedSelection = runEvtSel_jet( iEvent, iSetup );
    } else {
@@ -124,7 +124,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    if ( !passedSelection ) {
      //h_sel->Fill( 0. );;
      //return;
-   }
+   }*/
    
    fillEB( iEvent, iSetup );
    /*for (unsigned int i=0;i<vEB_energy_.size();i++){
@@ -220,8 +220,8 @@ ProducerTest::beginStream(edm::StreamID)
 void
 ProducerTest::endStream() {
  std::cout << " selected: " << nPassed << "/" << nTotal << std::endl;
- fw->Write();
- fw->Close();
+ //fw->Write();
+ //fw->Close();
 }
 
 // ------------ method called when starting to processes a run  ------------
