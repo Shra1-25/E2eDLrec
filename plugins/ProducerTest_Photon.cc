@@ -15,6 +15,7 @@ void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &
   //tree->Branch("SC_pT",     &vSC_pT_);
   tree->Branch("SC_eta",    &vSC_eta_);
   tree->Branch("SC_phi",    &vSC_phi_);
+  tree->Branch(branchname,&vEB_photon_frames);
 
 }
 // Define struct to handle mapping for gen pho<->matched reco photons<->matched presel photons
@@ -129,7 +130,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::ofstream frame_file(filename);*/
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = start_y; y_idx<=end_y;y_idx++){
-    vEB_frame[x_idx-start_x+buff_x][y_idx-start_y+buff_y]=vEB_energy_[x_idx*vEB_energy_width+y_idx];
+    EB_frame[x_idx-start_x+buff_x,y_idx-start_y+buff_y]=vEB_energy_[x_idx*vEB_energy_width+y_idx];
    }
   }
   /*for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
@@ -140,16 +141,11 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
    }
     frame_file<<"\n";
   }*/
-  std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
+  vEB_photon_frames.push_back(EB_frame);
+  std::cout<<" >> Size of frame is:"<<"("<<EB_frame.size()<<", "<</*EB_frame[0].size()<<*/")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
-  std::string branchstr="vEB_frame_"+/*std::to_string(nPassed+1)+"_"+*/std::to_string(iP+1);
-  const char* branchname=branchstr.c_str();
-  RHTree->Branch(branchname,&vEB_frame);
-  //fw->Write();
-  //fw->Close();
   //predict_tf();
   }
- //RHTree->Fill();
  return;
 }
