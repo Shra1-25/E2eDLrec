@@ -145,8 +145,8 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::cout<<std::endl;
   //predict_tf();
   }
- for (int idx=0;idx<vEB_photon_frames.size();idx++){ 
-  std::string str="photon_frames_"+std::to_string(i);
+ for (int idx=0;idx<int(vEB_photon_frames.size());idx++){ 
+  std::string str="photon_frames_"+std::to_string(idx);
   const char* branchname=str.c_str();
   tree->Branch(branchname,&vEB_photon_frames[0]);
  }
