@@ -130,7 +130,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::ofstream frame_file(filename);*/
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = start_y; y_idx<=end_y;y_idx++){
-    EB_frame[x_idx-start_x+buff_x][y_idx-start_y+buff_y]=float(vEB_energy_[x_idx*vEB_energy_width+y_idx]);
+    vEB_frame[x_idx-start_x+buff_x][y_idx-start_y+buff_y]=vEB_energy_[x_idx*vEB_energy_width+y_idx];
    }
   }
   /*for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
@@ -142,7 +142,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
     frame_file<<"\n";
   }*/
   vEB_photon_frames.push_back(EB_frame);
-  std::cout<<" >> Size of frame is:"<<"("<<vEB_frame_height<<", "<<vEB_frame_width<<")"<<endl;
+  std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
   //predict_tf();
