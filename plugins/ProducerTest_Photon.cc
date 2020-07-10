@@ -15,8 +15,6 @@ void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &
   //tree->Branch("SC_pT",     &vSC_pT_);
   tree->Branch("SC_eta",    &vSC_eta_);
   tree->Branch("SC_phi",    &vSC_phi_);
-  tree->Branch("photon_frames_1",&vEB_photon_frames[0]);
-  tree->Branch("photon_frames_2",&vEB_photon_frames[1]);
 }
 // Define struct to handle mapping for gen pho<->matched reco photons<->matched presel photons
 struct pho_map {
@@ -26,7 +24,7 @@ struct pho_map {
 };
 std::vector<pho_map> vPhos;
 
-void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup ){
+void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup, TTree* tree, edm::Service<TFileService> &fs ){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
@@ -147,5 +145,10 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::cout<<std::endl;
   //predict_tf();
   }
+ for (int idx=0;idx<vEB_photon_frames.size();idx++){ 
+  std::string str="photon_frames_"+std::to_string(i);
+  const char* branchname=str.c_str();
+  tree->Branch(branchname,&vEB_photon_frames[0]);
+ }
  return;
 }
