@@ -47,4 +47,4 @@ process.TFileService = cms.Service("TFileService",
     fileName = cms.string("myoutput.root")#options.outputFile
     )
 
-process.p = cms.Path(process.fevt_tf)
+process.p = cms.Path(process.ProducerFrames)
