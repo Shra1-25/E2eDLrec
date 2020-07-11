@@ -152,13 +152,12 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
   }*/
- }
- for (std::vector<float> i : vEB_photon_frames){
-   for (int j=0;j<int(vEB_flat_frame.size());j++){
-     if (j%32==0){std::cout<<endl;}
-     std::cout<<i[j]<<" ";
-   }
-   std::cout<<endl;
+  for (int i=0;i<32;i++){
+    for (int j=0;j<32;j++){
+      std::cout<<vEB_flat_frame[i*32+j]<<" "<<vEB_frame[i][j]<<" ";
+    }
+    std::cout<<endl;
+  }
  }
  return;
 }
