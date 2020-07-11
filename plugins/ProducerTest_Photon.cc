@@ -3,7 +3,7 @@
 #include <sstream>
 
 // Initialize branches _____________________________________________________//
-std::vector<int> ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
+void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
 {
   /*hSC_pT = fs->make<TH1F>("SC_pT", "Pt", 27, 15., 150.);
   hMinDRgenRecoPho = fs->make<TH1F>("minDRgenRecoPho", "#DeltaR(#gamma_{gen},#gamma_{reco})_{min};#DeltaR;N", 100, 0., 25*0.0174);
@@ -25,7 +25,7 @@ struct pho_map {
 };
 std::vector<pho_map> vPhos;
 
-int ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
+std::vector<int> ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
