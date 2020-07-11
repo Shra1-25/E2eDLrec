@@ -15,6 +15,7 @@ void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &
   //tree->Branch("SC_pT",     &vSC_pT_);
   tree->Branch("SC_eta",    &vSC_eta_);
   tree->Branch("SC_phi",    &vSC_phi_);
+  tree->Branch("photon_frames",&vEB_photon_frames);
 }
 // Define struct to handle mapping for gen pho<->matched reco photons<->matched presel photons
 struct pho_map {
@@ -129,6 +130,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = start_y; y_idx<=end_y;y_idx++){
     vEB_frame[x_idx-start_x+buff_x][y_idx-start_y+buff_y]=vEB_energy_[x_idx*vEB_energy_width+y_idx];
+    vEB_flat_frame.push_back(vEB_energy_[x_idx*vEB_energy_width+y_idx]);
    }
   }
   /*for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
@@ -139,26 +141,24 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
    }
     frame_file<<"\n";
   }*/
-  vEB_photon_frames.push_back(vEB_frame);
+  vEB_photon_frames.push_back(vEB_flat_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
   //predict_tf();
- 
-  std::string str="photon_frames_"+std::to_string(iP+1);
-  std::cout<<" >> "<<str<<std::endl;
-  const char* branchname=str.c_str();
+   
   std::cout<<" >> Number of Photons read is:"<<vEB_photon_frames.size()<<std::endl;
-  std::cout<<" >> Current Photon being read is: "<<iP<<std::endl;
-  for (std::vector<float> i : vEB_photon_frames[vEB_photon_frames.size()-1]){
-    for (int j=0;j<32;j++){
-      std::cout<<i[j]<<" ";
-    }
-    std::cout<<endl;
-  }
+  std::cout<<" >> Current Photon being read is: "<<iP+1<<"/"<<photons->size()<<std::endl;
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
   }*/
+ }
+ for (std::vector<float> i : vEB_photon_frames){
+   for (int j=0;j<vEB_flat_frame.size();j++){
+     if (j%32==0){std::cout<<endl;}
+     std::cout<<i[j]<<" ";
+   }
+   std::cout<<endl;
  }
  return;
 }
