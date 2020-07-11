@@ -92,6 +92,8 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
  std::cout<<"BranchesEB done "<<std::endl;
+ 
+ produces<int>("class_predict");
  //if (!fw) { return; }
 }
 
@@ -125,7 +127,8 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      //h_sel->Fill( 0. );;
      //return;
    }*/
-   
+   std::auto_ptr<int> class_predict(new int);
+  
    fillEB( iEvent, iSetup );
    /*for (unsigned int i=0;i<vEB_energy_.size();i++){
     std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
