@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms 
 
-fevt_tf = cms.EDProducer('ProducerTest'
+ProducerFrames = cms.EDProducer('ProducerTest'
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
     , photonCollection = cms.InputTag('slimmedPhotons')
     #, mode = cms.string("JetLevel")
