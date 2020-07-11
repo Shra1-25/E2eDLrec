@@ -145,19 +145,20 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
-  //predict_tf();
-   
+  class_predict=predict_tf();
+  iEvent.put(class_predict);
+  
   std::cout<<" >> Number of Photons read is:"<<vEB_photon_frames.size()<<std::endl;
   std::cout<<" >> Current Photon being read is: "<<iP+1<<"/"<<photons->size()<<std::endl;
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
   }*/
-  for (int i=0;i<32;i++){
+  /*for (int i=0;i<32;i++){
     for (int j=0;j<32;j++){
       std::cout<<"("<<vEB_flat_frame[i*32+j]<<", "<<vEB_frame[i][j]<<") ";
     }
     std::cout<<endl;
   }
- }
+ }*/
  return;
 }
