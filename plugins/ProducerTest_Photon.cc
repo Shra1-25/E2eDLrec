@@ -150,7 +150,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   const char* branchname=str.c_str();
   std::cout<<" >> Number of Photons read is:"<<vEB_photon_frames.size()<<std::endl;
   std::cout<<" >> Current Photon being read is: "<<iP<<std::endl;
-  for (int i : vEB_photon_frames[vEB_photon_frames.size()-1]){
+  for (std::vector<std::vector<float>> i : vEB_photon_frames[vEB_photon_frames.size()-1]){
     for (int j=0;j<32;j++){
       for (int k=0;k<32;k++){ 
         std::cout<<i[j][k]<<" ";
