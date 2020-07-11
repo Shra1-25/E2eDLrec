@@ -3,7 +3,7 @@
 #include <sstream>
 
 // Initialize branches _____________________________________________________//
-void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
+std::vector<int> ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
 {
   /*hSC_pT = fs->make<TH1F>("SC_pT", "Pt", 27, 15., 150.);
   hMinDRgenRecoPho = fs->make<TH1F>("minDRgenRecoPho", "#DeltaR(#gamma_{gen},#gamma_{reco})_{min};#DeltaR;N", 100, 0., 25*0.0174);
@@ -25,7 +25,7 @@ struct pho_map {
 };
 std::vector<pho_map> vPhos;
 
-void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
+int ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
@@ -36,7 +36,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
  /*edm::ESHandle<CaloGeometry> caloGeomH;
  iSetup.get<CaloGeometryRecord>().get(caloGeomH);
  const CaloGeometry* caloGeom = caloGeomH.product();*/
- 
+ std::vector<int> classes;
  nPho = 0;
  //int iphi_Emax, ieta_Emax;
  float Emax;
@@ -145,11 +145,11 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
-  class_predict=predict_tf();
-  iEvent.put(class_predict);
+  classes.push_back(predict_tf());
   
   std::cout<<" >> Number of Photons read is:"<<vEB_photon_frames.size()<<std::endl;
   std::cout<<" >> Current Photon being read is: "<<iP+1<<"/"<<photons->size()<<std::endl;
+  std::cout<<" >> Number of photon frames is: "<<vEB_photon_frames.size()<<std::endl;
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
   }*/
@@ -158,7 +158,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
       std::cout<<"("<<vEB_flat_frame[i*32+j]<<", "<<vEB_frame[i][j]<<") ";
     }
     std::cout<<endl;
-  }
- }*/
- return;
+  }*/
+ }
+ return classes;
 }
