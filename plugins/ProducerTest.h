@@ -88,10 +88,6 @@ class ProducerTest : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<EcalRecHitCollection> EBRecHitCollectionT_; 
       edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       static const int nPhotons = 2;
-      
-      //TFile *fw = TFile::Open("EB_frame.root","RECREATE");
-      // Create a TTree
-      //TTree *tw = new TTree("photon_frames","Tree with photon frames");
    
       TProfile2D *hEB_energy;
       TProfile2D *hEB_time;
@@ -116,7 +112,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
       void get_photons        ( const edm::Event&, const edm::EventSetup& );
       void predict_tf         ();
-      //void write_root         ();
+      
       std::vector<float>& read_vEB_energy     (int);
       std::string mode_;  // EventLevel / JetLevel
       bool doJets_;
