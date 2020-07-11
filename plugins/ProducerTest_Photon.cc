@@ -150,7 +150,9 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   const char* branchname=str.c_str();
   std::cout<<" >> Number of Photons read is:"<<vEB_photon_frames.size()<<std::endl;
   std::cout<<" >> Current Photon being read is: "<<iP<<std::endl;
-  //RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
+  if (vEB_photon_frames.size()>0){ 
+   RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
+  }
  }
  return;
 }
