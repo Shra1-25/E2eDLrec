@@ -111,19 +111,19 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
-      std::vector<int> get_photons        ( const edm::Event&, const edm::EventSetup& );
+      std::vector<int>& get_photons        ( const edm::Event&, const edm::EventSetup& );
       int predict_tf         ();
       
       std::vector<float>& read_vEB_energy     (int);
       std::string mode_;  // EventLevel / JetLevel
-      bool doJets_;
-      int  nJets_;
+      /*bool doJets_;
+      int  nJets_;*/
       int iphi_Emax, ieta_Emax;
       
-      double minJetPt_;
+      /*double minJetPt_;
       double maxJetEta_;
       double z0PVCut_;
-      std::vector<int> vJetIdxs;
+      std::vector<int> vJetIdxs;*/
       std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
       std::vector<float> vSC_eta_;
