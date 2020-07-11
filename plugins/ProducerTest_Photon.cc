@@ -145,10 +145,11 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::cout<<std::endl;
   //predict_tf();
  
- std::string str="photon_frames_"+std::to_string(iP+1);
- std::cout<<" >> "<<str<<std::endl;
- const char* branchname=str.c_str();
- RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
+  std::string str="photon_frames_"+std::to_string(iP+1);
+  std::cout<<" >> "<<str<<std::endl;
+  const char* branchname=str.c_str();
+  std::cout<<" >> Number of Photons read is:"<<vEB_photon_frames.size()<<std::endl;
+  RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
  }
  return;
 }
