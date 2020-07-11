@@ -154,7 +154,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   }*/
  }
  for (std::vector<float> i : vEB_photon_frames){
-   for (int j=0;j<vEB_flat_frame.size();j++){
+   for (int j=0;j<int(vEB_flat_frame.size());j++){
      if (j%32==0){std::cout<<endl;}
      std::cout<<i[j]<<" ";
    }
