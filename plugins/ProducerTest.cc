@@ -136,6 +136,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    
    // Fill RHTree
    RHTree->Fill();
+   vEB_photon_frames.clear();
    //h_sel->Fill( 1. );
    nPassed++;
    /*for (int frame_x=0; frame_x<vEB_frame_height;frame_x++){
