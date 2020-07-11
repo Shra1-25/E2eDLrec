@@ -36,13 +36,15 @@ int ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup&
  /*edm::ESHandle<CaloGeometry> caloGeomH;
  iSetup.get<CaloGeometryRecord>().get(caloGeomH);
  const CaloGeometry* caloGeom = caloGeomH.product();*/
- std::vector<int> classes;
+ std::vector<int> vclasses;
  nPho = 0;
  //int iphi_Emax, ieta_Emax;
  float Emax;
  vIphi_Emax_.clear();
  vIeta_Emax_.clear();
  vPreselPhoIdxs_.clear();
+ vEB_photon_frames.clear();
+ vclasses.clear(); 
  int iphi_, ieta_; // rows:ieta, cols:iphi
  
  for ( unsigned int iP = 0; iP < photons->size(); iP++ ) {
@@ -145,7 +147,7 @@ int ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup&
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
-  classes.push_back(predict_tf());
+  vclasses.push_back(predict_tf());
   
   std::cout<<" >> Number of Photons read is:"<<vEB_photon_frames.size()<<std::endl;
   std::cout<<" >> Current Photon being read is: "<<iP+1<<"/"<<photons->size()<<std::endl;
@@ -160,5 +162,5 @@ int ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup&
     std::cout<<endl;
   }*/
  }
- return classes;
+ return vclasses;
 }
