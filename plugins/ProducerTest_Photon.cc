@@ -144,7 +144,7 @@ void ProducerTest::get_photons ( const edm::Event& iEvent, const edm::EventSetup
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<std::endl;
   //predict_tf();
-  }
+ 
  std::string str="photon_frames_"+std::to_string(iP+1);
  std::cout<<" >> "<<str<<std::endl;
  const char* branchname=str.c_str();
