@@ -36,7 +36,7 @@ std::vector<int>& ProducerTest::get_photons ( const edm::Event& iEvent, const ed
  /*edm::ESHandle<CaloGeometry> caloGeomH;
  iSetup.get<CaloGeometryRecord>().get(caloGeomH);
  const CaloGeometry* caloGeom = caloGeomH.product();*/
- std::vector<int> vclasses;
+ 
  nPho = 0;
  //int iphi_Emax, ieta_Emax;
  float Emax;
