@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void ProducerTest::predict_tf(){
+int ProducerTest::predict_tf(){
  tensorflow::Session* session;
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
@@ -74,4 +74,6 @@ void ProducerTest::predict_tf(){
  // cleanup
  //tensorflow::closeSession(session);
  //delete graphDef;
+ if (classifier_out>0.5){return 1;}
+ else {return 0;}
 }
