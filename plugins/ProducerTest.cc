@@ -93,7 +93,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  branchesPhotonSel ( RHTree, fs );
  std::cout<<"BranchesEB done "<<std::endl;
  
- produces<int>("class_predict");
+ produces<std::vector<int>> ("photon_classes");
  //if (!fw) { return; }
 }
 
@@ -127,7 +127,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      //h_sel->Fill( 0. );;
      //return;
    }*/
-   std::auto_ptr<int> class_predict(new int);
+   std::auto_ptr<int> photon_classes(new std::vector<int>);
   
    fillEB( iEvent, iSetup );
    /*for (unsigned int i=0;i<vEB_energy_.size();i++){
@@ -135,8 +135,8 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }*/
    std::cout<<"FillEB done "<<std::endl;
    // PhotonCollection 
-   get_photons(iEvent, iSetup );
-   
+   photon_classes=get_photons(iEvent, iSetup );
+   iEvent.put(photon_classes);
    // Fill RHTree
    RHTree->Fill();
    vEB_photon_frames.clear();
