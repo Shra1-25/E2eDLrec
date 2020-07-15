@@ -129,7 +129,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      //return;
    }*/
    //auto photon_classes = std::make_unique<float>(10.0);
-   std::unique_ptr<std::vector<float>> EBEnergy_edm (new std::vector<float>);
+   std::unique_ptr<std::vector<float>> EBEnergy_edm (new std::vector<float>(vEB_energy_));
    fillEB( iEvent, iSetup );
    /*for (unsigned int i=0;i<vEB_energy_.size();i++){
     std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
