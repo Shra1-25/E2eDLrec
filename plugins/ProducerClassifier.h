@@ -30,10 +30,10 @@
 #include "FWCore/Utilities/interface/InputTag.h"
 #include "FWCore/Utilities/interface/StreamID.h"
 
-/*#include "DataFormats/EgammaCandidates/interface/Photon.h"
+#include "DataFormats/EgammaCandidates/interface/Photon.h"
 #include "DataFormats/EgammaCandidates/interface/PhotonFwd.h" // reco::PhotonCollection defined here
 #include "DataFormats/PatCandidates/interface/Photon.h"
-#include "DataFormats/TrackingRecHit/interface/TrackingRecHit.h"
+/*#include "DataFormats/TrackingRecHit/interface/TrackingRecHit.h"
 #include "DataFormats/TrackingRecHit/interface/TrackingRecHitFwd.h"*/
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
@@ -54,9 +54,11 @@
 #include "DataFormats/Math/interface/deltaPhi.h"*/
 #include <iostream>
 using namespace std;
-//using pat::PhotonCollection;
-//using pat::PhotonRef;
+using pat::PhotonCollection;
+using pat::PhotonRef;
 
+static const int vEB_energy_height=170;
+static const int vEB_energy_width=360;
 static const int vEB_frame_height=32;
 static const int vEB_frame_width=32;
 
@@ -82,16 +84,25 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       // Tokens 
       //edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       //edm::EDGetTokenT<std::vector<std::vector<float>>> frames_;
+      edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       static const int nPhotons = 2;
    
+      std::vector<float> vEB_energy_;
+      std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
+      std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vEB_photon_frames;
+      std::vector<int> vclasses;
+      void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
+      std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
+      int predict_tf         ();
+      int iphi_Emax, ieta_Emax;
    
       /*TTree* RHTree;
       unsigned int nPho;
       
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );*/
-      void fill_photons             ( const edm::Event&, const edm::EventSetup& );
+      //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
       void predict_tf         ();
       
       std::vector<float> vIphi_Emax_;
@@ -102,10 +113,12 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       int nTotal, nPassed;
 };
 
-/*static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
+static const bool debug = false;
+
+static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
 static const int EB_IPHI_MAX = EBDetId::MAX_IPHI;//360;
 static const int EB_IETA_MIN = EBDetId::MIN_IETA;//1;
 static const int EB_IETA_MAX = EBDetId::MAX_IETA;//85;
-static const float zs = 0.;*/
+static const float zs = 0.;
 #endif
 //DEFINE_FWK_MODULE(ProducerClassifier);
