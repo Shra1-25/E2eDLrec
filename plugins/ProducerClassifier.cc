@@ -29,7 +29,7 @@ ProducerClassifier::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    using namespace edm;
    nTotal++;
    vEB_energy_=*vEB_energy_token;
-   photon_classes=get_photons(iEvent, iSetup );
+   get_photons(iEvent, iSetup );
    std::cout<<std::endl;
    nPassed++;
    // ----- Apply event selection cuts ----- //
