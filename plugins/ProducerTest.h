@@ -124,11 +124,11 @@ class ProducerTest : public edm::stream::EDProducer<> {
       double maxJetEta_;
       double z0PVCut_;
       std::vector<int> vJetIdxs;*/
-      /*std::vector<float> vIphi_Emax_;
+      std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
       std::vector<float> vSC_eta_;
       std::vector<float> vSC_phi_;
-      std::vector<int> vPreselPhoIdxs_;*/
+      std::vector<int> vPreselPhoIdxs_;
       int nTotal, nPassed;
       
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
