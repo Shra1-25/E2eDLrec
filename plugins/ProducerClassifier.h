@@ -85,9 +85,10 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       //edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       //edm::EDGetTokenT<std::vector<std::vector<float>>> frames_;
       edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
-      edm::EDGetTokenT<std::vectorr<float> vEB_energy_;
+      edm::EDGetTokenT<std::vector<float> vEB_energy_token;
       static const int nPhotons = 2;
    
+      std::vector<float> vEB_energy_;
       std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vEB_photon_frames;
