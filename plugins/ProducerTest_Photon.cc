@@ -1,4 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerClassifier.h"
 #include <fstream>
 #include <sstream>
 
