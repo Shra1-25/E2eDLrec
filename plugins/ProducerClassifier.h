@@ -12,10 +12,10 @@
 //#include "FWCore/Framework/interface/one/EDAnalyzer.h"
 //#include "FWCore/Framework/src/one/implementorsMethods.h"
 
-/*#include "DataFormats/EcalRecHit/interface/EcalRecHitCollections.h"
+#include "DataFormats/EcalRecHit/interface/EcalRecHitCollections.h"
 #include "DataFormats/EcalDigi/interface/EcalDigiCollections.h"
 #include "DataFormats/EcalDetId/interface/EBDetId.h"
-#include "Geometry/CaloGeometry/interface/CaloGeometry.h"
+/*#include "Geometry/CaloGeometry/interface/CaloGeometry.h"
 #include "Geometry/CaloGeometry/interface/CaloCellGeometry.h"
 #include "Geometry/Records/interface/CaloGeometryRecord.h"
 #include "Geometry/Records/interface/TrackerDigiGeometryRecord.h"
@@ -80,6 +80,7 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       // Tokens 
       //edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       //edm::EDGetTokenT<std::vector<std::vector<float>>> frames_;
+      edm::EDGetTokenT<EcalRecHitCollection> EBRecHitCollectionT_;
       edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       edm::EDGetTokenT<std::vector<float>> vEB_energy_token;
       static const int nPhotons = 2;
