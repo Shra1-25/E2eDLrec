@@ -1,4 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerClassifier.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 
 using namespace tensorflow;
