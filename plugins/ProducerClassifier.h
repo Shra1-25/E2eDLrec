@@ -85,7 +85,7 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       //edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       //edm::EDGetTokenT<std::vector<std::vector<float>>> frames_;
       edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
-      edm::EDGetTokenT<std::vector<float> vEB_energy_token;
+      edm::EDGetTokenT<std::vector<float>> vEB_energy_token;
       static const int nPhotons = 2;
    
       std::vector<float> vEB_energy_;
@@ -116,10 +116,10 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
 
 static const bool debug = false;
 
-static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
+/*static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
 static const int EB_IPHI_MAX = EBDetId::MAX_IPHI;//360;
 static const int EB_IETA_MIN = EBDetId::MIN_IETA;//1;
 static const int EB_IETA_MAX = EBDetId::MAX_IETA;//85;
-static const float zs = 0.;
+static const float zs = 0.;*/
 #endif
 //DEFINE_FWK_MODULE(ProducerClassifier);
