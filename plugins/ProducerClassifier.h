@@ -97,10 +97,10 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       int predict_tf         ();
       int iphi_Emax, ieta_Emax;
    
-      /*TTree* RHTree;
+      TTree* RHTree;
       unsigned int nPho;
       
-      void branchesEB             ( TTree*, edm::Service<TFileService>& );
+      /*void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );*/
       //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
       void predict_tf         ();
