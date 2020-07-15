@@ -135,14 +135,14 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
    }*/
    std::cout<<"FillEB done "<<std::endl;
-   EBEnergy_edm->push_back(vEB_energy_);
+   //EBEnergy_edm->push_back(vEB_energy_);
    std::cout<<"Size is: "<<vEB_energy_.size()<<std::endl;
    // PhotonCollection 
    //*photon_classes=get_photons(iEvent, iSetup );
    //iEvent.put(std::move(photon_classes),"photonClasses");
    
    iEvent.put(std::move(EBEnergy_edm),"EBEnergy");
-   EBEnergy_edm->clear();
+   //EBEnergy_edm->clear();
    //iEvent.put(photon_classes,"photon_classes");
    // Fill RHTree
    RHTree->Fill();
