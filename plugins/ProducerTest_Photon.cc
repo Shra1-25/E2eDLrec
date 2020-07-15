@@ -26,7 +26,7 @@ struct pho_map {
 };
 std::vector<pho_map> vPhos;
 
-std::vector<int> ProducerClassifier::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
+ void ProducerClassifier::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
