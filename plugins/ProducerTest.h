@@ -111,8 +111,8 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
-      std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
-      int predict_tf         ();
+      //std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
+      //int predict_tf         ();
       
       std::vector<float>& read_vEB_energy     (int);
       std::string mode_;  // EventLevel / JetLevel
@@ -124,11 +124,11 @@ class ProducerTest : public edm::stream::EDProducer<> {
       double maxJetEta_;
       double z0PVCut_;
       std::vector<int> vJetIdxs;*/
-      std::vector<float> vIphi_Emax_;
+      /*std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
       std::vector<float> vSC_eta_;
       std::vector<float> vSC_phi_;
-      std::vector<int> vPreselPhoIdxs_;
+      std::vector<int> vPreselPhoIdxs_;*/
       int nTotal, nPassed;
       
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
@@ -140,13 +140,13 @@ class ProducerTest : public edm::stream::EDProducer<> {
 
 static const bool debug = false;
 
-static const int nEE = 2;
+/*static const int nEE = 2;
 static const int nTOB = 6;
 static const int nTEC = 9;
 static const int nTIB = 4;
 static const int nTID = 3;
 static const int nBPIX = 4;
-static const int nFPIX = 3;
+static const int nFPIX = 3;*/
 
 
 static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
