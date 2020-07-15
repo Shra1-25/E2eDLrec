@@ -94,11 +94,11 @@ class ProducerTest : public edm::stream::EDProducer<> {
       //TProfile2D *hEB_frame;
       std::vector<float> vEB_energy_;
       std::vector<float> vEB_time_;
-      std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
+      //std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       //float EB_frame[vEB_frame_height][vEB_frame_width];
-      std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
-      std::vector<std::vector<float>> vEB_photon_frames;
-      std::vector<int> vclasses;
+      //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
+      //std::vector<std::vector<float>> vEB_photon_frames;
+      //std::vector<int> vclasses;
       
       /*TH1F *h_sel;
       TH1F * hSC_pT;
