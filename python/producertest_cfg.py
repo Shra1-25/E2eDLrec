@@ -33,18 +33,21 @@ print (" >> Loaded",len(options.inputFiles),"input files from list.")
 process.load("ProdTutorial.ProducerTest.EBRecHit_cfi")
 #process.fevt_tf.mode = cms.string('JetLevel')#options.processMode
 
-process.out = cms.OutputModule("PoolOutputModule",
-    fileName = cms.untracked.string('myOutputFile.root')
-    ,outputCommands = cms.untracked.vstring('drop *',
-      "keep *_generalTracks_*_*",
-      "keep *_globalMuons_*_*",
-       "keep *_MuonTrackPoints_*_*",
-      "keep *_TrackTrackPoints_*_*")
+#process.out = cms.OutputModule("PoolOutputModule",
+#    fileName = cms.untracked.string('myOutputFile.root')
+#    ,outputCommands = cms.untracked.vstring('drop *',
+#      "keep *_generalTracks_*_*",
+#      "keep *_globalMuons_*_*",
+#       "keep *_MuonTrackPoints_*_*",
+#      "keep *_TrackTrackPoints_*_*")
+#)
 
-)
+process.out = cms.OutputModule("PoolOutputModule",
+    fileName = cms.untracked.string('myOutputFile.root'))
 #print " >> Processing as:",(process.fevt_tf.mode)
-process.TFileService = cms.Service("TFileService",
-    fileName = cms.string("myoutput.root")#options.outputFile
-    )
+#process.TFileService = cms.Service("TFileService",
+#    fileName = cms.string("myoutput.root")#options.outputFile
+#    )
 
 process.p = cms.Path(process.ProducerFrames)
+process.ep=cms.EndPath(process.out)
