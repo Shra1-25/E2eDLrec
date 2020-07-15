@@ -90,7 +90,9 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vEB_photon_frames;
       std::vector<int> vclasses;
-      void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
+   
+      unsigned int nPho;
+     
       std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
       int predict_tf         ();
       int iphi_Emax, ieta_Emax;
