@@ -94,7 +94,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  std::cout<<"BranchesEB done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
- produces<unsigned int>("sizenumber");
+ produces<std::vector<std::vector<float>>>("EBEnergy");
  //if (!fw) { return; }
 }
 
@@ -129,18 +129,20 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      //return;
    }*/
    //auto photon_classes = std::make_unique<float>(10.0);
-   auto number = std::make_unique<unsigned int>(0);
+   std::unique_ptr<std::vector<std::vector<float>>> EBEnergy_edm (new std::vector<std::vector<float>>)
    fillEB( iEvent, iSetup );
    /*for (unsigned int i=0;i<vEB_energy_.size();i++){
     std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
    }*/
    std::cout<<"FillEB done "<<std::endl;
-   *number=vEB_energy_.size();
+   EBEnergy_edm->push_back(vEB_energy_);
    std::cout<<"Size is: "<<vEB_energy_.size()<<std::endl;
    // PhotonCollection 
    //*photon_classes=get_photons(iEvent, iSetup );
    //iEvent.put(std::move(photon_classes),"photonClasses");
    iEvent.put(std::move(number), "sizenumber");
+   EBEnergy_edm->clear();
+   iEvent.put(std::move(EBEnergy_edm),"EBEnergy")
    //iEvent.put(photon_classes,"photon_classes");
    // Fill RHTree
    RHTree->Fill();
