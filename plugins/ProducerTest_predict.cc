@@ -1,4 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#inlude "ProdTutorial/ProducerTest/plugins/ProducerClassifier"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 #include <iostream>
 #include <fstream>
