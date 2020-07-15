@@ -140,9 +140,9 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    // PhotonCollection 
    //*photon_classes=get_photons(iEvent, iSetup );
    //iEvent.put(std::move(photon_classes),"photonClasses");
-   iEvent.put(std::move(number), "sizenumber");
+   
+   iEvent.put(std::move(EBEnergy_edm),"EBEnergy");
    EBEnergy_edm->clear();
-   iEvent.put(std::move(EBEnergy_edm),"EBEnergy")
    //iEvent.put(photon_classes,"photon_classes");
    // Fill RHTree
    RHTree->Fill();
