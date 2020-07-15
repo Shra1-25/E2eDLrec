@@ -91,7 +91,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  RHTree->Branch("SC_ieta", &vIeta_Emax_);
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
- std::cout<<"BranchesEB done "<<std::endl;
+ std::cout<<"Branches done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
  produces<std::vector<float>>("EBEnergy");
