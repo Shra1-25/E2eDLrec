@@ -1,4 +1,4 @@
-#include "Classifier/ProducerClassifier/plugins/ProducerClassifier.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerClassifier.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 
 using namespace tensorflow;
@@ -7,8 +7,9 @@ using namespace std;
 ProducerClassifier::ProducerClassifier(const edm::ParameterSet& iConfig)
 {
  //vEB_photon_frames = consumes<std::vector<std::vector<float>>>(iConfig.getParameter<edm::InputTag>("frames_"));
- 
- std::cout<<"Reading done "<<nTotal<<std::endl;
+ photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
+ vEB_energy_ = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("EBEnergy"))
+ std::cout<<"Reading data collection done "<<nTotal<<std::endl;
 }
 
 ProducerClassifier::~ProducerClassifier()
@@ -26,6 +27,10 @@ ProducerClassifier::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
    nTotal++;
+   vEB_energy_=*vEB_energy_token;
+   photon_classes=get_photons(iEvent, iSetup );
+   std::cout<<std::endl;
+   nPassed++;
    // ----- Apply event selection cuts ----- //
    return;
 }
