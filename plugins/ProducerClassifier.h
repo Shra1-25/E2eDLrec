@@ -110,8 +110,6 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       int nTotal, nPassed;
 };
 
-static const bool debug = false;
-
 /*static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
 static const int EB_IPHI_MAX = EBDetId::MAX_IPHI;//360;
 static const int EB_IETA_MIN = EBDetId::MIN_IETA;//1;
