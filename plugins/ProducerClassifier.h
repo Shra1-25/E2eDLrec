@@ -110,7 +110,7 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
       std::vector<float> vIeta_Emax_;
       std::vector<float> vSC_eta_;
       std::vector<float> vSC_phi_;
-      //std::vector<int> vPreselPhoIdxs_;
+      std::vector<int> vPreselPhoIdxs_;
       int nTotal, nPassed;
 };
 
