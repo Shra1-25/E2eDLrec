@@ -93,7 +93,7 @@ class ProducerClassifier : public edm::stream::EDProducer<> {
    
       unsigned int nPho;
      
-      std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
+      void get_photons        ( const edm::Event&, const edm::EventSetup& );
       int predict_tf         ();
       int iphi_Emax, ieta_Emax;
    
