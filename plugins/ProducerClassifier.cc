@@ -1,11 +1,11 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerClassifier.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 
 using namespace tensorflow;
 using namespace std;
 
-ProducerClassifier::ProducerClassifier(const edm::ParameterSet& iConfig)
+ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
 {
  //vEB_photon_frames = consumes<std::vector<std::vector<float>>>(iConfig.getParameter<edm::InputTag>("frames_"));
  EBRecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEBRecHitCollection"));
@@ -14,7 +14,7 @@ ProducerClassifier::ProducerClassifier(const edm::ParameterSet& iConfig)
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
 }
 
-ProducerClassifier::~ProducerClassifier()
+ProducerInference::~ProducerInference()
 {
  
 }
@@ -25,7 +25,7 @@ ProducerClassifier::~ProducerClassifier()
 
 // ------------ method called to produce the data  ------------
 void
-ProducerClassifier::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
    nTotal++;
@@ -46,7 +46,7 @@ ProducerClassifier::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
 void
-ProducerClassifier::beginStream(edm::StreamID)
+ProducerInference::beginStream(edm::StreamID)
 {
  nTotal = 0;
  nPassed = 0;
@@ -55,7 +55,7 @@ ProducerClassifier::beginStream(edm::StreamID)
 
 // ------------ method called once each stream after processing all runs, lumis and events  ------------
 void
-ProducerClassifier::endStream() {
+ProducerInference::endStream() {
  std::cout << " selected: " << nPassed << "/" << nTotal << std::endl;
 }
 
@@ -93,7 +93,7 @@ ProducerTest::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup co
  
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-ProducerClassifier::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+ProducerInference::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
   edm::ParameterSetDescription desc;
