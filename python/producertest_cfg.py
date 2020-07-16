@@ -43,8 +43,8 @@ process.load("ProdTutorial.ProducerTest.FrameInference_cfi")
 #      "keep *_TrackTrackPoints_*_*")
 #)
 
-#process.out = cms.OutputModule("PoolOutputModule",
-#    fileName = cms.untracked.string('myOutputFile.root'))
+process.out = cms.OutputModule("PoolOutputModule",
+    fileName = cms.untracked.string('myOutputFile.root'))
 #print " >> Processing as:",(process.fevt_tf.mode)
 #process.TFileService = cms.Service("TFileService",
 #    fileName = cms.string("myoutput.root")#options.outputFile
