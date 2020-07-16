@@ -29,8 +29,12 @@ ProducerClassifier::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
    nTotal++;
-   std::cout<<"Size "<<vEB_energy_token.size();
-   //vEB_energy_=vEB_energy_token;
+
+   edm::Handle<std::vector<float>> vEB_energy_handle;
+   iEvent.getByToken(vEB_energy_token,vEB_energy_handle);
+ 
+   std::cout<<"Size "<<vEB_energy_token->size();
+   vEB_energy_=*vEB_energy_token;
    //get_photons(iEvent, iSetup );
    
    std::cout<<std::endl;
