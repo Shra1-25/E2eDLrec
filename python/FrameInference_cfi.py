@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms 
 
-FrameInference = cms.EDProducer('ProducerClassifier'
+FrameInference = cms.EDProducer('ProducerInference'
     , photonCollection = cms.InputTag('slimmedPhotons')
     , EBEnergy = cms.InputTag('ProducerFrames','EBEnergy')
     #, mode = cms.string("JetLevel")
