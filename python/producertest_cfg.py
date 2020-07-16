@@ -51,5 +51,5 @@ process.load("ProdTutorial.ProducerTest.FrameInference_cfi")
 #   )
 
 #process.p = cms.Path(process.ProducerFrames)
-process.p = cms.Path(process.ProducerTest+process.FrameInference)
+process.p = cms.Path(process.ProducerFrames+process.FrameInference)
 process.ep=cms.EndPath(process.out)
