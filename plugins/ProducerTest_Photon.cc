@@ -86,7 +86,7 @@ std::vector<pho_map> vPhos;
    //std::cout << " >> " << iH << ": iphi_,ieta_,E: " << iphi_ << ", " << ieta_ << ", " << iRHit->energy() << std::endl;
   }//SCHits
   // Apply selection on position of shower seed
-  std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
+  //std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
   if ( Emax <= zs ) continue;
   if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 ) continue; // seed centered on [15,15] so must be padded by 15 below and 16 above
   vIphi_Emax_.push_back( iphi_Emax );
@@ -147,12 +147,9 @@ std::vector<pho_map> vPhos;
   vEB_photon_frames.push_back(vEB_flat_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
-  std::cout<<std::endl;
+  std::cout<<" >> Current Photon being read is: "<<iP+1<<"/"<<photons->size()<<std::endl;
   vclasses.push_back(predict_tf());
   
-  std::cout<<" >> Number of Photons read is:"<<vEB_photon_frames.size()<<std::endl;
-  std::cout<<" >> Current Photon being read is: "<<iP+1<<"/"<<photons->size()<<std::endl;
-  std::cout<<" >> Number of photon frames is: "<<vEB_photon_frames.size()<<std::endl;
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
   }*/
