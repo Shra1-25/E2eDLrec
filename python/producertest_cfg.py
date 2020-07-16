@@ -30,7 +30,7 @@ process.source = cms.Source("PoolSource",
     )
 print (" >> Loaded",len(options.inputFiles),"input files from list.")
 
-#process.load("ProdTutorial.ProducerTest.EBRecHit_cfi")
+process.load("ProdTutorial.ProducerTest.EBRecHit_cfi")
 process.load("ProdTutorial.ProducerTest.FrameInference_cfi")
 #process.fevt_tf.mode = cms.string('JetLevel')#options.processMode
 
@@ -51,5 +51,5 @@ process.load("ProdTutorial.ProducerTest.FrameInference_cfi")
 #   )
 
 #process.p = cms.Path(process.ProducerFrames)
-process.p = cms.Path(process.FrameInference)
-#process.ep=cms.EndPath(process.out)
+process.p = cms.Path(process.ProducerTest+process.FrameInference)
+process.ep=cms.EndPath(process.out)
