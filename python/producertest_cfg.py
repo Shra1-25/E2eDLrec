@@ -14,7 +14,7 @@ options.register('skipEvents',
 #    info = "process mode: JetLevel or EventLevel")
 options.parseArguments()
 
-process = cms.Process("FramesProducer")
+process = cms.Process("Classifier")
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load("Configuration.StandardSequences.GeometryDB_cff")
