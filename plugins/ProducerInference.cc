@@ -36,6 +36,8 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
    std::cout<<"Size2: "<<vEB_energy_.size();
+   std::cout<<"vEB_energy 1: "<<vEB_energy_[1]<<std::endl;
+   std::cout<<"vEB_energy (76,312): "<<vEB_energy_[76*360+312]<<std::endl;
    get_photons(iEvent, iSetup );
    
    std::cout<<std::endl;
