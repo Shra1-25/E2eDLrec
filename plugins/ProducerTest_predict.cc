@@ -1,12 +1,12 @@
 //#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
-#include "ProdTutorial/ProducerTest/plugins/ProducerClassifier.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 
-int ProducerClassifier::predict_tf(){
+int ProducerInference::predict_tf(){
  tensorflow::Session* session;
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
