@@ -129,14 +129,16 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      //return;
    }*/
    //auto photon_classes = std::make_unique<float>(10.0);
-   std::unique_ptr<std::vector<float>> EBEnergy_edm (new std::vector<float>(vEB_energy_));
+   std::unique_ptr<std::vector<float>> EBEnergy_edm (std::vector<float>(vEB_energy_));
    fillEB( iEvent, iSetup );
+   
    /*for (unsigned int i=0;i<vEB_energy_.size();i++){
     std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
    }*/
    std::cout<<"FillEB done "<<std::endl;
    //EBEnergy_edm->push_back(vEB_energy_);
-   std::cout<<"Size is: "<<vEB_energy_.size()<<std::endl;
+   std::cout<<"Size1 is: "<<vEB_energy_.size()<<std::endl;
+   std::cout<<"Size2 is: "<<EBEnergy_edm->size()<<std::endl;
    // PhotonCollection 
    //*photon_classes=get_photons(iEvent, iSetup );
    //iEvent.put(std::move(photon_classes),"photonClasses");
