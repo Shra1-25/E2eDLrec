@@ -33,8 +33,9 @@ ProducerClassifier::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::Handle<std::vector<float>> vEB_energy_handle;
    iEvent.getByToken(vEB_energy_token,vEB_energy_handle);
  
-   std::cout<<"Size "<<vEB_energy_handle->size();
+   std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
+   std::cout<<"Size2: "<<vEB_energy_.size();
    //get_photons(iEvent, iSetup );
    
    std::cout<<std::endl;
