@@ -1,5 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
-#include "ProdTutorial/ProducerTest/plugins/ProducerClassifier.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
 #include <fstream>
 #include <sstream>
 
@@ -26,7 +26,7 @@ struct pho_map {
 };
 std::vector<pho_map> vPhos;
 
- void ProducerClassifier::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
+ void ProducerInference::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
