@@ -102,4 +102,4 @@ ProducerInference::fillDescriptions(edm::ConfigurationDescriptions& descriptions
 }
 
 //define this as a plug-in
-DEFINE_FWK_MODULE(ProducerClassifier);
+DEFINE_FWK_MODULE(ProducerInference);
