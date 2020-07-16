@@ -138,7 +138,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<"FillEB done "<<std::endl;
    //EBEnergy_edm->push_back(vEB_energy_);
    std::cout<<"Size1 is: "<<vEB_energy_.size()<<std::endl;
-   std::cout<<"Size2 is: "<<EBEnergy_edm.get()->size()<<std::endl;
+   std::cout<<"Size2 is: "<<std::move(EBEnergy_edm).get()->size()<<std::endl;
    // PhotonCollection 
    //*photon_classes=get_photons(iEvent, iSetup );
    //iEvent.put(std::move(photon_classes),"photonClasses");
