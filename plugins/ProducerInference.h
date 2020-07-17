@@ -93,7 +93,7 @@ class ProducerInference : public edm::stream::EDProducer<> {
       std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vEB_photon_frames;
-      std::vector<int> vclasses;
+      std::vector<float> vclasses;
    
       unsigned int nPho;
      
