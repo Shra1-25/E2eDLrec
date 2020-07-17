@@ -225,13 +225,13 @@ ProducerTest::beginStream(edm::StreamID)
 {
  nTotal = 0;
  nPassed = 0;
- std::cout<<"Stream began"<<std::endl;
+ std::cout<<"'ProducerTest' Stream began"<<std::endl;
 }
 
 // ------------ method called once each stream after processing all runs, lumis and events  ------------
 void
 ProducerTest::endStream() {
- std::cout << " selected: " << nPassed << "/" << nTotal << std::endl;
+ std::cout << "'ProducerTest' selected: " << nPassed << "/" << nTotal << std::endl;
  //fw->Write();
  //fw->Close();
 }
