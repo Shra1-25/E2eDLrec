@@ -87,8 +87,8 @@ std::vector<pho_map> vPhos;
   }//SCHits
   // Apply selection on position of shower seed
   //std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
-  if ( Emax <= zs ) continue;
-  //if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 ) continue; // seed centered on [15,15] so must be padded by 15 below and 16 above
+  if ( Emax <= zs ) {vclasses.push_back(-1); continue;}
+  if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 ) {vclasses.push_back(-1);continue;} // seed centered on [15,15] so must be padded by 15 below and 16 above
   vIphi_Emax_.push_back( iphi_Emax );
   vIeta_Emax_.push_back( ieta_Emax );
   std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
