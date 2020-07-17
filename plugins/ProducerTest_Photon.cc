@@ -108,7 +108,7 @@ std::vector<pho_map> vPhos;
   int start_x=0;
   int end_x=0;
   int start_y=0;
-  int end_y=0;
+  //int end_y=0;
   int buff_x=0;
   int buff_y=0;
   if (iphi_Emax<vEB_frame_width/2-1){
@@ -121,10 +121,10 @@ std::vector<pho_map> vPhos;
    buff_y=0;
   }
   if (iphi_Emax>vEB_energy_width-vEB_frame_width/2-1){
-   end_y=vEB_energy_width-1;
+   //end_y=vEB_energy_width-1;
   }
   else {
-   end_y=iphi_Emax+vEB_frame_width/2;
+   //end_y=iphi_Emax+vEB_frame_width/2;
   }
   if (ieta_Emax<vEB_frame_height/2-1){
    start_x=0;
@@ -144,9 +144,9 @@ std::vector<pho_map> vPhos;
   std::ofstream frame_file(filename);*/
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = 0/*start_y*/; y_idx<vEB_frame_width/*=end_y*/;y_idx++){
-    vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+buff_y)%vEB_energy_width];
-    vEB_flat_frame[(x_idx-start_x+buff_x)*vEB_frame_width+y_idx/*-start_y+buff_y*/]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+buff_y)%vEB_energy_width];
-    std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx<<"): "<<vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]<<" "<<vEB_energy_[x_idx*vEB_energy_width+(y_idx+buff_y)%vEB_energy_width]<<std::endl;
+    vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+buff_y+start_y)%vEB_energy_width];
+    vEB_flat_frame[(x_idx-start_x+buff_x)*vEB_frame_width+y_idx/*-start_y+buff_y*/]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
+    std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx<<"): "<<vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]<<" "<<vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width]<<std::endl;
    }
   }
   /*for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
