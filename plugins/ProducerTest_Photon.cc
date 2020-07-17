@@ -148,7 +148,7 @@ std::vector<pho_map> vPhos;
     vEB_flat_frame[(x_idx-start_x+buff_x)*vEB_frame_width+y_idx/*-start_y+buff_y*/]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
     //std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx<<"): "<<vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]<<" "<<vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
    }
-   std::cout<<std::endl;
+   //std::cout<<std::endl;
   }
   /*for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
    for (int y_idx=0;y_idx<vEB_frame_width;y_idx++){ 
