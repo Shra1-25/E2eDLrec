@@ -12,6 +12,7 @@ ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
  photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
  vEB_energy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("EBEnergy"));
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
+ produces<std::vector<float>>("ClassifierPredictions");
 }
 
 ProducerInference::~ProducerInference()
@@ -37,7 +38,8 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vEB_energy_=*vEB_energy_handle;
    //std::cout<<"Size2: "<<vEB_energy_.size();
    get_photons(iEvent, iSetup );
-   
+   std::unique_ptr<std::vector<float>> vclasses_edm (new std::vector<float>(vclasses));
+   iEvent.put(std::move(vclasses_edm),"ClassifierPredictions");
    std::cout<<std::endl;
    nPassed++;
    // ----- Apply event selection cuts ----- //
