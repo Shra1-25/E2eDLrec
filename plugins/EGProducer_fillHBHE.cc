@@ -119,7 +119,7 @@ void ProducerTest::fillHBHE ( const edm::Event& iEvent, const edm::EventSetup& i
     } // iphi
   } // ieta
   std::cout<<" >> Size of HBHE: "<<vHBHE_energy_.size()<<std::endl;
-  std::cout<<" >> Size of HBHE EB: "<<HBHE_energy_EB.size()<<std::endl;
+  std::cout<<" >> Size of HBHE EB: "<<vHBHE_energy_EB_.size()<<std::endl;
   /*produces<std::vector<float>>("HBHEenergy");
   using namespace edm;
   std::unique_ptr<std::vector<float>> HBHEenergy_edm (new std::vector<float>(vHBHE_energy_));
