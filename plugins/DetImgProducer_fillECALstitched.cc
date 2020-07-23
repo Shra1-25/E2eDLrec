@@ -39,7 +39,7 @@ void ProducerTest::branchesECALstitched ( TTree* tree, edm::Service<TFileService
 } // branchesECALstitched()
 
 // Function to map EE(phi,eta) histograms to ECAL(iphi,ieta) vector _______________________________//
-void fillECAL_with_EEproj ( TH2F *hEvt_EE_energy_, int ieta_global_offset, int ieta_signed_offset ) {
+void fillECAL_with_EEproj ( std::vector<float>& vECAL_energy_, TH2F *hEvt_EE_energy_, int ieta_global_offset, int ieta_signed_offset ) {
 
   int ieta_global_, ieta_signed_;
   int ieta_, iphi_, idx_;
@@ -139,6 +139,6 @@ void ProducerTest::fillECALstitched ( const edm::Event& iEvent, const edm::Event
   // Map EE+(phi,eta) to upper part of ECAL(iphi,ieta)
   ieta_global_offset = ECAL_IETA_MAX_EXT + EB_IETA_MAX;
   ieta_signed_offset = EB_IETA_MAX;
-  fillECAL_with_EEproj( hEvt_EE_energy[1], ieta_global_offset, ieta_signed_offset );
+  fillECAL_with_EEproj( vECAL_energy_, hEvt_EE_energy[1], ieta_global_offset, ieta_signed_offset );
 
 } // fillECALstitched()
