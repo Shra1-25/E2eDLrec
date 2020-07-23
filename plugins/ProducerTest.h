@@ -142,20 +142,18 @@ class ProducerTest : public edm::stream::EDProducer<> {
 
 static const bool debug = false;
 
-/*static const int nEE = 2;
+static const int nEE = 2;
 static const int nTOB = 6;
 static const int nTEC = 9;
 static const int nTIB = 4;
 static const int nTID = 3;
 static const int nBPIX = 4;
-static const int nFPIX = 3;*/
-
+static const int nFPIX = 3;
 
 static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
 static const int EB_IPHI_MAX = EBDetId::MAX_IPHI;//360;
 static const int EB_IETA_MIN = EBDetId::MIN_IETA;//1;
 static const int EB_IETA_MAX = EBDetId::MAX_IETA;//85;
-
 static const int EE_MIN_IX = EEDetId::IX_MIN;//1;
 static const int EE_MIN_IY = EEDetId::IY_MIN;//1;
 static const int EE_MAX_IX = EEDetId::IX_MAX;//100;
