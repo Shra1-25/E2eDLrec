@@ -154,8 +154,8 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<" >> Adding HBHE and HBHE_EB done"<<std::endl;
    //std::unique_ptr<std::vector<float>> HBHEenergy_edm (new std::vector<float>(vHBHE_energy_));
    //std::unique_ptr<std::vector<float>> HBHEenergyEB_edm (new std::vector<float>(vHBHE_energy_EB_));
-   std::cout<<" >> Size of HBHE Energy vector is: "<<std::move(HBHEenergy_edm).get()->size()<<std::endl;
-   std::cout<<" >> Size of EB HBHE Energy vector is: "<<std::move(HBHEenergyEB_edm).get()->size()<<std::endl;
+   //std::cout<<" >> Size of HBHE Energy vector is: "<<std::move(HBHEenergy_edm).get()->size()<<std::endl;
+   //std::cout<<" >> Size of EB HBHE Energy vector is: "<<std::move(HBHEenergyEB_edm).get()->size()<<std::endl;
    //iEvent.put(std::move(HBHEenergy_edm),"HBHEenergy");
    //iEvent.put(std::move(HBHEenergyEB_edm),"HBHEenergyEB");
    
