@@ -109,7 +109,7 @@ void ProducerTest::fillECALstitched ( const edm::Event& iEvent, const edm::Event
   // Map EE-(phi,eta) to bottom part of ECAL(iphi,ieta)
   ieta_global_offset = 0;
   ieta_signed_offset = -ECAL_IETA_MAX_EXT;
-  fillECAL_with_EEproj( hEvt_EE_energy[0], ieta_global_offset, ieta_signed_offset );
+  fillECAL_with_EEproj( vECAL_energy_, hEvt_EE_energy[0], ieta_global_offset, ieta_signed_offset );
 
   // Fill middle part of ECAL(iphi,ieta) with the EB rechits.
   ieta_global_offset = 55;
