@@ -105,8 +105,8 @@ class ProducerTest : public edm::stream::EDProducer<> {
       //TProfile2D *hEB_frame;
       std::vector<float> vEB_energy_;
       std::vector<float> vEB_time_;
-      //std::vector<float> vHBHE_energy_EB_;
-      //std::vector<float> vHBHE_energy_;
+      std::vector<float> vHBHE_energy_EB_;
+      std::vector<float> vHBHE_energy_;
       std::vector<float> vECAL_energy_;
       //std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       //float EB_frame[vEB_frame_height][vEB_frame_width];
@@ -124,10 +124,10 @@ class ProducerTest : public edm::stream::EDProducer<> {
       
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
-      //void branchesHBHE           ( TTree*, edm::Service<TFileService>& );
+      void branchesHBHE           ( TTree*, edm::Service<TFileService>& );
       void branchesECALstitched   ( TTree*, edm::Service<TFileService>& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
-      //void fillHBHE           ( const edm::Event&, const edm::EventSetup& );
+      void fillHBHE           ( const edm::Event&, const edm::EventSetup& );
       void fillECALstitched   ( const edm::Event&, const edm::EventSetup& );
       //std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
       //int predict_tf         ();
