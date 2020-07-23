@@ -108,6 +108,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       std::vector<float> vHBHE_energy_EB_;
       std::vector<float> vHBHE_energy_;
       std::vector<float> vECAL_energy_;
+      std::vector<float> vECAL_tracksPt_;
       //std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       //float EB_frame[vEB_frame_height][vEB_frame_width];
       //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
@@ -126,9 +127,11 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       void branchesHBHE           ( TTree*, edm::Service<TFileService>& );
       void branchesECALstitched   ( TTree*, edm::Service<TFileService>& );
+      
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
       void fillHBHE           ( const edm::Event&, const edm::EventSetup& );
       void fillECALstitched   ( const edm::Event&, const edm::EventSetup& );
+      void fillTracksAtECALstitched (const edm::Event&, const edm::EventSetup& );
       //std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
       //int predict_tf         ();
       
