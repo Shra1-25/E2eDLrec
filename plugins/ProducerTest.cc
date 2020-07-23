@@ -71,6 +71,9 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
  HBHERecHitCollectionT_  = consumes<HBHERecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedHBHERecHitCollection"));
  EERecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEERecHitCollection"));
+ //TRKRecHitCollectionT_   = consumes<TrackingRecHitCollection>(iConfig.getParameter<edm::InputTag>("trackRecHitCollection"));
+ trackCollectionT_       = consumes<reco::TrackCollection>(iConfig.getParameter<edm::InputTag>("trackCollection"));
+ vertexCollectionT_       = consumes<reco::VertexCollection>(iConfig.getParameter<edm::InputTag>("vertexCollection"));
  /*mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
  maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
@@ -95,6 +98,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  branchesPhotonSel ( RHTree, fs );
  branchesHBHE (RHTree, fs );
  branchesECALstitched (RHTree, fs);
+ branchesTracksAtECALstitched (RHTree, fs);
  std::cout<<"Branches done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
@@ -102,6 +106,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  produces<std::vector<float>>("HBHEenergy");
  produces<std::vector<float>>("HBHEenergyEB");
  produces<std::vector<float>>("ECALstitchedenergy");
+ produces<std::vector<float>>("TracksAtECALstitched");
  //if (!fw) { return; }
 }
 
@@ -163,6 +168,11 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::unique_ptr<std::vector<float>> ECALstitched_energy_edm (new std::vector<float>(vECAL_energy_));
    std::cout<<" >> Size of Stitched ECAL Energy vector is: "<<std::move(ECALstitched_energy_edm).get()->size()<<std::endl;
    iEvent.put(std::move(ECALstitched_energy_edm), "ECALstitchedenergy");
+   
+   fillTracksAtECALstitched (iEvent, iSetup );
+   std::unique_ptr<std::vector<float>> TracksECALstitchedPt_edm (new std::vector<float>(vECAL_tracksPt_));
+   std::cout<<" >> Size of Pt Tracks vector at Stitched ECAL is: "<<std::move(TracksECALstitchedPt_edm).get()->size()<<std::endl;
+   iEvent.put(std::move(TracksECALstitchedPt_edm), "TracksAtECALstitched");
  
    std::cout<<" >> Added EB, HBHE, HBHE_EB, ECALstitched, Tracks_at_ECALstitched to edm root file"<<std::endl;
    //EBEnergy_edm->clear();
