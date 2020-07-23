@@ -147,6 +147,8 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    
    iEvent.put(std::move(EBenergy_edm),"EBenergy");
    fillHBHE (iEvent, iSetup );
+   std::unique_ptr<std::vector<float>> HBHEenergy_edm (new std::vector<float>(vHBHE_energy_));
+   iEvent.put(std::move(HBHEenergy_edm),"HBHEenergy");
    //EBEnergy_edm->clear();
    //iEvent.put(photon_classes,"photon_classes");
    // Fill RHTree
