@@ -84,11 +84,11 @@ void ProducerTest::fillECALstitched ( const edm::Event& iEvent, const edm::Event
   iEvent.getByToken( EBRecHitCollectionT_, EBRecHitsH_ );
   edm::Handle<EcalRecHitCollection> EERecHitsH_;
   iEvent.getByToken( EERecHitCollectionT_, EERecHitsH_ );
-  std::cout<<" >> Stage 1"<std::cout<<std::endl;
+  std::cout<<" >> Stage 1"<<std::endl;
   edm::ESHandle<CaloGeometry> caloGeomH_;
-  std::cout<<" >> Stage 2"<std::cout<<std::endl;
+  std::cout<<" >> Stage 2"<<std::endl;
   iSetup.get<CaloGeometryRecord>().get( caloGeomH_ );
-  std::cout<<" >> Stage 3"<std::cout<<std::endl;
+  std::cout<<" >> Stage 3"<<std::endl;
   const CaloGeometry* caloGeom = caloGeomH_.product();
 
   // Fill the EE+/-(phi,eta) projection with the EE hits.
