@@ -3,7 +3,7 @@ import FWCore.ParameterSet.Config as cms
 FrameInference = cms.EDProducer('ProducerInference'
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
     , photonCollection = cms.InputTag('slimmedPhotons')
-    , EBEnergy = cms.InputTag('ProducerFrames','EBEnergy')
+    , EBEnergy = cms.InputTag('ProducerFrames','EBenergy')
     #, mode = cms.string("JetLevel")
     # Jet level cfg
     #, nJets = cms.int32(-1)
