@@ -134,7 +134,7 @@ void fillTracksAtECAL_with_EEproj (std::vector<float>& vECAL_tracksPt_, TH2F *hE
 
   int ieta_global_, ieta_signed_;
   int ieta_, iphi_, idx_;
-  float trackPt_//, trackQPt_;
+  float trackPt_;//, trackQPt_;
   //float trackPt_PV_, trackQPt_PV_, trackd0_PV_, trackz0_PV_, trackd0sig_PV_, trackz0sig_PV_;
   //float trackPt_nPV_, trackQPt_nPV_;
 
