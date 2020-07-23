@@ -4,6 +4,7 @@ ProducerFrames = cms.EDProducer('ProducerTest'
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
     , photonCollection = cms.InputTag('slimmedPhotons')
     , reducedHBHERecHitCollection = cms.InputTag('reducedHcalRecHits:hbhereco')
+    , reducedEERecHitCollection = cms.InputTag('reducedEcalRecHitsEE')
     #, mode = cms.string("JetLevel")
     # Jet level cfg
     #, nJets = cms.int32(-1)
