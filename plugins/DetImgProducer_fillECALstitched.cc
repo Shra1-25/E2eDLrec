@@ -19,7 +19,7 @@ TProfile2D *hECAL_energy;
 
 
 // Initialize branches _______________________________________________________________//
-void RecHitAnalyzer::branchesECALstitched ( TTree* tree, edm::Service<TFileService> &fs ) {
+void ProducerTest::branchesECALstitched ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   // Branches for images
   tree->Branch("ECAL_energy",    &vECAL_energy_);
@@ -69,7 +69,7 @@ void fillECAL_with_EEproj ( TH2F *hEvt_EE_energy_, int ieta_global_offset, int i
 } // fillECAL_with_EEproj
 
 // Fill stitched EE-, EB, EE+ rechits ________________________________________________________//
-void RecHitAnalyzer::fillECALstitched ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void ProducerTest::fillECALstitched ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   int iphi_, ieta_, iz_, idx_;
   int ieta_global, ieta_signed;
