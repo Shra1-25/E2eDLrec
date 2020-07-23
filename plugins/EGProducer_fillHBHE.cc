@@ -7,7 +7,7 @@ std::vector<float> vHBHE_energy_EB_;
 std::vector<float> vHBHE_energy_;
 
 // Initialize branches _______________________________________________________//
-void RecHitAnalyzer::branchesHBHE ( TTree* tree, edm::Service<TFileService> &fs ) {
+void ProducerTest::branchesHBHE ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   // Branches for images
   tree->Branch("HBHE_energy_EB", &vHBHE_energy_EB_);
@@ -28,7 +28,7 @@ void RecHitAnalyzer::branchesHBHE ( TTree* tree, edm::Service<TFileService> &fs 
 } // branchesHBHE()
 
 // Fill HBHE rechits _________________________________________________________________//
-void RecHitAnalyzer::fillHBHE ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void ProducerTest::fillHBHE ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   int iphi_, ieta_, ietaAbs_, idx_;
   float energy_;
@@ -118,5 +118,5 @@ void RecHitAnalyzer::fillHBHE ( const edm::Event& iEvent, const edm::EventSetup&
 
     } // iphi
   } // ieta
-
+  std::cout<<" >> Size of HBHE: "<<std::endl;
 } // fillHBHE()
