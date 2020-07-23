@@ -1,4 +1,4 @@
-#include "MLAnalyzer/RecHitAnalyzer/interface/RecHitAnalyzer.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 
 // Fill stitched EEm_EB_EEp image /////////////////////............/
 // Store all ECAL event rechits into a stitched EEm_EB_EEp image 
@@ -16,7 +16,7 @@
 
 TH2F *hEvt_EE_energy[nEE];
 TProfile2D *hECAL_energy;
-std::vector<float> vECAL_energy_;
+
 
 // Initialize branches _______________________________________________________________//
 void RecHitAnalyzer::branchesECALstitched ( TTree* tree, edm::Service<TFileService> &fs ) {
