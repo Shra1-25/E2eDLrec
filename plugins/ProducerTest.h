@@ -18,7 +18,7 @@
 #include "DataFormats/EcalDetId/interface/EEDetId.h"
 #include "DataFormats/EcalDetId/interface/ESDetId.h"
 #include "DataFormats/SiPixelDetId/interface/PXBDetId.h"
-#include "DataFormats/SipixelDetId/interface/PXFDetId.h"
+#include "DataFormats/SiPixelDetId/interface/PXFDetId.h"
 #include "Geometry/CaloGeometry/interface/CaloGeometry.h"
 #include "Geometry/CaloGeometry/interface/CaloCellGeometry.h"
 #include "Geometry/Records/interface/CaloGeometryRecord.h"
