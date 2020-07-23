@@ -99,6 +99,8 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
  produces<std::vector<float>>("EBenergy");
  produces<std::vector<float>>("HBHEenergy");
+ produces<std::vector<float>>("HBHEenergyEB")
+ produces<std::vector<float>>("ECALstitchedenergy");
  //if (!fw) { return; }
 }
 
@@ -138,22 +140,30 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    /*for (unsigned int i=0;i<vEB_energy_.size();i++){
     std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
    }*/
-   std::cout<<"FillEB done "<<std::endl;
+   std::cout<<" >> Adding EB done "<<std::endl;
    //EBEnergy_edm->push_back(vEB_energy_);
    //std::cout<<"Size1 is: "<<vEB_energy_.size()<<std::endl;
-   std::cout<<"Size of EB Energy vector is: "<<std::move(EBenergy_edm).get()->size()<<std::endl;
+   std::cout<<" >> Size of EB Energy vector is: "<<std::move(EBenergy_edm).get()->size()<<std::endl;
    // PhotonCollection 
    //*photon_classes=get_photons(iEvent, iSetup );
    //iEvent.put(std::move(photon_classes),"photonClasses");
-   
    iEvent.put(std::move(EBenergy_edm),"EBenergy");
+ 
    fillHBHE (iEvent, iSetup );
-   std::cout<<" >> fillHBHE done"<<std::endl;
+   std::cout<<" >> Adding HBHE and HBHE_EB done"<<std::endl;
    std::unique_ptr<std::vector<float>> HBHEenergy_edm (new std::vector<float>(vHBHE_energy_));
-   std::cout<<" >> HBHE energy vector pointer created"<<std::endl;
+   std::unique_ptr<std::vector<float>> HBHEenergyEB_edm (new std::vector<float>(vHBHE_energy_EB_));
    std::cout<<" >> Size of HBHE Energy vector is: "<<std::move(HBHEenergy_edm).get()->size()<<std::endl;
+   std::cout<<" >> Size of EB HBHE Energy vector is: "<<std::move(HBHEenergyEB_edm).get()->size()<<std::endl;
    iEvent.put(std::move(HBHEenergy_edm),"HBHEenergy");
-   std::cout<<" >> Added to edm root file"<<std::endl;
+   iEvent.put(std::move(HBHEenergyEB_edm),"HBHEenergyEB");
+   
+   fillECALstitched (iEvent, iSetup);
+   std::unique_ptr<std::vector<float>> ECALstitched_energy_edm (new std::vector<float>(vECAL_energy_));
+   std::cout<<" >> Size of Stitched ECAL Energy vector is: "<<std::move(ECALstitched_energy_edm).get()->size()<<std::endl;
+   iEvent.put(std::move(ECALstitched_edm), "ECALstitchedenergy");
+ 
+   std::cout<<" >> Added EB, HBHE, HBHE_EB, ECALstitched, Tracks_at_ECALstitched to edm root file"<<std::endl;
    //EBEnergy_edm->clear();
    //iEvent.put(photon_classes,"photon_classes");
    // Fill RHTree
