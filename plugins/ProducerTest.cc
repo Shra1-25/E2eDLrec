@@ -94,6 +94,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
  branchesHBHE (RHTree, fs );
+ branchesECALstitched (RHTree, fs);
  std::cout<<"Branches done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
