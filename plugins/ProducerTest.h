@@ -111,8 +111,10 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       void branchesHBHE           ( TTree*, edm::Service<TFileService>& );
+      void branchesECALstitched   ( TTree*, edm::Service<TFileService>& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
       void fillHBHE           ( const edm::Event&, const edm::EventSetup& );
+      void fillECALstitched   ( const edm::Event&, const edm::EventSetup& );
       //std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
       //int predict_tf         ();
       
