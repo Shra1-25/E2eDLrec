@@ -129,6 +129,7 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       void branchesHBHE           ( TTree*, edm::Service<TFileService>& );
       void branchesECALstitched   ( TTree*, edm::Service<TFileService>& );
+      void branchesTracksAtECALstitched (TTree*, edm::Service<TFileService>& );
       
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
       void fillHBHE           ( const edm::Event&, const edm::EventSetup& );
