@@ -19,6 +19,8 @@ process = cms.Process("ProducerTest")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load("Configuration.StandardSequences.GeometryDB_cff")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+process.GlobalTag.globaltag = cms.string('105X_dataRun2_HLT_v12')
+process.es_prefer_GlobalTag = cms.ESPrefer('PoolDBESSource','GlobalTag')
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) ) #options.maxEvents
 
