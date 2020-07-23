@@ -149,6 +149,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    fillHBHE (iEvent, iSetup );
    std::unique_ptr<std::vector<float>> HBHEenergy_edm (new std::vector<float>(vHBHE_energy_));
    iEvent.put(std::move(HBHEenergy_edm),"HBHEenergy");
+   std::cout<<" >> Size of HBHE Energy vector is: "<<std::move(HBHEenergy_edm).get()->size()<<std::endl;
    //EBEnergy_edm->clear();
    //iEvent.put(photon_classes,"photon_classes");
    // Fill RHTree
