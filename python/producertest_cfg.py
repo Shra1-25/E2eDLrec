@@ -24,7 +24,7 @@ process.load("Configuration.StandardSequences.GeometryRecoDB_cff")
 process.load("Geometry.CMSCommonData.cmsIdealGeometryXML_cfi");
 process.load("Geometry.CaloEventSetup.CaloGeometry_cfi");
 process.load("Geometry.CaloEventSetup.CaloTopology_cfi");
-process.GlobalTag.globaltag = cms.string('80X_dataRun2_HLT_v12')
+process.GlobalTag.globaltag = cms.string('105X_dataRun2_HLT_v12')
 process.es_prefer_GlobalTag = cms.ESPrefer('PoolDBESSource','GlobalTag')
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(5) ) #options.maxEvents
