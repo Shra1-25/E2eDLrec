@@ -100,7 +100,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
  produces<std::vector<float>>("EBenergy");
  produces<std::vector<float>>("HBHEenergy");
- produces<std::vector<float>>("HBHEenergyEB")
+ produces<std::vector<float>>("HBHEenergyEB");
  produces<std::vector<float>>("ECALstitchedenergy");
  //if (!fw) { return; }
 }
