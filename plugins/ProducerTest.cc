@@ -69,6 +69,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
 {
  EBRecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEBRecHitCollection"));
  photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
+ HBHERecHitCollectionT_  = consumes<HBHERecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedHBHERecHitCollection"));
  /*mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
  maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
@@ -91,10 +92,12 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  RHTree->Branch("SC_ieta", &vIeta_Emax_);
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
+ branchesHBHE (RHTree, fs );
  std::cout<<"Branches done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
- produces<std::vector<float>>("EBEnergy");
+ produces<std::vector<float>>("EBenergy");
+ produces<std::vector<float>>("HBHEenergy");
  //if (!fw) { return; }
 }
 
@@ -130,19 +133,20 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }*/
    //auto photon_classes = std::make_unique<float>(10.0);
    fillEB( iEvent, iSetup );
-   std::unique_ptr<std::vector<float>> EBEnergy_edm (new std::vector<float>(vEB_energy_));
+   std::unique_ptr<std::vector<float>> EBenergy_edm (new std::vector<float>(vEB_energy_));
    /*for (unsigned int i=0;i<vEB_energy_.size();i++){
     std::cout<<"( "<<i/vEB_energy_width<<", "<<i%vEB_energy_width<<" ) = "<<vEB_energy_[i]<<" ";
    }*/
    std::cout<<"FillEB done "<<std::endl;
    //EBEnergy_edm->push_back(vEB_energy_);
    //std::cout<<"Size1 is: "<<vEB_energy_.size()<<std::endl;
-   std::cout<<"Size of EB Energy vector is: "<<std::move(EBEnergy_edm).get()->size()<<std::endl;
+   std::cout<<"Size of EB Energy vector is: "<<std::move(EBenergy_edm).get()->size()<<std::endl;
    // PhotonCollection 
    //*photon_classes=get_photons(iEvent, iSetup );
    //iEvent.put(std::move(photon_classes),"photonClasses");
    
-   iEvent.put(std::move(EBEnergy_edm),"EBEnergy");
+   iEvent.put(std::move(EBenergy_edm),"EBenergy");
+   fillHBHE (iEvent, iSetup );
    //EBEnergy_edm->clear();
    //iEvent.put(photon_classes,"photon_classes");
    // Fill RHTree
