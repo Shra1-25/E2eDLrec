@@ -194,7 +194,7 @@ void ProducerTest::fillTracksAtECALstitched ( const edm::Event& iEvent, const ed
   int iphi_, ieta_, iz_, idx_;
   int ieta_global, ieta_signed;
   int ieta_global_offset, ieta_signed_offset;
-  float eta, phi, trackPt_, trackQPt_, trackd0_, trackz0_, trackd0sig_, trackz0sig_;
+  float eta, phi, trackPt_; //trackQPt_, trackd0_, trackz0_, trackd0sig_, trackz0sig_;
   GlobalPoint pos;
 
   vECAL_tracksPt_.assign( 2*ECAL_IETA_MAX_EXT*EB_IPHI_MAX, 0. );
