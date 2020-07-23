@@ -93,7 +93,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  RHTree->Branch("SC_ieta", &vIeta_Emax_);
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
- branchesHBHE (RHTree, fs );
+ //branchesHBHE (RHTree, fs );
  branchesECALstitched (RHTree, fs);
  std::cout<<"Branches done "<<std::endl;
  
