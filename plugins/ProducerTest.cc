@@ -93,14 +93,14 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  RHTree->Branch("SC_ieta", &vIeta_Emax_);
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
- //branchesHBHE (RHTree, fs );
+ branchesHBHE (RHTree, fs );
  branchesECALstitched (RHTree, fs);
  std::cout<<"Branches done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
  produces<std::vector<float>>("EBenergy");
- //produces<std::vector<float>>("HBHEenergy");
- //produces<std::vector<float>>("HBHEenergyEB");
+ produces<std::vector<float>>("HBHEenergy");
+ produces<std::vector<float>>("HBHEenergyEB");
  produces<std::vector<float>>("ECALstitchedenergy");
  //if (!fw) { return; }
 }
@@ -150,14 +150,14 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    //iEvent.put(std::move(photon_classes),"photonClasses");
    iEvent.put(std::move(EBenergy_edm),"EBenergy");
  
-   //fillHBHE (iEvent, iSetup );
+   fillHBHE (iEvent, iSetup );
    std::cout<<" >> Adding HBHE and HBHE_EB done"<<std::endl;
-   //std::unique_ptr<std::vector<float>> HBHEenergy_edm (new std::vector<float>(vHBHE_energy_));
-   //std::unique_ptr<std::vector<float>> HBHEenergyEB_edm (new std::vector<float>(vHBHE_energy_EB_));
-   //std::cout<<" >> Size of HBHE Energy vector is: "<<std::move(HBHEenergy_edm).get()->size()<<std::endl;
-   //std::cout<<" >> Size of EB HBHE Energy vector is: "<<std::move(HBHEenergyEB_edm).get()->size()<<std::endl;
-   //iEvent.put(std::move(HBHEenergy_edm),"HBHEenergy");
-   //iEvent.put(std::move(HBHEenergyEB_edm),"HBHEenergyEB");
+   std::unique_ptr<std::vector<float>> HBHEenergy_edm (new std::vector<float>(vHBHE_energy_));
+   std::unique_ptr<std::vector<float>> HBHEenergyEB_edm (new std::vector<float>(vHBHE_energy_EB_));
+   std::cout<<" >> Size of HBHE Energy vector is: "<<std::move(HBHEenergy_edm).get()->size()<<std::endl;
+   std::cout<<" >> Size of EB HBHE Energy vector is: "<<std::move(HBHEenergyEB_edm).get()->size()<<std::endl;
+   iEvent.put(std::move(HBHEenergy_edm),"HBHEenergy");
+   iEvent.put(std::move(HBHEenergyEB_edm),"HBHEenergyEB");
    
    fillECALstitched (iEvent, iSetup);
    std::unique_ptr<std::vector<float>> ECALstitched_energy_edm (new std::vector<float>(vECAL_energy_));
