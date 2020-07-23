@@ -162,7 +162,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    fillECALstitched (iEvent, iSetup);
    std::unique_ptr<std::vector<float>> ECALstitched_energy_edm (new std::vector<float>(vECAL_energy_));
    std::cout<<" >> Size of Stitched ECAL Energy vector is: "<<std::move(ECALstitched_energy_edm).get()->size()<<std::endl;
-   iEvent.put(std::move(ECALstitched_edm), "ECALstitchedenergy");
+   iEvent.put(std::move(ECALstitched_energy_edm), "ECALstitchedenergy");
  
    std::cout<<" >> Added EB, HBHE, HBHE_EB, ECALstitched, Tracks_at_ECALstitched to edm root file"<<std::endl;
    //EBEnergy_edm->clear();
