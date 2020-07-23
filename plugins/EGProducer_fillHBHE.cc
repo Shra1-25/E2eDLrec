@@ -3,8 +3,8 @@
 TH2F *hEvt_HBHE_energy;
 TProfile2D *hHBHE_energy_EB;
 TProfile2D *hHBHE_energy;
-std::vector<float> vHBHE_energy_EB_;
-std::vector<float> vHBHE_energy_;
+/*std::vector<float> vHBHE_energy_EB_;
+std::vector<float> vHBHE_energy_;*/
 
 // Initialize branches _______________________________________________________//
 void ProducerTest::branchesHBHE ( TTree* tree, edm::Service<TFileService> &fs ) {
