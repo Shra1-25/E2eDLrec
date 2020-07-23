@@ -3,6 +3,7 @@ import FWCore.ParameterSet.Config as cms
 ProducerFrames = cms.EDProducer('ProducerTest'
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
     , photonCollection = cms.InputTag('slimmedPhotons')
+    , reducedHBHERecHitCollection = cms.InputTag('reducedHcalRecHits:hbhereco')
     #, mode = cms.string("JetLevel")
     # Jet level cfg
     #, nJets = cms.int32(-1)
