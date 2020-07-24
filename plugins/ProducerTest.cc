@@ -74,7 +74,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  //TRKRecHitCollectionT_   = consumes<TrackingRecHitCollection>(iConfig.getParameter<edm::InputTag>("trackRecHitCollection"));
  trackCollectionT_       = consumes<reco::TrackCollection>(iConfig.getParameter<edm::InputTag>("trackCollection"));
  vertexCollectionT_       = consumes<reco::VertexCollection>(iConfig.getParameter<edm::InputTag>("vertexCollection"));
- /*mode_      = iConfig.getParameter<std::string>("mode");
+ mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
  maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
  z0PVCut_   = iConfig.getParameter<double>("z0PVCut");
@@ -88,7 +88,7 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  } else {
    std::cout << " >> Assuming EventLevel Config. " << std::endl;
    doJets_ = false;
- }*/
+ }
  //usesResource("TFileService");
  edm::Service<TFileService> fs;
  RHTree = fs->make<TTree>("RHTree", "RecHit tree");
@@ -129,17 +129,17 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    nTotal++;
    // ----- Apply event selection cuts ----- //
 
-   /*bool passedSelection = false;
+   bool passedSelection = false;
    if ( doJets_ ) {
-     //passedSelection = runEvtSel_jet( iEvent, iSetup );
+     passedSelection = runEvtSel_jet( iEvent, iSetup );
    } else {
-     //passedSelection = runEvtSel( iEvent, iSetup );
+     passedSelection = runEvtSel( iEvent, iSetup );
    }
 
    if ( !passedSelection ) {
-     //h_sel->Fill( 0. );;
-     //return;
-   }*/
+     h_sel->Fill( 0. );;
+     return;
+   }
    //auto photon_classes = std::make_unique<float>(10.0);
    fillEB( iEvent, iSetup );
    std::unique_ptr<std::vector<float>> EBenergy_edm (new std::vector<float>(vEB_energy_));
