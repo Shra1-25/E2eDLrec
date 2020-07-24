@@ -100,6 +100,8 @@ class ProducerTest : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<EcalRecHitCollection> EERecHitCollectionT_;
       edm::EDGetTokenT<reco::TrackCollection> trackCollectionT_;
       edm::EDGetTokenT<reco::VertexCollection> vertexCollectionT_;
+      edm::EDGetTokenT<reco::PFJetCollection> jetCollectionT_;
+   
       static const int nPhotons = 2;
    
       TProfile2D *hEB_energy;
