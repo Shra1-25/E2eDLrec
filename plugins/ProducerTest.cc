@@ -74,6 +74,8 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  //TRKRecHitCollectionT_   = consumes<TrackingRecHitCollection>(iConfig.getParameter<edm::InputTag>("trackRecHitCollection"));
  trackCollectionT_       = consumes<reco::TrackCollection>(iConfig.getParameter<edm::InputTag>("trackCollection"));
  vertexCollectionT_       = consumes<reco::VertexCollection>(iConfig.getParameter<edm::InputTag>("vertexCollection"));
+ jetCollectionT_         = consumes<reco::PFJetCollection>(iConfig.getParameter<edm::InputTag>("ak4PFJetCollection"));
+ 
  mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
  maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
@@ -89,9 +91,16 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
    std::cout << " >> Assuming EventLevel Config. " << std::endl;
    doJets_ = false;
  }
+ RHTree = fs->make<TTree>("RHTree", "RecHit tree");
+  //if ( doJets_ ) {
+    branchesEvtSel_jet( RHTree, fs );
+  //} else {
+    //branchesEvtSel( RHTree, fs );
+  //}
+
  //usesResource("TFileService");
  edm::Service<TFileService> fs;
- RHTree = fs->make<TTree>("RHTree", "RecHit tree");
+ //RHTree = fs->make<TTree>("RHTree", "RecHit tree");
  RHTree->Branch("SC_iphi", &vIphi_Emax_);
  RHTree->Branch("SC_ieta", &vIeta_Emax_);
  branchesEB           ( RHTree, fs );
@@ -130,11 +139,12 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    // ----- Apply event selection cuts ----- //
 
    bool passedSelection = false;
-   if ( doJets_ ) {
+   //if ( doJets_ ) {
      passedSelection = runEvtSel_jet( iEvent, iSetup );
-   } else {
-     passedSelection = runEvtSel( iEvent, iSetup );
-   }
+     std::cout<<" >> Size of JetSeed vector (ieta,iphi) is: "<<vJetSeed_ieta_.size()<<" "<<vJetSeed_iphi_.size()<<std::endl;
+   //} else {
+   //  passedSelection = runEvtSel( iEvent, iSetup );
+   //}
 
    if ( !passedSelection ) {
      h_sel->Fill( 0. );;
