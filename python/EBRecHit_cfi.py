@@ -7,6 +7,7 @@ ProducerFrames = cms.EDProducer('ProducerTest'
     , reducedEERecHitCollection = cms.InputTag('reducedEcalRecHitsEE')
     , trackCollection = cms.InputTag("generalTracks")
     , vertexCollection = cms.InputTag("offlinePrimaryVertices")
+    , ak4PFJetCollection = cms.InputTag('ak4PFJets')
     #, mode = cms.string("JetLevel")
     # Jet level cfg
     #, nJets = cms.int32(-1)
