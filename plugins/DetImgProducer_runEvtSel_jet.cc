@@ -29,11 +29,11 @@ void ProducerTest::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> 
   tree->Branch("jetSeed_ieta",   &vJetSeed_ieta_);
 
   // Fill branches in explicit jet selection
-  if ( jetSelection == "dijet_gg_qq" ) {
+  /*if ( jetSelection == "dijet_gg_qq" ) {
     branchesEvtSel_jet_dijet_gg_qq( tree, fs );
   } else {
     branchesEvtSel_jet_dijet( tree, fs );
-  }
+  }*/
 
 } // branchesEvtSel_jet()
 
@@ -43,12 +43,12 @@ bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSet
   // Each jet selection must fill vJetIdxs with good jet indices
 
   // Run explicit jet selection
-  bool hasPassed;
-  if ( jetSelection == "dijet_gg_qq" ) {
+  bool hasPassed=true;
+  /*if ( jetSelection == "dijet_gg_qq" ) {
     hasPassed = runEvtSel_jet_dijet_gg_qq( iEvent, iSetup );
   } else {
     hasPassed = runEvtSel_jet_dijet( iEvent, iSetup );
-  }
+  }*/
 
   if ( !hasPassed ) return false; 
   std::sort(vJetIdxs.begin(), vJetIdxs.end());
