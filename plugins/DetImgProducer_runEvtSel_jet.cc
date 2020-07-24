@@ -20,7 +20,7 @@ const std::string jetSelection = "dijet";
 
 
 // Initialize branches _____________________________________________________//
-void RecHitAnalyzer::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> &fs ) {
+void ProducerTest::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   tree->Branch("eventId",        &jet_eventId_);
   tree->Branch("runId",          &jet_runId_);
@@ -38,7 +38,7 @@ void RecHitAnalyzer::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService
 } // branchesEvtSel_jet()
 
 // Run event selection ___________________________________________________________________//
-bool RecHitAnalyzer::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   // Each jet selection must fill vJetIdxs with good jet indices
 
