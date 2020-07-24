@@ -160,7 +160,7 @@ bool RecHitAnalyzer::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventS
   
 
   // Remove jets that failed the Seed cuts 
-  for(int failedJetIdx : vFailedJetIdx_)
+  /*for(int failedJetIdx : vFailedJetIdx_)
     vJetIdxs.erase(std::remove(vJetIdxs.begin(),vJetIdxs.end(),failedJetIdx),vJetIdxs.end());
 
   if ( vJetIdxs.size() == 0){
@@ -183,7 +183,7 @@ bool RecHitAnalyzer::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventS
     fillEvtSel_jet_dijet_gg_qq( iEvent, iSetup );
   } else {
     fillEvtSel_jet_dijet( iEvent, iSetup );
-  }
+  }*/
 
   return true;
 
