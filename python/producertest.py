@@ -7,11 +7,11 @@ options.register('skipEvents',
     mytype=VarParsing.VarParsing.varType.int,
     info = "skipEvents")
 # TODO: put this option in cmsRun scripts
-#options.register('processMode', 
-#    default='JetLevel', 
-#    mult=VarParsing.VarParsing.multiplicity.singleton,
-#    mytype=VarParsing.VarParsing.varType.string,
-#    info = "process mode: JetLevel or EventLevel")
+options.register('processMode', 
+    default='JetLevel', 
+    mult=VarParsing.VarParsing.multiplicity.singleton,
+    mytype=VarParsing.VarParsing.varType.string,
+    info = "process mode: JetLevel or EventLevel")
 options.parseArguments()
 
 process = cms.Process("ProducerTest")
@@ -38,8 +38,8 @@ process.source = cms.Source("PoolSource",
 print (" >> Loaded",len(options.inputFiles),"input files from list.")
 
 process.load("ProdTutorial.ProducerTest.EBRecHit_cfi")
-#process.load("ProdTutorial.ProducerTest.FrameInference_cfi")
-#process.fevt_tf.mode = cms.string('JetLevel')#options.processMode
+process.load("ProdTutorial.ProducerTest.FrameInference_cfi")
+process.ProducerFrames.mode = cms.string('JetLevel')#options.processMode
 
 #process.out = cms.OutputModule("PoolOutputModule",
 #    fileName = cms.untracked.string('myOutputFile.root')
