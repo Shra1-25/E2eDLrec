@@ -12,8 +12,6 @@ const int image_padding = 12;
 unsigned int jet_runId_;
 unsigned int jet_lumiId_;
 unsigned long long jet_eventId_;
-vector<float> vJetSeed_iphi_;
-vector<float> vJetSeed_ieta_;
 vector<int>   vFailedJetIdx_;
 
 
