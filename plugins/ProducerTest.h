@@ -111,16 +111,18 @@ class ProducerTest : public edm::stream::EDProducer<> {
       std::vector<float> vHBHE_energy_;
       std::vector<float> vECAL_energy_;
       std::vector<float> vECAL_tracksPt_;
+      vector<float> vJetSeed_iphi_;
+      vector<float> vJetSeed_ieta_;
       //std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       //float EB_frame[vEB_frame_height][vEB_frame_width];
       //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       //std::vector<std::vector<float>> vEB_photon_frames;
       //std::vector<int> vclasses;
       
-      /*TH1F *h_sel;
+      TH1F *h_sel;
       TH1F * hSC_pT;
       TH1F * hMinDRgenRecoPho;
-      TH1F * hMinDRrecoPtoGenPt;*/
+      TH1F * hMinDRrecoPtoGenPt;
    
       TTree* RHTree;
       unsigned int nPho;
