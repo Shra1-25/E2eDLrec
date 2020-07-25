@@ -328,7 +328,7 @@ ProducerTest::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
 }
 
 const reco::PFCandidate*
-RecHitAnalyzer::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug ) {
+ProducerTest::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug ) {
 
   minDr = 10;
   const reco::PFCandidate* minDRCand = nullptr;
@@ -354,7 +354,7 @@ RecHitAnalyzer::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float ph
 }
 
 const reco::Track*
-RecHitAnalyzer::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float eta, float phi, float& minDr, bool debug ) {
+ProducerTest::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float eta, float phi, float& minDr, bool debug ) {
 
   minDr = 10;
   const reco::Track* minDRCand = nullptr;
@@ -381,7 +381,7 @@ RecHitAnalyzer::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, floa
 
 
 
-int RecHitAnalyzer::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch , bool debug ){
+int ProducerTest::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch , bool debug ){
   if ( debug ) {
     std::cout << " Mathcing reco jetPt:" << recJet->pt() << " jetEta:" << recJet->eta() << " jetPhi:" << recJet->phi() << std::endl;
   }
@@ -428,7 +428,7 @@ int RecHitAnalyzer::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco
 }
 
 
-float RecHitAnalyzer::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch, bool debug ){
+float ProducerTest::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch, bool debug ){
 
   // loop over jets
   for( edm::View<reco::Jet>::const_iterator jetToMatch = recoJetCollection->begin(); jetToMatch != recoJetCollection->end(); ++jetToMatch )
