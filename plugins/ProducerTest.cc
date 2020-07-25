@@ -152,10 +152,14 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    if ( doJets_ ) {
      passedSelection = runEvtSel_jet( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: "<<vJetSeed_ieta_.size()<<" "<<vJetSeed_iphi_.size()<<std::endl;
-     for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     	std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<" ";
+     std::cout<<" The jet seeds are (ieta,iphi): ";
+     if (vJetSeed_ieta.size()==0){std::cout<<"--"<<std::endl;}
+     else{
+     	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
+     		std::cout<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<"), ";
+     	}
+     	std::cout<<std::endl;
      }
-     std::cout<<std::endl;
      std::unique_ptr<std::vector<float>> JetSeedieta_edm (new std::vector<float>(vJetSeed_ieta_));
      std::unique_ptr<std::vector<float>> JetSeediphi_edm (new std::vector<float>(vJetSeed_iphi_));
      iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
@@ -163,10 +167,14 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    } else {
      passedSelection = runEvtSel( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: "<<vJetSeed_ieta_.size()<<" "<<vJetSeed_iphi_.size()<<std::endl;
-     for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     	std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<" ";
+     std::cout<<" The jet seeds are (ieta,iphi): ";
+     if(vJetSeed_ieta.size()==0){std::cout<<"--"<<std::endl;}
+     else{
+	   for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
+     		std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<" ";
+     	}
+     	std::cout<<std::endl;
      }
-     std::cout<<std::endl;
      std::unique_ptr<std::vector<float>> JetSeedieta_edm (new std::vector<float>(vJetSeed_ieta_));
      std::unique_ptr<std::vector<float>> JetSeediphi_edm (new std::vector<float>(vJetSeed_iphi_));
      iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
