@@ -156,7 +156,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      if (vJetSeed_ieta_.size()==0){std::cout<<"--"<<std::endl;}
      else{
      	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		std::cout<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<"), ";
+     		std::cout<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<") ";
      	}
      	std::cout<<std::endl;
      }
@@ -171,7 +171,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      if(vJetSeed_ieta_.size()==0){std::cout<<"--"<<std::endl;}
      else{
 	   for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<" ";
+     		std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<") ";
      	}
      	std::cout<<std::endl;
      }
