@@ -136,6 +136,9 @@ class ProducerTest : public edm::stream::EDProducer<> {
       TTree* RHTree;
       unsigned int nPho;
       
+      typedef std::vector<reco::PFCandidate>  PFCollection;
+      edm::EDGetTokenT<PFCollection> pfCollectionT_;
+   
       void branchesEvtSel         ( TTree*, edm::Service<TFileService>& );
       void branchesEvtSel_jet     ( TTree*, edm::Service<TFileService>& );
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
