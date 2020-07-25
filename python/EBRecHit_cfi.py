@@ -6,7 +6,6 @@ ProducerFrames = cms.EDProducer('ProducerTest'
     , reducedHBHERecHitCollection = cms.InputTag('reducedHcalRecHits:hbhereco')
     , reducedEERecHitCollection = cms.InputTag('reducedEcalRecHitsEE')
     , trackCollection = cms.InputTag("generalTracks")
-    , vertexCollection = cms.InputTag("offlinePrimaryVertices")
     , ak4PFJetCollection = cms.InputTag('ak4PFJets')
     , genParticleCollection = cms.InputTag('genParticles')
     , gedPhotonCollection = cms.InputTag('gedPhotons')
