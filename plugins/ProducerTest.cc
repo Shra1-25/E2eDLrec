@@ -101,11 +101,11 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  }
  edm::Service<TFileService> fs;
  RHTree = fs->make<TTree>("RHTree", "RecHit tree");
-  //if ( doJets_ ) {
+  if ( doJets_ ) {
     branchesEvtSel_jet( RHTree, fs );
-  //} else {
-    //branchesEvtSel( RHTree, fs );
-  //}
+  } else {
+    branchesEvtSel( RHTree, fs );
+  }
 
  //usesResource("TFileService");
  //RHTree = fs->make<TTree>("RHTree", "RecHit tree");
@@ -124,6 +124,8 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  produces<std::vector<float>>("HBHEenergyEB");
  produces<std::vector<float>>("ECALstitchedenergy");
  produces<std::vector<float>>("TracksAtECALstitched");
+ produces<std::vector<float>>("JetSeedieta");
+ produces<std::vector<float>>("JetSeediphi");
  //if (!fw) { return; }
 }
 
@@ -147,12 +149,29 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    // ----- Apply event selection cuts ----- //
 
    bool passedSelection = false;
-   //if ( doJets_ ) {
+   if ( doJets_ ) {
      passedSelection = runEvtSel_jet( iEvent, iSetup );
-     std::cout<<" >> Size of JetSeed vector (ieta,iphi) is: "<<vJetSeed_ieta_.size()<<" "<<vJetSeed_iphi_.size()<<std::endl;
-   //} else {
-   //  passedSelection = runEvtSel( iEvent, iSetup );
-   //}
+     std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: "<<vJetSeed_ieta_.size()<<" "<<vJetSeed_iphi_.size()<<std::endl;
+     for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
+     	std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<" ";
+     }
+     std::cout<<std::endl;
+     std::unique_ptr<std::vector<float>> JetSeedieta_edm (new std::vector<float>(vJetSeed_ieta_));
+     std::unique_ptr<std::vector<float>> JetSeediphi_edm (new std::vector<float>(vJetSeed_iphi_));
+     iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
+     iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
+   } else {
+     passedSelection = runEvtSel( iEvent, iSetup );
+     std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: "<<vJetSeed_ieta_.size()<<" "<<vJetSeed_iphi_.size()<<std::endl;
+     for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
+     	std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<" ";
+     }
+     std::cout<<std::endl;
+     std::unique_ptr<std::vector<float>> JetSeedieta_edm (new std::vector<float>(vJetSeed_ieta_));
+     std::unique_ptr<std::vector<float>> JetSeediphi_edm (new std::vector<float>(vJetSeed_iphi_));
+     iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
+     iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
+   }
 
    if ( !passedSelection ) {
      h_sel->Fill( 0. );;
