@@ -7,11 +7,11 @@ options.register('skipEvents',
     mytype=VarParsing.VarParsing.varType.int,
     info = "skipEvents")
 # TODO: put this option in cmsRun scripts
-#options.register('processMode', 
-#    default='JetLevel', 
-#    mult=VarParsing.VarParsing.multiplicity.singleton,
-#    mytype=VarParsing.VarParsing.varType.string,
-#    info = "process mode: JetLevel or EventLevel")
+options.register('processMode', 
+    default='JetLevel', 
+    mult=VarParsing.VarParsing.multiplicity.singleton,
+    mytype=VarParsing.VarParsing.varType.string,
+    info = "process mode: JetLevel or EventLevel")
 options.parseArguments()
 
 process = cms.Process("Classifier")
