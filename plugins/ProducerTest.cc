@@ -152,7 +152,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    if ( doJets_ ) {
      passedSelection = runEvtSel_jet( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: "<<vJetSeed_ieta_.size()<<" "<<vJetSeed_iphi_.size()<<std::endl;
-     for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
+     for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
      	std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<" ";
      }
      std::cout<<std::endl;
@@ -163,8 +163,8 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    } else {
      passedSelection = runEvtSel( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: "<<vJetSeed_ieta_.size()<<" "<<vJetSeed_iphi_.size()<<std::endl;
-     for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
-     	std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<" ";
+     for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
+     	std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<" ";
      }
      std::cout<<std::endl;
      std::unique_ptr<std::vector<float>> JetSeedieta_edm (new std::vector<float>(vJetSeed_ieta_));
