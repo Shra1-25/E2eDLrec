@@ -1,4 +1,4 @@
-#include "MLAnalyzer/RecHitAnalyzer/interface/RecHitAnalyzer.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 #include "DataFormats/BTauReco/interface/JetTag.h"
 
 using std::vector;
