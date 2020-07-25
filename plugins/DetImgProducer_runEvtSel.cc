@@ -1,4 +1,4 @@
-#include "MLAnalyzer/RecHitAnalyzer/interface/RecHitAnalyzer.h"
+#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 
 // Run event selection ////////////////////////////////
 
@@ -27,7 +27,7 @@ float m0cut = 90.;
 //float m0cut = 80.;
 
 // Initialize branches _____________________________________________________//
-void RecHitAnalyzer::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &fs ) {
+void ProducerTest::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   h_m0     = fs->make<TH1F>("h_m0"    , "m0;m0;Events"         ,  50, m0cut, m0cut+150.);
 
@@ -56,7 +56,7 @@ void RecHitAnalyzer::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &f
 } // branchesEvtSel()
 
 // Run event selection _______________________________________________________________//
-bool RecHitAnalyzer::runEvtSel ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+bool ProducerTest::runEvtSel ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   edm::Handle<reco::PhotonCollection> photons;
   //edm::Handle<pat::PhotonCollection> photons;
