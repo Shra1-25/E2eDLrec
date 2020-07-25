@@ -136,13 +136,25 @@ class ProducerTest : public edm::stream::EDProducer<> {
       TTree* RHTree;
       unsigned int nPho;
       
+      void branchesEvtSel         ( TTree*, edm::Service<TFileService>& );
       void branchesEvtSel_jet     ( TTree*, edm::Service<TFileService>& );
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
+      void branchesEE             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       void branchesHBHE           ( TTree*, edm::Service<TFileService>& );
+      //void branchesECALatHCAL     ( TTree*, edm::Service<TFileService>& );
+      //void branchesHCALatEBEE     ( TTree*, edm::Service<TFileService>& );
+      //void branchesTracksAtEBEE   ( TTree*, edm::Service<TFileService>& );
+      void branchesPFCandsAtEBEE   ( TTree*, edm::Service<TFileService>& );
+      void branchesPFCandsAtECALstitched   ( TTree*, edm::Service<TFileService>& );
       void branchesECALstitched   ( TTree*, edm::Service<TFileService>& );
       void branchesTracksAtECALstitched (TTree*, edm::Service<TFileService>& );
+      //void branchesTRKlayersAtEBEE( TTree*, edm::Service<TFileService>& );
+      //void branchesTRKvolumeAtEBEE( TTree*, edm::Service<TFileService>& );
+      void branchesJetInfoAtECALstitched   ( TTree*, edm::Service<TFileService>& );
       
+      
+      bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
       bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
       void fillHBHE           ( const edm::Event&, const edm::EventSetup& );
@@ -150,6 +162,11 @@ class ProducerTest : public edm::stream::EDProducer<> {
       void fillTracksAtECALstitched (const edm::Event&, const edm::EventSetup& );
       //std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
       //int predict_tf         ();
+      const reco::PFCandidate* getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug = false);
+      const reco::Track* getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float eta, float phi, float& minDr, bool debug = false);
+      int   getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch = 0.4, bool debug = false);
+      float getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch = 0.1, bool debug= false );
+   
       
       std::vector<float>& read_vEB_energy     (int);
       std::string mode_;  // EventLevel / JetLevel
@@ -160,6 +177,14 @@ class ProducerTest : public edm::stream::EDProducer<> {
       double minJetPt_;
       double maxJetEta_;
       double z0PVCut_;
+   
+      void branchesEvtSel_jet_dijet      ( TTree*, edm::Service<TFileService>& );
+      void branchesEvtSel_jet_dijet_gg_qq( TTree*, edm::Service<TFileService>& );
+      bool runEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
+      bool runEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
+      void fillEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
+      void fillEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
+   
       std::vector<int> vJetIdxs;
       std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
