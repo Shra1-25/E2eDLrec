@@ -19,7 +19,7 @@ vector<float> vDijet_jet_btaggingValue_;
 
 
 // Initialize branches _____________________________________________________//
-void RecHitAnalyzer::branchesEvtSel_jet_dijet( TTree* tree, edm::Service<TFileService> &fs ) {
+void ProducerTest::branchesEvtSel_jet_dijet( TTree* tree, edm::Service<TFileService> &fs ) {
 
   h_dijet_jet_pT    = fs->make<TH1D>("h_jet_pT"  , "p_{T};p_{T};Particles", 100,  0., 500.);
   h_dijet_jet_E     = fs->make<TH1D>("h_jet_E"   , "E;E;Particles"        , 100,  0., 800.);
@@ -37,7 +37,7 @@ void RecHitAnalyzer::branchesEvtSel_jet_dijet( TTree* tree, edm::Service<TFileSe
 } // branchesEvtSel_jet_dijet()
 
 // Run jet selection _____________________________________________________//
-bool RecHitAnalyzer::runEvtSel_jet_dijet( const edm::Event& iEvent, const edm::EventSetup& iSetup )
+bool ProducerTest::runEvtSel_jet_dijet( const edm::Event& iEvent, const edm::EventSetup& iSetup )
 {
 
   edm::Handle<reco::PFJetCollection> jets;
