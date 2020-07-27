@@ -105,7 +105,7 @@ std::vector<pho_map> vPhos;
     continue;
   }
   nPho++;
-  int start_x=0;
+  /*int start_x=0;
   int end_x=0;
   int start_y=0;
   //int end_y=0;
@@ -140,28 +140,19 @@ std::vector<pho_map> vPhos;
   else {
    end_x=ieta_Emax+vEB_frame_height/2;
   }
-  /*std::string filename = "frame_" + std::to_string(iP+1) + "_" + std::to_string(nPassed+1) + ".csv";
-  std::ofstream frame_file(filename);*/
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
-   for (int y_idx = 0/*start_y*/; y_idx<vEB_frame_width/*=end_y*/;y_idx++){
-    vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+buff_y+start_y)%vEB_energy_width];
-    vEB_flat_frame[(x_idx-start_x+buff_x)*vEB_frame_width+y_idx/*-start_y+buff_y*/]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
-    //std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx<<"): "<<vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]<<" "<<vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
+   for (int y_idx = 0; y_idx<vEB_frame_width;y_idx++){
+    vEB_frame[x_idx-start_x+buff_x][y_idx]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+buff_y+start_y)%vEB_energy_width];
+    vEB_flat_frame[(x_idx-start_x+buff_x)*vEB_frame_width+y_idx]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
+    //std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx<<"): "<<vEB_frame[x_idx-start_x+buff_x][y_idx]<<" "<<vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
    }
    //std::cout<<std::endl;
   }
-  /*for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
-   for (int y_idx=0;y_idx<vEB_frame_width;y_idx++){ 
-    std::cout<<"("<<x_idx<<","<<y_idx<<"): "<<vEB_frame[x_idx][y_idx]<<" ";
-    frame_file<<vEB_frame[x_idx][y_idx];
-    if (y_idx<(vEB_frame_width-1)){frame_file<<",";}
-   }
-    frame_file<<"\n";
-  }*/
+  
   vEB_photon_frames.push_back(vEB_flat_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
-  std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
+  std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;*/
   vclasses.push_back(predict_tf());
   
   /*if (vEB_photon_frames.size()>0){ 
