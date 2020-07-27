@@ -51,7 +51,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
    std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;
    for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
-    vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 270, 360, 125, 125);
+    if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 270, 360, 125, 125);}
    }
    //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
