@@ -13,8 +13,8 @@ ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
  vEB_energy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("EBEnergy"));
  ECALstitched_energy_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("ECALstitchedenergy"));
  TracksAtECALstitched_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("TracksAtECALstitched"));
- JetSeed_ieta_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("JetSeedieta"));
- JetSeed_iphi_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("JetSeediphi"));
+ JetSeed_ieta_token=consumes<std::vector<int>>(iConfig.getParameter<edm::InputTag>("JetSeedieta"));
+ JetSeed_iphi_token=consumes<std::vector<int>>(iConfig.getParameter<edm::InputTag>("JetSeediphi"));
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
  
  produces<std::vector<float>>("ClassifierPredictions");
