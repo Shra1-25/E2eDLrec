@@ -57,7 +57,7 @@ void ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int 
   }*/
   vEB_photon_frames.push_back(vEB_flat_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
-  std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vdetector_image[ieta_Emax*energy_width+iphi_Emax]<<endl;
+  std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vdetector_image[ieta_Emax*detImg_width+iphi_Emax]<<endl;
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
   return;
 }
