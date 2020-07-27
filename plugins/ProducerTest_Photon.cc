@@ -154,6 +154,7 @@ std::vector<pho_map> vPhos;
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;*/
   croppingFrames(vEB_energy_,170,360,32,32);
+  std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
   vclasses.push_back(predict_tf());
   
   /*if (vEB_photon_frames.size()>0){ 
