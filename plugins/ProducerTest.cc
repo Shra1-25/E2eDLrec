@@ -147,7 +147,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    using namespace edm;
    nTotal++;
    // ----- Apply event selection cuts ----- //
-
+   std::cout<<"Stage1"<<std::endl;
    bool passedSelection = false;
    if ( doJets_ ) {
      std::cout<<"doJets set"<<std::endl;
