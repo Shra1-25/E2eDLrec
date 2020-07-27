@@ -19,10 +19,10 @@ std::vector<std::vector<float>> ProducerInference::croppingFrames(std::vector<fl
    buff_y=0;
   }
   if (iphi_seed>detImg_width-frame_width/2-1){
-   //end_y=vEB_energy_width-1;
+   //end_y=detImg_width-1;
   }
   else {
-   //end_y=iphi_seed+vEB_frame_width/2;
+   //end_y=iphi_seed+frame_width/2;
   }
   if (ieta_seed<frame_height/2-1){
    start_x=0;
@@ -48,16 +48,16 @@ std::vector<std::vector<float>> ProducerInference::croppingFrames(std::vector<fl
    }
    //std::cout<<std::endl;
   }
-  /*for (int x_idx=0;x_idx<vEB_frame_height;x_idx++){
-   for (int y_idx=0;y_idx<vEB_frame_width;y_idx++){ 
-    std::cout<<"("<<x_idx<<","<<y_idx<<"): "<<vEB_frame[x_idx][y_idx]<<" ";
-    frame_file<<vEB_frame[x_idx][y_idx];
-    if (y_idx<(vEB_frame_width-1)){frame_file<<",";}
+  /*for (int x_idx=0;x_idx<frame_height;x_idx++){
+   for (int y_idx=0;y_idx<frame_width;y_idx++){ 
+    std::cout<<"("<<x_idx<<","<<y_idx<<"): "<<vframe[x_idx][y_idx]<<" ";
+    frame_file<<vframe[x_idx][y_idx];
+    if (y_idx<(frame_width-1)){frame_file<<",";}
    }
     frame_file<<"\n";
   }*/
   vEB_photon_frames.push_back(vEB_flat_frame);
-  std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
+  std::cout<<" >> Size of frame is:"<<"("<<vframe.size()<<", "<<vframe[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_seed<<", "<<iphi_seed<<")is: "<<vdetector_image[ieta_seed*detImg_width+iphi_seed]<<endl;
   
   return vframe;
