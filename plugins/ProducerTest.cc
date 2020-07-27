@@ -170,6 +170,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      std::unique_ptr<std::vector<int>> JetSeediphi_edm (new std::vector<int>(vJetSeed_iphi_));
      iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
      iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
+     vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
    } else {
      passedSelection = runEvtSel( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
