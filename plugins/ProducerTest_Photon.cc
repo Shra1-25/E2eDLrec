@@ -90,7 +90,8 @@ std::vector<pho_map> vPhos;
   if ( Emax <= zs ) {
     std::cout<<" >> EB_energy is less than zero: "<<Emax<<std::endl;
     std::cout<<" >> Class: -1"<<std::endl; 
-    vclasses.push_back(-1); 
+    vclasses.push_back(-1);
+    if (iP==(photons->size()-1)){std::cout<<" >> All Done"<<std::endl;}
     continue;
   }
    
@@ -100,8 +101,9 @@ std::vector<pho_map> vPhos;
   std::cout<<" >> EB_energy at iphi_Emax,ieta_Emax: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 )  // seed centered on [15,15] so must be padded by 15 below and 16 above
   {  
-    std::cout<<" >> Class: -1\n >> All Done"<<std::endl; 
-    vclasses.push_back(-1); 
+    std::cout<<" >> Class: -1"<<std::endl;
+    vclasses.push_back(-1);
+    if (iP==(photons->size()-1)){std::cout<<" >> All Done"<<std::endl;}
     continue;
   }
   nPho++;
