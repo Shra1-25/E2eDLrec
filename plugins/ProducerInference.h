@@ -54,8 +54,10 @@
 #include "DataFormats/Math/interface/deltaPhi.h"*/
 #include <iostream>
 using namespace std;
-using pat::PhotonCollection;
-using pat::PhotonRef;
+/*using pat::PhotonCollection;
+using pat::PhotonRef;*/
+using reco::PhotonCollection;
+using reco::PhotonRef;
 
 static const int vEB_energy_height=170;
 static const int vEB_energy_width=360;
