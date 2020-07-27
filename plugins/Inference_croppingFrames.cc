@@ -11,13 +11,13 @@ void ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int 
   if (iphi_Emax<frame_width/2-1){
    start_y=0;
    buff_y=frame_width/2-1-iphi_Emax;
-   buff_y=energy_width-buff_y;
+   buff_y=detImg_width-buff_y;
   }
   else {
    start_y=iphi_Emax-frame_width/2+1;
    buff_y=0;
   }
-  if (iphi_Emax>energy_width-frame_width/2-1){
+  if (iphi_Emax>detImg_width-frame_width/2-1){
    //end_y=vEB_energy_width-1;
   }
   else {
@@ -31,8 +31,8 @@ void ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int 
    start_x=ieta_Emax-frame_height/2+1;
     buff_x=0;
   }
-  if (ieta_Emax>energy_height-frame_height/2-1){
-   end_x=energy_height-1;
+  if (ieta_Emax>detImg_height-frame_height/2-1){
+   end_x=detImg_height-1;
   }
   else {
    end_x=ieta_Emax+frame_height/2;
@@ -41,8 +41,8 @@ void ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int 
   std::ofstream frame_file(filename);*/
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = 0/*start_y*/; y_idx<frame_width/*=end_y*/;y_idx++){
-    vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]=vdetector_image[x_idx*energy_width+(y_idx+buff_y+start_y)%energy_width];
-    vEB_flat_frame[(x_idx-start_x+buff_x)*frame_width+y_idx/*-start_y+buff_y*/]=vdetector_image[x_idx*energy_width+(y_idx+start_y+buff_y)%energy_width];
+    vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]=vdetector_image[x_idx*detImg_width+(y_idx+buff_y+start_y)%detImg_width];
+    vEB_flat_frame[(x_idx-start_x+buff_x)*frame_width+y_idx/*-start_y+buff_y*/]=vdetector_image[x_idx*detImg_width+(y_idx+start_y+buff_y)%detImg_width];
     //std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx<<"): "<<vEB_frame[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]<<" "<<vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
    }
    //std::cout<<std::endl;
