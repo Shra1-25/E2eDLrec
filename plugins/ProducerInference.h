@@ -59,10 +59,10 @@ using pat::PhotonRef;*/
 using reco::PhotonCollection;
 using reco::PhotonRef;
 
-/*static const int vEB_energy_height=170;
+static const int vEB_energy_height=170;
 static const int vEB_energy_width=360;
 static const int vEB_frame_height=32;
-static const int vEB_frame_width=32;*/
+static const int vEB_frame_width=32;
 
 class ProducerInference : public edm::stream::EDProducer<> {
    public:
