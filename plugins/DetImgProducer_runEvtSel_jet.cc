@@ -57,7 +57,7 @@ bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSet
       std::cout << " index order:" << thisJetIdx << std::endl;
     }
   }
-
+  std::cout<<"Stage 1"<<std::endl;
   edm::ESHandle<CaloGeometry> caloGeomH_;
   iSetup.get<CaloGeometryRecord>().get( caloGeomH_ );
   const CaloGeometry* caloGeom = caloGeomH_.product();
@@ -84,7 +84,7 @@ bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSet
 
     if ( debug ) std::cout << " >> jet[" << thisJetIdx << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
 			   << " jetE:" << iJet->energy() << " jetM:" << iJet->mass() << std::endl;
-    
+    std::cout<<"Stage 2"<<std::endl;
     // Get closest HBHE tower to jet position
     // This will not always be the most energetic deposit
     HcalDetId hId( spr::findDetIdHCAL( caloGeom, iJet->eta(), iJet->phi(), false ) );
@@ -117,7 +117,7 @@ bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSet
         } else if ( iphi_ < HBHE_IPHI_MIN ) {
           iphi_ = HBHE_IPHI_MAX-abs(iphi_); 
         }
-
+	std::cout<<"Stage 3"<<std::endl;
         // Skip non-existent and lower energy towers 
         HcalDetId hId_( subdet_, ieta_, iphi_, 1 );
         HBHERecHitCollection::const_iterator iRHit( HBHERecHitsH_->find(hId_) );
@@ -147,14 +147,14 @@ bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSet
       vFailedJetIdx_.push_back(thisJetIdx);
       continue;
     }
-
+    std::cout<<"Stage 4"<<std::endl;
     // Save position of most energetic HBHE tower
     // in EB-aligned coordinates
     if ( debug ) std::cout << " !! ieta_:" << ieta_ << " iphi_:" << iphi_ << " ietaAbs_:" << ietaAbs_ << " E:" << seedE << std::endl;
     vJetSeed_iphi_.push_back( iphi_ );
     vJetSeed_ieta_.push_back( ieta_ );
     nJet++;
-
+    std::cout<<"Stage 5"<<std::endl;
   } // good jets 
 
   
