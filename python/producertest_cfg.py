@@ -39,7 +39,7 @@ print (" >> Loaded",len(options.inputFiles),"input files from list.")
 
 process.load("ProdTutorial.ProducerTest.EBRecHit_cfi")
 process.load("ProdTutorial.ProducerTest.FrameInference_cfi")
-#process.fevt_tf.mode = cms.string('JetLevel')#options.processMode
+process.ProducerFrames.mode = cms.string('JetLevel')#options.processMode
 
 #process.out = cms.OutputModule("PoolOutputModule",
 #    fileName = cms.untracked.string('myOutputFile.root')
