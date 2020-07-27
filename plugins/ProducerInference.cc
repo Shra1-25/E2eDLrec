@@ -42,9 +42,9 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.getByToken(ECALstitched_energy_token,ECALstitched_energy_handle);
    edm::Handle<std::vector<float>> TracksAtECALstitched_handle;
    iEvent.getByToken(TracksAtECALstitched_token,TracksAtECALstitched_handle);
-   edm::Handle<std::vector<float>> JetSeed_ieta_handle;
+   edm::Handle<std::vector<int>> JetSeed_ieta_handle;
    iEvent.getByToken(JetSeed_ieta_token,JetSeed_ieta_handle);
-   edm::Handle<std::vector<float>> JetSeed_iphi_handle;
+   edm::Handle<std::vector<int>> JetSeed_iphi_handle;
    iEvent.getByToken(JetSeed_iphi_token,JetSeed_iphi_handle);
    
    std::vector<float>vECALstitched=*ECALstitched_energy_handle;
