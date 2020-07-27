@@ -70,8 +70,10 @@
 #include "TSystem.h"
 #include <iostream>
 using namespace std;
-using pat::PhotonCollection;
-using pat::PhotonRef;
+/*using pat::PhotonCollection;
+using pat::PhotonRef;*/
+using reco::PhotonCollection;
+using reco::PhotonRef;
 
 
 class ProducerTest : public edm::stream::EDProducer<> {
