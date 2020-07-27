@@ -124,8 +124,8 @@ ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
  produces<std::vector<float>>("HBHEenergyEB");
  produces<std::vector<float>>("ECALstitchedenergy");
  produces<std::vector<float>>("TracksAtECALstitched");
- produces<std::vector<float>>("JetSeedieta");
- produces<std::vector<float>>("JetSeediphi");
+ produces<std::vector<int>>("JetSeedieta");
+ produces<std::vector<int>>("JetSeediphi");
  //if (!fw) { return; }
 }
 
