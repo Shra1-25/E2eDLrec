@@ -41,7 +41,6 @@ void ProducerTest::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> 
 bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   // Each jet selection must fill vJetIdxs with good jet indices
-  std::cout<<"Stage 1"<<std::endl;
   // Run explicit jet selection
   bool hasPassed;
   if ( jetSelection == "dijet_gg_qq" ) {
@@ -57,7 +56,6 @@ bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSet
       std::cout << " index order:" << thisJetIdx << std::endl;
     }
   }
-  std::cout<<"Stage 2"<<std::endl;
   edm::ESHandle<CaloGeometry> caloGeomH_;
   iSetup.get<CaloGeometryRecord>().get( caloGeomH_ );
   const CaloGeometry* caloGeom = caloGeomH_.product();
@@ -79,7 +77,6 @@ bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSet
 
   // Loop over jets
   for ( int thisJetIdx : vJetIdxs ) {
-    std::cout<<thisJetIdx<<" ";
     reco::PFJetRef iJet( jets, thisJetIdx );
 
     if ( debug ) std::cout << " >> jet[" << thisJetIdx << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
@@ -151,7 +148,6 @@ bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSet
     vJetSeed_iphi_.push_back( iphi_ );
     vJetSeed_ieta_.push_back( ieta_ );
     nJet++;
-    std::cout<<"Stage 2"<<std::endl;
   } // good jets 
 
   
