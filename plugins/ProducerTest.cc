@@ -150,6 +150,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 
    bool passedSelection = false;
    if ( doJets_ ) {
+     std::cout<<"doJets set"<<std::endl;
      passedSelection = runEvtSel_jet( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" >> The jet seeds are (ieta,iphi): ";
@@ -172,6 +173,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
      vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
    } else {
+     std::cout<<"doJets not set"<<std::endl;
      passedSelection = runEvtSel( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" The jet seeds are (ieta,iphi): ";
