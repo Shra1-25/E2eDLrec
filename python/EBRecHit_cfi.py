@@ -2,7 +2,7 @@ import FWCore.ParameterSet.Config as cms
 
 ProducerFrames = cms.EDProducer('ProducerTest'
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
-    , photonCollection = cms.InputTag('slimmedPhotons')
+    , photonCollection = cms.InputTag('gedPhotons')#or 'slimmedPhotons' for mini AOD root file
     , reducedHBHERecHitCollection = cms.InputTag('reducedHcalRecHits:hbhereco')
     , reducedEERecHitCollection = cms.InputTag('reducedEcalRecHitsEE')
     , trackCollection = cms.InputTag("generalTracks")
