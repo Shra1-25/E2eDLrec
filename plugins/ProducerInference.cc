@@ -11,7 +11,12 @@ ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
  EBRecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEBRecHitCollection"));
  photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
  vEB_energy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("EBEnergy"));
+ ECALstitched_energy_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("ECALstitchedenergy"));
+ TracksAtECALstitched_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("TracksAtECALstitched"));
+ JetSeed_ieta_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("JetSeedieta"));
+ JetSeed_iphi_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("JetSeediphi"));
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
+ 
  produces<std::vector<float>>("ClassifierPredictions");
 }
 
@@ -33,11 +38,19 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 
    edm::Handle<std::vector<float>> vEB_energy_handle;
    iEvent.getByToken(vEB_energy_token,vEB_energy_handle);
- 
+   edm::Handle<std::vector<float>> ECALstitched_energy_handle;
+   iEvent.getByToken(ECALstitched_energy_token,ECALstitched_energy_handle);
+   edm::Handle<std::vector<float>> TracksAtECALstitched_handle;
+   iEvent.getByToken(TracksAtECALstitched_token,TracksAtECALstitched_handle);
+   edm::Handle<std::vector<float>> JetSeed_ieta_handle;
+   iEvent.getByToken(JetSeed_ieta_token,JetSeed_ieta_handle);
+   edm::Handle<std::vector<float>> JetSeed_iphi_handle;
+   iEvent.getByToken(JetSeed_iphi_token,JetSeed_iphi_handle);
+   
    //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
    //std::cout<<"Size2: "<<vEB_energy_.size();
-   get_photons(iEvent, iSetup );
+   get_photons(iEvent, iSetup );//stored in vEB_frames vectors
    std::unique_ptr<std::vector<float>> vclasses_edm (new std::vector<float>(vclasses));
    iEvent.put(std::move(vclasses_edm),"ClassifierPredictions");
    std::cout<<std::endl;
