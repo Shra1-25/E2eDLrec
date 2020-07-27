@@ -21,7 +21,7 @@ void ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int 
    //end_y=vEB_energy_width-1;
   }
   else {
-   //end_y=iphi_Emax+vEB_frame_width/2;
+   //end_y=iphi_seed+vEB_frame_width/2;
   }
   if (ieta_seed<frame_height/2-1){
    start_x=0;
