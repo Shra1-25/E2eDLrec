@@ -58,7 +58,7 @@ std::vector<std::vector<float>> ProducerInference::croppingFrames(std::vector<fl
   }*/
   vEB_photon_frames.push_back(vEB_flat_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vframe.size()<<", "<<vframe[0].size()<<")"<<endl;
-  std::cout<<" >> E_max at ("<<ieta_seed<<", "<<iphi_seed<<")is: "<<vdetector_image[ieta_seed*detImg_width+iphi_seed]<<endl;
-  
+  std::cout<<" >> E_max at ("<<ieta_seed<<", "<<iphi_seed<<")is: "<<vdetector_image[ieta_seed*detImg_width+iphi_seed]<<std::endl;
+  std::cout<<" >> E_max at ("<<ieta_seed<<", "<<iphi_seed<<")is: "<<vframe[frame_height/2,frame_width/2]<<std::endl;
   return vframe;
 }
