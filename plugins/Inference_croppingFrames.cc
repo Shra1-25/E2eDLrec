@@ -1,41 +1,41 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 #include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
 
-void ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int detImg_height, int detImg_width, int frame_height, int frame_width){
+void ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int ieta_seed, int iphi_seed, int detImg_height, int detImg_width, int frame_height, int frame_width){
   int start_x=0;
   int end_x=0;
   int start_y=0;
   //int end_y=0;
   int buff_x=0;
   int buff_y=0;
-  if (iphi_Emax<frame_width/2-1){
+  if (iphi_seed<frame_width/2-1){
    start_y=0;
-   buff_y=frame_width/2-1-iphi_Emax;
+   buff_y=frame_width/2-1-iphi_seed;
    buff_y=detImg_width-buff_y;
   }
   else {
-   start_y=iphi_Emax-frame_width/2+1;
+   start_y=iphi_seed-frame_width/2+1;
    buff_y=0;
   }
-  if (iphi_Emax>detImg_width-frame_width/2-1){
+  if (iphi_seed>detImg_width-frame_width/2-1){
    //end_y=vEB_energy_width-1;
   }
   else {
    //end_y=iphi_Emax+vEB_frame_width/2;
   }
-  if (ieta_Emax<frame_height/2-1){
+  if (ieta_seed<frame_height/2-1){
    start_x=0;
-   buff_x=frame_height/2-1-ieta_Emax;
+   buff_x=frame_height/2-1-ieta_seed;
   }
   else {
-   start_x=ieta_Emax-frame_height/2+1;
+   start_x=ieta_seed-frame_height/2+1;
     buff_x=0;
   }
-  if (ieta_Emax>detImg_height-frame_height/2-1){
+  if (ieta_seed>detImg_height-frame_height/2-1){
    end_x=detImg_height-1;
   }
   else {
-   end_x=ieta_Emax+frame_height/2;
+   end_x=ieta_seed+frame_height/2;
   }
   /*std::string filename = "frame_" + std::to_string(iP+1) + "_" + std::to_string(nPassed+1) + ".csv";
   std::ofstream frame_file(filename);*/
@@ -57,7 +57,7 @@ void ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int 
   }*/
   vEB_photon_frames.push_back(vEB_flat_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
-  std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vdetector_image[ieta_Emax*detImg_width+iphi_Emax]<<endl;
-  std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
+  std::cout<<" >> E_max at ("<<ieta_seed<<", "<<iphi_seed<<")is: "<<vdetector_image[ieta_seed*detImg_width+iphi_seed]<<endl;
+  
   return;
 }
