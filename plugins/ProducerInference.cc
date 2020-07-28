@@ -63,7 +63,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<std::endl;
    nPassed++;
    // ----- Apply event selection cuts ----- //
-   std::cout<<"Event finished"<<std::endl;
+   std::cout<<"Event "<<nPassed-1<<"finished"<<"Prceeding to event "<<nPassed<<std::endl;
    return;
 }
 
