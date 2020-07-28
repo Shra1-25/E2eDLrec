@@ -9,34 +9,36 @@ std::vector<std::vector<float>> ProducerInference::croppingFrames(std::vector<fl
   //int end_y=0;
   int buff_x=0;
   int buff_y=0;
-  if (iphi_seed<frame_width/2-1){
+  if (frame_width%2==0){int half_frame_width=frame_width/2-1;} else {half_frame_width=frame_width/2;}
+  if(frame_height%2==0){int half_frame_height=frame_height/2-1;} else {half_frame_height=frame_height/2;}
+  if (iphi_seed<half_frame_width/2-1){
    start_y=0;
-   buff_y=frame_width/2-1-iphi_seed;
+   buff_y=half_frame_width/2-iphi_seed;
    buff_y=detImg_width-buff_y;
   }
   else {
-   start_y=iphi_seed-frame_width/2+1;
+   start_y=iphi_seed-half_frame_width/2;
    buff_y=0;
   }
-  if (iphi_seed>detImg_width-frame_width/2-1){
+  if (iphi_seed>detImg_width-half_frame_width/2){
    //end_y=detImg_width-1;
   }
   else {
    //end_y=iphi_seed+frame_width/2;
   }
-  if (ieta_seed<frame_height/2-1){
+  if (ieta_seed<half_frame_height/2){
    start_x=0;
-   buff_x=frame_height/2-1-ieta_seed;
+   buff_x=half_frame_height/2-ieta_seed;
   }
   else {
-   start_x=ieta_seed-frame_height/2+1;
+   start_x=ieta_seed-half_frame_height/2;
     buff_x=0;
   }
-  if (ieta_seed>detImg_height-frame_height/2-1){
+  if (ieta_seed>detImg_height-half_frame_height/2){
    end_x=detImg_height-1;
   }
   else {
-   end_x=ieta_seed+frame_height/2;
+   end_x=ieta_seed+half_frame_height/2;
   }
   /*std::string filename = "frame_" + std::to_string(iP+1) + "_" + std::to_string(nPassed+1) + ".csv";
   std::ofstream frame_file(filename);*/
