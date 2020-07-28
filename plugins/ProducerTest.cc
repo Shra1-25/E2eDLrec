@@ -164,6 +164,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
      		if(vJetSeed_ieta_[idx]>=0){vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);}  //5 EB xtals per HB tower
 		if(vJetSeed_iphi_[idx]>=0){vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);}  //5 EB xtals per HB tower
+		std::cout<<vJetSeed_ieta_[idx]<<" "<<vJetSeed_iphi_[idx];
      	}
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
