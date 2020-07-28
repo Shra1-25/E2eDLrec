@@ -54,9 +54,9 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::cout<<" >> Creating Jet frame "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);}
    }
-   //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
+   std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
-   //std::cout<<"Size2: "<<vEB_energy_.size();
+   std::cout<<"Size2: "<<vEB_energy_.size();
    get_photons(iEvent, iSetup );//stored in vEB_frames vectors
    std::unique_ptr<std::vector<float>> vclasses_edm (new std::vector<float>(vclasses));
    iEvent.put(std::move(vclasses_edm),"ClassifierPredictions");
