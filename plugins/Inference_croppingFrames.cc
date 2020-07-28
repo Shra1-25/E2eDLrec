@@ -9,8 +9,8 @@ std::vector<std::vector<float>> ProducerInference::croppingFrames(std::vector<fl
   //int end_y=0;
   int buff_x=0;
   int buff_y=0;
-  if (frame_width%2==0){int half_frame_width=frame_width/2-1;} else {half_frame_width=frame_width/2;}
-  if(frame_height%2==0){int half_frame_height=frame_height/2-1;} else {half_frame_height=frame_height/2;}
+  if (frame_width%2==0){int half_frame_width=frame_width/2-1;} else {int half_frame_width=frame_width/2;}
+  if(frame_height%2==0){int half_frame_height=frame_height/2-1;} else {int half_frame_height=frame_height/2;}
   if (iphi_seed<half_frame_width-1){
    start_y=0;
    buff_y=half_frame_width-iphi_seed;
