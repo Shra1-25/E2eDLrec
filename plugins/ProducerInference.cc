@@ -56,6 +56,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
                                vTracksAtECALstitched_frame=croppingFrames(vTracksAtECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);}
    }
+   std::cout<<std::endl;
    //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
    //std::cout<<"Size2: "<<vEB_energy_.size();
