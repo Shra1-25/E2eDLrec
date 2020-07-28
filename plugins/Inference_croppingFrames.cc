@@ -47,7 +47,7 @@ std::vector<std::vector<float>> ProducerInference::croppingFrames(std::vector<fl
   for (int x_idx = start_x; x_idx<=end_x;x_idx++){
    for (int y_idx = 0/*start_y*/; y_idx<frame_width/*=end_y*/;y_idx++){
     vframe[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]=vdetector_image[x_idx*detImg_width+(y_idx+buff_y+start_y)%detImg_width];
-    vEB_flat_frame[(x_idx-start_x+buff_x)*frame_width+y_idx/*-start_y+buff_y*/]=vdetector_image[x_idx*detImg_width+(y_idx+start_y+buff_y)%detImg_width];
+    //vEB_flat_frame[(x_idx-start_x+buff_x)*frame_width+y_idx/*-start_y+buff_y*/]=vdetector_image[x_idx*detImg_width+(y_idx+start_y+buff_y)%detImg_width];
     //std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx<<"): "<<vframe[x_idx-start_x+buff_x][y_idx/*y_idx-start_y+buff_y*/]<<" "<<vdetector_image[x_idx*detImg_width+(y_idx+start_y+buff_y)%detImg_width];
    }
    //std::cout<<std::endl;
@@ -60,7 +60,7 @@ std::vector<std::vector<float>> ProducerInference::croppingFrames(std::vector<fl
    }
     frame_file<<"\n";
   }*/
-  vEB_photon_frames.push_back(vEB_flat_frame);
+  //vEB_photon_frames.push_back(vEB_flat_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vframe.size()<<", "<<vframe[0].size()<<")"<<endl;
   std::cout<<" >> E_max at ("<<ieta_seed<<", "<<iphi_seed<<")is: "<<vdetector_image[ieta_seed*detImg_width+iphi_seed]<<std::endl;
   std::cout<<" >> E_max at ("<<ieta_seed<<", "<<iphi_seed<<")is: "<<vframe[half_frame_height][half_frame_width]<<std::endl;
