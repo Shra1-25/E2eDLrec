@@ -52,7 +52,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
    std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;
    for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
-    std::cout<<" >> Generating Stitched ECAL frames and their track frames from the jet seeds. "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
+    std::cout<<" >> Generating Stitched ECAL frames and their track frames from the jet seed: "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
                                vTracksAtECALstitched_frame=croppingFrames(vTracksAtECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);}
    }
