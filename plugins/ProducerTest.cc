@@ -162,8 +162,8 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      }
      if (vJetSeed_ieta_.size()==vJetSeed_iphi_.size()){
      	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);  //5 EB xtals per HB tower
-		vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);  //5 EB xtals per HB tower
+     		if(vJetSeed_ieta_[idx]>=0){vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);}  //5 EB xtals per HB tower
+		if(vJetSeed_iphi_[idx]>=0){vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);}  //5 EB xtals per HB tower
      	}
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
@@ -185,8 +185,9 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      }
      if (vJetSeed_ieta_.size()==vJetSeed_iphi_.size()){
      	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);  //5 EB xtals per HB tower
-		vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);  //5 EB xtals per HB tower
+     		if(vJetSeed_ieta_[idx]>=0){vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);}  //5 EB xtals per HB tower
+		if(vJetSeed_iphi_[idx]>=0){vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);}  //5 EB xtals per HB tower
+		std::cout<<vJetSeed_ieta_[idx]<<" "<<vJetSeed_iphi_[idx];
      	}
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
@@ -227,6 +228,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::unique_ptr<std::vector<float>> ECALstitched_energy_edm (new std::vector<float>(vECAL_energy_));
    std::cout<<" >> Size of Stitched ECAL Energy vector is: "<<std::move(ECALstitched_energy_edm).get()->size()<<std::endl;
    iEvent.put(std::move(ECALstitched_energy_edm), "ECALstitchedenergy");
+
    
    fillTracksAtECALstitched (iEvent, iSetup );
    std::unique_ptr<std::vector<float>> TracksECALstitchedPt_edm (new std::vector<float>(vECAL_tracksPt_));
