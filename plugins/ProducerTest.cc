@@ -144,13 +144,13 @@ ProducerTest::~ProducerTest()
 void
 ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-   std::cout<<"New Event started"<<std::endl;
+   //std::cout<<"New Event started"<<std::endl;
    using namespace edm;
    nTotal++;
    // ----- Apply event selection cuts ----- //
    bool passedSelection = false;
    if ( doJets_ ) {
-     std::cout<<"doJets set"<<std::endl;
+     std::cout<<" >> doJets set"<<std::endl;
      passedSelection = runEvtSel_jet( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" >> The jet seeds are (ieta,iphi): ";
@@ -165,7 +165,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
      		if(vJetSeed_ieta_[idx]>=0){vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);}  //5 EB xtals per HB tower
 		if(vJetSeed_iphi_[idx]>=0){vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);}  //5 EB xtals per HB tower
-		std::cout<<vJetSeed_ieta_[idx]<<" "<<vJetSeed_iphi_[idx];
+		//std::cout<<vJetSeed_ieta_[idx]<<" "<<vJetSeed_iphi_[idx];
      	}
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
@@ -174,7 +174,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
      vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
    } else {
-     std::cout<<"doJets not set"<<std::endl;
+     std::cout<<" >> doJets not set"<<std::endl;
      passedSelection = runEvtSel( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" The jet seeds are (ieta,iphi): ";
@@ -189,7 +189,7 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
      		if(vJetSeed_ieta_[idx]>=0){vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);}  //5 EB xtals per HB tower
 		if(vJetSeed_iphi_[idx]>=0){vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);}  //5 EB xtals per HB tower
-		std::cout<<vJetSeed_ieta_[idx]<<" "<<vJetSeed_iphi_[idx];
+		//std::cout<<vJetSeed_ieta_[idx]<<" "<<vJetSeed_iphi_[idx];
      	}
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
