@@ -144,6 +144,7 @@ ProducerTest::~ProducerTest()
 void
 ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+   std::cout<<"New Event started"<<std::endl;
    using namespace edm;
    nTotal++;
    // ----- Apply event selection cuts ----- //
