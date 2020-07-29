@@ -15,6 +15,7 @@ ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
  TracksAtECALstitched_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("TracksAtECALstitched"));
  JetSeed_ieta_token=consumes<std::vector<int>>(iConfig.getParameter<edm::InputTag>("JetSeedieta"));
  JetSeed_iphi_token=consumes<std::vector<int>>(iConfig.getParameter<edm::InputTag>("JetSeediphi"));
+ HBHEenergy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("HBHEenergy"));
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
  
  produces<std::vector<float>>("ClassifierPredictions");
@@ -37,15 +38,17 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    nTotal++;
 
    edm::Handle<std::vector<float>> vEB_energy_handle;
-   iEvent.getByToken(vEB_energy_token,vEB_energy_handle);
+   iEvent.getByToken(vEB_energy_token, vEB_energy_handle);
    edm::Handle<std::vector<float>> ECALstitched_energy_handle;
-   iEvent.getByToken(ECALstitched_energy_token,ECALstitched_energy_handle);
+   iEvent.getByToken(ECALstitched_energy_token, ECALstitched_energy_handle);
    edm::Handle<std::vector<float>> TracksAtECALstitched_handle;
-   iEvent.getByToken(TracksAtECALstitched_token,TracksAtECALstitched_handle);
+   iEvent.getByToken(TracksAtECALstitched_token, TracksAtECALstitched_handle);
    edm::Handle<std::vector<int>> JetSeed_ieta_handle;
-   iEvent.getByToken(JetSeed_ieta_token,JetSeed_ieta_handle);
+   iEvent.getByToken(JetSeed_ieta_token, JetSeed_ieta_handle);
    edm::Handle<std::vector<int>> JetSeed_iphi_handle;
-   iEvent.getByToken(JetSeed_iphi_token,JetSeed_iphi_handle);
+   iEvent.getByToken(JetSeed_iphi_token, JetSeed_iphi_handle);
+   edm::Handle<std::vector<float>> HBHEenergy_handle;
+   iEvent.getByToken(HBHEenergy_token, HBHEenergy_handle);
    
    std::vector<float>vECALstitched=*ECALstitched_energy_handle;
    std::vector<float>vTracksAtECALstitched=*TracksAtECALstitched_handle;
@@ -56,7 +59,10 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
                                vTracksAtECALstitched_frame=croppingFrames(vTracksAtECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);}
    }
-   std::cout<<std::endl;
+   std::cout<<std::endl; //Stitched ECAL and their track frames created.
+ 
+   std::vector<float> vHBHEenergy=*HBHEenergy_handle;
+   std::vector<std::vector<float> = frameStriding(vHBHEenergy,280,360,5,5);
    //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
    //std::cout<<"Size2: "<<vEB_energy_.size();
