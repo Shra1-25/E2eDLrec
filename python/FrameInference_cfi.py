@@ -8,6 +8,7 @@ FrameInference = cms.EDProducer('ProducerInference'
     , TracksAtECALstitched = cms.InputTag('ProducerFrames', 'TracksAtECALstitched')
     , JetSeedieta = cms.InputTag('ProducerFrames','JetSeedieta')
     , JetSeediphi = cms.InputTag('ProducerFrames','JetSeediphi')
+    , HBHEenergy = cms.InputTag('ProducerFrames','HBHEenergy')
     #, mode = cms.string("JetLevel")
     # Jet level cfg
     #, nJets = cms.int32(-1)
