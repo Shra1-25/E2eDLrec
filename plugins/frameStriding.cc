@@ -7,9 +7,11 @@ std::vector<std::vector<float>> ProducerInference::fraameStriding(std::vector<fl
       for (int kernelrow=0; kernelrow<rowstrides; kernelrow++){
         for (int kernelcol=0; kernelcol<colstrides; kernelcol++){
           vStridedFrame[rowidx+kernelrow][colidx+kernelcol] = vDetFrame[rowidx*columns+colidx]/(rowsrtides*colstrides);
+          std::cout<<"("<<rowidx+kernelrow<<","<<colidx+kernelcol<<"): "<<vStridedFrame[rowidx+kernelrow][colidx+kernelcol]<<" "<<vDetFrame[rowidx*columns+colidx]/(rowstrides*colstrides);
         }
       }
     }
   }
+  std::cout<<std::endl;
   return vStridedFrame;
 }
