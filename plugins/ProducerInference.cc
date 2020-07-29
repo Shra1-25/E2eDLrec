@@ -66,7 +66,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<"Size of Strided HBHE energy vector: "<<vHBHEenergy_strided.size()<<std::endl; //HBHE energy vector upsampled.
    for(int i=2000;i<2010;i++){
     for (int j=0;j<360;j++){
-     std::cout<<"("<<i<<","<<j<<"): <<vHBHEenergy_strided[i][j]<<" "<<vHBHEenergy<<" ";
+     std::cout<<"("<<i<<","<<j<<"): "<<vHBHEenergy_strided[i][j]<<" "<<vHBHEenergy<<" ";
     }
    }
    std::cout<<std::endl;
