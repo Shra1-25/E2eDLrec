@@ -68,7 +68,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     for (int ki=0; ki<5;ki++){
      for (int j=0;j<360;j++){
       for (int kj=0;kj<5;kj++){
-      std::cout<<"("<<i<<","<<j<<"): "<<vHBHEenergy_strided[5*i+ki][5*j+kj]<<" "<<vHBHEenergy[i*360+j]<<" ";
+      std::cout<<"("<<i<<","<<j<<"): "<<vHBHEenergy_strided[5*i+ki][5*j+kj]<<" "<<vHBHEenergy[i*360+j]/25<<" ";
      }
      }
     }
