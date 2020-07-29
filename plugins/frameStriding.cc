@@ -12,6 +12,5 @@ std::vector<std::vector<float>> ProducerInference::frameStriding(std::vector<flo
       }
     }
   }
-  std::cout<<std::endl;
   return vStridedFrame;
 }
