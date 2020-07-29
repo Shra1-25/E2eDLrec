@@ -64,9 +64,13 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<float> vHBHEenergy=*HBHEenergy_handle;
    std::vector<std::vector<float>> vHBHEenergy_strided = frameStriding(vHBHEenergy,280,360,5,5);
    std::cout<<"Size of Strided HBHE energy vector: "<<vHBHEenergy_strided.size()<<std::endl; //HBHE energy vector upsampled.
-   for(int i=130*5;i<135*5;i++){
-    for (int j=0;j<360*5;j++){
-     std::cout<<"("<<i<<","<<j<<"): "<<vHBHEenergy_strided[i][j]<<" "<<vHBHEenergy[i*360/5+j/5]<<" ";
+   for(int i=140;i<141;i++){
+    for (int ki=0; ki<5;ki++){
+     for (int j=0;j<360;j++){
+      for (int kj=0;kj<5;kj++){
+      std::cout<<"("<<i<<","<<j<<"): "<<vHBHEenergy_strided[5*i+ki][5*j+kj]<<" "<<vHBHEenergy[i*360+j]<<" ";
+     }
+     }
     }
    }
    std::cout<<std::endl;
