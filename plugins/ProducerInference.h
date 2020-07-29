@@ -93,6 +93,7 @@ class ProducerInference : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<std::vector<float>> TracksAtECALstitched_token;
       edm::EDGetTokenT<std::vector<int>> JetSeed_ieta_token;
       edm::EDGetTokenT<std::vector<int>> JetSeed_iphi_token;
+      edm::EDGetTokenT<std::vector<std::vector<float>> HBHEenergy_token;
       static const int nPhotons = 2;
    
       std::vector<float> vEB_energy_;
