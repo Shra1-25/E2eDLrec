@@ -77,8 +77,8 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<std::endl;*/
    filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
    std::ofstream file1(filename);
-   for (int i=0;i<vHBHEenergy_strided.size(){
-     for(int j=0;j<vHBHEenergy_strided[0].size();j++){
+   for (int i=0;i<int(vHBHEenergy_strided.size());i++){
+     for(int j=0;j<int(vHBHEenergy_strided[0].size());j++){
       file1<<vHBHEenergy_strided[i][j];
       if (j!=vHBHEenergy_strided.size()-1){file1<<",";}
      }
