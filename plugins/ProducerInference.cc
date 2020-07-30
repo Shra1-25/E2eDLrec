@@ -95,7 +95,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }
    std::cout<<std::endl;*/
    std::cout<<std::endl;
-   filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
+   string filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
    std::ofstream file3(filename);
    for (int i=0;i<int(vHBHEenergy_strided.size());i++){
      for(int j=0;j<int(vHBHEenergy_strided[0].size());j++){
