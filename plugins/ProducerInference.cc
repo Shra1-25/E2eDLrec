@@ -59,6 +59,22 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::cout<<" >> Generating Stitched ECAL frames and their track frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
                                vTracksAtECALstitched_frame=croppingFrames(vTracksAtECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);}
+    string filename="ECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
+    std::ofstream file1(filename);
+    for (int i=0;i<int(vECALstitched_frame.size());i++){
+     for(int j=0;j<int(vECALstitched_frame[0].size());j++){
+      file1<<vECALstitched_frame[i][j];
+       if (j!=int(vECALstitched_frame[0].size())-1){file1<<",";}
+      }
+     file1<<"\n";
+    }
+    for (int i=0;i<int(vTracksAtECALstitched_frame.size());i++){
+     for(int j=0;j<int(vTracksAtECALstitched_framee[0].size());j++){
+       file2<<vTracksAtECALstitched_frame[i][j];
+       if (j!=int(vTracksAtECALstitched_frame[0].size())-1){file2<<",";}
+      }
+     file2<<"\n";
+    }
    }
    std::cout<<std::endl; //Stitched ECAL and their track frames created.
  
@@ -78,13 +94,13 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<std::endl;*/
    std::cout<<std::endl;
    string filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
-   std::ofstream file1(filename);
+   std::ofstream file3(filename);
    for (int i=0;i<int(vHBHEenergy_strided.size());i++){
      for(int j=0;j<int(vHBHEenergy_strided[0].size());j++){
-      file1<<vHBHEenergy_strided[i][j];
-      if (j!=int(vHBHEenergy_strided[0].size())-1){file1<<",";}
+      file3<<vHBHEenergy_strided[i][j];
+      if (j!=int(vHBHEenergy_strided[0].size())-1){file3<<",";}
      }
-    file1<<"\n";
+    file3<<"\n";
    }
  
  
