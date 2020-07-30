@@ -1,6 +1,7 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
 #include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
+#include <fstream>
 
 using namespace tensorflow;
 using namespace std;
@@ -74,6 +75,16 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     }
    }
    std::cout<<std::endl;*/
+   filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
+   std::ofstream file1(filename);
+   for (int i=0;i<vHBHEenergy_strided.size(){
+     for(int j=0;j<vHBHEenergy_strided[0].size();j++){
+      file1<<vHBHEenergy_strided[i][j];
+      if (j!=vHBHEenergy_strided.size()-1){file1<<",";}
+     }
+    file1<<"\n";
+   }
+ 
  
    //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
