@@ -63,8 +63,9 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<std::endl; //Stitched ECAL and their track frames created.
  
    std::vector<float> vHBHEenergy=*HBHEenergy_handle;
+   std::cout<<"Size of HBHE energy vector read: "<<vHBHEenergy.size()<<std::endl;
    std::vector<std::vector<float>> vHBHEenergy_strided = frameStriding(vHBHEenergy,280,360,5,5);
-   std::cout<<"Size of Strided HBHE energy vector: "<<vHBHEenergy_strided.size()<<std::endl; //HBHE energy vector upsampled.
+   std::cout<<"Size of Strided HBHE energy vector: ("<<vHBHEenergy_strided.size()<<","<<vHBHEenergy_strided[0].size()<<")"<<std::endl; //HBHE energy vector upsampled.
    /*for(int i=140;i<141;i++){
     for (int ki=0; ki<5;ki++){
      for (int j=0;j<360;j++){
