@@ -69,9 +69,9 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      file1<<"\n";
     }
     filename="TracksAtECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
-    std::ofstream file1(filename);
+    std::ofstream file2(filename);
     for (int i=0;i<int(vTracksAtECALstitched_frame.size());i++){
-     for(int j=0;j<int(vTracksAtECALstitched_framee[0].size());j++){
+     for(int j=0;j<int(vTracksAtECALstitched_frame[0].size());j++){
        file2<<vTracksAtECALstitched_frame[i][j];
        if (j!=int(vTracksAtECALstitched_frame[0].size())-1){file2<<",";}
       }
