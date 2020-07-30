@@ -82,7 +82,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    for (int i=0;i<int(vHBHEenergy_strided.size());i++){
      for(int j=0;j<int(vHBHEenergy_strided[0].size());j++){
       file1<<vHBHEenergy_strided[i][j];
-      if (j!=int(vHBHEenergy_strided.size())-1){file1<<",";}
+      if (j!=int(vHBHEenergy_strided[0].size())-1){file1<<",";}
      }
     file1<<"\n";
    }
