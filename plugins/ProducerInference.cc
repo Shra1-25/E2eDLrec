@@ -68,6 +68,8 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
      file1<<"\n";
     }
+    filename="TracksAtECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
+    std::ofstream file1(filename);
     for (int i=0;i<int(vTracksAtECALstitched_frame.size());i++){
      for(int j=0;j<int(vTracksAtECALstitched_framee[0].size());j++){
        file2<<vTracksAtECALstitched_frame[i][j];
@@ -93,7 +95,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }
    std::cout<<std::endl;*/
    std::cout<<std::endl;
-   string filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
+   filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
    std::ofstream file3(filename);
    for (int i=0;i<int(vHBHEenergy_strided.size());i++){
      for(int j=0;j<int(vHBHEenergy_strided[0].size());j++){
