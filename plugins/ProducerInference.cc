@@ -90,9 +90,10 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      vHBHE_strided_flat[x*vHBHEenergy_strided[0].size()+y]=vHBHEenergy_strided[x][y];
     }
    }
+   std::vector<std::vector<float>> vHBHEenergy_frame;
    for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
     std::cout<<" >> Generating HBHE energy frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
-    if(vJetSeed_ieta[idx]>=0) {std::vector<std::vector<float>> vHBHEenergy_frame=croppingFrames(vHBHE_strided_flat, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);} 
+    if(vJetSeed_ieta[idx]>=0) {vHBHEenergy_frame=croppingFrames(vHBHE_strided_flat, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);} 
    /*for(int i=140;i<141;i++){
     for (int ki=0; ki<5;ki++){
      for (int j=0;j<360;j++){
