@@ -84,6 +84,9 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<"Size of HBHE energy vector read: "<<vHBHEenergy.size()<<std::endl;
    std::vector<std::vector<float>> vHBHEenergy_strided = frameStriding(vHBHEenergy,56,72,5,5);
    std::cout<<"Size of Strided HBHE energy vector: ("<<vHBHEenergy_strided.size()<<","<<vHBHEenergy_strided[0].size()<<")"<<std::endl; //HBHE energy vector upsampled.
+   for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
+    std::cout<<" >> Generating HBHE energy frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
+    if(vJetSeed_ieta[idx]>=0) {std::vector<std::vector<float>> vHBHEenergy_frame=croppingFrames(vHBHEenergy_strided, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
    /*for(int i=140;i<141;i++){
     for (int ki=0; ki<5;ki++){
      for (int j=0;j<360;j++){
@@ -94,17 +97,17 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     }
    }
    std::cout<<std::endl;*/
-   std::cout<<std::endl;
-   string filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
-   std::ofstream file3(filename);
-   for (int i=0;i<int(vHBHEenergy_strided.size());i++){
-     for(int j=0;j<int(vHBHEenergy_strided[0].size());j++){
-      file3<<vHBHEenergy_strided[i][j];
-      if (j!=int(vHBHEenergy_strided[0].size())-1){file3<<",";}
+    std::cout<<std::endl;
+    string filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
+    std::ofstream file3(filename);
+    for (int i=0;i<int(vHBHEenergy_frame.size());i++){
+     for(int j=0;j<int(vHBHEenergy_frame[0].size());j++){
+      file3<<vHBHEenergy_frame[i][j];
+      if (j!=int(vHBHEenergy_frame[0].size())-1){file3<<",";}
      }
     file3<<"\n";
    }
- 
+  }
  
    //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
