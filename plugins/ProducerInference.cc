@@ -87,10 +87,14 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      file2<<"\n";
     }*/
     vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
-    std::cout<<" >> Predicted Class of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
     vTracksAtECALstitchedClass.push_back(predict_tf(vTracksAtECALstitched_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
-    std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedClass[idx]<<std::endl;
     }
+    else {
+     vECALstitchedClass.push_back(-1);
+     vTracksAtECALstitchedClass.push_back(-1);
+    }
+    std::cout<<" >> Predicted Class of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
+    std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedClass[idx]<<std::endl;
    }
    //std::cout<<std::endl; //Stitched ECAL and their track frames created.
    
@@ -130,7 +134,9 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     file3<<"\n";
    }*/
    vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
-   std::cout<<" >> Predicted Class of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;}
+   }
+   else {vHBHEenergyClass.push_back(-1);}
+   std::cout<<" >> Predicted Class of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
    }
    std::unique_ptr<std::vector<int>> vECALstitchedClass_edm (new std::vector<int>(vECALstitchedClass));
    iEvent.put(std::move(vECALstitchedClass_edm),"ECALstitchedClass");
