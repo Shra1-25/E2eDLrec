@@ -6,7 +6,7 @@
 using namespace std;
 
 
-int ProducerInference::predict_tf(){
+int ProducerInference::predict_tf(string model_filename, int frame_height, int frame_width, string input_layer_name, string output_layer_name){
  tensorflow::Session* session;
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
@@ -14,13 +14,13 @@ int ProducerInference::predict_tf(){
  // create a new session
  TF_CHECK_OK(NewSession(opts, &session));
  
- std::string graph_definition="ProducerTest/plugins/e_vs_ph_model.pb";
- std::cout<<" >> Welcome to the electron vs photon classifier."<<endl;
+ std::string graph_definition="ProducerTest/plugins/"+model_filename;
+ std::cout<<" >> Welcome to the classifier."<<endl;
  
  //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
  tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef(graph_definition);
- tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({32, 32}));
+ tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({frame_height, frame_width}));
  auto _XTensor = tmp.matrix<float>();
  //std::copy_n(vEB_frame.begin(), vEB_frame.size(), tmp.flat<float>().data());
  for (int frame_row=0;frame_row<int(vEB_frame.size());frame_row++){
@@ -31,8 +31,8 @@ int ProducerInference::predict_tf(){
  std::cout<<" >> Reading input data file done."<<endl;
 
   
-  tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({1, 32, 32, 1}));
-  if(!x.CopyFrom(tmp, tensorflow::TensorShape({1, 32, 32, 1}))){
+  tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({1, frame_height, frame_width, 1}));
+  if(!x.CopyFrom(tmp, tensorflow::TensorShape({1, frame_height, frame_width, 1}))){
     std::cout<<" >> Reshape not successfull."<<endl;
   }
  // Set GPU options
@@ -56,7 +56,7 @@ int ProducerInference::predict_tf(){
 
         
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
- TF_CHECK_OK(session->Run({{"inputs", x}/*, {"y", y}*/}, {"softmax_1/Sigmoid"}, {}, &outputs)); // Get output
+ TF_CHECK_OK(session->Run({{input_layer_name/*"inputs"*/, x}/*, {"y", y}*/}, {output_layer_name/*"softmax_1/Sigmoid"*/}, {}, &outputs)); // Get output
  //tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
  
  //float cost = outputs[0].scalar<float>()(0);
