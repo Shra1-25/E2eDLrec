@@ -59,7 +59,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::cout<<" >> Generating Stitched ECAL frames and their track frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
                                vTracksAtECALstitched_frame=croppingFrames(vTracksAtECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);}
-    string filename="ECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
+    /*string filename="ECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
     std::ofstream file1(filename);
     for (int i=0;i<int(vECALstitched_frame.size());i++){
      for(int j=0;j<int(vECALstitched_frame[0].size());j++){
@@ -67,8 +67,8 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
        if (j!=int(vECALstitched_frame[0].size())-1){file1<<",";}
       }
      file1<<"\n";
-    }
-    filename="TracksAtECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
+    }*/
+    /*filename="TracksAtECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
     std::ofstream file2(filename);
     for (int i=0;i<int(vTracksAtECALstitched_frame.size());i++){
      for(int j=0;j<int(vTracksAtECALstitched_frame[0].size());j++){
@@ -76,9 +76,13 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
        if (j!=int(vTracksAtECALstitched_frame[0].size())-1){file2<<",";}
       }
      file2<<"\n";
-    }
+    }*/
    }
    std::cout<<std::endl; //Stitched ECAL and their track frames created.
+   int ECALstitchedClass=predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid");
+   std::cout<<" >> Predicted Class of Stitched ECAL: "<<ECALstitchedClass<<std::endl;
+   int TracksAtECALstitchedClass=predict_tf(vTracksAtECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid");
+   std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<TracksECALstitchedClass<<std::endl;
  
    std::vector<float> vHBHEenergy=*HBHEenergy_handle;
    std::cout<<"Size of HBHE energy vector read: "<<vHBHEenergy.size()<<std::endl;
@@ -104,8 +108,8 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     }
    }
    std::cout<<std::endl;*/
-    std::cout<<std::endl;
-    string filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
+    //std::cout<<std::endl;
+    /*string filename="HBHEenergy"+std::to_string(nPassed+1)+".csv";
     std::ofstream file3(filename);
     for (int i=0;i<int(vHBHEenergy_frame.size());i++){
      for(int j=0;j<int(vHBHEenergy_frame[0].size());j++){
@@ -113,8 +117,10 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       if (j!=int(vHBHEenergy_frame[0].size())-1){file3<<",";}
      }
     file3<<"\n";
+   }*/
    }
-  }
+   int HBHEenergyClass = predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid");
+   std::cout<<" >> Predicted Class of HBHE energy: "<<HBHEenergyClass<<std::endl;
  
    //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
