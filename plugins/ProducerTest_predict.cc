@@ -71,7 +71,7 @@ int ProducerInference::predict_tf(string model_filename, int frame_height, int f
   
  session->Close();
  delete session;
- std::cout<<" >> All done"<<endl<<endl;
+ std::cout<<" >> Classification done"<<endl<<endl;
  // cleanup
  //tensorflow::closeSession(session);
  //delete graphDef;
