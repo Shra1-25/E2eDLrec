@@ -20,9 +20,9 @@ ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
  
  produces<std::vector<float>>("EBenergyClass");
- produces<std::vector<int>>("vECALstitchedClass");
- produces<std::vector<int>>("vTracksAtECALstitchedClass");
- produces<std::vector<int>>("vHBHEenergyClass");
+ produces<std::vector<int>>("ECALstitchedClass");
+ produces<std::vector<int>>("TracksAtECALstitchedClass");
+ produces<std::vector<int>>("HBHEenergyClass");
 }
 
 ProducerInference::~ProducerInference()
