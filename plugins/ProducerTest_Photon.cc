@@ -47,7 +47,7 @@ std::vector<pho_map> vPhos;
  vEB_photon_frames.clear();
  vclasses.clear(); 
  int iphi_, ieta_; // rows:ieta, cols:iphi
- 
+ std::cout<<"Photons size : "<<photons->size()<<std::endl;
  for ( unsigned int iP = 0; iP < photons->size(); iP++ ) {
   PhotonRef iRecoPho( photons, iP );
   
