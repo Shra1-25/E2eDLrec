@@ -82,7 +82,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    int ECALstitchedClass=predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid");
    std::cout<<" >> Predicted Class of Stitched ECAL: "<<ECALstitchedClass<<std::endl;
    int TracksAtECALstitchedClass=predict_tf(vTracksAtECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid");
-   std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<TracksECALstitchedClass<<std::endl;
+   std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<TracksAtECALstitchedClass<<std::endl;
  
    std::vector<float> vHBHEenergy=*HBHEenergy_handle;
    std::cout<<"Size of HBHE energy vector read: "<<vHBHEenergy.size()<<std::endl;
