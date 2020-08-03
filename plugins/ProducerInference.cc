@@ -19,7 +19,10 @@ ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
  HBHEenergy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("HBHEenergy"));
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
  
- produces<std::vector<float>>("ClassifierPredictions");
+ produces<std::vector<float>>("EBenergyClass");
+ produces<std::vector<int>>("vECALstitchedClass");
+ produces<std::vector<int>>("vTracksAtECALstitchedClass");
+ produces<std::vector<int>>("vHBHEenergyClass");
 }
 
 ProducerInference::~ProducerInference()
@@ -55,10 +58,16 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<float>vTracksAtECALstitched=*TracksAtECALstitched_handle;
    std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
    std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;
+   std::vector<int>vECALstitchedClass;
+   std::vector<int>vTracksAtECALstitchedClass;
+   std::vector<int>vHBHEenergyClass;
+   vECALstitchedClass.clear();
+   vTracksAtECALstitchedClass.clear();
+   vHBHEenergyClass.clear();
    for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
     std::cout<<" >> Generating Stitched ECAL frames and their track frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
-                               vTracksAtECALstitched_frame=croppingFrames(vTracksAtECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);}
+                               vTracksAtECALstitched_frame=croppingFrames(vTracksAtECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);
     /*string filename="ECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
     std::ofstream file1(filename);
     for (int i=0;i<int(vECALstitched_frame.size());i++){
@@ -77,13 +86,15 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
      file2<<"\n";
     }*/
+    vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
+    std::cout<<" >> Predicted Class of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
+    vTracksAtECALstitchedClass.push_back(predict_tf(vTracksAtECALstitchedClass, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+    std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<vTRacksAtECALstitchedClass[idx]<<std::endl;
+    }
    }
-   std::cout<<std::endl; //Stitched ECAL and their track frames created.
-   int ECALstitchedClass=predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid");
-   std::cout<<" >> Predicted Class of Stitched ECAL: "<<ECALstitchedClass<<std::endl;
-   int TracksAtECALstitchedClass=predict_tf(vTracksAtECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid");
-   std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<TracksAtECALstitchedClass<<std::endl;
- 
+   //std::cout<<std::endl; //Stitched ECAL and their track frames created.
+   
+  
    std::vector<float> vHBHEenergy=*HBHEenergy_handle;
    std::cout<<"Size of HBHE energy vector read: "<<vHBHEenergy.size()<<std::endl;
    std::vector<std::vector<float>> vHBHEenergy_strided = frameStriding(vHBHEenergy,56,72,5,5);
@@ -97,7 +108,7 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<std::vector<float>> vHBHEenergy_frame;
    for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
     std::cout<<" >> Generating HBHE energy frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
-    if(vJetSeed_ieta[idx]>=0) {vHBHEenergy_frame=croppingFrames(vHBHE_strided_flat, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125);} 
+    if(vJetSeed_ieta[idx]>=0) {vHBHEenergy_frame=croppingFrames(vHBHE_strided_flat, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
    /*for(int i=140;i<141;i++){
     for (int ki=0; ki<5;ki++){
      for (int j=0;j<360;j++){
@@ -118,16 +129,22 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      }
     file3<<"\n";
    }*/
+   vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+   std::cout<<" >> Predicted Class of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;}
    }
-   int HBHEenergyClass = predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid");
-   std::cout<<" >> Predicted Class of HBHE energy: "<<HBHEenergyClass<<std::endl;
+   std::unique_ptr<std::vector<int>> vECALstitchedClass_edm (new std::vector<int>(vECALstitchedClass));
+   iEvent.put(std::move(vclasses_edm),"ECALstitchedClass");
+   std::unique_ptr<std::vector<int>> vTracksAtECALstitchedClass_edm (new std::vector<int>(vvTracksAtECALstitchedClass));
+   iEvent.put(std::move(vTracksAtECALstitchedClass_edm),"TracksAtECALstitchedClass");
+   std::unique_ptr<std::vector<int>> vHBHEenergyClass_edm (new std::vector<int>(vHBHEenergyClass));
+   iEvent.put(std::move(vHBHEenergyClass_edm),"HBHEenergyClass");
  
    //std::cout<<"Size1: "<<vEB_energy_handle->size()<<std::endl;
    vEB_energy_=*vEB_energy_handle;
    //std::cout<<"Size2: "<<vEB_energy_.size();
    get_photons(iEvent, iSetup );//stored in vEB_frames vectors
    std::unique_ptr<std::vector<float>> vclasses_edm (new std::vector<float>(vclasses));
-   iEvent.put(std::move(vclasses_edm),"ClassifierPredictions");
+   iEvent.put(std::move(vclasses_edm),"EBenergyClass");
    std::cout<<std::endl;
    nPassed++;
    // ----- Apply event selection cuts ----- //
