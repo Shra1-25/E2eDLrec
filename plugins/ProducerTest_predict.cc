@@ -6,7 +6,7 @@
 using namespace std;
 
 
-int ProducerInference::predict_tf(string model_filename, int frame_height, int frame_width, string input_layer_name, string output_layer_name){
+int ProducerInference::predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filename, string input_layer_name, string output_layer_name){
  tensorflow::Session* session;
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
@@ -16,16 +16,17 @@ int ProducerInference::predict_tf(string model_filename, int frame_height, int f
  
  std::string graph_definition="ProducerTest/plugins/"+model_filename;
  std::cout<<" >> Welcome to the classifier."<<endl;
- 
+ int frame_height = vinputFrame.size();
+ int frame_width = vinputFrame[0].size();
  //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
  tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef(graph_definition);
  tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({frame_height, frame_width}));
  auto _XTensor = tmp.matrix<float>();
  //std::copy_n(vEB_frame.begin(), vEB_frame.size(), tmp.flat<float>().data());
- for (int frame_row=0;frame_row<int(vEB_frame.size());frame_row++){
-  for (int frame_col=0;frame_col<int(vEB_frame[0].size());frame_col++){
-   _XTensor(frame_row,frame_col)=vEB_frame[frame_row][frame_col];
+ for (int frame_row=0;frame_row<int(vinputFrame.size());frame_row++){
+  for (int frame_col=0;frame_col<int(vinputFrame[0].size());frame_col++){
+   _XTensor(frame_row,frame_col)=vinputFrame[frame_row][frame_col];
   }
  }
  std::cout<<" >> Reading input data file done."<<endl;
