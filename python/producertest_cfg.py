@@ -60,3 +60,10 @@ process.TFileService = cms.Service("TFileService",
 #process.p = cms.Path(process.ProducerFrames)
 process.p = cms.Path(process.ProducerFrames+process.FrameInference)
 process.ep=cms.EndPath(process.out)
+process.Timing = cms.Service("Timing",
+  summaryOnly = cms.untracked.bool(False),
+  useJobReport = cms.untracked.bool(True)
+)
+process.SimpleMemoryCheck = cms.Service("SimpleMemoryCheck",
+    ignoreTotal = cms.untracked.int32(1)
+)
