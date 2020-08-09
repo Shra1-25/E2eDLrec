@@ -61,9 +61,9 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vECALstitchedClass.clear();
    vTracksAtECALstitchedClass.clear();
    vHBHEenergyClass.clear();
-   vHBHEenergy_frame.Clear();
-   vECALstitched_frame.Clear();
-   vTracksAtECALstitched_frame.Clear();
+   vHBHEenergy_frame.clear();
+   vECALstitched_frame.clear();
+   vTracksAtECALstitched_frame.clear();
    for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
     std::cout<<" >> Generating Stitched ECAL frames and their track frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
