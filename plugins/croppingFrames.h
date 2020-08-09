@@ -1,5 +1,5 @@
-#ifndef frameStriding_h
-#define frameStriding_h
+#ifndef croppingFrames_h
+#define croppingFrames_h
 
 /*#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/EGProducer.h"
