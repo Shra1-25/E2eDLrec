@@ -33,6 +33,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vEB_frame.Clear();
    vclasses.Clear();
    vEB_photon_frames.Clear();
+ 
    get_photons(iEvent, iSetup );//stored in vEB_frames vectors
    std::unique_ptr<std::vector<float>> vclasses_edm (new std::vector<float>(vclasses));
    iEvent.put(std::move(vclasses_edm),"EBenergyClass");
