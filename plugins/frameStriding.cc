@@ -2,7 +2,7 @@
 #include "ProdTutorial/ProducerTest/plugins/frameStriding.h"
 
 std::vector<std::vector<float>> frameStriding(std::vector<float>& vDetFrame, int rows, int columns, int rowstrides, int colstrides){
-  std::vector<std::vector<float>> vStridedFrame ((rows*rowstrides), std::vector<float> (columns*colstrides,0));
+  //std::vector<std::vector<float>> vStridedFrame ((rows*rowstrides), std::vector<float> (columns*colstrides,0));
   for (int rowidx=0; rowidx<rows; rowidx++){
     for (int colidx=0; colidx<columns; colidx++){
       for (int kernelrow=0; kernelrow<rowstrides; kernelrow++){
