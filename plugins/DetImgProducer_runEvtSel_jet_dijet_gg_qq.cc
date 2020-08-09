@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 using std::vector;
 
@@ -21,7 +21,7 @@ vector<float> v_ggqq_subJetPy_[nJets];
 vector<float> v_ggqq_subJetPz_[nJets];
 
 // Initialize branches _____________________________________________________//
-void ProducerTest::branchesEvtSel_jet_dijet_gg_qq ( TTree* tree, edm::Service<TFileService> &fs ) {
+void DetImgProducer::branchesEvtSel_jet_dijet_gg_qq ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   h_ggqq_jet_pT    = fs->make<TH1D>("h_jet_pT"  , "p_{T};p_{T};Particles", 100,  0., 500.);
   h_ggqq_jet_E     = fs->make<TH1D>("h_jet_E"   , "E;E;Particles"        , 100,  0., 800.);
@@ -51,7 +51,7 @@ void ProducerTest::branchesEvtSel_jet_dijet_gg_qq ( TTree* tree, edm::Service<TF
 } // branchesEvtSel_jet_dijet_gg_qq()
 
 // Run jet selection _____________________________________________________//
-bool ProducerTest::runEvtSel_jet_dijet_gg_qq( const edm::Event& iEvent, const edm::EventSetup& iSetup )
+bool DetImgProducer::runEvtSel_jet_dijet_gg_qq( const edm::Event& iEvent, const edm::EventSetup& iSetup )
 {
 
   edm::Handle<reco::GenParticleCollection> genParticles;
@@ -123,7 +123,7 @@ bool ProducerTest::runEvtSel_jet_dijet_gg_qq( const edm::Event& iEvent, const ed
 } // runEvtSel_jet_dijet_gg_qq()
 
 // Fill branches and histograms _____________________________________________________//
-void ProducerTest::fillEvtSel_jet_dijet_gg_qq ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void DetImgProducer::fillEvtSel_jet_dijet_gg_qq ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   edm::Handle<reco::PFJetCollection> jets;
   iEvent.getByToken(jetCollectionT_, jets);
