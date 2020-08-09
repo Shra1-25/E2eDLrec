@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 // Fill stitched EEm_EB_EEp image /////////////////////............/
 // Store all ECAL event rechits into a stitched EEm_EB_EEp image 
@@ -19,7 +19,7 @@ TProfile2D *hECAL_energy;
 
 
 // Initialize branches _______________________________________________________________//
-void ProducerTest::branchesECALstitched ( TTree* tree, edm::Service<TFileService> &fs ) {
+void DetImgProducer::branchesECALstitched ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   // Branches for images
   tree->Branch("ECAL_energy",    &vECAL_energy_);
@@ -69,7 +69,7 @@ void fillECAL_with_EEproj ( std::vector<float>& vECAL_energy_, TH2F *hEvt_EE_ene
 } // fillECAL_with_EEproj
 
 // Fill stitched EE-, EB, EE+ rechits ________________________________________________________//
-void ProducerTest::fillECALstitched ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void DetImgProducer::fillECALstitched ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   int iphi_, ieta_, iz_, idx_;
   int ieta_global, ieta_signed;
