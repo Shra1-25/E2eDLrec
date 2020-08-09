@@ -1,6 +1,6 @@
 #include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
 
-predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filename, string input_layer_name, string output_layer_name){
+int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filename, string input_layer_name, string output_layer_name){
  tensorflow::Session* session;
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
