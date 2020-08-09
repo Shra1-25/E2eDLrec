@@ -1,5 +1,5 @@
-#ifndef ProducerTest_h
-#define ProducerTest_h
+#ifndef DetImgProducer_h
+#define DetImgProducer_h
 
 #include <memory>
 //#include <iostream>
@@ -76,11 +76,11 @@ using reco::PhotonCollection;
 using reco::PhotonRef;
 
 
-class ProducerTest : public edm::stream::EDProducer<> {
+class DetImgProducer : public edm::stream::EDProducer<> {
    public:
       
-      explicit ProducerTest(const edm::ParameterSet&);
-      ~ProducerTest();
+      explicit DetImgProducer(const edm::ParameterSet&);
+      ~DetImgProducer();
       
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
