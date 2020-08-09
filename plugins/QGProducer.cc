@@ -1,16 +1,15 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 #include <fstream>
 
 using namespace tensorflow;
 using namespace std;
 
-ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
+QGProducer::QGProducer(const edm::ParameterSet& iConfig)
 {
  //vEB_photon_frames = consumes<std::vector<std::vector<float>>>(iConfig.getParameter<edm::InputTag>("frames_"));
  EBRecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEBRecHitCollection"));
- vEB_energy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("EBEnergy"));
  ECALstitched_energy_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("ECALstitchedenergy"));
  TracksAtECALstitched_token=consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("TracksAtECALstitched"));
  JetSeed_ieta_token=consumes<std::vector<int>>(iConfig.getParameter<edm::InputTag>("JetSeedieta"));
@@ -22,7 +21,7 @@ ProducerInference::ProducerInference(const edm::ParameterSet& iConfig)
  produces<std::vector<int>>("HBHEenergyClass");
 }
 
-ProducerInference::~ProducerInference()
+QGProducer::~QGProducer()
 {
  
 }
@@ -33,13 +32,11 @@ ProducerInference::~ProducerInference()
 
 // ------------ method called to produce the data  ------------
 void
-ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
    nTotal++;
-
-   edm::Handle<std::vector<float>> vEB_energy_handle;
-   iEvent.getByToken(vEB_energy_token, vEB_energy_handle);
+ 
    edm::Handle<std::vector<float>> ECALstitched_energy_handle;
    iEvent.getByToken(ECALstitched_energy_token, ECALstitched_energy_handle);
    edm::Handle<std::vector<float>> TracksAtECALstitched_handle;
@@ -149,17 +146,17 @@ ProducerInference::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 }
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
 void
-ProducerInference::beginStream(edm::StreamID)
+QGProducer::QGProducer(edm::StreamID)
 {
  nTotal = 0;
  nPassed = 0;
- std::cout<<"'ProducerInference' Stream began"<<std::endl;
+ std::cout<<"'QGProducer' Stream began"<<std::endl;
 }
 
 // ------------ method called once each stream after processing all runs, lumis and events  ------------
 void
-ProducerInference::endStream() {
- std::cout << "'ProducerInference' selected: " << nPassed << "/" << nTotal << std::endl;
+QGProducer::endStream() {
+ std::cout << "'QGProducer' selected: " << nPassed << "/" << nTotal << std::endl;
 }
 
 // ------------ method called when starting to processes a run  ------------
@@ -196,7 +193,7 @@ ProducerTest::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup co
  
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-ProducerInference::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+QGProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
   edm::ParameterSetDescription desc;
