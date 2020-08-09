@@ -7,5 +7,6 @@
 using namespace std;
 
 int predict_tf(std::vector<std::vector<float>>&, string, string, string){
+return 0;
 };
 #endif
