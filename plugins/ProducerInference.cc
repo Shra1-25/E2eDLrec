@@ -1,5 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 #include <fstream>
 
