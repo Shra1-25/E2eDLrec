@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-std::vector<float>& ProducerTest::read_vEB_energy(int vec_size)
+std::vector<float>& DetImgProducer::read_vEB_energy(int vec_size)
  {
     std::vector<float> *vEB_energy_read = 0;
     TFile *fr = TFile::Open("ECAL_Rechit.root","READ");
