@@ -61,6 +61,9 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vECALstitchedClass.clear();
    vTracksAtECALstitchedClass.clear();
    vHBHEenergyClass.clear();
+   vHBHEenergy_frame.Clear();
+   vECALstitched_frame.Clear();
+   vTracksAtECALstitched_frame.Clear();
    for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
     std::cout<<" >> Generating Stitched ECAL frames and their track frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
     if(vJetSeed_ieta[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
@@ -106,7 +109,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      vHBHE_strided_flat[x*vHBHEenergy_strided[0].size()+y]=vHBHEenergy_strided[x][y];
     }
    }
-   std::vector<std::vector<float>> vHBHEenergy_frame;
+   
    for (int idx=0;idx<int(vJetSeed_ieta.size());idx++){
     std::cout<<" >> Generating HBHE energy frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta.size()<<" with seed value: ("<<vJetSeed_ieta[idx]<<","<<vJetSeed_iphi[idx]<<")"<<std::endl;
     if(vJetSeed_ieta[idx]>=0) {vHBHEenergy_frame=croppingFrames(vHBHE_strided_flat, vJetSeed_ieta[idx], vJetSeed_iphi[idx], 280, 360, 125, 125); 
