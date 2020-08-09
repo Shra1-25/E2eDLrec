@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 // Fill Tracks into stitched EEm_EB_EEp image //////////////////////
 // Store all Track positions into a stitched EEm_EB_EEp image 
@@ -39,7 +39,7 @@ TH1F *hECAL_tracksz0BeforeQuality;*/
 
 
 // Initialize branches _______________________________________________________________//
-void ProducerTest::branchesTracksAtECALstitched ( TTree* tree, edm::Service<TFileService> &fs ) {
+void DetImgProducer::branchesTracksAtECALstitched ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   // Branches for images
   tree->Branch("ECAL_tracksPt",    &vECAL_tracksPt_);
@@ -189,7 +189,7 @@ void fillTracksAtECAL_with_EEproj (std::vector<float>& vECAL_tracksPt_, TH2F *hE
 } // fillTracksAtECAL_with_EEproj
 
 // Fill stitched EE-, EB, EE+ rechits ________________________________________________________//
-void ProducerTest::fillTracksAtECALstitched ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void DetImgProducer::fillTracksAtECALstitched ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   int iphi_, ieta_, iz_, idx_;
   int ieta_global, ieta_signed;
