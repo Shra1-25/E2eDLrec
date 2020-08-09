@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 TH2F *hEvt_HBHE_energy;
 TProfile2D *hHBHE_energy_EB;
@@ -7,7 +7,7 @@ TProfile2D *hHBHE_energy;
 std::vector<float> vHBHE_energy_;*/
 
 // Initialize branches _______________________________________________________//
-void ProducerTest::branchesHBHE ( TTree* tree, edm::Service<TFileService> &fs ) {
+void DetImgProducer::branchesHBHE ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   // Branches for images
   tree->Branch("HBHE_energy_EB", &vHBHE_energy_EB_);
@@ -28,7 +28,7 @@ void ProducerTest::branchesHBHE ( TTree* tree, edm::Service<TFileService> &fs ) 
 } // branchesHBHE()
 
 // Fill HBHE rechits _________________________________________________________________//
-void ProducerTest::fillHBHE ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void DetImgProducer::fillHBHE ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   int iphi_, ieta_, ietaAbs_, idx_;
   float energy_;
