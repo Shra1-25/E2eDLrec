@@ -1,10 +1,10 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
 #include <fstream>
 #include <sstream>
 
 // Initialize branches _____________________________________________________//
-void ProducerTest::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
+void DetImgProducer::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
 {
   /*hSC_pT = fs->make<TH1F>("SC_pT", "Pt", 27, 15., 150.);
   hMinDRgenRecoPho = fs->make<TH1F>("minDRgenRecoPho", "#DeltaR(#gamma_{gen},#gamma_{reco})_{min};#DeltaR;N", 100, 0., 25*0.0174);
