@@ -1,3 +1,5 @@
+import FWCore.ParameterSet.Config as cms
+
 QGInference = cms.EDProducer('QGProducer'
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
     , ECALstitchedenergy = cms.InputTag('ProducerFrames','ECALstitchedenergy')
