@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 // Run event selection ////////////////////////////////
 
@@ -27,7 +27,7 @@ float m0cut = 90.;
 //float m0cut = 80.;
 
 // Initialize branches _____________________________________________________//
-void ProducerTest::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &fs ) {
+void DetImgProducer::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   h_m0     = fs->make<TH1F>("h_m0"    , "m0;m0;Events"         ,  50, m0cut, m0cut+150.);
 
@@ -56,7 +56,7 @@ void ProducerTest::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &fs 
 } // branchesEvtSel()
 
 // Run event selection _______________________________________________________________//
-bool ProducerTest::runEvtSel ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+bool DetImgProducer::runEvtSel ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   edm::Handle<reco::PhotonCollection> photons;
   //edm::Handle<pat::PhotonCollection> photons;
