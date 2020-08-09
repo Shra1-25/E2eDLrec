@@ -67,8 +67,8 @@ static const int vEB_frame_width=32;
 class EGProducer : public edm::stream::EDProducer<> {
    public:
       
-      explicit ProducerInference(const edm::ParameterSet&);
-      ~ProducerInference();
+      explicit EGProducer(const edm::ParameterSet&);
+      ~EGProducer();
       
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
