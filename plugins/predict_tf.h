@@ -7,6 +7,6 @@
 #include <fstream>
 using namespace std;
 
-int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filename, string input_layer_name, string output_layer_name);
+int predict_tf(std::vector<std::vector<float>>&, string, string, string);
 
 #endif
