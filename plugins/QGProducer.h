@@ -102,7 +102,7 @@ class QGProducer : public edm::stream::EDProducer<> {
    
       unsigned int nPho;
      
-      std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
+      //std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
       //std::vector<vector<float>> frameStriding    (std::vector<float>&, int, int, int, int);
       //int predict_tf                              (std::vector<std::vector<float>>&, string, string, string);
       int iphi_Emax, ieta_Emax;
