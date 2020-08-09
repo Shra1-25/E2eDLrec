@@ -1,9 +1,9 @@
 // -*- C++ -*-
 //
-// Package:    ProdTutorial/ProducerTest
-// Class:      ProducerTest
+// Package:    ProdTutorial/DetImgProducer
+// Class:      DetImgProducer
 // 
-/**\class ProducerTest ProducerTest.cc ProdTutorial/ProducerTest/plugins/ProducerTest.cc
+/**\class ProducerTest DetImgProducer.cc ProdTutorial/ProducerTest/plugins/DetImgProducer.cc
 
  Description: [one line class summary]
 
@@ -44,9 +44,9 @@ using namespace std;
 // class declaration
 //
 
-/*class ProducerTest : public edm::stream::EDProducer<> {
+/*class DetImgProducer : public edm::stream::EDProducer<> {
    public:
-      explicit ProducerTest(const edm::ParameterSet&);
+      explicit DetImgProducer(const edm::ParameterSet&);
       ~ProducerTest();
 
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
@@ -130,7 +130,7 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
 }
 
 
-ProducerTest::~ProducerTest()
+DetImgProducer::~DetImgProducer()
 {
  
 }
