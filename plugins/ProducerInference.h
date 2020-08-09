@@ -109,7 +109,7 @@ class ProducerInference : public edm::stream::EDProducer<> {
       void get_photons                            ( const edm::Event&, const edm::EventSetup& );
       std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
       std::vector<vector<float>> frameStriding    (std::vector<float>&, int, int, int, int);
-      int predict_tf                              (std::vector<std::vector<float>>&, string, string, string);
+      //int predict_tf                              (std::vector<std::vector<float>>&, string, string, string);
       int iphi_Emax, ieta_Emax;
    
       /*TTree* RHTree;
