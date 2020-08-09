@@ -37,8 +37,9 @@ process.source = cms.Source("PoolSource",
     )
 print (" >> Loaded",len(options.inputFiles),"input files from list.")
 
-process.load("ProdTutorial.ProducerTest.EBRecHit_cfi")
-process.load("ProdTutorial.ProducerTest.FrameInference_cfi")
+process.load("ProdTutorial.ProducerTest.DetImg_cfi")
+process.load("ProdTutorial.ProducerTest.EGInference_cfi")
+process.load("ProdTutorial.ProducerTest.QGInference_cfi")
 process.ProducerFrames.mode = cms.string('JetLevel')#options.processMode
 
 #process.out = cms.OutputModule("PoolOutputModule",
@@ -58,7 +59,7 @@ process.TFileService = cms.Service("TFileService",
    )
 
 #process.p = cms.Path(process.ProducerFrames)
-process.p = cms.Path(process.ProducerFrames+process.FrameInference)
+process.p = cms.Path(process.ProducerFrames+process.EGInference+process.QGInference)
 process.ep=cms.EndPath(process.out)
 process.Timing = cms.Service("Timing",
   summaryOnly = cms.untracked.bool(False),
