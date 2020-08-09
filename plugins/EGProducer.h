@@ -99,7 +99,7 @@ class EGProducer : public edm::stream::EDProducer<> {
       unsigned int nPho;
      
       void get_photons                            ( const edm::Event&, const edm::EventSetup& );
-      std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
+      //std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
       int iphi_Emax, ieta_Emax;
       
       std::vector<float> vIphi_Emax_;
