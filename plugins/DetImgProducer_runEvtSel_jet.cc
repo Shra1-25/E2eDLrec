@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 using std::vector;
 
@@ -20,7 +20,7 @@ const std::string jetSelection = "dijet";
 
 
 // Initialize branches _____________________________________________________//
-void ProducerTest::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> &fs ) {
+void DetImgProducer::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   tree->Branch("eventId",        &jet_eventId_);
   tree->Branch("runId",          &jet_runId_);
@@ -38,7 +38,7 @@ void ProducerTest::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> 
 } // branchesEvtSel_jet()
 
 // Run event selection ___________________________________________________________________//
-bool ProducerTest::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+bool DetImgProducer::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   // Each jet selection must fill vJetIdxs with good jet indices
   // Run explicit jet selection
