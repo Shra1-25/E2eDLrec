@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 // Fill EB rec hits ////////////////////////////////
 // Store event rechits in a vector of length equal
