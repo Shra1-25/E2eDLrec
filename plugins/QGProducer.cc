@@ -149,7 +149,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 }
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
 void
-QGProducer::QGProducer(edm::StreamID)
+QGProducer::beginStream(edm::StreamID)
 {
  nTotal = 0;
  nPassed = 0;
