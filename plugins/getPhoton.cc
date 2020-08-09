@@ -4,7 +4,7 @@
 #include <sstream>
 
 // Initialize branches _____________________________________________________//
-void EGProducer::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
+void DetImgProducer::branchesPhotonSel ( TTree* tree, edm::Service<TFileService> &fs )
 {
   /*hSC_pT = fs->make<TH1F>("SC_pT", "Pt", 27, 15., 150.);
   hMinDRgenRecoPho = fs->make<TH1F>("minDRgenRecoPho", "#DeltaR(#gamma_{gen},#gamma_{reco})_{min};#DeltaR;N", 100, 0., 25*0.0174);
