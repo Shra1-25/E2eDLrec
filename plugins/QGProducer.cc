@@ -162,7 +162,7 @@ QGProducer::endStream() {
 // ------------ method called when starting to processes a run  ------------
 /*
 void
-ProducerTest::beginRun(edm::Run const&, edm::EventSetup const&)
+QGProducer::beginRun(edm::Run const&, edm::EventSetup const&)
 {
 }
 */
@@ -170,7 +170,7 @@ ProducerTest::beginRun(edm::Run const&, edm::EventSetup const&)
 // ------------ method called when ending the processing of a run  ------------
 /*
 void
-ProducerTest::endRun(edm::Run const&, edm::EventSetup const&)
+QGProducer::endRun(edm::Run const&, edm::EventSetup const&)
 {
 }
 */
@@ -178,7 +178,7 @@ ProducerTest::endRun(edm::Run const&, edm::EventSetup const&)
 // ------------ method called when starting to processes a luminosity block  ------------
 /*
 void
-ProducerTest::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
+QGProducer::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
 {
 }
 */
@@ -186,7 +186,7 @@ ProducerTest::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup 
 // ------------ method called when ending the processing of a luminosity block  ------------
 /*
 void
-ProducerTest::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
+QGProducer::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
 {
 }
 */
