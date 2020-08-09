@@ -10,7 +10,7 @@
 //std::vector<float> vEB_time_;
 
 // Initialize branches _____________________________________________________//
-void ProducerTest::branchesEB ( TTree* tree, edm::Service<TFileService> &fs ) {
+void DetImgProducer::branchesEB ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   // Branches for images
   tree->Branch("EB_energy", &vEB_energy_);
@@ -31,7 +31,7 @@ void ProducerTest::branchesEB ( TTree* tree, edm::Service<TFileService> &fs ) {
 } // branchesEB()
 
 // Fill EB rechits _________________________________________________________________//
-void ProducerTest::fillEB ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void DetImgProducer::fillEB ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   int iphi_, ieta_, idx_; // rows:ieta, cols:iphi
   float energy_;
