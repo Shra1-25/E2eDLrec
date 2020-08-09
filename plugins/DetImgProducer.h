@@ -270,4 +270,4 @@ static const double eta_bins_HBHE[2*(hcaldqm::constants::IETA_MAX_HE-1)+1] =
 //
 
 #endif
-//DEFINE_FWK_MODULE(ProducerTest);
+//DEFINE_FWK_MODULE(DetImgProducer);
