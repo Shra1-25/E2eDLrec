@@ -1,5 +1,5 @@
-#ifndef ProducerInference_h
-#define ProducerInference_h
+#ifndef QGProducer_h
+#define QGProducer_h
 
 #include <memory>
 //#include <iostream>
@@ -64,11 +64,11 @@ static const int vEB_energy_width=360;
 static const int vEB_frame_height=32;
 static const int vEB_frame_width=32;
 
-class ProducerInference : public edm::stream::EDProducer<> {
+class QGProducer : public edm::stream::EDProducer<> {
    public:
       
-      explicit ProducerInference(const edm::ParameterSet&);
-      ~ProducerInference();
+      explicit QGProducer(const edm::ParameterSet&);
+      ~QGProducer();
       
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
@@ -87,8 +87,6 @@ class ProducerInference : public edm::stream::EDProducer<> {
       //edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       //edm::EDGetTokenT<std::vector<std::vector<float>>> frames_;
       edm::EDGetTokenT<EcalRecHitCollection> EBRecHitCollectionT_;
-      edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
-      edm::EDGetTokenT<std::vector<float>> vEB_energy_token;
       edm::EDGetTokenT<std::vector<float>> ECALstitched_energy_token;
       edm::EDGetTokenT<std::vector<float>> TracksAtECALstitched_token;
       edm::EDGetTokenT<std::vector<int>> JetSeed_ieta_token;
@@ -96,17 +94,14 @@ class ProducerInference : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<std::vector<float>> HBHEenergy_token;
       static const int nPhotons = 2;
    
-      std::vector<float> vEB_energy_;
       std::vector<std::vector<float>> vEB_frame; //= std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
-      std::vector<std::vector<float>> vEB_photon_frames;
       std::vector<std::vector<float>> vECALstitched_frame;
       std::vector<std::vector<float>> vTracksAtECALstitched_frame;
       std::vector<float> vclasses;
    
       unsigned int nPho;
      
-      void get_photons                            ( const edm::Event&, const edm::EventSetup& );
       std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
       //std::vector<vector<float>> frameStriding    (std::vector<float>&, int, int, int, int);
       //int predict_tf                              (std::vector<std::vector<float>>&, string, string, string);
@@ -120,11 +115,11 @@ class ProducerInference : public edm::stream::EDProducer<> {
       //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
       
       
-      std::vector<float> vIphi_Emax_;
+      /*std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
       std::vector<float> vSC_eta_;
       std::vector<float> vSC_phi_;
-      std::vector<int> vPreselPhoIdxs_;
+      std::vector<int> vPreselPhoIdxs_;*/
       int nTotal, nPassed;
 };
 
