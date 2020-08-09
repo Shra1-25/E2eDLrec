@@ -8,8 +8,5 @@
 #include <vector>
 using namespace std;
 
-std::vector<std::vector<float>> croppingFrames(std::vector<float>&, int, int, int, int, int, int){
-std::vector<std::vector<float>> vframe;
-return vframe;
-};
+std::vector<std::vector<float>> croppingFrames(std::vector<float>&, int, int, int, int, int, int);
 #endif
