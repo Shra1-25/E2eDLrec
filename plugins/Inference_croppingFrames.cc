@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
 
 std::vector<std::vector<float>> ProducerInference::croppingFrames(std::vector<float>& vdetector_image, int ieta_seed, int iphi_seed, int detImg_height, int detImg_width, int frame_height, int frame_width){
