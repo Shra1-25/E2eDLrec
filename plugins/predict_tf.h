@@ -1,7 +1,6 @@
 #ifndef predict_tf_h
 #define predict_tf_h
 
-#include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 #include <iostream>
 #include <fstream>
