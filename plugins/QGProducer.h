@@ -89,8 +89,8 @@ class QGProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<std::vector<float>> HBHEenergy_token;
       static const int nPhotons = 2;
    
-      std::vector<std::vector<float>> vEB_frame; //= std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
-      std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
+      //std::vector<std::vector<float>> vEB_frame; //= std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
+      //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vECALstitched_frame;
       std::vector<std::vector<float>> vTracksAtECALstitched_frame;
       std::vector<float> vclasses;
