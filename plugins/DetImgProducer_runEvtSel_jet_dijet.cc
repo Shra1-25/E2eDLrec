@@ -89,7 +89,7 @@ bool DetImgProducer::runEvtSel_jet_dijet( const edm::Event& iEvent, const edm::E
 } // runEvtSel_jet_dijet() 
 
 // Fill branches and histograms _____________________________________________________//
-void ProducerTest::fillEvtSel_jet_dijet( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void DetImgProducer::fillEvtSel_jet_dijet( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   edm::Handle<reco::PFJetCollection> jets;
   iEvent.getByToken(jetCollectionT_, jets);
