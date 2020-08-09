@@ -1,13 +1,4 @@
-#ifndef predict_tf_h
-#define predict_tf_h
-
-//#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
-#include "ProdTutorial/ProducerTest/plugins/ProducerInference.h"
-#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
-#include <iostream>
-#include <fstream>
-using namespace std;
-
+#include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
 
 int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filename, string input_layer_name, string output_layer_name){
  tensorflow::Session* session;
@@ -83,4 +74,3 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  else {return 0;}
 }
 
-#endif
