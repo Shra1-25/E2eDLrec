@@ -29,10 +29,10 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.getByToken(vEB_energy_token, vEB_energy_handle);
   
    vEB_energy_=*vEB_energy_handle;
-   vEB_flat_frame.Clear();
-   vEB_frame.Clear();
-   vclasses.Clear();
-   vEB_photon_frames.Clear();
+   vEB_flat_frame.clear();
+   vEB_frame.clear();
+   vclasses.clear();
+   vEB_photon_frames.clear();
  
    get_photons(iEvent, iSetup );//stored in vEB_frames vectors
    std::unique_ptr<std::vector<float>> vclasses_edm (new std::vector<float>(vclasses));
