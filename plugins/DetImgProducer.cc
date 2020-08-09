@@ -33,7 +33,7 @@
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/Utilities/interface/StreamID.h"*/
-#include "ProdTutorial/ProducerTest/plugins/ProducerTest.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 
 using namespace tensorflow;
@@ -65,7 +65,7 @@ using namespace std;
        
 };*/
 
-ProducerTest::ProducerTest(const edm::ParameterSet& iConfig)
+DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
 {
  EBRecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEBRecHitCollection"));
  photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
@@ -142,7 +142,7 @@ ProducerTest::~ProducerTest()
 
 // ------------ method called to produce the data  ------------
 void
-ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    //std::cout<<"New Event started"<<std::endl;
    using namespace edm;
@@ -316,17 +316,17 @@ ProducerTest::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
 void
-ProducerTest::beginStream(edm::StreamID)
+DetImgProducer::beginStream(edm::StreamID)
 {
  nTotal = 0;
  nPassed = 0;
- std::cout<<"'ProducerTest' Stream began"<<std::endl;
+ std::cout<<"'DetImgProducer' Stream began"<<std::endl;
 }
 
 // ------------ method called once each stream after processing all runs, lumis and events  ------------
 void
-ProducerTest::endStream() {
- std::cout << "'ProducerTest' selected: " << nPassed << "/" << nTotal << std::endl;
+DetImgProducer::endStream() {
+ std::cout << "'DetImgProducer' selected: " << nPassed << "/" << nTotal << std::endl;
  //fw->Write();
  //fw->Close();
 }
@@ -365,7 +365,7 @@ ProducerTest::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup co
  
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-ProducerTest::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+DetImgProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
   edm::ParameterSetDescription desc;
@@ -374,7 +374,7 @@ ProducerTest::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
 }
 
 const reco::PFCandidate*
-ProducerTest::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug ) {
+DetImgProducer::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug ) {
 
   minDr = 10;
   const reco::PFCandidate* minDRCand = nullptr;
@@ -400,7 +400,7 @@ ProducerTest::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi,
 }
 
 const reco::Track*
-ProducerTest::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float eta, float phi, float& minDr, bool debug ) {
+DetImgProducer::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float eta, float phi, float& minDr, bool debug ) {
 
   minDr = 10;
   const reco::Track* minDRCand = nullptr;
@@ -427,7 +427,7 @@ ProducerTest::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float 
 
 
 
-int ProducerTest::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch , bool debug ){
+int DetImgProducer::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch , bool debug ){
   if ( debug ) {
     std::cout << " Mathcing reco jetPt:" << recJet->pt() << " jetEta:" << recJet->eta() << " jetPhi:" << recJet->phi() << std::endl;
   }
@@ -474,7 +474,7 @@ int ProducerTest::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::
 }
 
 
-float ProducerTest::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch, bool debug ){
+float DetImgProducer::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch, bool debug ){
 
   // loop over jets
   for( edm::View<reco::Jet>::const_iterator jetToMatch = recoJetCollection->begin(); jetToMatch != recoJetCollection->end(); ++jetToMatch )
@@ -534,4 +534,4 @@ void RecHitAnalyzer::fillFC ( const edm::Event& iEvent, const edm::EventSetup& i
 //define this as a plug-in
 
 //define this as a plug-in
-DEFINE_FWK_MODULE(ProducerTest);
+DEFINE_FWK_MODULE(DetImgProducer);
