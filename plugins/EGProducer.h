@@ -1,5 +1,5 @@
-#ifndef ProducerInference_h
-#define ProducerInference_h
+#ifndef EGProducer_h
+#define EGProducer_h
 
 #include <memory>
 //#include <iostream>
@@ -64,7 +64,7 @@ static const int vEB_energy_width=360;
 static const int vEB_frame_height=32;
 static const int vEB_frame_width=32;
 
-class ProducerInference : public edm::stream::EDProducer<> {
+class EGProducer : public edm::stream::EDProducer<> {
    public:
       
       explicit ProducerInference(const edm::ParameterSet&);
