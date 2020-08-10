@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/EGProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
 #include "ProdTutorial/ProducerTest/plugins/croppingFrames.h"
