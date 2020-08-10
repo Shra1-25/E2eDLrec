@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
 #include "DataFormats/BTauReco/interface/JetTag.h"
 
 using std::vector;
@@ -19,7 +19,7 @@ vector<float> vDijet_jet_btaggingValue_;
 
 
 // Initialize branches _____________________________________________________//
-void DetImgProducer::branchesEvtSel_jet_dijet( TTree* tree, edm::Service<TFileService> &fs ) {
+void QGProducer::branchesEvtSel_jet_dijet( TTree* tree, edm::Service<TFileService> &fs ) {
 
   h_dijet_jet_pT    = fs->make<TH1D>("h_jet_pT"  , "p_{T};p_{T};Particles", 100,  0., 500.);
   h_dijet_jet_E     = fs->make<TH1D>("h_jet_E"   , "E;E;Particles"        , 100,  0., 800.);
@@ -37,7 +37,7 @@ void DetImgProducer::branchesEvtSel_jet_dijet( TTree* tree, edm::Service<TFileSe
 } // branchesEvtSel_jet_dijet()
 
 // Run jet selection _____________________________________________________//
-bool DetImgProducer::runEvtSel_jet_dijet( const edm::Event& iEvent, const edm::EventSetup& iSetup )
+bool QGProducer::runEvtSel_jet_dijet( const edm::Event& iEvent, const edm::EventSetup& iSetup )
 {
 
   edm::Handle<reco::PFJetCollection> jets;
@@ -89,7 +89,7 @@ bool DetImgProducer::runEvtSel_jet_dijet( const edm::Event& iEvent, const edm::E
 } // runEvtSel_jet_dijet() 
 
 // Fill branches and histograms _____________________________________________________//
-void DetImgProducer::fillEvtSel_jet_dijet( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+void QGProducer::fillEvtSel_jet_dijet( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
   edm::Handle<reco::PFJetCollection> jets;
   iEvent.getByToken(jetCollectionT_, jets);
