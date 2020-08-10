@@ -112,4 +112,5 @@ class EGProducer : public edm::stream::EDProducer<> {
       std::vector<int> vPreselPhoIdxs_;
       int nTotal, nPassed;
    };
+   static const float zs = 0.;
    #endif
