@@ -114,6 +114,8 @@ class QGProducer : public edm::stream::EDProducer<> {
       bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
       void branchesJetInfoAtECALstitched   ( TTree*, edm::Service<TFileService>& );
       
+      typedef std::vector<reco::PFCandidate>  PFCollection;
+      edm::EDGetTokenT<PFCollection> pfCollectionT_;
       //std::vector<std::vector<float>> vEB_frame; //= std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vHBHEenergy_frame;
