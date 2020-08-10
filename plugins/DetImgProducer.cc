@@ -83,10 +83,10 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
  jetTagCollectionT_      = consumes<reco::JetTagCollection>(iConfig.getParameter<edm::InputTag>("jetTagCollection"));
  ipTagInfoCollectionT_   = consumes<std::vector<reco::CandIPTagInfo> > (iConfig.getParameter<edm::InputTag>("ipTagInfoCollection"));
  
- mode_      = iConfig.getParameter<std::string>("mode");
+ /*mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
  maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
- z0PVCut_   = iConfig.getParameter<double>("z0PVCut");
+ z0PVCut_   = iConfig.getParameter<double>("z0PVCut");*/
  
  std::cout << " >> Mode set to " << mode_ << std::endl;
  /*if ( mode_ == "JetLevel" ) {
