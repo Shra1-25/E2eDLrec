@@ -87,6 +87,15 @@ class QGProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<std::vector<int>> JetSeed_ieta_token;
       edm::EDGetTokenT<std::vector<int>> JetSeed_iphi_token;
       edm::EDGetTokenT<std::vector<float>> HBHEenergy_token;
+      edm::EDGetTokenT<reco::VertexCollection> vertexCollectionT_;
+      edm::EDGetTokenT<reco::PFJetCollection> jetCollectionT_;
+      edm::EDGetTokenT<reco::GenParticleCollection> genParticleCollectionT_;
+      edm::EDGetTokenT<reco::JetTagCollection> jetTagCollectionT_;
+      edm::EDGetTokenT<std::vector<reco::CandIPTagInfo> >    ipTagInfoCollectionT_;
+      edm::EDGetTokenT<reco::GenJetCollection> genJetCollectionT_;
+      edm::EDGetTokenT<TrackingRecHitCollection> TRKRecHitCollectionT_;
+      edm::EDGetTokenT<edm::View<reco::Jet> > recoJetsT_;
+      edm::EDGetTokenT<EBDigiCollection>     EBDigiCollectionT_;
       static const int nPhotons = 2;
    
       TH1F *h_sel;
