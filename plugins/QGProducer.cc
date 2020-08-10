@@ -31,7 +31,7 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
     doJets_ = false;
   }
   edm::Service<TFileService> fs;
-  RHTree = fs->make<TTree>("QGTree", "RecHit tree");
+  QGTree = fs->make<TTree>("QGTree", "RecHit tree");
    if ( doJets_ ) {
      branchesEvtSel_jet( QGTree, fs );
    } else {
@@ -222,6 +222,8 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::unique_ptr<std::vector<int>> vHBHEenergyClass_edm (new std::vector<int>(vHBHEenergyClass));
    iEvent.put(std::move(vHBHEenergyClass_edm),"HBHEenergyClass");
    std::cout<<std::endl;
+
+   QGTree->Fill();
    nPassed++;
    // ----- Apply event selection cuts ----- //
    //std::cout<<"Event "<<nPassed-1<<"finished"<<"Prceeding to event "<<nPassed<<std::endl;
