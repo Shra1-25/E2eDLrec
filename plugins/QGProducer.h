@@ -88,7 +88,14 @@ class QGProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<std::vector<int>> JetSeed_iphi_token;
       edm::EDGetTokenT<std::vector<float>> HBHEenergy_token;
       static const int nPhotons = 2;
-   
+      
+      void branchesEvtSel_jet_dijet      ( TTree*, edm::Service<TFileService>& );
+      void branchesEvtSel_jet_dijet_gg_qq( TTree*, edm::Service<TFileService>& );
+      bool runEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
+      bool runEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
+      void fillEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
+      void fillEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
+      
       //std::vector<std::vector<float>> vEB_frame; //= std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vHBHEenergy_frame;
@@ -103,7 +110,13 @@ class QGProducer : public edm::stream::EDProducer<> {
       //std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
       //std::vector<vector<float>> frameStriding    (std::vector<float>&, int, int, int, int);
       //int predict_tf                              (std::vector<std::vector<float>>&, string, string, string);
+      std::string mode_;  // EventLevel / JetLevel
+      bool doJets_;
+      int  nJets_;
       int iphi_Emax, ieta_Emax;
+      double minJetPt_;
+      double maxJetEta_;
+      double z0PVCut_;
    
       /*TTree* RHTree;
       unsigned int nPho;
