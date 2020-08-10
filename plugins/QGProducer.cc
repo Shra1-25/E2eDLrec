@@ -20,6 +20,11 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  HBHEenergy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("HBHEenergy"));
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
  
+ mode_      = iConfig.getParameter<std::string>("mode");
+ minJetPt_  = iConfig.getParameter<double>("minJetPt");
+ maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
+ z0PVCut_   = iConfig.getParameter<double>("z0PVCut");
+	
  if ( mode_ == "JetLevel" ) {
     doJets_ = true;
     nJets_ = iConfig.getParameter<int>("nJets");
