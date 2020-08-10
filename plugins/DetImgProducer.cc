@@ -148,7 +148,7 @@ DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    using namespace edm;
    nTotal++;
    // ----- Apply event selection cuts ----- //
-   bool passedSelection = false;
+   /*bool passedSelection = false;
    if ( doJets_ ) {
      std::cout<<" >> doJets set"<<std::endl;
      passedSelection = runEvtSel_jet( iEvent, iSetup );
@@ -202,7 +202,7 @@ DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    if ( !passedSelection ) {
      h_sel->Fill( 0. );;
      return;
-   }
+   }*/
    //auto photon_classes = std::make_unique<float>(10.0);
    fillEB( iEvent, iSetup );
    std::unique_ptr<std::vector<float>> EBenergy_edm (new std::vector<float>(vEB_energy_));
