@@ -130,7 +130,7 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       //std::vector<std::vector<float>> vEB_photon_frames;
       //std::vector<int> vclasses;
       
-      TH1F *h_sel;
+      //TH1F *h_sel;
       TH1F * hSC_pT;
       TH1F * hMinDRgenRecoPho;
       TH1F * hMinDRrecoPtoGenPt;
