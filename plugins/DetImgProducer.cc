@@ -114,8 +114,8 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
  branchesHBHE (RHTree, fs );
- branchesECALstitched (RHTree, fs);
- branchesTracksAtECALstitched (RHTree, fs);
+ //branchesECALstitched (RHTree, fs);
+ //branchesTracksAtECALstitched (RHTree, fs);
  std::cout<<"Branches done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
@@ -124,8 +124,8 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
  produces<std::vector<float>>("HBHEenergyEB");
  produces<std::vector<float>>("ECALstitchedenergy");
  produces<std::vector<float>>("TracksAtECALstitched");
- produces<std::vector<int>>("JetSeedieta");
- produces<std::vector<int>>("JetSeediphi");
+ //produces<std::vector<int>>("JetSeedieta");
+ //produces<std::vector<int>>("JetSeediphi");
  //if (!fw) { return; }
 }
 
