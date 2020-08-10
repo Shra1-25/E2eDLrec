@@ -122,8 +122,8 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       std::vector<float> vHBHE_energy_;
       std::vector<float> vECAL_energy_;
       std::vector<float> vECAL_tracksPt_;
-      vector<int> vJetSeed_iphi_;
-      vector<int> vJetSeed_ieta_;
+      //vector<int> vJetSeed_iphi_;
+      //vector<int> vJetSeed_ieta_;
       //std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       //float EB_frame[vEB_frame_height][vEB_frame_width];
       //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
@@ -159,8 +159,8 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       void branchesJetInfoAtECALstitched   ( TTree*, edm::Service<TFileService>& );
       
       
-      bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
-      bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
+      //bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
+      //bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
       void fillEB             ( const edm::Event&, const edm::EventSetup& );
       void fillHBHE           ( const edm::Event&, const edm::EventSetup& );
       void fillECALstitched   ( const edm::Event&, const edm::EventSetup& );
@@ -174,23 +174,23 @@ class DetImgProducer : public edm::stream::EDProducer<> {
    
       
       std::vector<float>& read_vEB_energy     (int);
-      std::string mode_;  // EventLevel / JetLevel
+      /*std::string mode_;  // EventLevel / JetLevel
       bool doJets_;
-      int  nJets_;
+      int  nJets_;*/
       int iphi_Emax, ieta_Emax;
       
-      double minJetPt_;
+      /*double minJetPt_;
       double maxJetEta_;
-      double z0PVCut_;
+      double z0PVCut_;*/
    
-      void branchesEvtSel_jet_dijet      ( TTree*, edm::Service<TFileService>& );
+      /*void branchesEvtSel_jet_dijet      ( TTree*, edm::Service<TFileService>& );
       void branchesEvtSel_jet_dijet_gg_qq( TTree*, edm::Service<TFileService>& );
       bool runEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
       bool runEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
       void fillEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
-      void fillEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
+      void fillEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );*/
    
-      std::vector<int> vJetIdxs;
+      //std::vector<int> vJetIdxs;
       std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
       std::vector<float> vSC_eta_;
