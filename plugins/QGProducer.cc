@@ -137,17 +137,17 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.getByToken(ECALstitched_energy_token, ECALstitched_energy_handle);
    edm::Handle<std::vector<float>> TracksAtECALstitched_handle;
    iEvent.getByToken(TracksAtECALstitched_token, TracksAtECALstitched_handle);
-   edm::Handle<std::vector<int>> JetSeed_ieta_handle;
+   /*edm::Handle<std::vector<int>> JetSeed_ieta_handle;
    iEvent.getByToken(JetSeed_ieta_token, JetSeed_ieta_handle);
    edm::Handle<std::vector<int>> JetSeed_iphi_handle;
-   iEvent.getByToken(JetSeed_iphi_token, JetSeed_iphi_handle);
+   iEvent.getByToken(JetSeed_iphi_token, JetSeed_iphi_handle);*/
    edm::Handle<std::vector<float>> HBHEenergy_handle;
    iEvent.getByToken(HBHEenergy_token, HBHEenergy_handle);
    
    std::vector<float>vECALstitched=*ECALstitched_energy_handle;
    std::vector<float>vTracksAtECALstitched=*TracksAtECALstitched_handle;
-   std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
-   std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;
+   /*std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
+   std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;*/
    std::vector<int>vECALstitchedClass;
    std::vector<int>vTracksAtECALstitchedClass;
    std::vector<int>vHBHEenergyClass;
