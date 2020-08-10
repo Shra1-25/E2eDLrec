@@ -2,6 +2,7 @@ import FWCore.ParameterSet.Config as cms
 
 QGInference = cms.EDProducer('QGProducer'
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
+    , photonCollection = cms.InputTag('gedPhotons')#or 'slimmedPhotons' for mini AOD root file
     , ECALstitchedenergy = cms.InputTag('ProducerFrames','ECALstitchedenergy')
     , TracksAtECALstitched = cms.InputTag('ProducerFrames', 'TracksAtECALstitched')
     , JetSeedieta = cms.InputTag('ProducerFrames','JetSeedieta')
