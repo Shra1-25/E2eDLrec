@@ -19,9 +19,24 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  JetSeed_iphi_token=consumes<std::vector<int>>(iConfig.getParameter<edm::InputTag>("JetSeediphi"));
  HBHEenergy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("HBHEenergy"));
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
- branchesECALstitched (RHTree, fs);
- branchesTracksAtECALstitched (RHTree, fs);
-
+ 
+ if ( mode_ == "JetLevel" ) {
+    doJets_ = true;
+    nJets_ = iConfig.getParameter<int>("nJets");
+    std::cout << "\t>> nJets set to " << nJets_ << std::endl;
+  } else if ( mode_ == "EventLevel" ) {
+    doJets_ = false;
+  } else {
+    std::cout << " >> Assuming EventLevel Config. " << std::endl;
+    doJets_ = false;
+  }
+  edm::Service<TFileService> fs;
+  RHTree = fs->make<TTree>("RHTree", "RecHit tree");
+   if ( doJets_ ) {
+     branchesEvtSel_jet( RHTree, fs );
+   } else {
+     branchesEvtSel( RHTree, fs );
+   }
 
  produces<std::vector<int>>("ECALstitchedClass");
  produces<std::vector<int>>("TracksAtECALstitchedClass");
