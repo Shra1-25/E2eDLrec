@@ -374,7 +374,7 @@ DetImgProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
   descriptions.addDefault(desc);
 }
 
-const reco::PFCandidate*
+/*const reco::PFCandidate*
 DetImgProducer::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug ) {
 
   minDr = 10;
@@ -509,7 +509,7 @@ float DetImgProducer::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle
   }    
 
   return -99;
-}
+}*/
 
 
 
