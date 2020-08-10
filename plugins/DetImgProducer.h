@@ -145,7 +145,7 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       void branchesEvtSel_jet     ( TTree*, edm::Service<TFileService>& );
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesEE             ( TTree*, edm::Service<TFileService>& );
-      void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
+      //void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       void branchesHBHE           ( TTree*, edm::Service<TFileService>& );
       //void branchesECALatHCAL     ( TTree*, edm::Service<TFileService>& );
       //void branchesHCALatEBEE     ( TTree*, edm::Service<TFileService>& );
