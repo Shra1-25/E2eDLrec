@@ -92,12 +92,18 @@ class QGProducer : public edm::stream::EDProducer<> {
       TH1F *h_sel;
       TTree* QGTree;
       
+      void branchesEvtSel         ( TTree*, edm::Service<TFileService>& );
+      void branchesEvtSel_jet     ( TTree*, edm::Service<TFileService>& );
       void branchesEvtSel_jet_dijet      ( TTree*, edm::Service<TFileService>& );
       void branchesEvtSel_jet_dijet_gg_qq( TTree*, edm::Service<TFileService>& );
       bool runEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
       bool runEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
       void fillEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
       void fillEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
+      void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
+      bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
+      bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
+      void branchesJetInfoAtECALstitched   ( TTree*, edm::Service<TFileService>& );
       
       //std::vector<std::vector<float>> vEB_frame; //= std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
@@ -129,9 +135,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );*/
       //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
-      void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
-      bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
-      bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
+      
       
       /*std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
