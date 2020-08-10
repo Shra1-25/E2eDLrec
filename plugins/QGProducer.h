@@ -88,6 +88,8 @@ class QGProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<std::vector<int>> JetSeed_iphi_token;
       edm::EDGetTokenT<std::vector<float>> HBHEenergy_token;
       static const int nPhotons = 2;
+   
+      TH1F *h_sel;
       TTree* QGTree;
       
       void branchesEvtSel_jet_dijet      ( TTree*, edm::Service<TFileService>& );
