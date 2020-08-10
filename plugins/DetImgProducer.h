@@ -141,8 +141,8 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       typedef std::vector<reco::PFCandidate>  PFCollection;
       edm::EDGetTokenT<PFCollection> pfCollectionT_;
    
-      void branchesEvtSel         ( TTree*, edm::Service<TFileService>& );
-      void branchesEvtSel_jet     ( TTree*, edm::Service<TFileService>& );
+      //void branchesEvtSel         ( TTree*, edm::Service<TFileService>& );
+      //void branchesEvtSel_jet     ( TTree*, edm::Service<TFileService>& );
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesEE             ( TTree*, edm::Service<TFileService>& );
       //void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
@@ -156,7 +156,7 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       void branchesTracksAtECALstitched (TTree*, edm::Service<TFileService>& );
       //void branchesTRKlayersAtEBEE( TTree*, edm::Service<TFileService>& );
       //void branchesTRKvolumeAtEBEE( TTree*, edm::Service<TFileService>& );
-      void branchesJetInfoAtECALstitched   ( TTree*, edm::Service<TFileService>& );
+      //void branchesJetInfoAtECALstitched   ( TTree*, edm::Service<TFileService>& );
       
       
       //bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
