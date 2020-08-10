@@ -107,6 +107,8 @@ class QGProducer : public edm::stream::EDProducer<> {
       std::vector<float> vclasses;
       vector<int> vJetSeed_iphi_;
       vector<int> vJetSeed_ieta_;
+      std::vector<float> vSC_eta_;
+      std::vector<float> vSC_phi_;
    
       unsigned int nPho;
      
