@@ -112,7 +112,7 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
  RHTree->Branch("SC_iphi", &vIphi_Emax_);
  RHTree->Branch("SC_ieta", &vIeta_Emax_);
  branchesEB           ( RHTree, fs );
- branchesPhotonSel ( RHTree, fs );
+ //branchesPhotonSel ( RHTree, fs );
  branchesHBHE (RHTree, fs );
  branchesECALstitched (RHTree, fs);
  branchesTracksAtECALstitched (RHTree, fs);
