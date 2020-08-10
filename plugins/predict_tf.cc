@@ -66,7 +66,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
   
  session->Close();
  delete session;
- std::cout<<" >> Classification done"<<endl<<endl;
+ std::cout<<" >> Classification done"<<endl;
  // cleanup
  //tensorflow::closeSession(session);
  //delete graphDef;
