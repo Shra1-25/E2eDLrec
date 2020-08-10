@@ -89,7 +89,7 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
  z0PVCut_   = iConfig.getParameter<double>("z0PVCut");
  
  std::cout << " >> Mode set to " << mode_ << std::endl;
- if ( mode_ == "JetLevel" ) {
+ /*if ( mode_ == "JetLevel" ) {
    doJets_ = true;
    nJets_ = iConfig.getParameter<int>("nJets");
    std::cout << "\t>> nJets set to " << nJets_ << std::endl;
@@ -105,7 +105,7 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
     branchesEvtSel_jet( RHTree, fs );
   } else {
     branchesEvtSel( RHTree, fs );
-  }
+  }*/
 
  //usesResource("TFileService");
  //RHTree = fs->make<TTree>("RHTree", "RecHit tree");
@@ -114,8 +114,8 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
  branchesEB           ( RHTree, fs );
  branchesPhotonSel ( RHTree, fs );
  branchesHBHE (RHTree, fs );
- //branchesECALstitched (RHTree, fs);
- //branchesTracksAtECALstitched (RHTree, fs);
+ branchesECALstitched (RHTree, fs);
+ branchesTracksAtECALstitched (RHTree, fs);
  std::cout<<"Branches done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
