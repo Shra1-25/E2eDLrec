@@ -101,8 +101,8 @@ class QGProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<HBHERecHitCollection> HBHERecHitCollectionT_;
       edm::EDGetTokenT<std::vector<float>> ECALstitched_energy_token;
       edm::EDGetTokenT<std::vector<float>> TracksAtECALstitched_token;
-      edm::EDGetTokenT<std::vector<int>> JetSeed_ieta_token;
-      edm::EDGetTokenT<std::vector<int>> JetSeed_iphi_token;
+      //edm::EDGetTokenT<std::vector<int>> JetSeed_ieta_token;
+      //edm::EDGetTokenT<std::vector<int>> JetSeed_iphi_token;
       edm::EDGetTokenT<std::vector<float>> HBHEenergy_token;
       edm::EDGetTokenT<reco::VertexCollection> vertexCollectionT_;
       edm::EDGetTokenT<reco::PFJetCollection> jetCollectionT_;
