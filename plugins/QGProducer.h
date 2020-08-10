@@ -95,6 +95,8 @@ class QGProducer : public edm::stream::EDProducer<> {
       std::vector<std::vector<float>> vECALstitched_frame;
       std::vector<std::vector<float>> vTracksAtECALstitched_frame;
       std::vector<float> vclasses;
+      vector<int> vJetSeed_iphi_;
+      vector<int> vJetSeed_ieta_;
    
       unsigned int nPho;
      
@@ -109,7 +111,8 @@ class QGProducer : public edm::stream::EDProducer<> {
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );*/
       //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
-      
+      bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
+      bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
       
       /*std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
