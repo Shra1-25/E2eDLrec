@@ -27,9 +27,10 @@ struct pho_map {
   std::vector<unsigned int> matchedRecoPhoIdxs;
   std::vector<unsigned int> matchedPreselPhoIdxs;
 };
+
 std::vector<pho_map> vPhos;
 
- void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
+void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
@@ -51,6 +52,7 @@ std::vector<pho_map> vPhos;
  vclasses.clear(); 
  int iphi_, ieta_; // rows:ieta, cols:iphi
  std::cout<<"Photons size : "<<photons->size()<<std::endl;
+ if (photons->size()<=0){std::cout<<" >> Class: -1"<<std::endl; vclasses.push_back(-1);}
  for ( unsigned int iP = 0; iP < photons->size(); iP++ ) {
   PhotonRef iRecoPho( photons, iP );
   
