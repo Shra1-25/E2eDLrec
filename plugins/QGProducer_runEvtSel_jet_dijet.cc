@@ -1,5 +1,6 @@
 #include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
 #include "DataFormats/BTauReco/interface/JetTag.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 using std::vector;
 using std::cout;
