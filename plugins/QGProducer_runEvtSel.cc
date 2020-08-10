@@ -1,5 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
-
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 // Run event selection ////////////////////////////////
 
 TH1F *h_m0;
