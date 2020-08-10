@@ -109,8 +109,8 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
 
  //usesResource("TFileService");
  //RHTree = fs->make<TTree>("RHTree", "RecHit tree");
- RHTree->Branch("SC_iphi", &vIphi_Emax_);
- RHTree->Branch("SC_ieta", &vIeta_Emax_);
+ //RHTree->Branch("SC_iphi", &vIphi_Emax_);
+ //RHTree->Branch("SC_ieta", &vIeta_Emax_);
  branchesEB           ( RHTree, fs );
  //branchesPhotonSel ( RHTree, fs );
  branchesHBHE (RHTree, fs );
