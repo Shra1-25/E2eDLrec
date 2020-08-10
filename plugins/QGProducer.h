@@ -129,6 +129,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );*/
       //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
+      void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
       bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
       
