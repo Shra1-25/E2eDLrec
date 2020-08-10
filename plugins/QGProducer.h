@@ -126,7 +126,6 @@ class QGProducer : public edm::stream::EDProducer<> {
       bool runEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
       void fillEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
       void fillEvtSel_jet_dijet_gg_qq( const edm::Event&, const edm::EventSetup& );
-      void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       bool runEvtSel          ( const edm::Event&, const edm::EventSetup& );
       bool runEvtSel_jet      ( const edm::Event&, const edm::EventSetup& );
       void branchesJetInfoAtECALstitched   ( TTree*, edm::Service<TFileService>& );
