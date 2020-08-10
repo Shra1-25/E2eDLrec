@@ -148,6 +148,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       //std::vector<vector<float>> frameStriding    (std::vector<float>&, int, int, int, int);
       //int predict_tf                              (std::vector<std::vector<float>>&, string, string, string);
       std::string mode_;  // EventLevel / JetLevel
+      std::vector<int> vJetIdxs;
       bool doJets_;
       int  nJets_;
       int iphi_Emax, ieta_Emax;
