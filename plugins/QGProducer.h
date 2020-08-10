@@ -96,6 +96,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       // Tokens 
       //edm::EDGetTokenT<PhotonCollection> photonCollectionT_;
       //edm::EDGetTokenT<std::vector<std::vector<float>>> frames_;
+      photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
       edm::EDGetTokenT<EcalRecHitCollection> EBRecHitCollectionT_;
       edm::EDGetTokenT<HBHERecHitCollection> HBHERecHitCollectionT_;
       edm::EDGetTokenT<std::vector<float>> ECALstitched_energy_token;
