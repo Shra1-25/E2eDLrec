@@ -19,9 +19,15 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  JetSeed_iphi_token=consumes<std::vector<int>>(iConfig.getParameter<edm::InputTag>("JetSeediphi"));
  HBHEenergy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("HBHEenergy"));
  std::cout<<"Reading data collection done "<<nTotal<<std::endl;
+ branchesECALstitched (RHTree, fs);
+ branchesTracksAtECALstitched (RHTree, fs);
+
+
  produces<std::vector<int>>("ECALstitchedClass");
  produces<std::vector<int>>("TracksAtECALstitchedClass");
  produces<std::vector<int>>("HBHEenergyClass");
+ produces<std::vector<int>>("JetSeedieta");
+ produces<std::vector<int>>("JetSeediphi");
 }
 
 QGProducer::~QGProducer()
