@@ -31,11 +31,11 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
     doJets_ = false;
   }
   edm::Service<TFileService> fs;
-  RHTree = fs->make<TTree>("RHTree", "RecHit tree");
+  RHTree = fs->make<TTree>("QGTree", "RecHit tree");
    if ( doJets_ ) {
-     branchesEvtSel_jet( RHTree, fs );
+     branchesEvtSel_jet( QGTree, fs );
    } else {
-     branchesEvtSel( RHTree, fs );
+     branchesEvtSel( QGTree, fs );
    }
 
  produces<std::vector<int>>("ECALstitchedClass");
