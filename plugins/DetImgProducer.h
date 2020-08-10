@@ -193,8 +193,8 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       //std::vector<int> vJetIdxs;
       std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
-      std::vector<float> vSC_eta_;
-      std::vector<float> vSC_phi_;
+      //std::vector<float> vSC_eta_;
+      //std::vector<float> vSC_phi_;
       std::vector<int> vPreselPhoIdxs_;
       int nTotal, nPassed;
       
