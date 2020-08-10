@@ -144,7 +144,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       std::vector<int> vPreselPhoIdxs_;*/
       int nTotal, nPassed;
 };
-static const float zs = 0.;
+//static const float zs = 0.;
 /*static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
 static const int EB_IPHI_MAX = EBDetId::MAX_IPHI;//360;
 static const int EB_IETA_MIN = EBDetId::MIN_IETA;//1;
