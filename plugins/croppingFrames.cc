@@ -3,7 +3,9 @@
 #include "ProdTutorial/ProducerTest/plugins/QGProducer.h"*/
 //#include "ProdTutorial/ProducerTest/plugins/EGProducer.h"
 //#include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
-//using namespace std;
+#include <vector>
+using namespace std;
+//using namespace std::vector;
 
 std::vector<std::vector<float>> croppingFrames(std::vector<float>& vdetector_image, int ieta_seed, int iphi_seed, int detImg_height, int detImg_width, int frame_height, int frame_width){
   std::vector<std::vector<float>> vframe = std::vector<std::vector<float>> (frame_height,std::vector<float> (frame_width, 0.0));
