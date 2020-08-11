@@ -6,9 +6,9 @@ using std::vector;
 const int search_window = 7;
 const int image_padding = 12;
 vector<int>   vFailedJetIdx_;
-//unsigned int jet_runId_;
-//unsigned int jet_lumiId_;
-//unsigned long long jet_eventId_;
+unsigned int jet_runId_;
+unsigned int jet_lumiId_;
+unsigned long long jet_eventId_;
 
 void QGProducer::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> &fs ) {
 
