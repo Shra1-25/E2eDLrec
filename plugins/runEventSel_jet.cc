@@ -50,3 +50,28 @@ bool QGProducer::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSetup
     	HcalDetId seedId = hId;
     	if ( debug ) std::cout << " >> hId.ieta:" << hId.ieta() << " hId.iphi:" << hId.iphi() << " E:" << seedE << std::endl;
    }
+	
+	
+	
+// Remove jets that failed the Seed cuts 
+  /*for(int failedJetIdx : vFailedJetIdx_)
+    vJetIdxs.erase(std::remove(vJetIdxs.begin(),vJetIdxs.end(),failedJetIdx),vJetIdxs.end());
+  if ( vJetIdxs.size() == 0){
+    if ( debug ) std::cout << " No passing jets...  " << std::endl;
+    return false;
+  }
+  
+  if ( (nJets_ > 0) && nJet != nJets_ ) return false;
+  if ( debug ) std::cout << " >> analyze: passed" << std::endl;
+  jet_eventId_ = iEvent.id().event();
+  jet_runId_ = iEvent.id().run();
+  jet_lumiId_ = iEvent.id().luminosityBlock();
+  if ( jetSelection == "dijet_gg_qq" ) {
+    fillEvtSel_jet_dijet_gg_qq( iEvent, iSetup );
+  } else {
+    fillEvtSel_jet_dijet( iEvent, iSetup );
+  }*/
+
+  return true;
+
+} // runEvtSel_jet()
