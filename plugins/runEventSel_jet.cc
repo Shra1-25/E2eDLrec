@@ -10,6 +10,9 @@ unsigned int jet_runId_;
 unsigned int jet_lumiId_;
 unsigned long long jet_eventId_;
 
+//const std::string jetSelection = "dijet_gg_qq"; // TODO: put switch at cfg level
+const std::string jetSelection = "dijet";
+
 void QGProducer::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> &fs ) {
 
   tree->Branch("eventId",        &jet_eventId_);
