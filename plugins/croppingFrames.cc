@@ -4,6 +4,7 @@
 //#include "ProdTutorial/ProducerTest/plugins/EGProducer.h"
 //#include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
 #include <vector>
+#include <iostream>
 using namespace std;
 //using namespace std::vector;
 
