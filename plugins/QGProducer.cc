@@ -80,7 +80,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    bool passedSelection = false;
    if ( doJets_ ) {
      std::cout<<" >> doJets set"<<std::endl;
-     passedSelection = runEventSel_jet( iEvent, iSetup );
+     passedSelection = runEvtSel_jet( iEvent, iSetup );
      std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" >> The jet seeds are (ieta,iphi): ";
      if (vJetSeed_ieta_.size()==0){vJetSeed_ieta_.push_back(-1); vJetSeed_iphi_.push_back(-1); std::cout<<"(-1, -1)"<<std::endl;}
