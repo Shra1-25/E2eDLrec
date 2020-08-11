@@ -10,6 +10,23 @@ vector<int>   vFailedJetIdx_;
 //unsigned int jet_lumiId_;
 //unsigned long long jet_eventId_;
 
+void QGProducer::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> &fs ) {
+
+  tree->Branch("eventId",        &jet_eventId_);
+  tree->Branch("runId",          &jet_runId_);
+  tree->Branch("lumiId",         &jet_lumiId_);
+  tree->Branch("jetSeed_iphi",   &vJetSeed_iphi_);
+  tree->Branch("jetSeed_ieta",   &vJetSeed_ieta_);
+
+  // Fill branches in explicit jet selection
+  if ( jetSelection == "dijet_gg_qq" ) {
+    branchesEvtSel_jet_dijet_gg_qq( tree, fs );
+  } else {
+    branchesEvtSel_jet_dijet( tree, fs );
+  }
+
+} // branchesEvtSel_jet()
+
 bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
    edm::ESHandle<CaloGeometry> caloGeomH_;
