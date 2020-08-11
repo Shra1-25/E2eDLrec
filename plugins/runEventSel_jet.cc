@@ -10,7 +10,7 @@ unsigned int jet_runId_;
 unsigned int jet_lumiId_;
 unsigned long long jet_eventId_;
 
-bool QGProducer::runEvtSel_jet ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
+bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
 
    edm::ESHandle<CaloGeometry> caloGeomH_;
    iSetup.get<CaloGeometryRecord>().get( caloGeomH_ );
