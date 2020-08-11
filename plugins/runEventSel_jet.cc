@@ -33,7 +33,7 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
    vJetSeed_ieta_.clear();
    
    for (unsigned iJ=0;iJ<jets->size();iJ++){
-   	bool keepJet = True;
+   	bool keepJet = true;
     	int iphi = -1;
     	int ieta = -1;
 	reco::PFJetRef iJet( jets, iJ );
