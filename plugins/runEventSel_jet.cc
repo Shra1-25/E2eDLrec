@@ -37,11 +37,11 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
     	int iphi = -1;
     	int ieta = -1;
 	reco::PFJetRef iJet( jets, iJ );
-	if ( debug ) std::cout << " >> jet[" << thisJetIdx << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
+	if ( debug ) std::cout << " >> jet[" << iJ << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
 			   << " jetE:" << iJet->energy() << " jetM:" << iJet->mass() << std::endl;
 	HcalDetId hId( spr::findDetIdHCAL( caloGeom, iJet->eta(), iJet->phi(), false ) );
     	if ( hId.subdet() != HcalBarrel && hId.subdet() != HcalEndcap ){
-      		vFailedJetIdx_.push_back(thisJetIdx);
+      		vFailedJetIdx_.push_back(iJ);
       		continue;
     	}
 	   
@@ -96,7 +96,7 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
     	// Required to keep the seed at the image center
     	if ( HBHE_IETA_MAX_HE-1 - ietaAbs_ < image_padding ) { 
       	if ( debug ) std::cout << " Fail HE edge cut " << std::endl;
-      	vFailedJetIdx_.push_back(thisJetIdx);
+      	vFailedJetIdx_.push_back(iJ);
       	continue;
     	}
     	// Save position of most energetic HBHE tower
