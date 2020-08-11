@@ -101,7 +101,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      std::unique_ptr<std::vector<int>> JetSeediphi_edm (new std::vector<int>(vJetSeed_iphi_));
      iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
      iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
-     vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
+     //vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
    } else {
      std::cout<<" >> doJets not set"<<std::endl;
      passedSelection = runEvtSel( iEvent, iSetup );
