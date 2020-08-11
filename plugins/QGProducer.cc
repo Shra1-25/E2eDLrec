@@ -178,12 +178,12 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
      file2<<"\n";
     }*/
-    vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
-    vTracksAtECALstitchedClass.push_back(predict_tf(vTracksAtECALstitched_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+    //vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
+    //vTracksAtECALstitchedClass.push_back(predict_tf(vTracksAtECALstitched_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
     }
     else {
-     //vECALstitchedClass.push_back(-1);
-     //vTracksAtECALstitchedClass.push_back(-1);
+     vECALstitchedClass.push_back(-1);
+     vTracksAtECALstitchedClass.push_back(-1);
     }
     //std::cout<<" >> Predicted Class of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
     //std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedClass[idx]<<std::endl<<std::endl;
