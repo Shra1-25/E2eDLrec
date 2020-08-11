@@ -192,9 +192,9 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    
   
    std::vector<float> vHBHEenergy=*HBHEenergy_handle;
-   std::cout<<"Size of HBHE energy vector read: "<<vHBHEenergy.size()<<std::endl;
+   std::cout<<" >> Size of HBHE energy vector read: "<<vHBHEenergy.size()<<std::endl;
    std::vector<std::vector<float>> vHBHEenergy_strided = frameStriding(vHBHEenergy,56,72,5,5);
-   std::cout<<"Size of Strided HBHE energy vector: ("<<vHBHEenergy_strided.size()<<","<<vHBHEenergy_strided[0].size()<<")"<<std::endl; //HBHE energy vector upsampled.
+   std::cout<<" >> Size of Strided HBHE energy vector: ("<<vHBHEenergy_strided.size()<<","<<vHBHEenergy_strided[0].size()<<")"<<std::endl; //HBHE energy vector upsampled.
    std::vector<float> vHBHE_strided_flat (vHBHEenergy_strided.size()*vHBHEenergy_strided[0].size(),0);
    for (int x=0;x<int(vHBHEenergy_strided.size());x++){
     for (int y=0;y<int(vHBHEenergy_strided[0].size());y++){
