@@ -66,9 +66,21 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  out_size.clear();
  for (int dims_idx=0;dims_idx<outputs[0].shape().dims();dims_idx++){
   out_size.push_back(outputs[0].shape().dim_size(dims_idx));
-  std::cout<<" >> Size of prediction vector is: "<<out_size[dims_idx]<<" ";
  }
- std::cout<<std::endl;
+ if (out_size.size()>2){std::cout<<" * Output dimensions greater than 2. Please flatten the output size and reduce dimensions to atmost 2."<<std::endl;}
+ else {
+  std::cout<<" >> Size of prediction vector is: ["<<out_size[0]<<", "<<out_size[1]<<"]";
+  std::cout<<std::endl;
+ }
+ if (out_size[0]>1) {int pred_len=out_size[0]; dim_sel=0;}
+ else if (out_size[1]>1) {int pred_len=out_size[1]; dim_sel=1;}
+ else std::cout<<" * Expected flat vector of predictions of size [1,n] or [n,1]"<<std::endl;
+ for (int out_idx=0;out_idx<outputs.size();out_idx++){
+  for (int pred_idx=0;pred_idx<pred_len;pred_idx++){ 
+   predictions[out_idx][pred_idx]=outputs[out_idx].vec<float>()(pred_idx);
+   std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[out_idx][pred_idx]; 
+  }
+ }
  /*if (dims_shape!=2){std::cout<<"* Output dimensions greater than 2. Please flatten the output size and reduce dimensions to atmost 2."<<std::endl;}
  else {
   for (int out_idx=0;out_idx<dims_shape[0];out_idx++){
