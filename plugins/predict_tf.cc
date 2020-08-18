@@ -60,8 +60,25 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
  float classifier_out = outputs[0].matrix<float>()(0,0);
  //std::cout << "Output 0: " <<  max_out << std::endl;
- std::vector<float> predictions=outputs[0].vec<float>();
- std::cout<<" >> Size of prediction vector is: "<<predictions.size()<<std::endl;
+ std::vector<int> dims_shape;
+ std::vector<std::vector<float>> predictions;
+ predictions.clear();
+ dims_shape.clear();
+ for (int dims_idx=0;dims_idx<outputs.shape().dims();dims_idx++){
+  dims_shape.push_back(outputs.shape().dims_size(dims_idx));
+ }
+ if (dims_shape!=2){std::cout<<"* Output dimensions greater than 2. Please flatten the output size and reduce dimensions to atmost 2."<<std::endl;}
+ else {
+  for (out_idx=0;out_idx<dims_shape[0];out_idx++){
+   for (pred_idx=0;pred_idx<dims_shape[1];pred_idx++){
+    predictions[out_idx][pred_idx]=outputs[out_idx][pred_idx];
+    std::cout<<" >> prediction: "<<out_idx<<":"<<pred_idx<<"= "<<predictions[out_idx][pred_idx];
+  }
+  std::cout<<std::endl;
+  std::cout<<" >> Size of prediction vector "<<out_idx<<" is: "<<predictions[out_idx].size()<<std::endl;
+ }
+ std::cout<<" >> Number of samples of predictions is: "<<predictions.size()<<std::endl;
+ }
  std::cout<<" >> Class: "<<classifier_out<<endl;
  outputs.clear();
   
