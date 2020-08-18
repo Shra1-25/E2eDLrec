@@ -63,7 +63,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  std::vector<int> out_size;
  std::vector<std::vector<float>> predictions;
  int pred_len=1;
- 
+ int dim_sel=1;
  predictions.clear();
  out_size.clear();
  for (int dims_idx=0;dims_idx<outputs[0].shape().dims();dims_idx++){
@@ -74,8 +74,8 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
   std::cout<<" >> Size of prediction vector is: ["<<out_size[0]<<", "<<out_size[1]<<"]";
   std::cout<<std::endl;
  }
- if (out_size[0]>1) { pred_len=out_size[0]; int dim_sel=0;}
- else if (out_size[1]>1) { pred_len=out_size[1]; int dim_sel=1;}
+ if (out_size[0]>1) { pred_len=out_size[0]; dim_sel=0;}
+ else if (out_size[1]>1) { pred_len=out_size[1]; dim_sel=1;}
  else if (out_size[0]>1 && out_size[1]>1) {pred_len=1; std::cout<<" * Expected flat vector of predictions of size [1,n] or [n,1]. Storing just the first value (0,0) as prediction."<<std::endl;}
  for (int out_idx=0;out_idx<int(outputs.size());out_idx++){
   for (int pred_idx=0;pred_idx<pred_len;pred_idx++){ 
