@@ -69,8 +69,8 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  }
  if (dims_shape!=2){std::cout<<"* Output dimensions greater than 2. Please flatten the output size and reduce dimensions to atmost 2."<<std::endl;}
  else {
-  for (out_idx=0;out_idx<dims_shape[0];out_idx++){
-   for (pred_idx=0;pred_idx<dims_shape[1];pred_idx++){
+  for (int out_idx=0;out_idx<dims_shape[0];out_idx++){
+   for (int pred_idx=0;pred_idx<dims_shape[1];pred_idx++){
     predictions[out_idx][pred_idx]=outputs[out_idx][pred_idx];
     std::cout<<" >> prediction: "<<out_idx<<":"<<pred_idx<<"= "<<predictions[out_idx][pred_idx];
   }
