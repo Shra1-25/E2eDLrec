@@ -31,9 +31,9 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
     std::cout<<" >> Reshape not successfull."<<endl;
   }
  // Set GPU options
- //graph::SetDefaultDevice("/gpu:0", &graph_def);
- //opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
- //opts.config.mutable_gpu_options()->set_allow_growth(true);
+ graph::SetDefaultDevice("/gpu:0", &graph_def);
+ opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
+ opts.config.mutable_gpu_options()->set_allow_growth(true);
  
  
  
