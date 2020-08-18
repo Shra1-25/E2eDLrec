@@ -79,7 +79,8 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  else if (out_size[0]>1 && out_size[1]>1) {pred_len=1; std::cout<<" * Expected flat vector of predictions of size [1,n] or [n,1]"<<std::endl;}
  for (int out_idx=0;out_idx<int(outputs.size());out_idx++){
   for (int pred_idx=0;pred_idx<pred_len;pred_idx++){ 
-   predictions[out_idx][pred_idx]=outputs[out_idx].vec<float>()(pred_idx);
+   if(dim_sel==0) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(pred_idx,0);
+   if(dim_sel==1) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,pred_idx);
    std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[out_idx][pred_idx]; 
   }
  }
