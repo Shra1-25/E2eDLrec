@@ -60,7 +60,8 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
  float classifier_out = outputs[0].matrix<float>()(0,0);
  //std::cout << "Output 0: " <<  max_out << std::endl;
- 
+ std::vector<float> predictions=outputs[0].vec<float>();
+ std::cout<<" >> Size of prediction vector is: "<<predictions.size()<<std::endl;
  std::cout<<" >> Class: "<<classifier_out<<endl;
  outputs.clear();
   
