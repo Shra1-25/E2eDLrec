@@ -58,6 +58,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  //std::cout << "Cost: " <<  cost << std::endl;
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
  //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
+ std::cout<<"Number of samples is: "<<outputs.size()<<std::endl;
  float classifier_out = outputs[0].matrix<float>()(0,0);
  //std::cout << "Output 0: " <<  max_out << std::endl;
  std::vector<int> out_size;
@@ -79,8 +80,11 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  else if (out_size[0]>1 && out_size[1]>1) {pred_len=1; std::cout<<" * Expected flat vector of predictions of size [1,n] or [n,1]. Storing just the first value (0,0) as prediction."<<std::endl;}
  for (int out_idx=0;out_idx<int(outputs.size());out_idx++){
   for (int pred_idx=0;pred_idx<pred_len;pred_idx++){ 
+   std::cout<<"Stage 1"<<std::endl;
    if(dim_sel==0) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(pred_idx,0);
+   std::cout<<"Stage 2"<<std::endl;
    else if(dim_sel==1) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,pred_idx);
+   std::cout<<"Stage 3"<<std::endl;
    else {predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,0);}
    std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[out_idx][pred_idx]; 
   }
