@@ -13,7 +13,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  std::cout<<" >> Running Inference."<<endl;
  int frame_height = vinputFrame.size();
  int frame_width = vinputFrame[0].size();
- TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
+ //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
  tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef(graph_definition);
  tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({frame_height, frame_width}));
@@ -32,10 +32,15 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
     std::cout<<" >> Reshape not successfull."<<endl;
   }
  // Set GPU options
- graph::SetDefaultDevice("/gpu:0", &graph_def);
- opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
- opts.config.mutable_gpu_options()->set_allow_growth(true);
- 
+ //graph::SetDefaultDevice("/gpu:0", &graph_def);
+ //opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
+ //opts.config.mutable_gpu_options()->set_allow_growth(true);
+ int GPUID = std::stoi(params->getGpuDeviceStr());
+ setenv("CUDA_VISIBLE_DEVICES", "", GPUID);
+
+ std::cout << "Initial  visible_device_list : "<<session_options.config.gpu_options().visible_device_list() << std::endl;
+ session_options.config.mutable_gpu_options()->set_allow_growth(true);
+ session_options.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(params->getGpuMemoryRatio());
  
  
  // Load graph into session
