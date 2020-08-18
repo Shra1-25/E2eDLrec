@@ -65,7 +65,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  predictions.clear();
  out_size.clear();
  for (int dims_idx=0;dims_idx<outputs[0].shape().dims();dims_idx++){
-  out_size.push_back(outputs.shape().out_size(dims_idx));
+  out_size.push_back(outputs[0].shape().dim_size(dims_idx));
   std::cout<<" >> Size of prediction vector is: "<<out_size[dims_idx]<<" ";
  }
  std::cout<<std::endl;
