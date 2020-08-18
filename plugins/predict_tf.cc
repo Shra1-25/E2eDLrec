@@ -81,10 +81,8 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  for (int out_idx=0;out_idx<int(outputs.size());out_idx++){
   for (int pred_idx=0;pred_idx<pred_len;pred_idx++){ 
    std::cout<<"Stage 1"<<std::endl;
-   if(dim_sel==0) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(pred_idx,0);
-   std::cout<<"Stage 2"<<std::endl;
-   else if(dim_sel==1) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,pred_idx);
-   std::cout<<"Stage 3"<<std::endl;
+   if(dim_sel==0) {predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(pred_idx,0); std::cout<<"Stage 2"<<std::endl;}
+   else if(dim_sel==1) {predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,pred_idx); std::cout<<"Stage 3"<<std::endl;}
    else {predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,0);}
    std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[out_idx][pred_idx]; 
   }
