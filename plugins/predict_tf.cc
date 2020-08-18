@@ -58,14 +58,16 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  //std::cout << "Cost: " <<  cost << std::endl;
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
  //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
- std::cout<<"Number of samples is: "<<outputs.size()<<std::endl;
+ std::cout<<"  >> Number of samples is: "<<outputs.size()<<std::endl;
  float classifier_out = outputs[0].matrix<float>()(0,0);
  //std::cout << "Output 0: " <<  max_out << std::endl;
  std::vector<int> out_size;
- std::vector<std::vector<float>> predictions;
+ std::vector<float> predictions;
+ std::vector<std::vector<float>> full_predictions; 
  int pred_len=1;
  int dim_sel=1;
  predictions.clear();
+ full_predictions.clear();
  out_size.clear();
  for (int dims_idx=0;dims_idx<outputs[0].shape().dims();dims_idx++){
   out_size.push_back(outputs[0].shape().dim_size(dims_idx));
@@ -81,12 +83,16 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  for (int out_idx=0;out_idx<int(outputs.size());out_idx++){
   for (int pred_idx=0;pred_idx<pred_len;pred_idx++){ 
    std::cout<<"Stage 1"<<std::endl;
-   if(dim_sel==0) {predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(pred_idx,0); std::cout<<"Stage 2"<<std::endl;}
-   else if(dim_sel==1) {predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,pred_idx); std::cout<<"Stage 3"<<std::endl;}
+   if(dim_sel==0) {predictions.push_back(outputs[out_idx].matrix<float>()(pred_idx,0)); std::cout<<"Stage 2"<<std::endl;}
+   else if(dim_sel==1) {predictions.push_back(outputs[out_idx].matrix<float>()(0,pred_idx)); std::cout<<"Stage 3"<<std::endl;}
    else {predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,0);}
    std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[out_idx][pred_idx]; 
   }
+  full_predictions.push_back(predictions);
+  predictions.clear();
  }
+ std::cout<<"Size of full pred= "<<full_predictions.size()<<std::endl;
+ std::cout<<"Size of each element of full pred= "<<full_predictions[0].size()<<std::endl;
  /*if (dims_shape!=2){std::cout<<"* Output dimensions greater than 2. Please flatten the output size and reduce dimensions to atmost 2."<<std::endl;}
  else {
   for (int out_idx=0;out_idx<dims_shape[0];out_idx++){
