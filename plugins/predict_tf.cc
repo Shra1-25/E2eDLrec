@@ -9,7 +9,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  TF_CHECK_OK(NewSession(opts, &session));
  
  std::string graph_definition="ProducerTest/plugins/"+model_filename;
- std::cout<<" >> Welcome to the classifier."<<endl;
+ std::cout<<" >> Running Inference."<<endl;
  int frame_height = vinputFrame.size();
  int frame_width = vinputFrame[0].size();
  //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
@@ -73,38 +73,23 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
   out_size.push_back(outputs[0].shape().dim_size(dims_idx));
  }
  if (out_size.size()>2){std::cout<<" * Output dimensions greater than 2. Please flatten the output size and reduce dimensions to atmost 2."<<std::endl;}
- else {
-  std::cout<<" >> Size of prediction vector is: ["<<out_size[0]<<", "<<out_size[1]<<"]";
-  std::cout<<std::endl;
- }
+ else { 
  if (out_size[0]>1) { pred_len=out_size[0]; dim_sel=0;}
  else if (out_size[1]>1) { pred_len=out_size[1]; dim_sel=1;}
  else if (out_size[0]>1 && out_size[1]>1) {pred_len=1; std::cout<<" * Expected flat vector of predictions of size [1,n] or [n,1]. Storing just the first value (0,0) as prediction."<<std::endl;}
  for (int out_idx=0;out_idx<int(outputs.size());out_idx++){
   for (int pred_idx=0;pred_idx<pred_len;pred_idx++){ 
-   std::cout<<"Stage 1"<<std::endl;
-   if(dim_sel==0) {predictions.push_back(outputs[out_idx].matrix<float>()(pred_idx,0)); std::cout<<"Stage 2"<<std::endl;}
-   else if(dim_sel==1) {predictions.push_back(outputs[out_idx].matrix<float>()(0,pred_idx)); std::cout<<"Stage 3"<<std::endl;}
+   if(dim_sel==0) {predictions.push_back(outputs[out_idx].matrix<float>()(pred_idx,0));}
+   else if(dim_sel==1) {predictions.push_back(outputs[out_idx].matrix<float>()(0,pred_idx));}
    else {predictions.push_back(outputs[out_idx].matrix<float>()(0,0));}
-   std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[pred_idx]; 
+   std::cout<<" >> Prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[pred_idx]<<std::endl; 
   }
   full_predictions.push_back(predictions);
   predictions.clear();
  }
- std::cout<<"Size of full pred= "<<full_predictions.size()<<std::endl;
- std::cout<<"Size of each element of full pred= "<<full_predictions[0].size()<<std::endl;
- /*if (dims_shape!=2){std::cout<<"* Output dimensions greater than 2. Please flatten the output size and reduce dimensions to atmost 2."<<std::endl;}
- else {
-  for (int out_idx=0;out_idx<dims_shape[0];out_idx++){
-   for (int pred_idx=0;pred_idx<dims_shape[1];pred_idx++){
-    predictions[out_idx][pred_idx]=outputs[out_idx][pred_idx];
-    std::cout<<" >> prediction: "<<out_idx<<":"<<pred_idx<<"= "<<predictions[out_idx][pred_idx];
-  }
-  std::cout<<std::endl;
-  std::cout<<" >> Size of prediction vector "<<out_idx<<" is: "<<predictions[out_idx].size()<<std::endl;
+ std::cout<<"Size of prediction vector is= "<<full_predictions.size()<<std::endl;
+ //std::cout<<"Size of each element of full pred= "<<full_predictions[0].size()<<std::endl;
  }
- std::cout<<" >> Number of samples of predictions is: "<<predictions.size()<<std::endl;
- }*/
  std::cout<<" >> Class: "<<classifier_out<<endl;
  outputs.clear();
   
