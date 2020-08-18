@@ -76,11 +76,12 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  }
  if (out_size[0]>1) { pred_len=out_size[0]; int dim_sel=0;}
  else if (out_size[1]>1) { pred_len=out_size[1]; int dim_sel=1;}
- else if (out_size[0]>1 && out_size[1]>1) {pred_len=1; std::cout<<" * Expected flat vector of predictions of size [1,n] or [n,1]"<<std::endl;}
+ else if (out_size[0]>1 && out_size[1]>1) {pred_len=1; std::cout<<" * Expected flat vector of predictions of size [1,n] or [n,1]. Storing just the first value as prediction."<<std::endl;}
  for (int out_idx=0;out_idx<int(outputs.size());out_idx++){
   for (int pred_idx=0;pred_idx<pred_len;pred_idx++){ 
    if(dim_sel==0) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(pred_idx,0);
-   if(dim_sel==1) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,pred_idx);
+   else if(dim_sel==1) predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,pred_idx);
+   else {predictions[out_idx][pred_idx]=outputs[out_idx].matrix<float>()(0,0);}
    std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[out_idx][pred_idx]; 
   }
  }
