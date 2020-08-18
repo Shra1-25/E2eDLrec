@@ -58,7 +58,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  //std::cout << "Cost: " <<  cost << std::endl;
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
  //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
- std::cout<<"  >> Number of samples is: "<<outputs.size()<<std::endl;
+ std::cout<<" >> Number of samples is: "<<outputs.size()<<std::endl;
  float classifier_out = outputs[0].matrix<float>()(0,0);
  //std::cout << "Output 0: " <<  max_out << std::endl;
  std::vector<int> out_size;
@@ -87,7 +87,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
   full_predictions.push_back(predictions);
   predictions.clear();
  }
- std::cout<<"Size of prediction vector is= "<<full_predictions.size()<<std::endl;
+ //std::cout<<" >> Size of prediction vector is= "<<full_predictions.size()<<std::endl;
  //std::cout<<"Size of each element of full pred= "<<full_predictions[0].size()<<std::endl;
  }
  std::cout<<" >> Class: "<<classifier_out<<endl;
