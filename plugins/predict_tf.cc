@@ -35,12 +35,12 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  //graph::SetDefaultDevice("/gpu:0", &graph_def);
  //opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
  //opts.config.mutable_gpu_options()->set_allow_growth(true);
- int GPUID = std::stoi(params->getGpuDeviceStr());
- setenv("CUDA_VISIBLE_DEVICES", "", GPUID);
+ //int GPUID = std::stoi(params->getGpuDeviceStr());
+ //setenv("CUDA_VISIBLE_DEVICES", "", GPUID);
 
- std::cout << "Initial  visible_device_list : "<<session_options.config.gpu_options().visible_device_list() << std::endl;
- session_options.config.mutable_gpu_options()->set_allow_growth(true);
- session_options.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(params->getGpuMemoryRatio());
+ //std::cout << "Initial  visible_device_list : "<<opts.config.gpu_options().visible_device_list() << std::endl;
+ opts.config.mutable_gpu_options()->set_allow_growth(true);
+ opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(params->getGpuMemoryRatio());
  
  
  // Load graph into session
