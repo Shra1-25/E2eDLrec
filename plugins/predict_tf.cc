@@ -13,7 +13,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  std::cout<<" >> Running Inference."<<endl;
  int frame_height = vinputFrame.size();
  int frame_width = vinputFrame[0].size();
- //TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
+ TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
  // load the graph definition, i.e. an object that contains the computational graph
  tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef(graph_definition);
  tensorflow::Tensor tmp(tensorflow::DT_FLOAT, tensorflow::TensorShape({frame_height, frame_width}));
