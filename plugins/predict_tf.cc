@@ -86,7 +86,7 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
    if(dim_sel==0) {predictions.push_back(outputs[out_idx].matrix<float>()(pred_idx,0)); std::cout<<"Stage 2"<<std::endl;}
    else if(dim_sel==1) {predictions.push_back(outputs[out_idx].matrix<float>()(0,pred_idx)); std::cout<<"Stage 3"<<std::endl;}
    else {predictions.push_back(outputs[out_idx].matrix<float>()(0,0));}
-   std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[out_idx][pred_idx]; 
+   std::cout<<"prediction at ("<<out_idx<<", "<<pred_idx<<") is: "<<predictions[pred_idx]; 
   }
   full_predictions.push_back(predictions);
   predictions.clear();
