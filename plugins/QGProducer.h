@@ -100,7 +100,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<EcalRecHitCollection> EBRecHitCollectionT_;
       edm::EDGetTokenT<HBHERecHitCollection> HBHERecHitCollectionT_;
       edm::EDGetTokenT<std::vector<float>> ECALstitched_energy_token;
-      edm::EDGetTokenT<std::vector<float>> TracksAtECALstitched_token;
+      edm::EDGetTokenT<std::vector<float>> TracksAtECALstitchedPt_token;
       //edm::EDGetTokenT<std::vector<int>> JetSeed_ieta_token;
       //edm::EDGetTokenT<std::vector<int>> JetSeed_iphi_token;
       edm::EDGetTokenT<std::vector<float>> HBHEenergy_token;
@@ -137,7 +137,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vHBHEenergy_frame;
       std::vector<std::vector<float>> vECALstitched_frame;
-      std::vector<std::vector<float>> vTracksAtECALstitched_frame;
+      std::vector<std::vector<float>> vTracksAtECALstitchedPt_frame;
       std::vector<float> vclasses;
       vector<int> vJetSeed_iphi_;
       vector<int> vJetSeed_ieta_;
