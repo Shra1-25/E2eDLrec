@@ -57,6 +57,12 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
     	int iphi = -1;
     	int ieta = -1;
 	reco::PFJetRef iJet( jets, iJ );
+	   
+	// Jet selection criteria
+    	if ( std::abs(iJet->pt())  < minJetPt ) keepJet = False;
+    	if ( std::abs(iJet->eta()) > maxJetEta ) keepJet = False;
+	
+	if (keepJet){
 	if ( debug ) std::cout << " >> jet[" << iJ << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
 			   << " jetE:" << iJet->energy() << " jetM:" << iJet->mass() << std::endl;
 	HcalDetId hId( spr::findDetIdHCAL( caloGeom, iJet->eta(), iJet->phi(), false ) );
@@ -122,6 +128,7 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
     	// Save position of most energetic HBHE tower
     	// in EB-aligned coordinates
     	if ( debug ) std::cout << " !! ieta_:" << ieta_ << " iphi_:" << iphi_ << " ietaAbs_:" << ietaAbs_ << " E:" << seedE << std::endl;
+	}
     	vJetSeed_iphi_.push_back( iphi_ );
     	vJetSeed_ieta_.push_back( ieta_ );
     	nJet++;
