@@ -179,7 +179,6 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       bool doJets_;
       int  nJets_;*/
       int iphi_Emax, ieta_Emax;
-      
       /*double minJetPt_;
       double maxJetEta_;
       double z0PVCut_;*/
