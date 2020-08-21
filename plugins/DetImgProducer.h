@@ -28,6 +28,7 @@
 #include "Geometry/TrackerGeometryBuilder/interface/StripGeomDetUnit.h"
 
 #include "Calibration/IsolatedParticles/interface/DetIdFromEtaPhi.h"
+#include "Calibration/IsolatedParticles/interface/CaloPropagateTrack.h"
 
 #include "DQM/HcalCommon/interface/Constants.h"
 
