@@ -218,6 +218,12 @@ class DetImgProducer : public edm::stream::EDProducer<> {
 
 static const bool debug = false;
 
+static const std::string projections[Nproj] = {"", "_atECAL", "_atHCAL","_atECALfixIP","_atECALfixIPfromPV"}; //57425
+static const std::string hit_projections[Nhitproj] = {"", "_atPV"};
+static const std::string adj_projections[Nadjproj] = {"_5x5", "_3x3"};
+static const int eta_nbins_HBHE = 2*(HBHE_IETA_MAX_HE-1);
+static const int granularityMultiECAL=5;
+
 static const int nEE = 2;
 static const int nTOB = 6;
 static const int nTEC = 9;
