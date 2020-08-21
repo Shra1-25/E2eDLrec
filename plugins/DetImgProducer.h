@@ -75,6 +75,7 @@ using pat::PhotonRef;*/
 using reco::PhotonCollection;
 using reco::PhotonRef;
 
+static const unsigned int Nadjproj = 2;
 
 class DetImgProducer : public edm::stream::EDProducer<> {
    public:
@@ -112,7 +113,7 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<EBDigiCollection>     EBDigiCollectionT_;
    
       static const int nPhotons = 2;
-   
+      
       TProfile2D *hEB_energy;
       TProfile2D *hEB_time;
       //TProfile2D *hEB_frame;
