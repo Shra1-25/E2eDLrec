@@ -68,6 +68,8 @@
 #include "TBenchmark.h"
 #include "TRandom.h"
 #include "TSystem.h"
+#include "TVector3.h"
+#include "TVector2.h"
 #include <iostream>
 using namespace std;
 /*using pat::PhotonCollection;
