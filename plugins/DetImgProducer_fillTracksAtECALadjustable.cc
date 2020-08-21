@@ -1,4 +1,4 @@
-#include "ProducerTest/plugins/DetImgProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 //#include "Calibration/IsolatedParticles/interface/DetIdFromEtaPhi.h"
 
 // Fill adjustable EEm_EB_EEp image /////////////////////............/
