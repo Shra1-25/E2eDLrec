@@ -17,27 +17,27 @@
 
 TH2F *hEvt_Adj_tracks[Nadjproj];
 TH2F *hEvt_Adj_tracksPt[Nadjproj];
-TH2F *hEvt_Adj_tracksQPt[Nadjproj];
+/*TH2F *hEvt_Adj_tracksQPt[Nadjproj];
 TH2F *hEvt_Adj_tracksD0[Nadjproj];
-TH2F *hEvt_Adj_tracksDz[Nadjproj];
+TH2F *hEvt_Adj_tracksDz[Nadjproj];*/
 TH2F *hEvt_Adj_tracksPt_max[Nadjproj];
-TH2F *hEvt_Adj_tracksD0_max[Nadjproj];
-TH2F *hEvt_Adj_tracksDz_max[Nadjproj];
+/*TH2F *hEvt_Adj_tracksD0_max[Nadjproj];
+TH2F *hEvt_Adj_tracksDz_max[Nadjproj];*/
 
 TH2F *hECALadj_tracks[Nadjproj];
 TH2F *hECALadj_tracksPt[Nadjproj];
-TH2F *hECALadj_tracksQPt[Nadjproj];
+/*TH2F *hECALadj_tracksQPt[Nadjproj];
 TH2F *hECALadj_tracksD0[Nadjproj];
-TH2F *hECALadj_tracksDz[Nadjproj];
+TH2F *hECALadj_tracksDz[Nadjproj];*/
 
 std::vector<float> vECALadj_tracksPt_[Nadjproj];
-std::vector<float> vECALadj_tracksQPt_[Nadjproj];
+/*std::vector<float> vECALadj_tracksQPt_[Nadjproj];
 std::vector<float> vECALadj_tracksD0_[Nadjproj];
-std::vector<float> vECALadj_tracksDz_[Nadjproj];
+std::vector<float> vECALadj_tracksDz_[Nadjproj];*/
 std::vector<float> vECALadj_tracks_[Nadjproj];
 std::vector<float> vECALadj_tracksPt_max_[Nadjproj];
-std::vector<float> vECALadj_tracksD0_max_[Nadjproj];
-std::vector<float> vECALadj_tracksDz_max_[Nadjproj];
+/*std::vector<float> vECALadj_tracksD0_max_[Nadjproj];
+std::vector<float> vECALadj_tracksDz_max_[Nadjproj];*/
 
 
 // TODO Take the D0 and Dz values from the highest pT track for endcap regions
@@ -50,12 +50,12 @@ void DetImgProducer::branchesTracksAtECALadjustable ( TTree* tree, edm::Service<
     // Branches for images
     tree->Branch((std::string("ECALadj_tracks")+adj_projections[proj]).c_str(),      &(vECALadj_tracks_[proj]));
     tree->Branch((std::string("ECALadj_tracksPt")+adj_projections[proj]).c_str(),    &(vECALadj_tracksPt_[proj]));
-    tree->Branch((std::string("ECALadj_tracksQPt")+adj_projections[proj]).c_str(),    &(vECALadj_tracksPt_[proj]));
+    /*tree->Branch((std::string("ECALadj_tracksQPt")+adj_projections[proj]).c_str(),    &(vECALadj_tracksPt_[proj]));
     tree->Branch((std::string("ECALadj_tracksD0")+adj_projections[proj]).c_str(),    &(vECALadj_tracksD0_[proj]));
-    tree->Branch((std::string("ECALadj_tracksDz")+adj_projections[proj]).c_str(),    &(vECALadj_tracksDz_[proj]));
+    tree->Branch((std::string("ECALadj_tracksDz")+adj_projections[proj]).c_str(),    &(vECALadj_tracksDz_[proj]));*/
     tree->Branch((std::string("ECALadj_tracksPt_maxPt")+adj_projections[proj]).c_str(),    &(vECALadj_tracksPt_max_[proj]));
-    tree->Branch((std::string("ECALadj_tracksD0_maxPt")+adj_projections[proj]).c_str(),    &(vECALadj_tracksD0_max_[proj]));
-    tree->Branch((std::string("ECALadj_tracksDz_maxPt")+adj_projections[proj]).c_str(),    &(vECALadj_tracksDz_max_[proj]));
+    /*tree->Branch((std::string("ECALadj_tracksD0_maxPt")+adj_projections[proj]).c_str(),    &(vECALadj_tracksD0_max_[proj]));
+    tree->Branch((std::string("ECALadj_tracksDz_maxPt")+adj_projections[proj]).c_str(),    &(vECALadj_tracksDz_max_[proj]));*/
 
     // std::vector<double> adjEtaBins;
     // std::vector<double> adjPhiBins;
@@ -84,7 +84,7 @@ void DetImgProducer::branchesTracksAtECALadjustable ( TTree* tree, edm::Service<
     hECALadj_tracksPt[proj] = fs->make<TH2F>((std::string("ECALadj_tracksPt")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
         adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
-    hECALadj_tracksQPt[proj] = fs->make<TH2F>((std::string("ECALadj_tracksQPt")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
+    /*hECALadj_tracksQPt[proj] = fs->make<TH2F>((std::string("ECALadj_tracksQPt")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
         adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
     hECALadj_tracksD0[proj] = fs->make<TH2F>((std::string("ECALadj_tracksD0")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
@@ -92,7 +92,7 @@ void DetImgProducer::branchesTracksAtECALadjustable ( TTree* tree, edm::Service<
         adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
     hECALadj_tracksDz[proj] = fs->make<TH2F>((std::string("ECALadj_tracksDz")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
-        adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
+        adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );*/
 
 
     hEvt_Adj_tracks[proj] = new TH2F((std::string("evt_Adj_tracks")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
@@ -101,7 +101,7 @@ void DetImgProducer::branchesTracksAtECALadjustable ( TTree* tree, edm::Service<
     hEvt_Adj_tracksPt[proj] = new TH2F((std::string("evt_Adj_tracksPt")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
         adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
-    hEvt_Adj_tracksQPt[proj] = new TH2F((std::string("evt_Adj_tracksQPt")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
+    /*hEvt_Adj_tracksQPt[proj] = new TH2F((std::string("evt_Adj_tracksQPt")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
         adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
     hEvt_Adj_tracksD0[proj] = new TH2F((std::string("evt_Adj_tracksD0")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
@@ -109,16 +109,16 @@ void DetImgProducer::branchesTracksAtECALadjustable ( TTree* tree, edm::Service<
         adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
     hEvt_Adj_tracksDz[proj] = new TH2F((std::string("evt_Adj_tracksDz")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
-        adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
+        adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );*/
     hEvt_Adj_tracksPt_max[proj] = new TH2F((std::string("evt_Adj_tracksPt_max")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
         adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
-    hEvt_Adj_tracksD0_max[proj] = new TH2F((std::string("evt_Adj_tracksD0_max")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
+    /*hEvt_Adj_tracksD0_max[proj] = new TH2F((std::string("evt_Adj_tracksD0_max")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
         adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
     hEvt_Adj_tracksDz_max[proj] = new TH2F((std::string("evt_Adj_tracksDz_max")+adj_projections[proj]).c_str(), "E(#phi,#eta);#phi;#eta",
         totalPhiBins[proj], -TMath::Pi(), TMath::Pi(),
-        adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );
+        adjEtaBins[proj].size()-1, &adjEtaBins[proj][0] );*/
 
 
   }
@@ -284,20 +284,20 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
 
   vECALadj_tracks_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksPt_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
-  vECALadj_tracksQPt_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
+  /*vECALadj_tracksQPt_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksD0_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
-  vECALadj_tracksDz_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
+  vECALadj_tracksDz_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );*/
   vECALadj_tracksPt_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
-  vECALadj_tracksD0_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
-  vECALadj_tracksDz_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
+  /*vECALadj_tracksD0_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
+  vECALadj_tracksDz_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );*/
   hEvt_Adj_tracks[proj]->Reset();
   hEvt_Adj_tracksPt[proj]->Reset();
-  hEvt_Adj_tracksQPt[proj]->Reset();
+  /*hEvt_Adj_tracksQPt[proj]->Reset();
   hEvt_Adj_tracksD0[proj]->Reset();
-  hEvt_Adj_tracksDz[proj]->Reset();
+  hEvt_Adj_tracksDz[proj]->Reset();*/
   hEvt_Adj_tracksPt_max[proj]->Reset();
-  hEvt_Adj_tracksD0_max[proj]->Reset();
-  hEvt_Adj_tracksDz_max[proj]->Reset();
+  /*hEvt_Adj_tracksD0_max[proj]->Reset();
+  hEvt_Adj_tracksDz_max[proj]->Reset();*/
 
   edm::Handle<EcalRecHitCollection> EBRecHitsH_;
   iEvent.getByToken( EBRecHitCollectionT_, EBRecHitsH_ );
@@ -343,10 +343,10 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
     if ( std::abs(eta) > 3. || !isPropagationOk ) continue;
 
     trackPt_ = iTk->pt();
-    trackQPt_ = iTk->pt()*iTk->charge();
+    /*trackQPt_ = iTk->pt()*iTk->charge();
 
     trackD0_ = -iTk->dxy(the_PV.position());
-    trackDz_ = iTk->dz(the_PV.position());
+    trackDz_ = iTk->dz(the_PV.position());*/
  
     DetId id( spr::findDetIdECAL( caloGeom, eta, phi, false ) );
     if ( id.subdetId() == EcalEndcap )
@@ -360,21 +360,21 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
 
       hEvt_Adj_tracks[proj]->Fill( phi, eta );
       hEvt_Adj_tracksPt[proj]->Fill( phi, eta, trackPt_ );
-      hEvt_Adj_tracksQPt[proj]->Fill( phi, eta, trackQPt_ );
+      /*hEvt_Adj_tracksQPt[proj]->Fill( phi, eta, trackQPt_ );
       hEvt_Adj_tracksD0[proj]->Fill( phi, eta, trackD0_ );
-      hEvt_Adj_tracksDz[proj]->Fill( phi, eta, trackDz_ );
+      hEvt_Adj_tracksDz[proj]->Fill( phi, eta, trackDz_ );*/
       bin = hEvt_Adj_tracks[proj]->FindBin( phi, eta );
       if ( trackPt_ > hEvt_Adj_tracksPt_max[proj]->GetBinContent( bin ) ) {
         hEvt_Adj_tracksPt_max[proj]->SetBinContent( bin, trackPt_ );
-        hEvt_Adj_tracksD0_max[proj]->SetBinContent( bin, trackD0_ );
-        hEvt_Adj_tracksDz_max[proj]->SetBinContent( bin, trackDz_ );
+        /*hEvt_Adj_tracksD0_max[proj]->SetBinContent( bin, trackD0_ );
+        hEvt_Adj_tracksDz_max[proj]->SetBinContent( bin, trackDz_ );*/
       }
 
       hECALadj_tracks[proj]->Fill( phi, eta, 1.0 );
       hECALadj_tracksPt[proj]->Fill( phi, eta, trackPt_ );
-      hECALadj_tracksQPt[proj]->Fill( phi, eta, trackQPt_ );
+      /*hECALadj_tracksQPt[proj]->Fill( phi, eta, trackQPt_ );
       hECALadj_tracksD0[proj]->Fill( phi, eta, trackD0_ );
-      hECALadj_tracksDz[proj]->Fill( phi, eta, trackDz_ );
+      hECALadj_tracksDz[proj]->Fill( phi, eta, trackDz_ );*/
 
     }
     else if ( id.subdetId() == EcalBarrel ) { 
@@ -383,22 +383,22 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
 
       fillByBinNumber(hEvt_Adj_tracks[proj], phi_eta, 1.0);
       fillByBinNumber(hEvt_Adj_tracksPt[proj], phi_eta, trackPt_);
-      fillByBinNumber(hEvt_Adj_tracksQPt[proj], phi_eta, trackQPt_);
+      /*fillByBinNumber(hEvt_Adj_tracksQPt[proj], phi_eta, trackQPt_);
       fillByBinNumber(hEvt_Adj_tracksD0[proj], phi_eta, trackD0_);
-      fillByBinNumber(hEvt_Adj_tracksDz[proj], phi_eta, trackDz_);
+      fillByBinNumber(hEvt_Adj_tracksDz[proj], phi_eta, trackDz_);*/
 
       if ( trackPt_ > hEvt_Adj_tracksPt_max[proj]->GetBinContent( phi_eta[0],phi_eta[1] ) ) {
         hEvt_Adj_tracksPt_max[proj]->SetBinContent( phi_eta[0],phi_eta[1], trackPt_ );
-        hEvt_Adj_tracksD0_max[proj]->SetBinContent( phi_eta[0],phi_eta[1], trackD0_ );
-        hEvt_Adj_tracksDz_max[proj]->SetBinContent( phi_eta[0],phi_eta[1], trackDz_ );
+        /*hEvt_Adj_tracksD0_max[proj]->SetBinContent( phi_eta[0],phi_eta[1], trackD0_ );
+        hEvt_Adj_tracksDz_max[proj]->SetBinContent( phi_eta[0],phi_eta[1], trackDz_ );*/
       }
 
 
       fillByBinNumber(hECALadj_tracks[proj], phi_eta, 1.0);
       fillByBinNumber(hECALadj_tracksPt[proj], phi_eta, trackPt_);
-      fillByBinNumber(hECALadj_tracksQPt[proj], phi_eta, trackQPt_);
+      /*fillByBinNumber(hECALadj_tracksQPt[proj], phi_eta, trackQPt_);
       fillByBinNumber(hECALadj_tracksD0[proj], phi_eta, trackD0_);
-      fillByBinNumber(hECALadj_tracksDz[proj], phi_eta, trackDz_);
+      fillByBinNumber(hECALadj_tracksDz[proj], phi_eta, trackDz_);*/
     }
   } //tracks loop
 
@@ -410,23 +410,23 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
       index1d= (ieta-1)*totalPhiBins[proj]+iphi-1;//ieta_global*EB_IPHI_MAX + iphi_; 
 
       vECALadj_tracksPt_[proj][index1d]=hEvt_Adj_tracksPt[proj]->GetBinContent(iphi,ieta);
-      vECALadj_tracksQPt_[proj][index1d]=hEvt_Adj_tracksQPt[proj]->GetBinContent(iphi,ieta);
+      /*vECALadj_tracksQPt_[proj][index1d]=hEvt_Adj_tracksQPt[proj]->GetBinContent(iphi,ieta);
       vECALadj_tracksD0_[proj][index1d]=hEvt_Adj_tracksD0[proj]->GetBinContent(iphi,ieta);
-      vECALadj_tracksDz_[proj][index1d]=hEvt_Adj_tracksDz[proj]->GetBinContent(iphi,ieta);
+      vECALadj_tracksDz_[proj][index1d]=hEvt_Adj_tracksDz[proj]->GetBinContent(iphi,ieta);*/
       vECALadj_tracks_[proj][index1d]=hEvt_Adj_tracks[proj]->GetBinContent(iphi,ieta);
       vECALadj_tracksPt_max_[proj][index1d]=hEvt_Adj_tracksPt_max[proj]->GetBinContent(iphi,ieta);
-      vECALadj_tracksD0_max_[proj][index1d]=hEvt_Adj_tracksD0_max[proj]->GetBinContent(iphi,ieta);
-      vECALadj_tracksDz_max_[proj][index1d]=hEvt_Adj_tracksDz_max[proj]->GetBinContent(iphi,ieta);
+      /*vECALadj_tracksD0_max_[proj][index1d]=hEvt_Adj_tracksD0_max[proj]->GetBinContent(iphi,ieta);
+      vECALadj_tracksDz_max_[proj][index1d]=hEvt_Adj_tracksDz_max[proj]->GetBinContent(iphi,ieta);*/
 
     }
   }
 
   // Get average D0 and Dz for each position
-  for (unsigned int idx_=0;idx_<vECALadj_tracks_[proj].size();idx_++) {
+  /*for (unsigned int idx_=0;idx_<vECALadj_tracks_[proj].size();idx_++) {
     if (vECALadj_tracks_[proj][idx_] != 0) {
       vECALadj_tracksD0_[proj][idx_] = vECALadj_tracksD0_[proj][idx_] / vECALadj_tracks_[proj][idx_];
       vECALadj_tracksDz_[proj][idx_] = vECALadj_tracksDz_[proj][idx_] / vECALadj_tracks_[proj][idx_];
     }
-  }
+  }*/
 
 } // fillTracksAtECALadjustable()
