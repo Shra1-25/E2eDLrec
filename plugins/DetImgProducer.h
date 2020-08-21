@@ -142,7 +142,9 @@ class DetImgProducer : public edm::stream::EDProducer<> {
    
       TTree* RHTree;
       unsigned int nPho;
-      
+   
+      typedef reco::VertexCollection  PVCollection;
+      edm::EDGetTokenT<PVCollection> pvCollectionT_;
       typedef std::vector<reco::PFCandidate>  PFCollection;
       edm::EDGetTokenT<PFCollection> pfCollectionT_;
    
