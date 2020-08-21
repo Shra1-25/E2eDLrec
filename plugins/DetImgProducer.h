@@ -28,6 +28,8 @@
 #include "Geometry/TrackerGeometryBuilder/interface/StripGeomDetUnit.h"
 
 #include "Calibration/IsolatedParticles/interface/DetIdFromEtaPhi.h"
+#include "MagneticField/Engine/interface/MagneticField.h"
+#include "MagneticField/Records/interface/IdealMagneticFieldRecord.h"
 #include "Calibration/IsolatedParticles/interface/CaloPropagateTrack.h"
 
 #include "DQM/HcalCommon/interface/Constants.h"
