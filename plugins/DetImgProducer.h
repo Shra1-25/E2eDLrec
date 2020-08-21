@@ -247,8 +247,8 @@ static const int EE_MAX_IY = EEDetId::IY_MAX;//100;
 static const int EE_NC_PER_ZSIDE = EEDetId::IX_MAX*EEDetId::IY_MAX; // 100*100
 static const int HBHE_IETA_MAX_FINE = 20;
 static const int HBHE_IETA_MAX_HB = hcaldqm::constants::IETA_MAX_HB;//16;
-static const int HBHE_IETA_MIN_HB = hcaldqm::constants::IETA_MIN_HB;//1
-static const int HBHE_IETA_MAX_HE = hcaldqm::constants::IETA_MAX_HE;//29;
+static const int HBHE_IETA_MIN_HB = hcaldqm::constants::IETA_MIN_HB;//1;
+static const int HBHE_IETA_MAX_HE = hcaldqm::constants::IETA_MAX_HE=29;
 static const int HBHE_IETA_MAX_EB = hcaldqm::constants::IETA_MAX_HB + 1; // 17
 static const int HBHE_IPHI_NUM = hcaldqm::constants::IPHI_NUM;//72;
 static const int HBHE_IPHI_MIN = hcaldqm::constants::IPHI_MIN;//1;
