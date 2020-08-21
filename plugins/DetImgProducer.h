@@ -155,6 +155,7 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       void branchesPFCandsAtECALstitched   ( TTree*, edm::Service<TFileService>& );
       void branchesECALstitched   ( TTree*, edm::Service<TFileService>& );
       void branchesTracksAtECALstitched (TTree*, edm::Service<TFileService>& );
+      void branchesTracksAtECALadjustable   ( TTree*, edm::Service<TFileService>& );
       //void branchesTRKlayersAtEBEE( TTree*, edm::Service<TFileService>& );
       //void branchesTRKvolumeAtEBEE( TTree*, edm::Service<TFileService>& );
       //void branchesJetInfoAtECALstitched   ( TTree*, edm::Service<TFileService>& );
@@ -166,6 +167,7 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       void fillHBHE           ( const edm::Event&, const edm::EventSetup& );
       void fillECALstitched   ( const edm::Event&, const edm::EventSetup& );
       void fillTracksAtECALstitched (const edm::Event&, const edm::EventSetup& );
+      void fillTracksAtECALadjustable   ( const edm::Event&, const edm::EventSetup&, unsigned int proj );
       //std::vector<int>  get_photons        ( const edm::Event&, const edm::EventSetup& );
       //int predict_tf         ();
       /*const reco::PFCandidate* getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug = false);
@@ -173,16 +175,25 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       int   getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch = 0.4, bool debug = false);
       float getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch = 0.1, bool debug= false );*/
    
-      
+      std::vector<int> findSubcrystal(const CaloGeometry* caloGeom, const float& eta, const float& phi, const int& granularityMultiEta, const int& granularityMultiPhi);
+      void fillByBinNumber(TH2F * histo, const std::vector<int>& phi_eta, const float& value);   
+   
       std::vector<float>& read_vEB_energy     (int);
       /*std::string mode_;  // EventLevel / JetLevel
       bool doJets_;
       int  nJets_;*/
       int iphi_Emax, ieta_Emax;
+      unsigned int granularityMultiPhi[Nadjproj];
+      unsigned int granularityMultiEta[Nadjproj];
       /*double minJetPt_;
       double maxJetEta_;
       double z0PVCut_;*/
-   
+      
+      int totalEtaBins[Nadjproj];// = totalMultiEta*(eta_nbins_HBHE);
+      int totalPhiBins[Nadjproj];// = granularityMultiPhi * granularityMultiECAL*HBHE_IPHI_NUM;
+      std::vector<double> adjEtaBins[Nadjproj];
+      //std::vector<double> adjPhiBins[Nadjproj];
+      
       /*void branchesEvtSel_jet_dijet      ( TTree*, edm::Service<TFileService>& );
       void branchesEvtSel_jet_dijet_gg_qq( TTree*, edm::Service<TFileService>& );
       bool runEvtSel_jet_dijet      ( const edm::Event&, const edm::EventSetup& );
