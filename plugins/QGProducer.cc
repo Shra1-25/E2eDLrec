@@ -53,7 +53,10 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
    } else {
      branchesEvtSel( QGTree, fs );
    }
-
+	
+ minJetPt_  = iConfig.getParameter<double>("minJetPt");
+ maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
+	
  produces<std::vector<int>>("ECALstitchedClass");
  produces<std::vector<int>>("TracksAtECALstitchedPtClass");
  produces<std::vector<int>>("HBHEenergyClass");
