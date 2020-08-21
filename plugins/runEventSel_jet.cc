@@ -59,8 +59,8 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
 	reco::PFJetRef iJet( jets, iJ );
 	   
 	// Jet selection criteria
-    	if ( std::abs(iJet->pt())  < minJetPt ) keepJet = false;
-    	if ( std::abs(iJet->eta()) > maxJetEta ) keepJet = false;
+    	if ( std::abs(iJet->pt())  < minJetPt_ ) keepJet = false;
+    	if ( std::abs(iJet->eta()) > maxJetEta_ ) keepJet = false;
 	
 	if (keepJet){
 	if ( debug ) std::cout << " >> jet[" << iJ << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
