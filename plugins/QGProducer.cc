@@ -113,7 +113,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      if (vJetSeed_ieta_.size()==0){vJetSeed_ieta_.push_back(-1); vJetSeed_iphi_.push_back(-1); std::cout<<"(-1, -1)"<<std::endl;}
      else{
 	   for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<") ";
+     		std::cout<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<") ";
      	}
      	std::cout<<std::endl;
      }
