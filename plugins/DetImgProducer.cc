@@ -124,7 +124,10 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
  produces<std::vector<float>>("HBHEenergy");
  produces<std::vector<float>>("HBHEenergyEB");
  produces<std::vector<float>>("ECALstitchedenergy");
- produces<std::vector<float>>("TracksAtECALstitched");
+ produces<std::vector<float>>("TracksAtECALstitchedPt");
+ produces<std::vector<float>>("TracksAtECALadjPt");
+ produces<std::vector<float>>("TracksAtECALadj");
+ produces<std::vector<float>>("TracksAtECALadjPtMax");
  //produces<std::vector<int>>("JetSeedieta");
  //produces<std::vector<int>>("JetSeediphi");
  //if (!fw) { return; }
@@ -236,7 +239,22 @@ DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    fillTracksAtECALstitched (iEvent, iSetup );
    std::unique_ptr<std::vector<float>> TracksECALstitchedPt_edm (new std::vector<float>(vECAL_tracksPt_));
    std::cout<<" >> Size of Pt Tracks vector at Stitched ECAL is: "<<std::move(TracksECALstitchedPt_edm).get()->size()<<std::endl;
-   iEvent.put(std::move(TracksECALstitchedPt_edm), "TracksAtECALstitched");
+   iEvent.put(std::move(TracksECALstitchedPt_edm), "TracksAtECALstitchedPt");
+	
+   for (unsigned int i=0;i<Nadjproj;i++)
+   {
+     fillTracksAtECALadjustable( iEvent, iSetup, i );
+     //fillTRKlayersAtECALadjustable( iEvent, iSetup, i );
+   }
+   std::unique_ptr<std::vector<float>> TracksECALadjPt_edm (new std::vector<float>(vECALadj_tracksPt_));
+   std::cout<<" >> Size of Pt Tracks vector at ECAL adjustable is : "<<std::move(TracksECALadjPt_edm).get()->size()<<std::endl;
+   iEvent.put(std::move(TracksECALadjPt_edm),"TracksAtECALadjPt");
+   std::unique_ptr<std::vector<float>> TracksECALadj_edm (new std::vector<float>(vECALadj_tracks_));
+   std::cout<<" >> Size of Track vector at ECAL adjustable is : "<<std::move(TracksECALadj_edm).get()->size()<<std::endl;
+   iEvent.put(std::move(TracksECALadj_edm),"TracksAtECALadj");
+   std::unique_ptr<std::vector<float>> TracksECALadjPt_max_edm (new std::vector<float>(vECALadj_tracksPt_max_));
+   std::cout<<" >> Size of max Pt Track vector at ECAL adjustable is : "<<std::move(TracksECALadjPt_max_edm).get()->size()<<std::endl;
+   iEvent.put(std::move(TracksECALadjPt_max_edm),"TracksAtECALadjPtMax");
  
    std::cout<<" >> Added EB, HBHE, HBHE_EB, ECALstitched, Tracks_at_ECALstitched to edm root file"<<std::endl;
    //EBEnergy_edm->clear();
