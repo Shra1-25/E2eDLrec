@@ -1,5 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+//#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 using std::vector;
 
