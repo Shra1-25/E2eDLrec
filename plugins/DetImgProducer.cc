@@ -246,13 +246,13 @@ DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      fillTracksAtECALadjustable( iEvent, iSetup, i );
      //fillTRKlayersAtECALadjustable( iEvent, iSetup, i );
    }
-   std::unique_ptr<std::vector<float>> TracksECALadjPt_edm (new std::vector<float>(vECALadj_tracksPt_));
+   std::unique_ptr<std::vector<float>> TracksECALadjPt_edm[Nadjproj] (new std::vector<float>(vECALadj_tracksPt_));
    std::cout<<" >> Size of Pt Tracks vector at ECAL adjustable is : "<<std::move(TracksECALadjPt_edm).get()->size()<<std::endl;
    iEvent.put(std::move(TracksECALadjPt_edm),"TracksAtECALadjPt");
-   std::unique_ptr<std::vector<float>> TracksECALadj_edm (new std::vector<float>(vECALadj_tracks_));
+   std::unique_ptr<std::vector<float>> TracksECALadj_edm[Nadjproj] (new std::vector<float>(vECALadj_tracks_));
    std::cout<<" >> Size of Track vector at ECAL adjustable is : "<<std::move(TracksECALadj_edm).get()->size()<<std::endl;
    iEvent.put(std::move(TracksECALadj_edm),"TracksAtECALadj");
-   std::unique_ptr<std::vector<float>> TracksECALadjPt_max_edm (new std::vector<float>(vECALadj_tracksPt_max_));
+   std::unique_ptr<std::vector<float>> TracksECALadjPt_max_edm[Nadjproj] (new std::vector<float>(vECALadj_tracksPt_max_));
    std::cout<<" >> Size of max Pt Track vector at ECAL adjustable is : "<<std::move(TracksECALadjPt_max_edm).get()->size()<<std::endl;
    iEvent.put(std::move(TracksECALadjPt_max_edm),"TracksAtECALadjPtMax");
  
