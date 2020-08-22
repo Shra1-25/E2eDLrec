@@ -282,27 +282,20 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
   edm::ESHandle<MagneticField> magfield;
   iSetup.get<IdealMagneticFieldRecord>().get(magfield);
 
-  std::cout<<" ** Stage pre 1"<<std::endl;
   vECALadj_tracks_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
-  std::cout<<" ** Stage pre 2"<<std::endl;
   vECALadj_tracksPt_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
-  std::cout<<" ** Stage pre 3"<<std::endl;
   /*vECALadj_tracksQPt_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksD0_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksDz_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );*/
   vECALadj_tracksPt_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
-  std::cout<<" ** Stage pre 4"<<std::endl;
   /*vECALadj_tracksD0_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksDz_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );*/
   hEvt_Adj_tracks[proj]->Reset();
-  std::cout<<" ** Stage pre 5"<<std::endl;
   hEvt_Adj_tracksPt[proj]->Reset();
-  std::cout<<" ** Stage pre 6"<<std::endl;
   /*hEvt_Adj_tracksQPt[proj]->Reset();
   hEvt_Adj_tracksD0[proj]->Reset();
   hEvt_Adj_tracksDz[proj]->Reset();*/
   hEvt_Adj_tracksPt_max[proj]->Reset();
-  std::cout<<" ** Stage pre 7"<<std::endl;
   /*hEvt_Adj_tracksD0_max[proj]->Reset();
   hEvt_Adj_tracksDz_max[proj]->Reset();*/
 
@@ -317,7 +310,6 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
   edm::Handle<reco::TrackCollection> tracksH_;
   iEvent.getByToken( trackCollectionT_, tracksH_ );
 
-  std::cout<<" ** Stage pre 8"<<std::endl;
   
   bool isPVgood=false;
   edm::Handle<reco::VertexCollection> pvColl;
@@ -326,7 +318,6 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
   reco::Vertex the_PV;
   if (isPVgood) the_PV = pvColl.product()->at(0);
 
-  std::cout<<" ** Stage 1"<<std::endl;
   reco::Track::TrackQuality tkQt_ = reco::Track::qualityByName("highPurity");
 
   int bin;
@@ -356,7 +347,6 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
 
     trackD0_ = -iTk->dxy(the_PV.position());
     trackDz_ = iTk->dz(the_PV.position());*/
-    std::cout<<" ** Stage 2"<<std::endl;
     DetId id( spr::findDetIdECAL( caloGeom, eta, phi, false ) );
     if ( id.subdetId() == EcalEndcap )
     {
@@ -401,7 +391,6 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
         /*hEvt_Adj_tracksD0_max[proj]->SetBinContent( phi_eta[0],phi_eta[1], trackD0_ );
         hEvt_Adj_tracksDz_max[proj]->SetBinContent( phi_eta[0],phi_eta[1], trackDz_ );*/
       }
-      std::cout<<" ** Stage 3"<<std::endl;
 
       fillByBinNumber(hECALadj_tracks[proj], phi_eta, 1.0);
       fillByBinNumber(hECALadj_tracksPt[proj], phi_eta, trackPt_);
@@ -410,23 +399,18 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
       fillByBinNumber(hECALadj_tracksDz[proj], phi_eta, trackDz_);*/
     }
   } //tracks loop
-  std::cout<<" ** Stage 4"<<std::endl;
   int index1d=0;
   for ( int ieta=1; ieta<=totalEtaBins[proj]; ieta++ )
   {
     for ( int iphi=1; iphi<=totalPhiBins[proj]; iphi++ )
     {
       index1d= (ieta-1)*totalPhiBins[proj]+iphi-1;//ieta_global*EB_IPHI_MAX + iphi_; 
-      std::cout<<" ** Stage 5"<<std::endl;
       vECALadj_tracksPt_[proj][index1d]=hEvt_Adj_tracksPt[proj]->GetBinContent(iphi,ieta);
-      std::cout<<" ** Stage 6"<<std::endl;
       /*vECALadj_tracksQPt_[proj][index1d]=hEvt_Adj_tracksQPt[proj]->GetBinContent(iphi,ieta);
       vECALadj_tracksD0_[proj][index1d]=hEvt_Adj_tracksD0[proj]->GetBinContent(iphi,ieta);
       vECALadj_tracksDz_[proj][index1d]=hEvt_Adj_tracksDz[proj]->GetBinContent(iphi,ieta);*/
       vECALadj_tracks_[proj][index1d]=hEvt_Adj_tracks[proj]->GetBinContent(iphi,ieta);
-      std::cout<<" ** Stage 7"<<std::endl;
       vECALadj_tracksPt_max_[proj][index1d]=hEvt_Adj_tracksPt_max[proj]->GetBinContent(iphi,ieta);
-      std::cout<<" ** Stage 8"<<std::endl;
       /*vECALadj_tracksD0_max_[proj][index1d]=hEvt_Adj_tracksD0_max[proj]->GetBinContent(iphi,ieta);
       vECALadj_tracksDz_max_[proj][index1d]=hEvt_Adj_tracksDz_max[proj]->GetBinContent(iphi,ieta);*/
 
