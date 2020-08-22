@@ -282,12 +282,16 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
   edm::ESHandle<MagneticField> magfield;
   iSetup.get<IdealMagneticFieldRecord>().get(magfield);
 
+  std::cout<<" ** Stage pre 1"<<std::endl;
   vECALadj_tracks_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
+  std::cout<<" ** Stage pre 2"<<std::endl;
   vECALadj_tracksPt_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
+  std::cout<<" ** Stage pre 3"<<std::endl;
   /*vECALadj_tracksQPt_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksD0_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksDz_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );*/
   vECALadj_tracksPt_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
+  std::cout<<" ** Stage pre 4"<<std::endl;
   /*vECALadj_tracksD0_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksDz_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );*/
   hEvt_Adj_tracks[proj]->Reset();
