@@ -14,6 +14,7 @@ ProducerFrames = cms.EDProducer('DetImgProducer'
    #, vertexCollection = cms.InputTag("offlinePrimaryVerticesWithBS")
     , vertexCollection = cms.InputTag("offlinePrimaryVertices")
     , pfCollection = cms.InputTag("particleFlow")
+    , pvCollection = cms.InputTag("offlinePrimaryVerticesWithBS")
     , recoJetsForBTagging = cms.InputTag("ak4PFJetsCHS")
     , jetTagCollection    = cms.InputTag("pfCombinedInclusiveSecondaryVertexV2BJetTags")
     , ipTagInfoCollection = cms.InputTag("pfImpactParameterTagInfos")                                                     
