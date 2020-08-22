@@ -295,11 +295,14 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
   /*vECALadj_tracksD0_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );
   vECALadj_tracksDz_max_[proj].assign( totalEtaBins[proj]*totalPhiBins[proj], 0. );*/
   hEvt_Adj_tracks[proj]->Reset();
+  std::cout<<" ** Stage pre 5"<<std::endl;
   hEvt_Adj_tracksPt[proj]->Reset();
+  std::cout<<" ** Stage pre 6"<<std::endl;
   /*hEvt_Adj_tracksQPt[proj]->Reset();
   hEvt_Adj_tracksD0[proj]->Reset();
   hEvt_Adj_tracksDz[proj]->Reset();*/
   hEvt_Adj_tracksPt_max[proj]->Reset();
+  std::cout<<" ** Stage pre 7"<<std::endl;
   /*hEvt_Adj_tracksD0_max[proj]->Reset();
   hEvt_Adj_tracksDz_max[proj]->Reset();*/
 
@@ -314,6 +317,8 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
   edm::Handle<reco::TrackCollection> tracksH_;
   iEvent.getByToken( trackCollectionT_, tracksH_ );
 
+  std::cout<<" ** Stage pre 8"<<std::endl;
+  
   bool isPVgood=false;
   edm::Handle<reco::VertexCollection> pvColl;
   iEvent.getByToken(pvCollectionT_, pvColl);
