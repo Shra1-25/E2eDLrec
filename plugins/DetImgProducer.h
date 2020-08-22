@@ -130,6 +130,9 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       std::vector<float> vHBHE_energy_;
       std::vector<float> vECAL_energy_;
       std::vector<float> vECAL_tracksPt_;
+      std::vector<float> vECALadj_tracksPt_[Nadjproj];
+      std::vector<float> vECALadj_tracks_[Nadjproj];
+      std::vector<float> vECALadj_tracksPt_max_[Nadjproj];
       //vector<int> vJetSeed_iphi_;
       //vector<int> vJetSeed_ieta_;
       //std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
