@@ -30,12 +30,12 @@ TH2F *hECALadj_tracksPt[Nadjproj];
 TH2F *hECALadj_tracksD0[Nadjproj];
 TH2F *hECALadj_tracksDz[Nadjproj];*/
 
-std::vector<float> vECALadj_tracksPt_[Nadjproj];
+//std::vector<float> vECALadj_tracksPt_[Nadjproj];
 /*std::vector<float> vECALadj_tracksQPt_[Nadjproj];
 std::vector<float> vECALadj_tracksD0_[Nadjproj];
 std::vector<float> vECALadj_tracksDz_[Nadjproj];*/
-std::vector<float> vECALadj_tracks_[Nadjproj];
-std::vector<float> vECALadj_tracksPt_max_[Nadjproj];
+//std::vector<float> vECALadj_tracks_[Nadjproj];
+//std::vector<float> vECALadj_tracksPt_max_[Nadjproj];
 /*std::vector<float> vECALadj_tracksD0_max_[Nadjproj];
 std::vector<float> vECALadj_tracksDz_max_[Nadjproj];*/
 
