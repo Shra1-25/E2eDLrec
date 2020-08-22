@@ -183,14 +183,6 @@ static const int EB_IPHI_MAX = EBDetId::MAX_IPHI;//360;
 static const int EB_IETA_MIN = EBDetId::MIN_IETA;//1;
 static const int EB_IETA_MAX = EBDetId::MAX_IETA;//85;
 static const float zs = 0.;*/
-static const bool debug = false;
-static const int HBHE_IETA_MAX_FINE = 20;
-static const int HBHE_IETA_MAX_HB = hcaldqm::constants::IETA_MAX_HB;//16;
-static const int HBHE_IETA_MIN_HB = hcaldqm::constants::IETA_MIN_HB;//1;
-static const int HBHE_IETA_MAX_HE = hcaldqm::constants::IETA_MAX_HE;//29;
-static const int HBHE_IETA_MAX_EB = hcaldqm::constants::IETA_MAX_HB + 1; // 17
-static const int HBHE_IPHI_NUM = hcaldqm::constants::IPHI_NUM;//72;
-static const int HBHE_IPHI_MIN = hcaldqm::constants::IPHI_MIN;//1;
-static const int HBHE_IPHI_MAX = hcaldqm::constants::IPHI_MAX;//72;
+
 #endif
 //DEFINE_FWK_MODULE(QGProducer);
