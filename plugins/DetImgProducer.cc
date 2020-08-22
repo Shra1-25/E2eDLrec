@@ -249,7 +249,7 @@ DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      fillTracksAtECALadjustable( iEvent, iSetup, i );
      //fillTRKlayersAtECALadjustable( iEvent, iSetup, i );
    }
-   std::cout<<" >> Sizes of TracksadjPt, Tracksadj and TracksadjPtMax are: "<<vECALadj_tracksPt_.size()<<", "<<vECALadj_tracks_.size()<<", "<<vECALadj_tracksPt_max_.size()<<std::endl;
+   std::cout<<" >> Sizes of TracksadjPt, Tracksadj and TracksadjPtMax are: "<<vECALadj_tracksPt_[0].size()<<", "<<vECALadj_tracks_[0].size()<<", "<<vECALadj_tracksPt_max_[0].size()<<std::endl;
    /*std::unique_ptr<std::vector<float>> TracksECALadjPt_edm (new std::vector<float>(vECALadj_tracksPt_));
    std::cout<<" >> Size of Pt Tracks vector at ECAL adjustable is : "<<std::move(TracksECALadjPt_edm).get()->size()<<std::endl;
    iEvent.put(std::move(TracksECALadjPt_edm),"TracksAtECALadjPt");
