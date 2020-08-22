@@ -117,6 +117,7 @@ DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
  branchesHBHE (RHTree, fs );
  branchesECALstitched (RHTree, fs);
  branchesTracksAtECALstitched (RHTree, fs);
+ branchesTracksAtECALadjustable( RHTree, fs);
  std::cout<<"Branches done "<<std::endl;
  
  //produces<float>("photonClasses").setBranchAlias("PhotonClass");
