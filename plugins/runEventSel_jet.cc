@@ -1,5 +1,5 @@
 #include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
-//#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 using std::vector;
 
@@ -61,7 +61,7 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
 	// Jet selection criteria
     	if ( std::abs(iJet->pt())  < minJetPt_ ) keepJet = false;
     	if ( std::abs(iJet->eta()) > maxJetEta_ ) keepJet = false;
-	
+	std::cout<<" # keepJet: "<<keepJet<<" --> pt: "<<std::abs(iJet->pt())<<", eta: "<<std::abs(iJet->eta())<<", minJetPt: "<<minJetPt_<<", maxJetEta: "<<maxJetEta_<<std::endl;
 	if (keepJet){
 	if ( debug ) std::cout << " >> jet[" << iJ << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
 			   << " jetE:" << iJet->energy() << " jetM:" << iJet->mass() << std::endl;
@@ -128,10 +128,10 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
     	// Save position of most energetic HBHE tower
     	// in EB-aligned coordinates
     	if ( debug ) std::cout << " !! ieta_:" << ieta_ << " iphi_:" << iphi_ << " ietaAbs_:" << ietaAbs_ << " E:" << seedE << std::endl;
-	}
+	
     	vJetSeed_iphi_.push_back( iphi_ );
     	vJetSeed_ieta_.push_back( ieta_ );
-    	nJet++;
+    	nJet++;}
    } // good jets	
 	
 	
