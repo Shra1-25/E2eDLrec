@@ -71,7 +71,7 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
     		vJetSeed_ieta_.push_back( ieta_ );
     		nJet++;					  
 	}
-	std::cout<<" # keepJet: "<<keepJet<<" --> pt: "<<std::abs(iJet->pt())<<", eta: "<<std::abs(iJet->eta())<<", minJetPt: "<<minJetPt_<<", maxJetEta: "<<maxJetEta_<<std::endl;
+	//std::cout<<" # keepJet: "<<keepJet<<" --> pt: "<<std::abs(iJet->pt())<<", eta: "<<std::abs(iJet->eta())<<", minJetPt: "<<minJetPt_<<", maxJetEta: "<<maxJetEta_<<std::endl;
 	if (keepJet){
 	if ( debug ) std::cout << " >> jet[" << iJ << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
 			   << " jetE:" << iJet->energy() << " jetM:" << iJet->mass() << std::endl;
