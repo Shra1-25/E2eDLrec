@@ -60,8 +60,8 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  produces<std::vector<int>>("ECALstitchedClass");
  produces<std::vector<int>>("TracksAtECALstitchedPtClass");
  produces<std::vector<int>>("HBHEenergyClass");
- produces<std::vector<int>>("JetSeedieta");
- produces<std::vector<int>>("JetSeediphi");
+ produces<std::vector<int>>("ak4JetSeedieta");
+ produces<std::vector<int>>("ak4JetSeediphi");
 }
 
 QGProducer::~QGProducer()
@@ -84,7 +84,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    if ( doJets_ ) {
      std::cout<<" >> doJets set"<<std::endl;
      passedSelection = runEventSel_jet( iEvent, iSetup );
-     std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
+     std::cout<<" >> Size of JetSeed vector (ak4JetSeed_eta_size, ak4JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" >> The jet seeds are (ieta,iphi): ";
      if (vJetSeed_ieta_.size()==0){vJetSeed_ieta_.push_back(-1); vJetSeed_iphi_.push_back(-1); std::cout<<"(-1, -1)"<<std::endl;}
      else{
@@ -102,13 +102,13 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
      std::unique_ptr<std::vector<int>> JetSeediphi_edm (new std::vector<int>(vJetSeed_iphi_));
-     iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
-     iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
+     iEvent.put(std::move(JetSeedieta_edm),"ak4JetSeedieta");
+     iEvent.put(std::move(JetSeediphi_edm),"ak4JetSeediphi");
      //vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
    } else {
      std::cout<<" >> doJets not set"<<std::endl;
      passedSelection = runEvtSel( iEvent, iSetup );
-     std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
+     std::cout<<" >> Size of JetSeed vector (ak4JetSeed_eta_size, ak4JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" The jet seeds are (ieta,iphi): ";
      if (vJetSeed_ieta_.size()==0){vJetSeed_ieta_.push_back(-1); vJetSeed_iphi_.push_back(-1); std::cout<<"(-1, -1)"<<std::endl;}
      else{
@@ -126,8 +126,8 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
      std::unique_ptr<std::vector<int>> JetSeediphi_edm (new std::vector<int>(vJetSeed_iphi_));
-     iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
-     iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
+     iEvent.put(std::move(JetSeedieta_edm),"ak4JetSeedieta");
+     iEvent.put(std::move(JetSeediphi_edm),"ak4JetSeediphi");
    }
 
    if ( !passedSelection ) {
