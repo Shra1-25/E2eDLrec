@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
 #include "DataFormats/BTauReco/interface/JetTag.h"
 #include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
