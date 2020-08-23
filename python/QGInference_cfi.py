@@ -15,7 +15,6 @@ QGInference = cms.EDProducer('QGProducer'
     , genParticleCollection = cms.InputTag('genParticles')
     , gedPhotonCollection = cms.InputTag('gedPhotons')
     , ak4GenJetCollection = cms.InputTag('ak4GenJets')
-    , ak8GenJetCollection = cms.InputTag('ak8GenJets')
     , trackRecHitCollection = cms.InputTag('generalTracks')
     , vertexCollection = cms.InputTag("offlinePrimaryVertices")
     , pfCollection = cms.InputTag("particleFlow")
