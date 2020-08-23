@@ -9,7 +9,7 @@
 using namespace tensorflow;
 using namespace std;
 
-QGProducer::QGProducer(const edm::ParameterSet& iConfig)
+TopProducer::TopProducer(const edm::ParameterSet& iConfig)
 {
  //vEB_photon_frames = consumes<std::vector<std::vector<float>>>(iConfig.getParameter<edm::InputTag>("frames_"));
  photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
@@ -61,7 +61,7 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  produces<std::vector<int>>("ak8JetSeediphi");
 }
 
-QGProducer::~QGProducer()
+TopProducer::~TopProducer()
 {
  
 }
@@ -72,7 +72,7 @@ QGProducer::~QGProducer()
 
 // ------------ method called to produce the data  ------------
 void
-QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
    nTotal++;
@@ -262,7 +262,7 @@ TopProducer::endStream() {
 // ------------ method called when starting to processes a run  ------------
 /*
 void
-QGProducer::beginRun(edm::Run const&, edm::EventSetup const&)
+TopProducer::beginRun(edm::Run const&, edm::EventSetup const&)
 {
 }
 */
@@ -270,7 +270,7 @@ QGProducer::beginRun(edm::Run const&, edm::EventSetup const&)
 // ------------ method called when ending the processing of a run  ------------
 /*
 void
-QGProducer::endRun(edm::Run const&, edm::EventSetup const&)
+TopProducer::endRun(edm::Run const&, edm::EventSetup const&)
 {
 }
 */
@@ -278,7 +278,7 @@ QGProducer::endRun(edm::Run const&, edm::EventSetup const&)
 // ------------ method called when starting to processes a luminosity block  ------------
 /*
 void
-QGProducer::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
+TopProducer::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
 {
 }
 */
@@ -286,7 +286,7 @@ QGProducer::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup co
 // ------------ method called when ending the processing of a luminosity block  ------------
 /*
 void
-QGProducer::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
+TopProducer::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
 {
 }
 */
