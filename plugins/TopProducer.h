@@ -1,5 +1,5 @@
-#ifndef QGProducer_h
-#define QGProducer_h
+#ifndef TopProducer_h
+#define TopProducer_h
 
 #include <memory>
 //#include <iostream>
@@ -74,11 +74,11 @@ using pat::PhotonRef;*/
 using reco::PhotonCollection;
 using reco::PhotonRef;
 
-class QGProducer : public edm::stream::EDProducer<> {
+class TopProducer : public edm::stream::EDProducer<> {
    public:
       
-      explicit QGProducer(const edm::ParameterSet&);
-      ~QGProducer();
+      explicit TopProducer(const edm::ParameterSet&);
+      ~TopProducer();
       
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
@@ -116,7 +116,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       static const int nPhotons = 2;
    
       TH1F *h_sel;
-      TTree* QGTree;
+      TTree* TopTree;
       
       void branchesEvtSel         ( TTree*, edm::Service<TFileService>& );
       void branchesEvtSel_jet     ( TTree*, edm::Service<TFileService>& );
@@ -185,4 +185,4 @@ static const int EB_IETA_MAX = EBDetId::MAX_IETA;//85;
 static const float zs = 0.;*/
 
 #endif
-//DEFINE_FWK_MODULE(QGProducer);
+//DEFINE_FWK_MODULE(TopProducer);
