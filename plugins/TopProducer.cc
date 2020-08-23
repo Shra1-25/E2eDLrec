@@ -21,10 +21,10 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  //JetSeed_iphi_token=consumes<std::vector<int>>(iConfig.getParameter<edm::InputTag>("JetSeediphi"));
  HBHEenergy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("HBHEenergy"));
  vertexCollectionT_       = consumes<reco::VertexCollection>(iConfig.getParameter<edm::InputTag>("vertexCollection"));
- jetCollectionT_         = consumes<reco::PFJetCollection>(iConfig.getParameter<edm::InputTag>("ak4PFJetCollection"));
+ jetCollectionT_         = consumes<reco::PFJetCollection>(iConfig.getParameter<edm::InputTag>("ak8PFJetCollection"));
  TRKRecHitCollectionT_   = consumes<TrackingRecHitCollection>(iConfig.getParameter<edm::InputTag>("trackRecHitCollection"));
  genParticleCollectionT_ = consumes<reco::GenParticleCollection>(iConfig.getParameter<edm::InputTag>("genParticleCollection"));
- genJetCollectionT_      = consumes<reco::GenJetCollection>(iConfig.getParameter<edm::InputTag>("ak4GenJetCollection"));
+ genJetCollectionT_      = consumes<reco::GenJetCollection>(iConfig.getParameter<edm::InputTag>("ak8GenJetCollection"));
  pfCollectionT_          = consumes<PFCollection>(iConfig.getParameter<edm::InputTag>("pfCollection"));
  recoJetsT_              = consumes<edm::View<reco::Jet> >(iConfig.getParameter<edm::InputTag>("recoJetsForBTagging"));
  jetTagCollectionT_      = consumes<reco::JetTagCollection>(iConfig.getParameter<edm::InputTag>("jetTagCollection"));
@@ -53,15 +53,12 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
    } else {
      branchesEvtSel( QGTree, fs );
    }
-	
- minJetPt_  = iConfig.getParameter<double>("minJetPt");
- maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
-	
- produces<std::vector<int>>("ECALstitchedClass");
- produces<std::vector<int>>("TracksAtECALstitchedPtClass");
- produces<std::vector<int>>("HBHEenergyClass");
- produces<std::vector<int>>("JetSeedieta");
- produces<std::vector<int>>("JetSeediphi");
+		
+ produces<std::vector<int>>("TopQECALstitchedClass");
+ produces<std::vector<int>>("TopQTracksAtECALstitchedPtClass");
+ produces<std::vector<int>>("TopQHBHEenergyClass");
+ produces<std::vector<int>>("ak8JetSeedieta");
+ produces<std::vector<int>>("ak8JetSeediphi");
 }
 
 QGProducer::~QGProducer()
@@ -84,7 +81,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    if ( doJets_ ) {
      std::cout<<" >> doJets set"<<std::endl;
      passedSelection = runEventSel_jet( iEvent, iSetup );
-     std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
+     std::cout<<" >> Size of JetSeed vector (ak8JetSeed_eta_size, ak8JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" >> The jet seeds are (ieta,iphi): ";
      if (vJetSeed_ieta_.size()==0){vJetSeed_ieta_.push_back(-1); vJetSeed_iphi_.push_back(-1); std::cout<<"(-1, -1)"<<std::endl;}
      else{
@@ -102,13 +99,13 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
      std::unique_ptr<std::vector<int>> JetSeediphi_edm (new std::vector<int>(vJetSeed_iphi_));
-     iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
-     iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
+     iEvent.put(std::move(JetSeedieta_edm),"ak8JetSeedieta");
+     iEvent.put(std::move(JetSeediphi_edm),"ak8JetSeediphi");
      //vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
    } else {
      std::cout<<" >> doJets not set"<<std::endl;
      passedSelection = runEvtSel( iEvent, iSetup );
-     std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
+     std::cout<<" >> Size of JetSeed vector (ak8JetSeed_eta_size, ak8JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
      std::cout<<" The jet seeds are (ieta,iphi): ";
      if (vJetSeed_ieta_.size()==0){vJetSeed_ieta_.push_back(-1); vJetSeed_iphi_.push_back(-1); std::cout<<"(-1, -1)"<<std::endl;}
      else{
@@ -126,8 +123,8 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      }
      std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
      std::unique_ptr<std::vector<int>> JetSeediphi_edm (new std::vector<int>(vJetSeed_iphi_));
-     iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
-     iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
+     iEvent.put(std::move(JetSeedieta_edm),"ak8JetSeedieta");
+     iEvent.put(std::move(JetSeediphi_edm),"ak8JetSeediphi");
    }
 
    if ( !passedSelection ) {
@@ -234,14 +231,14 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<" >> Predicted Class of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl<<std::endl;
    }
    std::unique_ptr<std::vector<int>> vECALstitchedClass_edm (new std::vector<int>(vECALstitchedClass));
-   iEvent.put(std::move(vECALstitchedClass_edm),"ECALstitchedClass");
+   iEvent.put(std::move(vECALstitchedClass_edm),"TopQECALstitchedClass");
    std::unique_ptr<std::vector<int>> vTracksAtECALstitchedPtClass_edm (new std::vector<int>(vTracksAtECALstitchedPtClass));
-   iEvent.put(std::move(vTracksAtECALstitchedPtClass_edm),"TracksAtECALstitchedPtClass");
+   iEvent.put(std::move(vTracksAtECALstitchedPtClass_edm),"TopQTracksAtECALstitchedPtClass");
    std::unique_ptr<std::vector<int>> vHBHEenergyClass_edm (new std::vector<int>(vHBHEenergyClass));
-   iEvent.put(std::move(vHBHEenergyClass_edm),"HBHEenergyClass");
+   iEvent.put(std::move(vHBHEenergyClass_edm),"TopQHBHEenergyClass");
    std::cout<<std::endl;
 
-   QGTree->Fill();
+   TopTree->Fill();
    nPassed++;
    // ----- Apply event selection cuts ----- //
    //std::cout<<"Event "<<nPassed-1<<"finished"<<"Prceeding to event "<<nPassed<<std::endl;
@@ -249,17 +246,17 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 }
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
 void
-QGProducer::beginStream(edm::StreamID)
+TopProducer::beginStream(edm::StreamID)
 {
  nTotal = 0;
  nPassed = 0;
- std::cout<<"'QGProducer' Stream began"<<std::endl;
+ std::cout<<"'TopProducer' Stream began"<<std::endl;
 }
 
 // ------------ method called once each stream after processing all runs, lumis and events  ------------
 void
-QGProducer::endStream() {
- std::cout << "'QGProducer' selected: " << nPassed << "/" << nTotal << std::endl;
+TopProducer::endStream() {
+ std::cout << "'TopProducer' selected: " << nPassed << "/" << nTotal << std::endl;
 }
 
 // ------------ method called when starting to processes a run  ------------
@@ -296,7 +293,7 @@ QGProducer::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup cons
  
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-QGProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+TopProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
   edm::ParameterSetDescription desc;
@@ -304,7 +301,7 @@ QGProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
   descriptions.addDefault(desc);
 }
 const reco::PFCandidate*
-QGProducer::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug ) {
+TopProducer::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug ) {
 
   minDr = 10;
   const reco::PFCandidate* minDRCand = nullptr;
@@ -330,7 +327,7 @@ QGProducer::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, f
 }
 
 const reco::Track*
-QGProducer::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float eta, float phi, float& minDr, bool debug ) {
+TopProducer::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float eta, float phi, float& minDr, bool debug ) {
 
   minDr = 10;
   const reco::Track* minDRCand = nullptr;
@@ -357,7 +354,7 @@ QGProducer::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float et
 
 
 
-int QGProducer::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch , bool debug ){
+int TopProducer::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch , bool debug ){
   if ( debug ) {
     std::cout << " Mathcing reco jetPt:" << recJet->pt() << " jetEta:" << recJet->eta() << " jetPhi:" << recJet->phi() << std::endl;
   }
@@ -404,7 +401,7 @@ int QGProducer::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::Ge
 }
 
 
-float QGProducer::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch, bool debug ){
+float TopProducer::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch, bool debug ){
 
   // loop over jets
   for( edm::View<reco::Jet>::const_iterator jetToMatch = recoJetCollection->begin(); jetToMatch != recoJetCollection->end(); ++jetToMatch )
@@ -440,4 +437,4 @@ float QGProducer::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm
   return -99;
 }
 //define this as a plug-in
-DEFINE_FWK_MODULE(QGProducer);
+DEFINE_FWK_MODULE(TopProducer);
