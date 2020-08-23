@@ -47,11 +47,11 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
     doJets_ = false;
   }
   edm::Service<TFileService> fs;
-  QGTree = fs->make<TTree>("QGTree", "RecHit tree");
+  TopTree = fs->make<TTree>("TopTree", "RecHit tree");
    if ( doJets_ ) {
-     branchesEvtSel_jet( QGTree, fs );
+     branchesEvtSel_jet( TopTree, fs );
    } else {
-     branchesEvtSel( QGTree, fs );
+     branchesEvtSel( TopTree, fs );
    }
 		
  produces<std::vector<int>>("TopQECALstitchedClass");
