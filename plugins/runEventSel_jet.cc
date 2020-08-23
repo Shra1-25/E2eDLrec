@@ -55,8 +55,8 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
    std::cout<<" >> Reading and selecting Jets from "<<jets->size()<<" jet seeds: "<<std::endl;
    for (unsigned iJ=0;iJ<jets->size();iJ++){
    	bool keepJet = true;
-    	int iphi = -1;
-    	int ieta = -1;
+    	iphi_ = -1;
+    	ieta_ = -1;
 	reco::PFJetRef iJet( jets, iJ );
 	   
 	// Jet selection criteria
