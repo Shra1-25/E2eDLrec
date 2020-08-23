@@ -27,4 +27,7 @@ QGInference = cms.EDProducer('QGProducer'
     , minJetPt = cms.double(35.)
     , maxJetEta = cms.double(2.4)
     , z0PVCut  = cms.double(0.1)
+    #granularity multiplier wrt ECAL maps for tracker and tracking RH images
+    , granularityMultiPhi = cms.int32(1)
+    , granularityMultiEta = cms.int32(1)
     )
