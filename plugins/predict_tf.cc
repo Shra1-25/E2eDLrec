@@ -114,7 +114,8 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  // cleanup
  //tensorflow::closeSession(session);
  //delete graphDef;
- if (classifier_out>0.5){return 1;}
- else {return 0;}
+ /*if (classifier_out>0.5){return 1;}
+ else {return 0;}*/
+ return full_predictions[0][0];
 }
 
