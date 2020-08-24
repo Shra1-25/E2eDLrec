@@ -54,11 +54,11 @@ TopProducer::TopProducer(const edm::ParameterSet& iConfig)
      branchesEvtSel( TopTree, fs );
    }
 		
- produces<std::vector<int>>("TopQECALstitchedClass");
- produces<std::vector<int>>("TopQTracksAtECALstitchedPtClass");
- produces<std::vector<int>>("TopQHBHEenergyClass");
- produces<std::vector<int>>("ak8JetSeedieta");
- produces<std::vector<int>>("ak8JetSeediphi");
+ produces<std::vector<float>>("TopQECALstitchedClass");
+ produces<std::vector<float>>("TopQTracksAtECALstitchedPtClass");
+ produces<std::vector<float>>("TopQHBHEenergyClass");
+ produces<std::vector<float>>("ak8JetSeedieta");
+ produces<std::vector<float>>("ak8JetSeediphi");
 }
 
 TopProducer::~TopProducer()
