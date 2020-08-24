@@ -77,6 +77,7 @@ QGProducer::~QGProducer()
 void
 QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+   std::cout<<" >> Running QGProducer."<<std::endl;
    using namespace edm;
    nTotal++;
    vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
