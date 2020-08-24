@@ -245,7 +245,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.put(std::move(vECALstitchedClass_edm),"TopQECALstitchedClass");
    std::unique_ptr<std::vector<float>> vTracksAtECALstitchedPtClass_edm (new std::vector<float>(vTracksAtECALstitchedPtClass));
    iEvent.put(std::move(vTracksAtECALstitchedPtClass_edm),"TopQTracksAtECALstitchedPtClass");
-   std::unique_ptr<std::vector<float>> vTracksAtECALadjPtClass_edm) (new std::vector<float>(vTracksAtECALadjPtClass));
+   std::unique_ptr<std::vector<float>> vTracksAtECALadjPtClass_edm (new std::vector<float>(vTracksAtECALadjPtClass));
    iEvent.put(std::move(vTracksAtECALadjPtClass_edm),"TopQTracksAtECALadjPtClass");
    std::unique_ptr<std::vector<float>> vHBHEenergyClass_edm (new std::vector<float>(vHBHEenergyClass));
    iEvent.put(std::move(vHBHEenergyClass_edm),"TopQHBHEenergyClass");
