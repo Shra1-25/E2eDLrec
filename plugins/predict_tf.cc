@@ -97,7 +97,15 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  //std::cout<<" >> Size of prediction vector is= "<<full_predictions.size()<<std::endl;
  //std::cout<<"Size of each element of full pred= "<<full_predictions[0].size()<<std::endl;
  }
- std::cout<<" >> Class: "<<classifier_out<<endl;
+ //std::cout<<" >> Class: "<<classifier_out<<endl;
+ 
+ for (int sample_idx=0; sample_idx<int(full_predictions.size());sample_idx++){
+  std::cout<<" >> Sample "<<sample_idx+1<<"/"<<full_predictions.size()<<" predictions: [";
+  for (int pred_idx=0; pred_idx<int(full_predictions.size());pred_idx++){
+   std::cout<<full_predictions[sample_idx][pred_idx]<<", ";
+  }
+  std::cout<<"]"<<std::endl;
+ }
  outputs.clear();
   
  session->Close();
