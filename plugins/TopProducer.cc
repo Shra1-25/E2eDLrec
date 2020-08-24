@@ -74,6 +74,7 @@ TopProducer::~TopProducer()
 void
 TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+   std::cout<<" >> Running TopProducer."<<std::endl;
    using namespace edm;
    nTotal++;
    vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
