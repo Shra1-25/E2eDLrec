@@ -148,9 +148,10 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<float>vTracksAtECALstitchedPt=*TracksAtECALstitchedPt_handle;
    /*std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
    std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;*/
-   std::vector<int>vECALstitchedClass;
-   std::vector<int>vTracksAtECALstitchedPtClass;
-   std::vector<int>vHBHEenergyClass;
+   std::vector<float>vECALstitchedClass;
+   std::vector<float>vTracksAtECALstitchedPtClass;
+   std::vector<float>vTracksAtECALadjPtClass;
+   std::vector<float>vHBHEenergyClass;
    vECALstitchedClass.clear();
    vTracksAtECALstitchedPtClass.clear();
    vTracksAtECALadjPtClass.clear();
