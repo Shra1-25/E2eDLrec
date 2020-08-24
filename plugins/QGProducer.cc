@@ -187,9 +187,10 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     else {
      vECALstitchedClass.push_back(-1);
      vTracksAtECALstitchedPtClass.push_back(-1);
+    
+     std::cout<<" >> QGInference Prediction of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
+     std::cout<<" >> QGInference Prediction of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
     }
-    std::cout<<" >> QGInference Prediction of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
-    std::cout<<" >> QGInference Prediction of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
    }
    std::cout<<std::endl; //Stitched ECAL and their track frames created.
    
@@ -230,8 +231,9 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }*/
    vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
    }
-   else {vHBHEenergyClass.push_back(-1);}
-   std::cout<<" >> QGInference Prediction of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
+   else {vHBHEenergyClass.push_back(-1);
+     std::cout<<" >> QGInference Prediction of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
+    }
    }
    std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
    iEvent.put(std::move(vECALstitchedClass_edm),"ECALstitchedClass");
