@@ -57,7 +57,7 @@ void TopProducer::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &fs )
 
 // Run event selection _______________________________________________________________//
 bool TopProducer::runEvtSel ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
-  m0cut=90.;
+  
   edm::Handle<reco::PhotonCollection> photons;
   //edm::Handle<pat::PhotonCollection> photons;
   iEvent.getByToken( photonCollectionT_, photons );
