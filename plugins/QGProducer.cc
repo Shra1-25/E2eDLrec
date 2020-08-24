@@ -188,8 +188,8 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      vECALstitchedClass.push_back(-1);
      vTracksAtECALstitchedPtClass.push_back(-1);
     }
-    std::cout<<" >> Predicted Class of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
-    std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
+    std::cout<<" >> QGInference Prediction of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
+    std::cout<<" >> QGInference Prediction of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
    }
    std::cout<<std::endl; //Stitched ECAL and their track frames created.
    
