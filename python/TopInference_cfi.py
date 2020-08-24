@@ -21,6 +21,7 @@ TopInference = cms.EDProducer('TopProducer'
     #, ak4PFJetCollection = cms.InputTag('ak4PFJets')
     , ak8PFJetCollection = cms.InputTag('ak8PFJetsCHS')
     , ak8GenJetCollection = cms.InputTag('ak8GenJets')
+    , recoJetsForBTagging = cms.InputTag("ak8PFJetsCHS")
     #, pfJetCollection = cms.InputTag('ak4PFJets')
     #, genJetCollection = cms.InputTag('ak4GenJets')
     , trackRecHitCollection = cms.InputTag('generalTracks')
