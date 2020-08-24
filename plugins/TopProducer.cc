@@ -137,6 +137,8 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.getByToken(ECALstitched_energy_token, ECALstitched_energy_handle);
    edm::Handle<std::vector<float>> TracksAtECALstitchedPt_handle;
    iEvent.getByToken(TracksAtECALstitchedPt_token, TracksAtECALstitchedPt_handle);
+   edm::Handle<std::vector<float>> TracksAtECALadjPt_handle;
+   iEvent.getByToken(TracksAtECALadjPt_token, TracksAtECALadjPt_handle);
    /*edm::Handle<std::vector<int>> JetSeed_ieta_handle;
    iEvent.getByToken(JetSeed_ieta_token, JetSeed_ieta_handle);
    edm::Handle<std::vector<int>> JetSeed_iphi_handle;
@@ -146,6 +148,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    
    std::vector<float>vECALstitched=*ECALstitched_energy_handle;
    std::vector<float>vTracksAtECALstitchedPt=*TracksAtECALstitchedPt_handle;
+   std::vector<float>vTracksAtECALadjPt=*TracksAtECALadjPt_handle;
    /*std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
    std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;*/
    std::vector<float>vECALstitchedClass;
@@ -238,13 +241,13 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    else {vHBHEenergyClass.push_back(-1);}
    std::cout<<" >> Predicted Class of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl<<std::endl;
    }
-   std::unique_ptr<std::vector<int>> vECALstitchedClass_edm (new std::vector<int>(vECALstitchedClass));
+   std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
    iEvent.put(std::move(vECALstitchedClass_edm),"TopQECALstitchedClass");
-   std::unique_ptr<std::vector<int>> vTracksAtECALstitchedPtClass_edm (new std::vector<int>(vTracksAtECALstitchedPtClass));
+   std::unique_ptr<std::vector<float>> vTracksAtECALstitchedPtClass_edm (new std::vector<float>(vTracksAtECALstitchedPtClass));
    iEvent.put(std::move(vTracksAtECALstitchedPtClass_edm),"TopQTracksAtECALstitchedPtClass");
-   std::unique_ptr<std::vector<int>> vTracksAtECALadjPtClass_edm) (new std::vector<int>(vTracksAtECALadjPtClass));
+   std::unique_ptr<std::vector<float>> vTracksAtECALadjPtClass_edm) (new std::vector<float>(vTracksAtECALadjPtClass));
    iEvent.put(std::move(vTracksAtECALadjPtClass_edm),"TopQTracksAtECALadjPtClass");
-   std::unique_ptr<std::vector<int>> vHBHEenergyClass_edm (new std::vector<int>(vHBHEenergyClass));
+   std::unique_ptr<std::vector<float>> vHBHEenergyClass_edm (new std::vector<float>(vHBHEenergyClass));
    iEvent.put(std::move(vHBHEenergyClass_edm),"TopQHBHEenergyClass");
    std::cout<<std::endl;
 
