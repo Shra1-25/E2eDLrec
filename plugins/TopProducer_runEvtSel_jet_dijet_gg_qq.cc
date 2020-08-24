@@ -1,4 +1,4 @@
-#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
+/*#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 
 using std::vector;
@@ -70,7 +70,7 @@ bool TopProducer::runEvtSel_jet_dijet_gg_qq( const edm::Event& iEvent, const edm
   std::vector<float> v_ggqq_jetFakePhoIdxs;
   */
 
-  unsigned nGG = 0;
+  /*unsigned nGG = 0;
   unsigned nQQ = 0;
 
   if ( debug ) std::cout << " >>>>>>>>>>>>>>>>>>>> evt:" << std::endl;
@@ -177,4 +177,4 @@ void TopProducer::fillEvtSel_jet_dijet_gg_qq ( const edm::Event& iEvent, const e
   h_nQQ->Fill( nQQ );
 
 
-} // fillEvtSel_jet_dijet_gg_qq()
+} // fillEvtSel_jet_dijet_gg_qq()*/
