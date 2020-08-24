@@ -25,7 +25,7 @@ EGProducer::EGProducer(const edm::ParameterSet& iConfig)
 void
 EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-   std::cout<<" >> Running EGProducer."<std::endl;
+   std::cout<<" >> Running EGProducer."<<std::endl;
    using namespace edm;
    nTotal++;
 
