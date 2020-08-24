@@ -46,8 +46,4 @@ TopInference = cms.EDAnalyzer('RecHitAnalyzer'
     , isTTbar = cms.bool(True)
     , minTopPt = cms.double(200.)
     , maxTopEta = cms.double(2.4)
-
-    #granularity multiplier wrt ECAL maps for tracker and tracking RH images
-    , granularityMultiPhi = cms.int32(1)
-    , granularityMultiEta = cms.int32(1)
     )
