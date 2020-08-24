@@ -140,7 +140,7 @@ class TopProducer : public edm::stream::EDProducer<> {
       std::vector<std::vector<float>> vECALstitched_frame;
       std::vector<std::vector<float>> vTracksAtECALstitchedPt_frame;
       std::vector<std::vector<float>> vTracksAtECALadjPt_frame;
-      std::vector<float> vclasses;
+      //std::vector<float> vclasses;
       vector<int> vJetSeed_iphi_;
       vector<int> vJetSeed_ieta_;
       std::vector<float> vSC_eta_;
