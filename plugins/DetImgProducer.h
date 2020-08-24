@@ -219,7 +219,8 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       //std::vector<float> vSC_eta_;
       //std::vector<float> vSC_phi_;
       std::vector<int> vPreselPhoIdxs_;
-      int nTotal, nPassed;
+      int nTotal=0;
+      int nPassed=0;
       
 //void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
 //void predict_tf();
