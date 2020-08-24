@@ -56,9 +56,9 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
  maxJetEta_ = iConfig.getParameter<double>("maxJetEta");
 	
- produces<std::vector<int>>("ECALstitchedClass");
- produces<std::vector<int>>("TracksAtECALstitchedPtClass");
- produces<std::vector<int>>("HBHEenergyClass");
+ produces<std::vector<float>>("ECALstitchedClass");
+ produces<std::vector<float>>("TracksAtECALstitchedPtClass");
+ produces<std::vector<float>>("HBHEenergyClass");
  produces<std::vector<int>>("ak4JetSeedieta");
  produces<std::vector<int>>("ak4JetSeediphi");
 }
@@ -160,7 +160,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vECALstitched_frame.clear();
    vTracksAtECALstitchedPt_frame.clear();
    for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-    std::cout<<" >> Generating Stitched ECAL frames and their track frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta_.size()<<" with seed value: ("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<std::endl;
+    std::cout<<"Generating Stitched ECAL frames and their track frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta_.size()<<" with seed value: ("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<std::endl;
     if(vJetSeed_ieta_[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta_[idx], vJetSeed_iphi_[idx], 280, 360, 125, 125); 
                                vTracksAtECALstitchedPt_frame=croppingFrames(vTracksAtECALstitchedPt, vJetSeed_ieta_[idx], vJetSeed_iphi_[idx], 280, 360, 125, 125);
     /*string filename="ECALstitched_"+std::to_string(nPassed+1)+"_"+std::to_string(idx+1)+".csv";
@@ -189,9 +189,9 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      vTracksAtECALstitchedPtClass.push_back(-1);
     }
     std::cout<<" >> Predicted Class of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
-    std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl<<std::endl;
+    std::cout<<" >> Predicted Class of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
    }
-   //std::cout<<std::endl; //Stitched ECAL and their track frames created.
+   std::cout<<std::endl; //Stitched ECAL and their track frames created.
    
   
    std::vector<float> vHBHEenergy=*HBHEenergy_handle;
@@ -206,7 +206,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }
    
    for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-    std::cout<<" >> Generating HBHE energy frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta_.size()<<" with seed value: ("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<std::endl;
+    std::cout<<"Generating HBHE energy frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta_.size()<<" with seed value: ("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<std::endl;
     if(vJetSeed_ieta_[idx]>=0) {vHBHEenergy_frame=croppingFrames(vHBHE_strided_flat, vJetSeed_ieta_[idx], vJetSeed_iphi_[idx], 280, 360, 125, 125); 
    /*for(int i=140;i<141;i++){
     for (int ki=0; ki<5;ki++){
@@ -231,13 +231,13 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
    }
    else {vHBHEenergyClass.push_back(-1);}
-   std::cout<<" >> Predicted Class of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl<<std::endl;
+   std::cout<<" >> Predicted Class of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
    }
-   std::unique_ptr<std::vector<int>> vECALstitchedClass_edm (new std::vector<int>(vECALstitchedClass));
+   std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
    iEvent.put(std::move(vECALstitchedClass_edm),"ECALstitchedClass");
-   std::unique_ptr<std::vector<int>> vTracksAtECALstitchedPtClass_edm (new std::vector<int>(vTracksAtECALstitchedPtClass));
+   std::unique_ptr<std::vector<float>> vTracksAtECALstitchedPtClass_edm (new std::vector<float>(vTracksAtECALstitchedPtClass));
    iEvent.put(std::move(vTracksAtECALstitchedPtClass_edm),"TracksAtECALstitchedPtClass");
-   std::unique_ptr<std::vector<int>> vHBHEenergyClass_edm (new std::vector<int>(vHBHEenergyClass));
+   std::unique_ptr<std::vector<float>> vHBHEenergyClass_edm (new std::vector<float>(vHBHEenergyClass));
    iEvent.put(std::move(vHBHEenergyClass_edm),"HBHEenergyClass");
    std::cout<<std::endl;
 
