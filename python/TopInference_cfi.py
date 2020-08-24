@@ -16,6 +16,7 @@ TopInference = cms.EDProducer('TopProducer'
     #, JetSeediphi = cms.InputTag('ProducerFrames','JetSeediphi')
     , HBHEenergy = cms.InputTag('ProducerFrames','HBHEenergy')
     , genParticleCollection = cms.InputTag('genParticles') 
+    , photonCollection = cms.InputTag('gedPhotons')#or 'slimmedPhotons' for mini AOD root file
     , gedPhotonCollection = cms.InputTag('gedPhotons')
     #, ak4PFJetCollection = cms.InputTag('ak4PFJets')
     , ak8PFJetCollection = cms.InputTag('ak8PFJetsCHS')
