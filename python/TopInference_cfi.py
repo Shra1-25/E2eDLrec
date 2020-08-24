@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms 
 
-TopInference = cms.EDAnalyzer('RecHitAnalyzer'
+TopInference = cms.EDProducer('TopProducer'
     #, tracks = cms.untracked.InputTag('ctfWithMaterialTracks')
     #, EBRecHitCollection = cms.InputTag('ecalRecHit:EcalRecHitsEB')
     , reducedEBRecHitCollection = cms.InputTag('reducedEcalRecHitsEB')
