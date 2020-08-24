@@ -57,8 +57,8 @@ TopProducer::TopProducer(const edm::ParameterSet& iConfig)
  produces<std::vector<float>>("TopQECALstitchedClass");
  produces<std::vector<float>>("TopQTracksAtECALstitchedPtClass");
  produces<std::vector<float>>("TopQHBHEenergyClass");
- produces<std::vector<float>>("ak8JetSeedieta");
- produces<std::vector<float>>("ak8JetSeediphi");
+ produces<std::vector<int>>("ak8JetSeedieta");
+ produces<std::vector<int>>("ak8JetSeediphi");
 }
 
 TopProducer::~TopProducer()
