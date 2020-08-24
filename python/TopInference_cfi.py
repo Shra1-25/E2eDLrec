@@ -43,8 +43,8 @@ TopInference = cms.EDProducer('TopProducer'
 
     # Jet level cfg
     , nJets = cms.int32(2)
-    , minJetPt = cms.double(100.)
-    , maxJetEta = cms.double(4.4)
+    , minJetPt = cms.double(400.)
+    , maxJetEta = cms.double(1.37)
     , z0PVCut  = cms.double(0.1)
     , isTTbar = cms.bool(True)
     , minTopPt = cms.double(200.)
