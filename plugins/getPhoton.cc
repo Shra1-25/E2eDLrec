@@ -52,7 +52,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  vclasses.clear(); 
  int iphi_, ieta_; // rows:ieta, cols:iphi
  std::cout<<"Photons size : "<<photons->size()<<std::endl;
- if (photons->size()<=0){std::cout<<" >> Class: -1"<<std::endl; vclasses.push_back(-1);}
+ if (photons->size()<=0){std::cout<<" >> Prediction: -1"<<std::endl; vclasses.push_back(-1);}
  for ( unsigned int iP = 0; iP < photons->size(); iP++ ) {
   PhotonRef iRecoPho( photons, iP );
   
@@ -94,7 +94,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   //std::cout << " >> Found: iphi_Emax,ieta_Emax: " << iphi_Emax << ", " << ieta_Emax << std::endl;
   if ( Emax <= zs ) {
     std::cout<<" >> EB_energy is less than zero: "<<Emax<<std::endl;
-    std::cout<<" >> Class: -1"<<std::endl; 
+    std::cout<<" >> Prediction: -1"<<std::endl; 
     vclasses.push_back(-1);
     if (iP==(photons->size()-1)){std::cout<<" >> All Done"<<std::endl;}
     continue;
@@ -106,7 +106,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   std::cout<<" >> EB_energy at iphi_Emax,ieta_Emax: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 )  // seed centered on [15,15] so must be padded by 15 below and 16 above
   {  
-    std::cout<<" >> Class: -1"<<std::endl;
+    std::cout<<" >> Prediction: -1"<<std::endl;
     vclasses.push_back(-1);
     if (iP==(photons->size()-1)){std::cout<<" >> All Done"<<std::endl;}
     continue;
