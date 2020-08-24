@@ -9,7 +9,6 @@ EGProducer::EGProducer(const edm::ParameterSet& iConfig)
  EBRecHitCollectionT_    = consumes<EcalRecHitCollection>(iConfig.getParameter<edm::InputTag>("reducedEBRecHitCollection"));
  photonCollectionT_ = consumes<PhotonCollection>(iConfig.getParameter<edm::InputTag>("photonCollection"));
  vEB_energy_token = consumes<std::vector<float>>(iConfig.getParameter<edm::InputTag>("EBEnergy"));
- std::cout<<"Reading data collection done "<<nTotal<<std::endl;
  
  edm::Service<TFileService> fs;
  EGTree = fs->make<TTree>("EGTree", "RecHit tree");
