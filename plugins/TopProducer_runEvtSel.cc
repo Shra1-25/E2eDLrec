@@ -23,7 +23,7 @@ extern float diPhoE_;
 extern float diPhoPt_;
 extern std::vector<float> vFC_inputs_;
 
-extern float m0cut = 90.;
+extern float m0cut; //= 90.;
 //float m0cut = 80.;
 
 // Initialize branches _____________________________________________________//
@@ -57,7 +57,7 @@ void TopProducer::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &fs )
 
 // Run event selection _______________________________________________________________//
 bool TopProducer::runEvtSel ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
-
+  m0cut=90.;
   edm::Handle<reco::PhotonCollection> photons;
   //edm::Handle<pat::PhotonCollection> photons;
   iEvent.getByToken( photonCollectionT_, photons );
