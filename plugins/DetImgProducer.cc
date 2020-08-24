@@ -292,7 +292,7 @@ DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<" >> Size of max Pt Track vector at ECAL adjustable is : "<<std::move(TracksECALadjPt_max_edm).get()->size()<<std::endl;
    iEvent.put(std::move(TracksECALadjPt_max_edm),"TracksAtECALadjPtMax");
  
-   std::cout<<" >> Added EB, HBHE, HBHE_EB, ECALstitched, Tracks_at_ECALstitched to edm root file"<<std::endl;
+   std::cout<<" >> Added EB, HBHE, HBHE_EB, ECALstitched, TracksAtECALstitchedPt and TracksAtECALadjPt to edm root file"<<std::endl;
    //EBEnergy_edm->clear();
    //iEvent.put(photon_classes,"photon_classes");
    // Fill RHTree
