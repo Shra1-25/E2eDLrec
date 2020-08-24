@@ -2,28 +2,28 @@
 #include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 // Run event selection ////////////////////////////////
 
-TH1F *h_m0;
-TH1F *h_nJet;
-TH1F *h_phoPt; 
-TH1F *h_phoE;
-TH1F *h_phoEta;
-TH1F *h_phoR9;
-TH1F *h_phoSieie;
-TH1F *h_phoMva;
-TH1F *h_jetPt;
-TH1F *h_jetE;
-TH1F *h_jetEta;
+extern TH1F *h_m0;
+extern TH1F *h_nJet;
+extern TH1F *h_phoPt; 
+extern TH1F *h_phoE;
+extern TH1F *h_phoEta;
+extern TH1F *h_phoR9;
+extern TH1F *h_phoSieie;
+extern TH1F *h_phoMva;
+extern TH1F *h_jetPt;
+extern TH1F *h_jetE;
+extern TH1F *h_jetEta;
 
-unsigned long long eventId_;
-unsigned int runId_;
-unsigned int lumiId_;
-float m0_;
+extern unsigned long long eventId_;
+extern unsigned int runId_;
+extern unsigned int lumiId_;
+extern float m0_;
 //float nJet_;
-float diPhoE_;
-float diPhoPt_;
-std::vector<float> vFC_inputs_;
+extern float diPhoE_;
+extern float diPhoPt_;
+extern std::vector<float> vFC_inputs_;
 
-float m0cut = 90.;
+extern float m0cut = 90.;
 //float m0cut = 80.;
 
 // Initialize branches _____________________________________________________//
@@ -36,13 +36,13 @@ void TopProducer::branchesEvtSel ( TTree* tree, edm::Service<TFileService> &fs )
   h_phoEta = fs->make<TH1F>("h_phoEta", "#eta;#eta;Particles"  , 100, -5., 5.);
   h_phoR9  = fs->make<TH1F>("h_phoR9" , "R9;R9;Particles"  , 50, 0., 1.);
   h_phoSieie  = fs->make<TH1F>("h_phoSieie" , "Sieie;Sieie;Particles"  , 50, 0., 0.1);
-  //h_phoMva = fs->make<TH1F>("h_phoMva", "#mva;#mva;Particles"  , 100, -1., 1.);
-  /*
+  h_phoMva = fs->make<TH1F>("h_phoMva", "#mva;#mva;Particles"  , 100, -1., 1.);
+  
   h_jetPt  = fs->make<TH1F>("h_jetPt" , "p_{T};p_{T};Particles", 100,  0., 500.);
   h_jetE   = fs->make<TH1F>("h_jetE"  , "E;E;Particles"        , 100,  0., 800.);
   h_jetEta = fs->make<TH1F>("h_jetEta", "#eta;#eta;Particles"  , 100, -5., 5.);
   h_nJet   = fs->make<TH1F>("h_nJet"  , "nJet;nJet;Events"     ,  10,  0.,  10.);
-  */
+  
 
   tree->Branch("eventId",        &eventId_);
   tree->Branch("runId",          &runId_);
