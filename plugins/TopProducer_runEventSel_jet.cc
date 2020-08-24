@@ -5,10 +5,10 @@ using std::vector;
 
 const int search_window = 7;
 const int image_padding = 12;
-//vector<int>   vFailedJetIdx_;
-unsigned int jet_runId_;
-unsigned int jet_lumiId_;
-unsigned long long jet_eventId_;
+extern vector<int>   vFailedJetIdx_;
+extern unsigned int jet_runId_;
+extern unsigned int jet_lumiId_;
+extern unsigned long long jet_eventId_;
 
 //const std::string jetSelection = "dijet_gg_qq"; // TODO: put switch at cfg level
 const std::string jetSelection = "dijet";
