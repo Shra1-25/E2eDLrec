@@ -163,6 +163,11 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   vEB_frame=croppingFrames(vEB_energy_, ieta_Emax, iphi_Emax, 170,360,32,32);
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
   vclasses.push_back(predict_tf(vEB_frame, "e_vs_ph_model.pb","inputs","softmax_1/Sigmoid"));
+  for (int frame_x=0;frame_x<int(vEB_frame.size());frame_x++){
+    for (int frame_y=0;frame_y<int(vEB_frame[0].size());frame_y++){
+      vEB_flat_frame[x*vEB_frame[0].size()+y]=vEB_frame[x][y];
+    }
+  }
   
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
@@ -174,5 +179,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     std::cout<<endl;
   }*/
  }
+ photonFrames.push_back(vEB_flat_frame);
  return;
 }
