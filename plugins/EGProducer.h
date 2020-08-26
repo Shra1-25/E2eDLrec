@@ -100,7 +100,8 @@ class EGProducer : public edm::stream::EDProducer<> {
       std::vector<float> vclasses;
    
       typedef edm::SortedCollection<std::vector<float>> photonFrames;
-      edm::SortedCollection<std::vector<float>> vEB_photonFrames;
+      typedef photonFrames EB_photonFrames; 
+      EB_photonFrames vEB_photonFrames;
    
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       unsigned int nPho;
