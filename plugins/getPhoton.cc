@@ -179,6 +179,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     std::cout<<endl;
   }*/
  }
- photonFrames.push_back(vEB_flat_frame);
+ //vEB_photonFrames.push_back(vEB_flat_frame);
  return;
 }
