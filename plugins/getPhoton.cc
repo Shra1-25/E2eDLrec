@@ -165,7 +165,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   vclasses.push_back(predict_tf(vEB_frame, "e_vs_ph_model.pb","inputs","softmax_1/Sigmoid"));
   for (int frame_x=0;frame_x<int(vEB_frame.size());frame_x++){
     for (int frame_y=0;frame_y<int(vEB_frame[0].size());frame_y++){
-      vEB_flat_frame[x*vEB_frame[0].size()+y]=vEB_frame[x][y];
+      vEB_flat_frame[frame_x*vEB_frame[0].size()+frame_y]=vEB_frame[frame_x][frame_y];
     }
   }
   
