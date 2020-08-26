@@ -99,7 +99,7 @@ class EGProducer : public edm::stream::EDProducer<> {
       std::vector<std::vector<float>> vEB_photon_frames;
       std::vector<float> vclasses;
    
-      typedef edm::SortedCollection<std::vector<float>> photonFrames;
+      typedef edm::SortedCollection<EcalRecHit> photonFrames;
       typedef photonFrames EB_photonFrames; 
       EB_photonFrames vEB_photonFrames;
    
