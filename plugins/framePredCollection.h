@@ -19,7 +19,8 @@ class framePredCollection {
   ~framePredCollection(){
     frameCollection.clear();
     predCollection.clear();
-    photonSeeds.clear();
+    photonIetaSeeds.clear();
+    photonIphiSeeds.clear();
   }
   
   std::vector<std::vector<float>> getFrameCollection(){
