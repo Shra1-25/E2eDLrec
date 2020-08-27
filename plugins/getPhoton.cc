@@ -172,8 +172,8 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     }
   }
   //std::cout<<" >> Size of flat frame: "<<vEB_flat_frame.size()<<std::endl;
-  photonJetCollection.putFrameCollection(vEB_flat_frame);
-  photonJetCollection.putPredCollection(vpredictions);
+  photonJetCollection.pushFrameCollection(vEB_flat_frame);
+  photonJetCollection.pushPredCollection(vpredictions);
   vpredictions.clear();
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
