@@ -1,0 +1,8 @@
+<lcgdict>
+  <class name="framePredCollection"/>
+  <class name="std::vector<framePredCollection>"/>
+  <class name="edm::SortedCollection<framePredCollection,edm::StrictWeakOrdering<framePredCollection> >"/>
+  <class name="edm::StrictWeakOrdering<framePredCollection>" /> <!-- Root6 -->
+  <class name="edm::Wrapper<edm::SortedCollection<framePredCollection,edm::StrictWeakOrdering<framePredCollection> > >" />
+  <class name="edm::Wrapper<std::vector<std::vector<float>>>"/>
+</lcgdict>
