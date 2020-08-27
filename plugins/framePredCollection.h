@@ -23,7 +23,7 @@ class framePredCollection {
     return frameCollection;
   }
   
-  void putFrameCollection(std::vector<float> frame){
+  void pushFrameCollection(std::vector<float> frame){
     frameCollection.push_back(frame);
   }
   
@@ -31,7 +31,7 @@ class framePredCollection {
     return predCollection;
   }
   
-  void putPredCollection(std::vector<float> prediction){
+  void pushPredCollection(std::vector<float> prediction){
     predCollection.push_back(prediction);
   }
 };
