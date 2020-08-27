@@ -5,6 +5,10 @@
 using namespace std;
 
 class framePredCollection {
+  
+  std::vector<std::vector<float>> frameCollection;
+  std::vector<float> predCollection;
+  
   public:
   framePredCollection();
   ~framePredCollection(){
@@ -27,9 +31,4 @@ class framePredCollection {
   void putPredCollection(std::vector<float> prediction){
     predCollection=prediction;
   }
-  
-  private:
-  std::vector<std::vector<float>> frameCollection;
-  std::vector<float> predCollection;
-  
 }
