@@ -34,7 +34,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vEB_energy_=*vEB_energy_handle;
    vEB_flat_frame.clear();
    vEB_frame.clear();
-   vclasses.clear();
+   vpredictions.clear();
    vEB_photon_frames.clear();
  
    get_photons(iEvent, iSetup );//stored in vEB_frames vectors
