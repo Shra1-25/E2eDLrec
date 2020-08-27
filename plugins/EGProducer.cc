@@ -49,7 +49,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }
    std::cout<<std::endl;
    std::vector<float> temp_flat=vEB_photonFrames[vEB_photonFrames.size()-1].getFramePred();
-   std::vector<std::vector<float>> temp_frame = new std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
+   std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
  
    for (int idx=0;idx<int(temp_flat.size());idx++){
     temp_frame[int(idx/32)][idx%32]=flat_frame[idx];
