@@ -39,8 +39,8 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    framePredCollection photonJetCollection;   
  
    get_photons(iEvent, iSetup, photonJetCollection );//stored in vEB_frames vectors
-   photonJetCollection.pushIetaSeed(vIeta_Emax_);
-   photonJetCollection.pushIphiSeed(vIphi_Emax_);
+   photonJetCollection.putIetaSeed(vIeta_Emax_);
+   photonJetCollection.putIphiSeed(vIphi_Emax_);
    vEB_photonFrames.push_back(photonJetCollection);
    std::vector<float> seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
    std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
