@@ -48,7 +48,13 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::cout<<" >> Class Object Seeds are: ["<<seedx[seed_idx]<<", "<<seedy[seed_idx]<<"], ";
    }
    std::cout<<std::endl;
-   std::cout<<" >> Class Object predictions are: "<<predict_tf(vEB_photonFrames[vEB_photonFrames.size()-1],"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid")<<std::endl;
+   std::vector<float> temp_flat=vEB_photonFrames[vEB_photonFrames.size()-1].getFramePred();
+   std::vector<std::vector<float>> temp_frame = new std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
+ 
+   for (int idx=0;idx<int(temp_flat.size());idx++){
+    temp_frame[int(idx/32)][idx%32]=flat_frame[idx];
+   }
+   std::cout<<" >> Class Object predictions are: "<<predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid")<<std::endl;
    std::unique_ptr<std::vector<float>> vpredictions_edm (new std::vector<float>(vpredictions));
    iEvent.put(std::move(vpredictions_edm),"EBenergyClass");
    std::cout<<std::endl;
