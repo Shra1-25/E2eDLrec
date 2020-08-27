@@ -164,7 +164,8 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;*/
   vEB_frame=croppingFrames(vEB_energy_, ieta_Emax, iphi_Emax, 170,360,32,32);
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
-  vpredictions = predict_tf(vEB_frame, "e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
+  vpredictions.push_back(0);
+  vpredictions[0] = predict_tf(vEB_frame, "e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
   for (int frame_x=0;frame_x<int(vEB_frame.size());frame_x++){
     for (int frame_y=0;frame_y<int(vEB_frame[0].size());frame_y++){
       vEB_flat_frame[frame_x*vEB_frame[0].size()+frame_y]=vEB_frame[frame_x][frame_y];
