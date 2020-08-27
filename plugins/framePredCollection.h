@@ -10,7 +10,8 @@ class framePredCollection {
   
   std::vector<std::vector<float>> frameCollection;
   std::vector<std::vector<float>> predCollection;
-  std::vector<std::vector<float>> photonSeeds;
+  std::vector<float> photonIetaSeeds;
+  std::vector<float> photonIphiSeeds;
   
   public:
   typedef std::vector<float> key_type;
@@ -37,12 +38,20 @@ class framePredCollection {
     predCollection.push_back(prediction);
   }
   
-  void pushSeed (float ieta_seed, float iphi_seed){
-    photonSeeds.push_back(std::vector<float> {ieta_seed,iphi_seed})
+  void putIetaSeed (std::vector<float> vIeta_seed){
+    photonIetaSeeds = vIeta_seed;
   }
   
-  std::vector<std::vector<float>> getSeeds (){
-    return photonSeeds;
+  void putIphiSeed (std::vector<float> vIphi_seed){
+    photonIphiSeeds = vIphi_seed;
+  }
+  
+  std::vector<float> getIetaSeeds (){
+    return photonIetaSeeds;
+  }
+  
+  std::vector<float> getIphiSeeds (){
+    return photonIphiSeeds;
   }
 };
 #endif
