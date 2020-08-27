@@ -56,7 +56,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
     for (int idx=0;idx<int(temp_flat.size());idx++){
      temp_frame[int(idx/32)][idx%32]=temp_flat[seedidx][idx];
-     std::cout<<"["<<idx/32<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
+     std::cout<<"["<<idx/32<<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
     }
     std::cout<<std::endl;
     std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid")<<std::endl;
