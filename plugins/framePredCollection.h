@@ -13,7 +13,7 @@ class framePredCollection {
   
   public:
   typedef std::vector<float> key_type;
-  framePredCollection();
+  //framePredCollection();
   ~framePredCollection(){
     frameCollection.clear();
     predCollection.clear();
