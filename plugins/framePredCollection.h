@@ -6,6 +6,12 @@ using namespace std;
 
 class framePredCollection {
   public:
+  framePredCollection();
+  ~framePredCollection(){
+    frameCollection.clear();
+    predCollection.clear();
+  }
+  
   std::vector<std::vector<float>> getFrameCollection(){
     return frameCollection;
   }
