@@ -8,8 +8,8 @@ using namespace std;
 
 class framePredCollection {
   
-  std::vector<float> frameCollection;
-  std::vector<float> predCollection;
+  std::vector<std::vector<float>> frameCollection;
+  std::vector<std::vector<float>> predCollection;
   
   public:
   typedef std::vector<float> key_type;
@@ -19,20 +19,20 @@ class framePredCollection {
     predCollection.clear();
   }
   
-  std::vector<float> getFrameCollection(){
+  std::vector<std::vector<float>> getFrameCollection(){
     return frameCollection;
   }
   
   void putFrameCollection(std::vector<float> frame){
-    frameCollection=frame;
+    frameCollection.push_back(frame);
   }
   
-  std::vector<float> getPredCollection(){
+  std::vector<std::vector<float>> getPredCollection(){
     return predCollection;
   }
   
   void putPredCollection(std::vector<float> prediction){
-    predCollection=prediction;
+    predCollection.push_back(prediction);
   }
 };
 #endif
