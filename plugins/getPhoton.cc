@@ -51,7 +51,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  vEB_photon_frames.clear();
  vpredictions.clear(); 
   
- framePredCollection photon_collection; 
  int iphi_, ieta_; // rows:ieta, cols:iphi
  std::cout<<"Photons size : "<<photons->size()<<std::endl;
  if (photons->size()<=0){std::cout<<" >> Prediction: -1"<<std::endl; vpredictions.push_back(-1);}
@@ -173,8 +172,8 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     }
   }
   std::cout<<" >> Size of flat frame: "<<vEB_flat_frame.size()<<std::endl;
-  photon_collection.putFrameCollection(vEB_flat_frame);
-  photon_collection.putPredCollection(vpredictions);
+  photonJetCollection.pushFrameCollection(vEB_flat_frame);
+  photonJetCollection.pushPredCollection(vpredictions);
   vpredictions.clear();
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
@@ -186,10 +185,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     std::cout<<endl;
   }*/
  }
- vEB_photonFrames.push_back(photon_collection);
- std::cout<<" >> Size of photon collection frame: "<<vEB_photonFrames[nPassed].getFrameCollection().size()<<std::endl;
- std::cout<<" >> Size of photon collection predictions: "<<vEB_photonFrames[nPassed].getPredCollection().size()<<std::endl;
- std::cout<<"nPassed: "<<nPassed<<std::endl;
  //std::cout<<" First and last 5 values of photon collection are: <<
  //vEB_photonFrames.push_back(vEB_flat_frame);
  return;
