@@ -8,22 +8,22 @@ using namespace std;
 
 class framePredCollection {
   
-  std::vector<std::vector<float>> frameCollection;
+  std::vector<<float>> frameCollection;
   std::vector<float> predCollection;
   
   public:
-  typedef std::vector<std::vector<float>> key_type;
+  typedef std::vector<float> key_type;
   framePredCollection();
   ~framePredCollection(){
     frameCollection.clear();
     predCollection.clear();
   }
   
-  std::vector<std::vector<float>> getFrameCollection(){
+  std::vector<float> getFrameCollection(){
     return frameCollection;
   }
   
-  void putFrameCollection(std::vector<std::vector<float>> frame){
+  void putFrameCollection(std::vector<float> frame){
     frameCollection=frame;
   }
   
