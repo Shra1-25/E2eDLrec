@@ -45,16 +45,18 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  nPho = 0;
  //int iphi_Emax, ieta_Emax;
  float Emax;
+ std::vector<float> empty_vec;
  vIphi_Emax_.clear();
  vIeta_Emax_.clear();
  vPreselPhoIdxs_.clear();
  vEB_photon_frames.clear();
  vpredictions.clear(); 
+ empty_vec.clear();
   
  int iphi_, ieta_; // rows:ieta, cols:iphi
  std::cout<<"Photons size : "<<photons->size()<<std::endl;
  if (photons->size()<=0){std::cout<<" >> Prediction: -1"<<std::endl; vpredictions.push_back(-1); photonJetCollection.pushPredCollection(vpredictions);
-                          photonJetCollection.pushFrameCollection(std::vector<float> empty_vec);
+                          photonJetCollection.pushFrameCollection(empty_vec);
                         }
  for ( unsigned int iP = 0; iP < photons->size(); iP++ ) {
   PhotonRef iRecoPho( photons, iP );
@@ -100,7 +102,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     std::cout<<" >> Prediction: -1"<<std::endl; 
     vpredictions.push_back(-1);
     photonJetCollection.pushPredCollection(vpredictions);
-    photonJetCollection.pushFrameCollection(std::vector<float> empty_vec);
+    photonJetCollection.pushFrameCollection(empty_vec);
     if (iP==(photons->size()-1)){std::cout<<" >> All Done"<<std::endl;}
     continue;
   }
@@ -114,7 +116,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     std::cout<<" >> Prediction: -1"<<std::endl;
     vpredictions.push_back(-1);
     photonJetCollection.pushPredCollection(vpredictions);
-    photonJetCollection.pushFrameCollection(std::vector<float> empty_vec);
+    photonJetCollection.pushFrameCollection(empty_vec);
     if (iP==(photons->size()-1)){std::cout<<" >> All Done"<<std::endl;}
     continue;
   }
