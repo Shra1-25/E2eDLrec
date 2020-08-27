@@ -6,7 +6,9 @@
 //#include <fstream>
 //#include <sstream>
 #include <vector>
+
 // user include files
+#include "ProdTutorial/ProducerTest/interface/framePredCollection.h"
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/stream/EDProducer.h"
 //#include "FWCore/Framework/interface/one/EDAnalyzer.h"
@@ -99,7 +101,7 @@ class EGProducer : public edm::stream::EDProducer<> {
       std::vector<std::vector<float>> vEB_photon_frames;
       std::vector<float> vclasses;
    
-      typedef edm::SortedCollection<EcalRecHit> photonFrames;
+      typedef edm::SortedCollection<framePredCollection> photonFrames;
       typedef photonFrames EB_photonFrames; 
       EB_photonFrames vEB_photonFrames;
    
