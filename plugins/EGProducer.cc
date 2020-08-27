@@ -1,6 +1,7 @@
 #include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/EGProducer.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
+#include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
 //#include <fstream>
 
 EGProducer::EGProducer(const edm::ParameterSet& iConfig)
@@ -38,8 +39,16 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    framePredCollection photonJetCollection;   
  
    get_photons(iEvent, iSetup );//stored in vEB_frames vectors
-   photonJetCollection.pushSeed(vIeta_Emax_, vIphi_Emax_);
+   photonJetCollection.pushIetaSeed(vIeta_Emax_);
+   photonJetCollection.pushIphiSeed(vIphi_Emax_);
    vEB_photonFrames.push_back(photonJetCollection);
+   std::vector<float> seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
+   std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
+   for (int seed_idx=0;seed_idx<int(seedx.size());seed_idx++){
+    std::cout<<" >> Class Object Seeds are: ["<<seedx[seed_idx]<<", "<<seedy[seed_idx]<<"], ";
+   }
+   std::cout<<std::endl;
+   std::cout<<" >> Class Object predictions are: "<<predict_tf(vEB_photonFrames[vEB_photonFrames.size()-1])<<std::endl;
    std::unique_ptr<std::vector<float>> vpredictions_edm (new std::vector<float>(vpredictions));
    iEvent.put(std::move(vpredictions_edm),"EBenergyClass");
    std::cout<<std::endl;
