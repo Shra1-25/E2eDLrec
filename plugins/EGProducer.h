@@ -108,7 +108,7 @@ class EGProducer : public edm::stream::EDProducer<> {
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       unsigned int nPho;
      
-      void get_photons                            ( const edm::Event&, const edm::EventSetup& );
+      void get_photons                            ( const edm::Event&, const edm::EventSetup&, framePredCollection& );
       //std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
       int iphi_Emax, ieta_Emax;
       
