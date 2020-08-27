@@ -170,11 +170,11 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;*/
   vEB_frame=croppingFrames(vEB_energy_, ieta_Emax, iphi_Emax, 170,360,32,32);
-  for(int x_idx=0; x_idx<int(vEB_frame.size()); x_idx++){
+  /*for(int x_idx=0; x_idx<int(vEB_frame.size()); x_idx++){
     for (int y_idx=0; y_idx<int(vEB_frame[0].size()); y_idx++){
       std::cout<<"["<<x_idx<<", "<<y_idx<<"]: "<<vEB_frame[x_idx][y_idx];
     }
-  }
+  }*/
   std::cout<<endl;
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
   vpredictions.push_back(0);
