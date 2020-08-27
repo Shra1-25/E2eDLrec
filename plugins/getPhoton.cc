@@ -54,7 +54,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  int iphi_, ieta_; // rows:ieta, cols:iphi
  std::cout<<"Photons size : "<<photons->size()<<std::endl;
  if (photons->size()<=0){std::cout<<" >> Prediction: -1"<<std::endl; vpredictions.push_back(-1); photonJetCollection.pushPredCollection(vpredictions);
-                          photonJetCollection.pushFrameCollection(std::vector<float> empty_vec;);
+                          photonJetCollection.pushFrameCollection(std::vector<float> empty_vec);
                         }
  for ( unsigned int iP = 0; iP < photons->size(); iP++ ) {
   PhotonRef iRecoPho( photons, iP );
