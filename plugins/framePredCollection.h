@@ -8,7 +8,7 @@ using namespace std;
 
 class framePredCollection {
   
-  std::vector<<float>> frameCollection;
+  std::vector<float> frameCollection;
   std::vector<float> predCollection;
   
   public:
