@@ -14,7 +14,9 @@ EGProducer::EGProducer(const edm::ParameterSet& iConfig)
  edm::Service<TFileService> fs;
  EGTree = fs->make<TTree>("EGTree", "RecHit tree");
  branchesPhotonSel ( EGTree, fs );
- produces<std::vector<float>>("EBenergyClass");
+ 
+ produces<std::vector<float>> ("EBenergyClass");
+ produces<EB_photonFrames> ("photonFramePredSeedCollection");
 }
   
  EGProducer::~EGProducer()
@@ -62,6 +64,8 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::cout<<std::endl;
     std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid")<<std::endl;
    }
+   std::unique_ptr<EB_photonFrames> vEB_photonFrames_edm (new EB_photonFrames);
+   iEvent.put(std::move(vEB_photonFrames_edm),"photonFramePredSeedCollection")
    std::unique_ptr<std::vector<float>> vpredictions_edm (new std::vector<float>(vpredictions));
    iEvent.put(std::move(vpredictions_edm),"EBenergyClass");
    std::cout<<std::endl;
