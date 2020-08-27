@@ -33,4 +33,5 @@ class framePredCollection {
   void putPredCollection(std::vector<float> prediction){
     predCollection=prediction;
   }
-}
+};
+#endif
