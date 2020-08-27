@@ -24,6 +24,6 @@
 <use name="DQM/HcalCommon"/>
 <use name="Geometry/Records"/>
 <use name="Calibration/IsolatedParticles"/>
-<use name="ProdTutorial/ProducerTest/classes/framePredCollection"/>
+<use name="ProdTutorial/E2eDlRecClasses"/>
 <flags EDM_PLUGIN="1"/>
  
