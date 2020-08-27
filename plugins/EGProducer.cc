@@ -54,6 +54,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    
    for (int seedidx=0;seedidx<int(temp_flat.size());seedidx++){
     std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
+    std::cout<<"Size of temp_flat: "<<temp_flat[seedidx].size()<<std::endl;
     for (int idx=0;idx<int(temp_flat.size());idx++){
      temp_frame[int(idx/32)][idx%32]=temp_flat[seedidx][idx];
      std::cout<<"["<<idx/32<<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
