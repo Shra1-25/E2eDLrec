@@ -30,7 +30,7 @@ struct pho_map {
 
 std::vector<pho_map> vPhos;
 
-void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup){
+void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup, framePredCollection& photonJetCollection){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
