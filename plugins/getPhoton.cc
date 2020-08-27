@@ -185,7 +185,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     std::cout<<endl;
   }*/
  }
- std::cout<<" First and last 5 values of photon collection are: "<<
  //vEB_photonFrames.push_back(vEB_flat_frame);
  return;
 }
