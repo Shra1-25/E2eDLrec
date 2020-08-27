@@ -1,4 +1,6 @@
-#ifndef 
+#ifndef framePredCollection_h
+#define framePredCollection_h
+
 # include <iostream>
 # include <vector>
 # include <cmath>
