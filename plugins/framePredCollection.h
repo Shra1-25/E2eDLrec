@@ -12,7 +12,7 @@ class framePredCollection {
   std::vector<std::vector<float>> predCollection;
   std::vector<float> photonIetaSeeds;
   std::vector<float> photonIphiSeeds;
-  std::vector<std::vector<float>> id_
+  std::vector<std::vector<float>> id_;
   
   public:
   typedef std::vector<std::vector<float>> key_type;
