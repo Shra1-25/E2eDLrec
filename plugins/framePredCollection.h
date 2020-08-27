@@ -12,9 +12,10 @@ class framePredCollection {
   std::vector<std::vector<float>> predCollection;
   std::vector<float> photonIetaSeeds;
   std::vector<float> photonIphiSeeds;
+  std::vector<std::vector<float>> id_
   
   public:
-  typedef std::vector<float> key_type;
+  typedef std::vector<std::vector<float>> key_type;
   //framePredCollection();
   ~framePredCollection(){
     frameCollection.clear();
@@ -22,6 +23,8 @@ class framePredCollection {
     photonIetaSeeds.clear();
     photonIphiSeeds.clear();
   }
+  
+  std::vector<std::vector<float>> id() const {return id_;}
   
   std::vector<std::vector<float>> getFrameCollection(){
     return frameCollection;
