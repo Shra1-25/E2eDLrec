@@ -51,7 +51,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  vEB_photon_frames.clear();
  vpredictions.clear(); 
   
- framePredCollection photon_collection(); 
+ framePredCollection photon_collection; 
  int iphi_, ieta_; // rows:ieta, cols:iphi
  std::cout<<"Photons size : "<<photons->size()<<std::endl;
  if (photons->size()<=0){std::cout<<" >> Prediction: -1"<<std::endl; vpredictions.push_back(-1);}
