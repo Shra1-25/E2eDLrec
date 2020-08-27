@@ -42,11 +42,12 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    photonJetCollection.putIetaSeed(vIeta_Emax_);
    photonJetCollection.putIphiSeed(vIphi_Emax_);
    vEB_photonFrames.push_back(photonJetCollection);
-   std::cout<<"Current size of collection"<<vEB_photonFrames.size()<<std::endl;
+   std::cout<<"Current size of collection: "<<vEB_photonFrames.size()<<std::endl;
    std::vector<float> seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
    std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
+   std::cout<<" >> Class Object Seeds are: "
    for (int seed_idx=0;seed_idx<int(seedx.size());seed_idx++){
-    std::cout<<" >> Class Object Seeds are: ["<<seedx[seed_idx]<<", "<<seedy[seed_idx]<<"], ";
+    std::cout<<"["<<seedx[seed_idx]<<", "<<seedy[seed_idx]<<"], ";
    }
    std::cout<<std::endl;
    std::vector<std::vector<float>> temp_flat=vEB_photonFrames[vEB_photonFrames.size()-1].getFrameCollection();
@@ -55,7 +56,9 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
     for (int idx=0;idx<int(temp_flat.size());idx++){
      temp_frame[int(idx/32)][idx%32]=temp_flat[seedidx][idx];
+     std::cout<<"["<<idx/32<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
     }
+    std::cout<<std::endl;
     std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid")<<std::endl;
    }
    std::unique_ptr<std::vector<float>> vpredictions_edm (new std::vector<float>(vpredictions));
