@@ -187,6 +187,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  vEB_photonFrames.push_back(photon_collection);
  std::cout<<" >> Size of photon collection frame: "<<vEB_photonFrames[0].getFrameCollection().size()<<std::endl;
  std::cout<<" >> Size of photon collection predictions: "<<vEB_photonFrames[0].getPredCollection().size()<<std::endl;
+ std::coiut<<"nPassed: "<<nPassed<<std::endl;
  //std::cout<<" First and last 5 values of photon collection are: <<
  //vEB_photonFrames.push_back(vEB_flat_frame);
  return;
