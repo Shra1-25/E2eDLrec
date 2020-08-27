@@ -1,4 +1,4 @@
-#ifndef framePredCollection_h
+/*#ifndef framePredCollection_h
 #define framePredCollection_h
 
 # include <iostream>
@@ -58,4 +58,4 @@ class framePredCollection {
     return photonIphiSeeds;
   }
 };
-#endif
+#endif*/
