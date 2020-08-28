@@ -104,7 +104,7 @@ class EGProducer : public edm::stream::EDProducer<> {
    
       typedef edm::SortedCollection<framePredCollection> photonFrames;
       typedef photonFrames EB_photonFrames; 
-      EB_photonFrames vEB_photonFrames;
+      //EB_photonFrames vEB_photonFrames;
    
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );
       unsigned int nPho;
