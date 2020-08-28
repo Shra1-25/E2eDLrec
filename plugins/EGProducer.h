@@ -102,6 +102,10 @@ class EGProducer : public edm::stream::EDProducer<> {
       std::vector<std::vector<float>> vEB_photon_frames;
       const std::vector<float> vpredictions= {-1};
    
+      struct trial_struct {
+      std::vector<std::vector<float>> vec1={{1,2,3},{4,5,6}};
+      }
+   
       typedef edm::SortedCollection<framePredCollection> photonFrames;
       typedef photonFrames EB_photonFrames; 
       //EB_photonFrames vEB_photonFrames;
