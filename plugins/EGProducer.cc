@@ -49,7 +49,9 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    else {std::vector<float> empty_iphi_vec; photonJetCollection.putIphiSeed(empty_iphi_vec);}
    
    vEB_photonFrames.push_back(photonJetCollection);
-   std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
+
+   // Code (Commented below) to verify photonFrameJetCollection Branch of edm root file.
+   /*std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
    std::vector<float> seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
    std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
    std::cout<<" >> Class Object Seeds are: ";
@@ -69,7 +71,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     //std::cout<<std::endl;
     std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
     predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
-   }
+   }*/
    std::unique_ptr<EB_photonFrames> vEB_photonFrames_edm (new EB_photonFrames(vEB_photonFrames));
    iEvent.put(std::move(vEB_photonFrames_edm),"photonFramePredSeedCollection");
    std::unique_ptr<std::vector<float>> vpredictions_edm (new std::vector<float>(vpredictions));
