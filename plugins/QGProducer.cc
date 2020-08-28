@@ -113,7 +113,6 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
     }
    }
-   }
 	
    using namespace edm;
    nTotal++;
