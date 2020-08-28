@@ -38,7 +38,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vEB_flat_frame.clear();
    vEB_frame.clear();
    //vpredictions.clear();   
-   vEB_photonFrames.clear();
+   EB_photonFrames vEB_photonFrames;
    get_photons(iEvent, iSetup, photonJetCollection );//stored in vEB_frames vectors
    /*if (vIeta_Emax_.size()>0){
    photonJetCollection.putIetaSeed(vIeta_Emax_);}
