@@ -121,7 +121,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 )  // seed centered on [15,15] so must be padded by 15 below and 16 above
   {  
     std::cout<<" >> Prediction: -1"<<std::endl;
-    photonJetCollection.pushPredCollection(vpredictions);
+    photonJetCollection.putPredCollection(vpredictions);
     photonJetCollection.putFrameCollection(empty_vec);
     photonJetCollection.putIetaSeed(ieta_Emax);
     photonJetCollection.putIphiSeed(iphi_Emax);
