@@ -41,12 +41,12 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    framePredCollection photonJetCollection;   
  
    get_photons(iEvent, iSetup, photonJetCollection );//stored in vEB_frames vectors
-   if (vIeta_Emax_.size()>0){
+   /*if (vIeta_Emax_.size()>0){
    photonJetCollection.putIetaSeed(vIeta_Emax_);}
    else {std::vector<float> empty_ieta_vec; photonJetCollection.putIetaSeed(empty_ieta_vec);}
    if (vIphi_Emax_.size()>0){
    photonJetCollection.putIphiSeed(vIphi_Emax_);}
-   else {std::vector<float> empty_iphi_vec; photonJetCollection.putIphiSeed(empty_iphi_vec);}
+   else {std::vector<float> empty_iphi_vec; photonJetCollection.putIphiSeed(empty_iphi_vec);}*/
    
    vEB_photonFrames.push_back(photonJetCollection);
 
