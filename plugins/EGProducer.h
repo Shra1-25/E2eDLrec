@@ -100,7 +100,7 @@ class EGProducer : public edm::stream::EDProducer<> {
       std::vector<std::vector<float>> vEB_frame; //= std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
       std::vector<float> vEB_flat_frame; //= std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vEB_photon_frames;
-      std::vector<float> vpredictions;
+      const std::vector<float> vpredictions= {-1};
    
       typedef edm::SortedCollection<framePredCollection> photonFrames;
       typedef photonFrames EB_photonFrames; 
