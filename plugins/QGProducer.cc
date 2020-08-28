@@ -97,14 +97,23 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    	if (temp_flat.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<std::endl;
    	for (int seedidx=0;seedidx<int(temp_flat.size());seedidx++){
     	  std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
-    	  std::cout<<"Size of temp_flat: "<<temp_flat[seedidx].size()<<std::endl;
+    	  std::cout<<" >> Size of temp_flat: "<<temp_flat[seedidx].size()<<std::endl;
+	  std::cout<<" >> Stored predictions for seed ["<<seedx[seedidx]<<","<<seedy[seedidx]<<"] are: [";
+	  std::vector<std::vector<float>> ph_pred=vEB_photonFrames[seedidx].getPredCollection();
     	for (int idx=0;idx<int(temp_flat[seedidx].size());idx++){
      	  temp_frame[int(idx/32)][idx%32]=temp_flat[seedidx][idx];
-     //std::cout<<"["<<idx/32<<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
+	  for (int predidx=0;predidx<int(ph_pred[idx].size());predidx++){
+	  	std::cout<<ph_pred[idx][predidx]<<", ";
+	  }
+	  std::cout<<"]"<<std::endl;
+          //std::cout<<"["<<idx/32<<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
     	}
     //std::cout<<std::endl;
-    std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
+    std::cout<<" >> Class Object model predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
     predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
+    for (int idx=0;idx<int(temp_flat.size());idx++){
+	std::cout<<
+    }
    }
    }
 	
