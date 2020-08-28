@@ -111,7 +111,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     for (int idx=0;idx<int(ph_pred.size());idx++){
       std::cout<<" >> Stored predictions for seed "<<idx<<" are: [";
       for (int predidx=0;predidx<int(ph_pred[idx].size());predidx++){
-      	std::cout<<ph_pred[idx][pred_idx]<<", ";
+      	std::cout<<ph_pred[idx][predidx]<<", ";
       }
       std::cout<<"]"<<std::endl;
     }
