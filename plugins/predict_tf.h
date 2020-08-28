@@ -7,6 +7,6 @@
 #include <fstream>
 using namespace std;
 
-int predict_tf(std::vector<std::vector<float>>&, string, string, string);
+std::vector<float> predict_tf(std::vector<std::vector<float>>&, string, string, string);
 
 #endif
