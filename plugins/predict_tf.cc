@@ -1,7 +1,7 @@
 #include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
 #include "tensorflow/core/graph/default_device.h"
 
-int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filename, string input_layer_name, string output_layer_name){
+std::vector<float> predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filename, string input_layer_name, string output_layer_name){
  tensorflow::Session* session;
  tensorflow::GraphDef graph_def;
  tensorflow::SessionOptions opts;
@@ -116,6 +116,6 @@ int predict_tf(std::vector<std::vector<float>>& vinputFrame, string model_filena
  //delete graphDef;
  /*if (classifier_out>0.5){return 1;}
  else {return 0;}*/
- return full_predictions[0][0];
+ return full_predictions;
 }
 
