@@ -45,7 +45,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  nPho = 0;
  //int iphi_Emax, ieta_Emax;
  float Emax;
- std::vector<float> empty_vec;
+ std::vector<std::vector<float>> empty_vec;
  vIphi_Emax_.clear();
  vIeta_Emax_.clear();
  vPreselPhoIdxs_.clear();
