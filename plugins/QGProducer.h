@@ -145,6 +145,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       vector<int> vJetSeed_ieta_;
       std::vector<float> vSC_eta_;
       std::vector<float> vSC_phi_;
+      const std::vector<float> vpredictions= {-1};
    
       unsigned int nPho;
      
