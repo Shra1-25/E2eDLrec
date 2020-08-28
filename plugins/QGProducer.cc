@@ -88,6 +88,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    if (int(vEB_photonFrames.size())>0) {
 	seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
    	std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
+	std::vector<std::vector<float>> ph_pred=vEB_photonFrames[vEB_photonFrames.size()-1].getPredCollection();
    	std::cout<<" >> Class Object Seeds are: ";
    	for (int seed_idx=0;seed_idx<int(seedx.size());seed_idx++){
     	  std::cout<<"["<<seedx[seed_idx]<<", "<<seedy[seed_idx]<<"], ";
@@ -105,6 +106,13 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     //std::cout<<std::endl;
     std::cout<<" >> Class Object model predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
     predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
+    } 
+    for (int idx=0;idx<ph_pred.size();idx++){
+      std::cout<<" >> Stored predictions for seed "<<idx<<" are: [";
+      for (int predidx=0;predidx<ph_pred[idx].size();predidx++){
+      	std::cout<<ph_pred[idx][pred_idx]<<", ";
+      }
+      std::cout<<"]"<<std::endl;
     }
    }
 	
