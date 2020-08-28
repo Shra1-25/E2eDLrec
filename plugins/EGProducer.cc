@@ -61,8 +61,9 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      temp_frame[int(idx/32)][idx%32]=temp_flat[seedidx][idx];
      //std::cout<<"["<<idx/32<<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
     }
-    std::cout<<std::endl;
-    std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid")<<std::endl;
+    //std::cout<<std::endl;
+    std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
+    predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid")<<std::endl;
    }
    std::unique_ptr<EB_photonFrames> vEB_photonFrames_edm (new EB_photonFrames);
    iEvent.put(std::move(vEB_photonFrames_edm),"photonFramePredSeedCollection");
