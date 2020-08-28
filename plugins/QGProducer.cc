@@ -84,38 +84,31 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::SortedCollection<framePredCollection> vEB_photonFrames = *photonJetCollection_handle;*/ 
    
    // Code (Commented below) to verify photonFramePredCollection branch of edm root file
-   /*std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
-   std::vector<float> seedx,seedy;
-   if (int(vEB_photonFrames.size())>0) {
-	seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
-   	std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
-	std::vector<std::vector<float>> ph_pred=vEB_photonFrames[vEB_photonFrames.size()-1].getPredCollection();
+   std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
+   float seedx,seedy;
+   for (int frameidx=0;frameidx<int(vEB_photonFrame.size());frameidx++){
+	seedx = vEB_photonFrames[frameidx].getIetaSeed();
+   	std::vector<float> seedy = vEB_photonFrames[frameidx].getIphiSeed();
+	std::vector<float> ph_pred=vEB_photonFrames[frameidx].getPredCollection();
    	std::cout<<" >> Class Object Seeds are: ";
-   	for (int seed_idx=0;seed_idx<int(seedx.size());seed_idx++){
-    	  std::cout<<"["<<seedx[seed_idx]<<", "<<seedy[seed_idx]<<"], ";
-   	}
+    	std::cout<<"["<<seedx<<", "<<seedy<<"], ";
    	std::cout<<std::endl;
-   	std::vector<std::vector<float>> temp_flat=vEB_photonFrames[vEB_photonFrames.size()-1].getFrameCollection();
-   	if (temp_flat.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<<std::endl;
-   	for (int seedidx=0;seedidx<int(temp_flat.size());seedidx++){
-    	  std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
-    	  std::cout<<" >> Size of temp_flat: "<<temp_flat[seedidx].size()<<std::endl;
-    	for (int idx=0;idx<int(temp_flat[seedidx].size());idx++){
-     	  temp_frame[int(idx/32)][idx%32]=temp_flat[seedidx][idx];
-          //std::cout<<"["<<idx/32<<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
-    	}
-    //std::cout<<std::endl;
-    std::cout<<" >> Class Object model predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
-    predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
-    } 
-    for (int idx=0;idx<int(ph_pred.size());idx++){
-      std::cout<<" >> Stored predictions for seed "<<idx<<" are: [";
-      for (int predidx=0;predidx<int(ph_pred[idx].size());predidx++){
-      	std::cout<<ph_pred[idx][predidx]<<", ";
-      }
-      std::cout<<"]"<<std::endl;
+   	std::vector<std::vector<float>> temp_frame=vEB_photonFrames[frameidx].getFrameCollection();
+   	if (temp_frame.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<<std::endl;
+    	std::cout<<" >> Size of temp_flat: ("<<temp_frame.size()<<", "<<temp_frame[0].size()<<std::endl;
+    	std::cout<<" >> Class Object model predictions of seed "<<frameidx<<"/"<<vEB_photonFrame.size()<<" are: "<<std::endl;
+    	std::vector<float> temp_pred=predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid"); 
+    	for (int idx=0;idx<int(temp_pred.size());idx++){
+      		std::cout<<temp_pred[idx]<<", ";
+      	}
+	std::cout<<"]"<<std::endl;
+	std::cout<<" >> Stored predictions for seed "<<idx<<" are: [";
+	for (int idx=0;idx<int(ph_pred.size());idx++){	
+	   std::cout<<ph_pred[idx]<<", ";
+	}
+      	std::cout<<"]"<<std::endl;
     }
-   }*/
+   }
 	
    using namespace edm;
    nTotal++;
@@ -221,12 +214,15 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
      file2<<"\n";
     }*/
-    vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
-    vTracksAtECALstitchedPtClass.push_back(predict_tf(vTracksAtECALstitchedPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+    //vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
+    //vTracksAtECALstitchedPtClass.push_back(predict_tf(vTracksAtECALstitchedPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+      vECALstitchedClass=predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid");
+      vTracksAtECALstitchedPtClass=predict_tf(vTracksAtECALstitchedPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid");
     }
     else {
      vECALstitchedClass.push_back(-1);
      vTracksAtECALstitchedPtClass.push_back(-1);
+	
     
      std::cout<<" >> QGInference Prediction of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
      std::cout<<" >> QGInference Prediction of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
@@ -269,9 +265,11 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      }
     file3<<"\n";
    }*/
-   vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+   //vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+   vHBHEenergyClass=predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid");
    }
-   else {vHBHEenergyClass.push_back(-1);
+   else {
+     vHBHEenergyClass.push_back(-1);
      std::cout<<" >> QGInference Prediction of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
     }
    }
