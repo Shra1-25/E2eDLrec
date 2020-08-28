@@ -20,7 +20,8 @@ QGInference = cms.EDProducer('QGProducer'
     , pfCollection = cms.InputTag("particleFlow")
     , recoJetsForBTagging = cms.InputTag("ak4PFJetsCHS")
     , jetTagCollection    = cms.InputTag("pfCombinedInclusiveSecondaryVertexV2BJetTags")
-    , ipTagInfoCollection = cms.InputTag("pfImpactParameterTagInfos")                                                     
+    , ipTagInfoCollection = cms.InputTag("pfImpactParameterTagInfos") 
+    , photonFramePredSeedCollection = cms.InoutTag("photonFramePredSeedCollection")
     , mode = cms.string("JetLevel")
     # Jet level cfg
     , nJets = cms.int32(-1)
