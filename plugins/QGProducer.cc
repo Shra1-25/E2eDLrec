@@ -84,25 +84,28 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::SortedCollection<framePredCollection> vEB_photonFrames = *photonJetCollection_handle; 
    
    std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
-   std::vector<float> seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
-   std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
-   std::cout<<" >> Class Object Seeds are: ";
-   for (int seed_idx=0;seed_idx<int(seedx.size());seed_idx++){
-    std::cout<<"["<<seedx[seed_idx]<<", "<<seedy[seed_idx]<<"], ";
-   }
-   std::cout<<std::endl;
-   std::vector<std::vector<float>> temp_flat=vEB_photonFrames[vEB_photonFrames.size()-1].getFrameCollection();
+   std::vector<float> seedx,seedy;
+   if (int(vEB_photonFrames.size()-1)>0) {
+	seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
+   	std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
+   	std::cout<<" >> Class Object Seeds are: ";
+   	for (int seed_idx=0;seed_idx<int(seedx.size());seed_idx++){
+    	  std::cout<<"["<<seedx[seed_idx]<<", "<<seedy[seed_idx]<<"], ";
+   	}
+   	std::cout<<std::endl;
+   	std::vector<std::vector<float>> temp_flat=vEB_photonFrames[vEB_photonFrames.size()-1].getFrameCollection();
    
-   for (int seedidx=0;seedidx<int(temp_flat.size());seedidx++){
-    std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
-    std::cout<<"Size of temp_flat: "<<temp_flat[seedidx].size()<<std::endl;
-    for (int idx=0;idx<int(temp_flat[seedidx].size());idx++){
-     temp_frame[int(idx/32)][idx%32]=temp_flat[seedidx][idx];
+   	for (int seedidx=0;seedidx<int(temp_flat.size());seedidx++){
+    	  std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
+    	  std::cout<<"Size of temp_flat: "<<temp_flat[seedidx].size()<<std::endl;
+    	for (int idx=0;idx<int(temp_flat[seedidx].size());idx++){
+     	  temp_frame[int(idx/32)][idx%32]=temp_flat[seedidx][idx];
      //std::cout<<"["<<idx/32<<", "<<idx%32<<"]: ("<<temp_frame[int(idx/32)][int(idx%32)]<<") ";
-    }
+    	}
     //std::cout<<std::endl;
     std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
     predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
+   }
    }
 	
    using namespace edm;
