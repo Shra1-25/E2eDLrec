@@ -46,7 +46,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    else {std::vector<float> empty_ieta_vec; photonJetCollection.putIetaSeed(empty_ieta_vec);}
    if (vIphi_Emax_.size()>0){
    photonJetCollection.putIphiSeed(vIphi_Emax_);}
-   else {std::vector<float> empty_iphi_vec; photonJetCollection.putIphiSeed(empty+iphi_vec);}
+   else {std::vector<float> empty_iphi_vec; photonJetCollection.putIphiSeed(empty_iphi_vec);}
    
    vEB_photonFrames.push_back(photonJetCollection);
    std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
