@@ -104,6 +104,9 @@ class EGProducer : public edm::stream::EDProducer<> {
    
       struct trial_struct {
       std::vector<std::vector<float>> vec1={{1,2,3},{4,5,6}};
+      int key_type;
+      int id_;
+      int id() const{return id_;}
       }
       typedef edm::SortedCollection<trial_struct> trialCollection;
    
