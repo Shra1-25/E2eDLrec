@@ -102,7 +102,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       		std::cout<<temp_pred[idx]<<", ";
       	}
 	std::cout<<"]"<<std::endl;
-	std::cout<<" >> Stored predictions for seed "<<idx<<" are: [";
+	std::cout<<" >> Stored predictions for seed "<<frameidx<<" are: [";
 	for (int idx=0;idx<int(ph_pred.size());idx++){	
 	   std::cout<<ph_pred[idx]<<", ";
 	}
