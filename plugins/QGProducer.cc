@@ -85,7 +85,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    
    std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
    std::vector<float> seedx,seedy;
-   if (int(vEB_photonFrames.size()-1)>0) {
+   if (int(vEB_photonFrames.size())>0) {
 	seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
    	std::vector<float> seedy = vEB_photonFrames[vEB_photonFrames.size()-1].getIphiSeeds();
    	std::cout<<" >> Class Object Seeds are: ";
@@ -94,7 +94,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    	}
    	std::cout<<std::endl;
    	std::vector<std::vector<float>> temp_flat=vEB_photonFrames[vEB_photonFrames.size()-1].getFrameCollection();
-   
+   	if (temp_flat.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<std::endl;
    	for (int seedidx=0;seedidx<int(temp_flat.size());seedidx++){
     	  std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
     	  std::cout<<"Size of temp_flat: "<<temp_flat[seedidx].size()<<std::endl;
