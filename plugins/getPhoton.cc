@@ -120,6 +120,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 )  // seed centered on [15,15] so must be padded by 15 below and 16 above
   {  
     std::cout<<" >> Prediction: -1"<<std::endl;
+    framePredCollection photonJetCollection;
     photonJetCollection.putPredCollection(vpredictions);
     photonJetCollection.putFrameCollection(empty_vec);
     photonJetCollection.putIetaSeed(ieta_Emax);
@@ -183,7 +184,8 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
       std::cout<<"["<<x_idx<<", "<<y_idx<<"]: "<<vEB_frame[x_idx][y_idx];
     }
   }*/
-  std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl; 
+  std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
+  framePredCollection photonJetCollection;
   photonJetCollection.putPredCollection(predict_tf(vEB_frame, "e_vs_ph_model.pb","inputs","softmax_1/Sigmoid"));
   /*vEB_flat_frame.clear();
   for (int frame_x=0;frame_x<int(vEB_frame.size());frame_x++){
