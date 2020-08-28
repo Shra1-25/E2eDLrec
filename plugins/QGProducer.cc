@@ -94,7 +94,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    	}
    	std::cout<<std::endl;
    	std::vector<std::vector<float>> temp_flat=vEB_photonFrames[vEB_photonFrames.size()-1].getFrameCollection();
-   	if (temp_flat.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<std::endl;
+   	if (temp_flat.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<<std::endl;
    	for (int seedidx=0;seedidx<int(temp_flat.size());seedidx++){
     	  std::vector<std::vector<float>> temp_frame = std::vector<std::vector<float>> (32, std::vector<float>(32,0.0));
     	  std::cout<<" >> Size of temp_flat: "<<temp_flat[seedidx].size()<<std::endl;
@@ -111,8 +111,6 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     //std::cout<<std::endl;
     std::cout<<" >> Class Object model predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
     predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
-    for (int idx=0;idx<int(temp_flat.size());idx++){
-	std::cout<<
     }
    }
    }
