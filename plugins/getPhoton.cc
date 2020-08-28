@@ -122,7 +122,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   {  
     std::cout<<" >> Prediction: -1"<<std::endl;
     photonJetCollection.pushPredCollection(vpredictions);
-    photonJetCollection.pushFrameCollection(empty_vec);
+    photonJetCollection.putFrameCollection(empty_vec);
     photonJetCollection.putIetaSeed(ieta_Emax);
     photonJetCollection.putIphiSeed(iphi_Emax);
     vEB_photonFrames.push_back(photonJetCollection);
