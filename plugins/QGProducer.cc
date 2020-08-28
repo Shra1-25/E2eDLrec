@@ -86,7 +86,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    // Code (Commented below) to verify photonFramePredCollection branch of edm root file
    std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
    float seedx,seedy;
-   /*for (int frameidx=0;frameidx<int(vEB_photonFrames.size());frameidx++){
+   for (int frameidx=0;frameidx<int(vEB_photonFrames.size());frameidx++){
 	seedx = vEB_photonFrames[frameidx].getIetaSeed();
    	seedy = vEB_photonFrames[frameidx].getIphiSeed();
 	std::vector<float> ph_pred=vEB_photonFrames[frameidx].getPredCollection();
@@ -95,19 +95,21 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    	std::cout<<std::endl;
    	std::vector<std::vector<float>> temp_frame=vEB_photonFrames[frameidx].getFrameCollection();
    	if (temp_frame.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<<std::endl;
-    	else std::cout<<" >> Size of temp_frame: ("<<temp_frame.size()<<", "<<temp_frame[0].size()<<std::endl;
-    	std::cout<<" >> Class Object model predictions of seed "<<frameidx<<"/"<<vEB_photonFrames.size()<<" are: "<<std::endl;
-    	std::vector<float> temp_pred=predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid"); 
-    	for (int idx=0;idx<int(temp_pred.size());idx++){
-      		std::cout<<temp_pred[idx]<<", ";
-      	}
+    	else {
+		std::cout<<" >> Size of temp_frame: ("<<temp_frame.size()<<", "<<temp_frame[0].size()<<std::endl;
+    		std::cout<<" >> Class Object model predictions of seed "<<frameidx<<"/"<<vEB_photonFrames.size()<<" are: "<<std::endl;
+    		std::vector<float> temp_pred=predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid"); 
+    		for (int idx=0;idx<int(temp_pred.size());idx++){
+      			std::cout<<temp_pred[idx]<<", ";
+      		}
+	}
 	std::cout<<"]"<<std::endl;
 	std::cout<<" >> Stored predictions for seed "<<frameidx<<" are: [";
 	for (int idx=0;idx<int(ph_pred.size());idx++){	
 	   std::cout<<ph_pred[idx]<<", ";
 	}
       	std::cout<<"]"<<std::endl;
-    }*/
+    }
 	
    using namespace edm;
    nTotal++;
