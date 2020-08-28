@@ -38,7 +38,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    vEB_flat_frame.clear();
    vEB_frame.clear();
    //vpredictions.clear();   
-   EB_photonFrames vEB_photonFrames;
+   //EB_photonFrames vEB_photonFrames;
    get_photons(iEvent, iSetup, photonJetCollection );//stored in vEB_frames vectors
    /*if (vIeta_Emax_.size()>0){
    photonJetCollection.putIetaSeed(vIeta_Emax_);}
@@ -47,7 +47,7 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    photonJetCollection.putIphiSeed(vIphi_Emax_);}
    else {std::vector<float> empty_iphi_vec; photonJetCollection.putIphiSeed(empty_iphi_vec);}*/
    
-   vEB_photonFrames.push_back(photonJetCollection);
+   //vEB_photonFrames.push_back(photonJetCollection);
 
    // Code (Commented below) to verify photonFrameJetCollection Branch of edm root file.
    /*std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
