@@ -84,7 +84,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::SortedCollection<framePredCollection> vEB_photonFrames = *photonJetCollection_handle; 
    
    // Code (Commented below) to verify photonFramePredCollection branch of edm root file
-   std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
+   /*std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
    std::vector<float> seedx,seedy;
    if (int(vEB_photonFrames.size())>0) {
 	seedx = vEB_photonFrames[vEB_photonFrames.size()-1].getIetaSeeds();
@@ -115,7 +115,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
       std::cout<<"]"<<std::endl;
     }
-   }
+   }*/
 	
    using namespace edm;
    nTotal++;
