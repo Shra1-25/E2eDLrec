@@ -17,6 +17,7 @@ EGProducer::EGProducer(const edm::ParameterSet& iConfig)
  
  produces<std::vector<float>> ("EBenergyClass");
  produces<EB_photonFrames> ("photonFramePredSeedCollection");
+ produces<trialCollection> ("trialCollection");
 }
   
  EGProducer::~EGProducer()
@@ -71,6 +72,11 @@ EGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::cout<<" >> Class Object predictions of seed "<<seedidx<<"/"<<temp_flat.size()<<" are: "<<std::endl;
     predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
    }*/
+   
+   trialCollection trial1;
+   std::unique_ptr<trialCollection> trial_edm (new trialCollection(trial1));
+   iEvent.put(std::move(trial_edm),"trialCollection");
+   
    std::unique_ptr<EB_photonFrames> vEB_photonFrames_edm (new EB_photonFrames(vEB_photonFrames));
    iEvent.put(std::move(vEB_photonFrames_edm),"photonFramePredSeedCollection");
    std::unique_ptr<std::vector<float>> vpredictions_edm (new std::vector<float>(vpredictions));
