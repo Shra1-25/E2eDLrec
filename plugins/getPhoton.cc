@@ -30,7 +30,7 @@ struct pho_map {
 
 std::vector<pho_map> vPhos;
 
-void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup, framePredCollection& photonJetCollection){
+void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& iSetup, EB_photonFrames& vEB_photonFrames){
  edm::Handle<PhotonCollection> photons;
  iEvent.getByToken(photonCollectionT_, photons);
  
@@ -41,7 +41,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  /*edm::ESHandle<CaloGeometry> caloGeomH;
  iSetup.get<CaloGeometryRecord>().get(caloGeomH);
  const CaloGeometry* caloGeom = caloGeomH.product();*/
- EB_photonFrames vEB_photonFrames;
  nPho = 0;
  //int iphi_Emax, ieta_Emax;
  float Emax;
@@ -207,8 +206,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     std::cout<<endl;
   }*/
  }
- std::unique_ptr<EB_photonFrames> vEB_photonFrames_edm (new EB_photonFrames(vEB_photonFrames));
- iEvent.put(std::move(vEB_photonFrames_edm),"photonFramePredSeedCollection");
  //vEB_photonFrames.push_back(vEB_flat_frame);
  return;
 }
