@@ -107,7 +107,7 @@ class EGProducer : public edm::stream::EDProducer<> {
       int key_type;
       int id_;
       int id() const{return id_;}
-      }
+      };
       typedef edm::SortedCollection<trial_struct> trialCollection;
    
       typedef edm::SortedCollection<framePredCollection> photonFrames;
