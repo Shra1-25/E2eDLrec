@@ -175,7 +175,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
       std::cout<<"["<<x_idx<<", "<<y_idx<<"]: "<<vEB_frame[x_idx][y_idx];
     }
   }*/
-  std::cout<<endl;
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
   vpredictions.push_back(0);
   vpredictions[0] = predict_tf(vEB_frame, "e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
