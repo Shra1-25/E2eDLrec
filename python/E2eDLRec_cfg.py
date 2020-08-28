@@ -63,7 +63,7 @@ process.TFileService = cms.Service("TFileService",
    )
 
 #process.p = cms.Path(process.ProducerFrames)
-process.p = cms.Path(process.ProducerFrames+process.EGInference)#+process.QGInference+process.TopInference)
+process.p = cms.Path(process.ProducerFrames+process.EGInference+process.QGInference)#+process.TopInference)
 process.ep=cms.EndPath(process.out)
 process.Timing = cms.Service("Timing",
   summaryOnly = cms.untracked.bool(False),
