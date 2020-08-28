@@ -114,7 +114,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<TrackingRecHitCollection> TRKRecHitCollectionT_;
       edm::EDGetTokenT<edm::View<reco::Jet> > recoJetsT_;
       edm::EDGetTokenT<EBDigiCollection>     EBDigiCollectionT_;
-      //edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> photonJetCollectionT_;
+      edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> photonJetCollectionT_;
       static const int nPhotons = 2;
    
       TH1F *h_sel;
