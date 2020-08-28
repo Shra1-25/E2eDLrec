@@ -116,6 +116,6 @@ std::vector<float> predict_tf(std::vector<std::vector<float>>& vinputFrame, stri
  //delete graphDef;
  /*if (classifier_out>0.5){return 1;}
  else {return 0;}*/
- return full_predictions;
+ return full_predictions[0];
 }
 
