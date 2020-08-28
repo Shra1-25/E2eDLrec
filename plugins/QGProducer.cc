@@ -79,7 +79,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    std::cout<<" >> Running QGProducer."<<std::endl;
 	
-   edm::Handle<edm:SortedCollection<framePredCollection>> photonJetCollection_handle;
+   edm::Handle<edm::SortedCollection<framePredCollection>> photonJetCollection_handle;
    iEvent.getByToken(photonJetCollectionT_, photonJetCollection_handle);
    edm::SortedCollection<framePredCollection> vEB_photonFrames = *photonJetCollection_handle; 
    
