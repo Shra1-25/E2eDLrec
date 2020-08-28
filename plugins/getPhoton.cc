@@ -50,13 +50,16 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
  vIeta_Emax_.clear();
  vPreselPhoIdxs_.clear();
  vEB_photon_frames.clear();
- vpredictions.clear(); 
  empty_vec.clear();
+  
   
  int iphi_, ieta_; // rows:ieta, cols:iphi
  std::cout<<"Photons size : "<<photons->size()<<std::endl;
- if (photons->size()<=0){std::cout<<" >> Prediction: -1"<<std::endl; vpredictions.push_back(-1); photonJetCollection.pushPredCollection(vpredictions);
-                          photonJetCollection.pushFrameCollection(empty_vec);
+ if (photons->size()<=0){std::cout<<" >> Prediction: -1"<<std::endl; 
+                          framePredCollection photonJetCollection;
+                          photonJetCollection.putPredCollection(vpredictions);
+                          photonJetCollection.putFrameCollection(empty_vec);
+                          vEB_photonFrames.push_back(photonJetCollection);
                         }
  for ( unsigned int iP = 0; iP < photons->size(); iP++ ) {
   PhotonRef iRecoPho( photons, iP );
@@ -100,9 +103,13 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   if ( Emax <= zs ) {
     std::cout<<" >> EB_energy is less than zero: "<<Emax<<std::endl;
     std::cout<<" >> Prediction: -1"<<std::endl; 
-    vpredictions.push_back(-1);
-    photonJetCollection.pushPredCollection(vpredictions);
-    photonJetCollection.pushFrameCollection(empty_vec);
+    //vpredictions.push_back(-1);
+    framePredCollection photonJetCollection;
+    photonJetCollection.putPredCollection(vpredictions);
+    photonJetCollection.putFrameCollection(empty_vec);
+    photonJetCollection.putIetaSeed(ieta_Emax);
+    photonJetCollection.putIphiSeed(iphi_Emax);
+    vEB_photonFrames.push_back(photonJetCollection);
     if (iP==(photons->size()-1)){std::cout<<" >> All Done"<<std::endl;}
     continue;
   }
@@ -114,9 +121,11 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 )  // seed centered on [15,15] so must be padded by 15 below and 16 above
   {  
     std::cout<<" >> Prediction: -1"<<std::endl;
-    vpredictions.push_back(-1);
     photonJetCollection.pushPredCollection(vpredictions);
     photonJetCollection.pushFrameCollection(empty_vec);
+    photonJetCollection.putIetaSeed(ieta_Emax);
+    photonJetCollection.putIphiSeed(iphi_Emax);
+    vEB_photonFrames.push_back(photonJetCollection);
     if (iP==(photons->size()-1)){std::cout<<" >> All Done"<<std::endl;}
     continue;
   }
@@ -176,17 +185,18 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     }
   }*/
   std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;
-  vpredictions.push_back(0);
-  vpredictions[0] = predict_tf(vEB_frame, "e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
-  vEB_flat_frame.clear();
+  photonJetCollection.putPredCollection(predict_tf(vEB_frame, "e_vs_ph_model.pb","inputs","softmax_1/Sigmoid"));
+  /*vEB_flat_frame.clear();
   for (int frame_x=0;frame_x<int(vEB_frame.size());frame_x++){
     for (int frame_y=0;frame_y<int(vEB_frame[0].size());frame_y++){
       vEB_flat_frame.push_back(vEB_frame[frame_x][frame_y]);
     }
-  }
+  }*/
   //std::cout<<" >> Size of flat frame: "<<vEB_flat_frame.size()<<std::endl;
-  photonJetCollection.pushFrameCollection(vEB_flat_frame);
-  photonJetCollection.pushPredCollection(vpredictions);
+  photonJetCollection.putFrameCollection(vEB_frame);
+  photonJetCollection.putIetaSeed(ieta_Emax);
+  photonJetCollection.putIphiSeed(iphi_Emax);
+  vEB_photonFrames.push_back(photonJetCollection);
   vpredictions.clear();
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
