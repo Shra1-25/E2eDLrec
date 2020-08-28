@@ -29,7 +29,7 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  recoJetsT_              = consumes<edm::View<reco::Jet> >(iConfig.getParameter<edm::InputTag>("recoJetsForBTagging"));
  jetTagCollectionT_      = consumes<reco::JetTagCollection>(iConfig.getParameter<edm::InputTag>("jetTagCollection"));
  ipTagInfoCollectionT_   = consumes<std::vector<reco::CandIPTagInfo> > (iConfig.getParameter<edm::InputTag>("ipTagInfoCollection"));
- //photonJetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("photonFramePredSeedCollection"));
+ photonJetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("photonFramePredSeedCollection"));
  
  mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
@@ -79,9 +79,9 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    std::cout<<" >> Running QGProducer."<<std::endl;
 	
-   /*edm::Handle<edm::SortedCollection<framePredCollection>> photonJetCollection_handle;
+   edm::Handle<edm::SortedCollection<framePredCollection>> photonJetCollection_handle;
    iEvent.getByToken(photonJetCollectionT_, photonJetCollection_handle);
-   edm::SortedCollection<framePredCollection> vEB_photonFrames = *photonJetCollection_handle;*/ 
+   edm::SortedCollection<framePredCollection> vEB_photonFrames = *photonJetCollection_handle; 
    
    // Code (Commented below) to verify photonFramePredCollection branch of edm root file
    std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
