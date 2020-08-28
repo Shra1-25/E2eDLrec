@@ -197,7 +197,6 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   photonJetCollection.putIetaSeed(ieta_Emax);
   photonJetCollection.putIphiSeed(iphi_Emax);
   vEB_photonFrames.push_back(photonJetCollection);
-  vpredictions.clear();
   /*if (vEB_photon_frames.size()>0){ 
    RHTree->Branch(branchname,&vEB_photon_frames[vEB_photon_frames.size()-1]);
   }*/
