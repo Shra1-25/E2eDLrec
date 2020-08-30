@@ -83,7 +83,7 @@ void
 TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    std::cout<<" >> Running TopProducer."<<std::endl;
-   edm::Handle<edm::SortedCollection<framePredCollection>> HBHEjetCollection_handle;
+   /*edm::Handle<edm::SortedCollection<framePredCollection>> HBHEjetCollection_handle;
    iEvent.getByToken(HBHEjetCollectionT_, HBHEjetCollection_handle);
    edm::SortedCollection<framePredCollection> qgHBHEjetCollection = *HBHEjetCollection_handle;
 	
@@ -129,7 +129,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 	}
       	std::cout<<"]"<<std::endl;
     }
-   }
+   }*/
 	
    using namespace edm;
    nTotal++;
