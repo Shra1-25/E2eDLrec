@@ -1,6 +1,7 @@
 /*#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
-
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"*/
+/*#include "E2eDL/E2eDLrec/plugins/TopProducer.h"
+#include "E2eDL/E2eDLrec/plugins/DetImgProducer.h
 using std::vector;
 
 const unsigned nJets = 2; //TODO: use cfg level nJets_
