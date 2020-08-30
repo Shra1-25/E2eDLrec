@@ -1,4 +1,5 @@
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+//#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+#include "E2eDLrec/plugins/DetImgProducer.h"
 
 // Fill Tracks into stitched EEm_EB_EEp image //////////////////////
 // Store all Track positions into a stitched EEm_EB_EEp image 
