@@ -245,11 +245,11 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
      file2<<"\n";
     }*/
-    //vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
+    //vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "ResNet.pb", "inputs","softmax_1/Sigmoid"));
     vECALstitchedClass = predict_tf(vECALstitched_frame, "ResNet.pb", "inputs","outputs");
-    //vTracksAtECALstitchedPtClass.push_back(predict_tf(vTracksAtECALstitchedPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+    //vTracksAtECALstitchedPtClass.push_back(predict_tf(vTracksAtECALstitchedPt_frame, "ResNet.pb", "inputs", "softmax_1/Sigmoid"));
     vTracksAtECALstitchedPtClass = predict_tf(vTracksAtECALstitchedPt_frame, "ResNet.pb", "inputs", "outputs");
-    //vTracksAtECALadjPtClass.push_back(predict_tf(vTracksAtECALadjPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
+    //vTracksAtECALadjPtClass.push_back(predict_tf(vTracksAtECALadjPt_frame, "ResNet.pb", "inputs", "softmax_1/Sigmoid"));
     vTracksAtECALadjPtClass = predict_tf(vTracksAtECALadjPt_frame, "ResNet.pb", "inputs", "outputs");
 				
     framePredCollection topqECALstitchedJetCollection;
@@ -354,7 +354,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    else {
      vHBHEenergyClass.push_back(-1);
      std::cout<<" >> TopInference Prediction of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
-     framePredCollection qgHBHEJetCollection;
+     framePredCollection topqHBHEJetCollection;
      topqHBHEJetCollection.putPredCollection(vpredictions);
      topqHBHEJetCollection.putFrameCollection(empty_vec);
      topqHBHEJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
