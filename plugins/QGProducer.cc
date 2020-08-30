@@ -82,6 +82,8 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::Handle<edm::SortedCollection<framePredCollection>> photonJetCollection_handle;
    iEvent.getByToken(photonJetCollectionT_, photonJetCollection_handle);
    edm::SortedCollection<framePredCollection> vEB_photonFrames = *photonJetCollection_handle; 
+	
+   QGframes vQGframes;
    
    // Code (Commented below) to verify photonFramePredCollection branch of edm root file
    /*std::cout<<"Current size of photon jet collection: "<<vEB_photonFrames.size()<<std::endl;
@@ -180,6 +182,9 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::Handle<std::vector<float>> HBHEenergy_handle;
    iEvent.getByToken(HBHEenergy_token, HBHEenergy_handle);
    
+   std::vector<std::vector<float>> empty_vec;
+   qgJetCollection ECALstitchedJetCollection;
+   qgJetCollection TracksAtECALstitchedJetCollectionPt;
    std::vector<float>vECALstitched=*ECALstitched_energy_handle;
    std::vector<float>vTracksAtECALstitchedPt=*TracksAtECALstitchedPt_handle;
    /*std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
@@ -187,12 +192,15 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<float>vECALstitchedClass;
    std::vector<float>vTracksAtECALstitchedPtClass;
    std::vector<float>vHBHEenergyClass;
+	
    vECALstitchedClass.clear();
    vTracksAtECALstitchedPtClass.clear();
    vHBHEenergyClass.clear();
    vHBHEenergy_frame.clear();
    vECALstitched_frame.clear();
    vTracksAtECALstitchedPt_frame.clear();
+   empty_vec.clear();
+	
    for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
     std::cout<<"Generating Stitched ECAL frames and their track frames from the jet seed "<<idx+1<<"/"<<vJetSeed_ieta_.size()<<" with seed value: ("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<")"<<std::endl;
     if(vJetSeed_ieta_[idx]>=0) {vECALstitched_frame=croppingFrames(vECALstitched, vJetSeed_ieta_[idx], vJetSeed_iphi_[idx], 280, 360, 125, 125); 
@@ -215,15 +223,45 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
      file2<<"\n";
     }*/
+				
     //vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
     //vTracksAtECALstitchedPtClass.push_back(predict_tf(vTracksAtECALstitchedPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
       vECALstitchedClass=predict_tf(vECALstitched_frame, "ResNet.pb", "inputs","outputs");
       vTracksAtECALstitchedPtClass=predict_tf(vTracksAtECALstitchedPt_frame, "ResNet.pb", "inputs", "outputs");
+      framePredCollection qgECALstitchedJetCollection;
+      framePredCollection qgTracksAtECALstitchedJetCollection;
+				
+      qgECALstitchedJetCollection.putPredCollection(vECALstitchedClass);
+      qgTracksAtECALstitchedJetCollection.putPredCollection(vTracksAtECALstitchedPtClass);
+				
+      qgECALstitchedJetCollection.putFrameCollection(vECALstitched_frame);
+      qgTracksAtECALstitchedJetCollection.putFrameCollection(vTracksAtECALstitchedPt_frame);
+				
+      qgECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+      qgECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+      qgTracksAtECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+      qgTracksAtECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+				
+      ECALstitchedJetCollection.push_back(qgECALstitchedJetCollection);
+      TracksAtECALstitchedJetCollectionPt.push_back(qgTracksAtECALstitchedJetCollection);
+				
     }
     else {
-     vECALstitchedClass.push_back(-1);
-     vTracksAtECALstitchedPtClass.push_back(-1);
-	
+     //vECALstitchedClass.push_back(-1);
+     //vTracksAtECALstitchedPtClass.push_back(-1);
+     framePredCollection qgECALstitchedJetCollection;
+     qgECALstitchedJetCollection.putPredCollection(vpredictions);
+     qgECALstitchedJetCollection.putFrameCollection(empty_vec);
+     qgECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+     qgECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+     ECALstitchedJetCollection.push_back(qgECALstitchedJetCollection);
+	    
+     framePredCollection qgTracksAtECALstitchedJetCollection;
+     qgTracksAtECALstitchedJetCollection.putPredCollection(vpredictions);
+     qgTracksAtECALstitchedJetCollection.putFrameCollection(empty_vec);
+     qgTracksAtECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+     qgTracksAtECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+     TracksAtECALstitchedJetCollectionPt.push_back(qgTracksAtECALstitchedJetCollection);
     
      std::cout<<" >> QGInference Prediction of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
      std::cout<<" >> QGInference Prediction of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
@@ -268,10 +306,23 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }*/
    //vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
    vHBHEenergyClass=predict_tf(vHBHEenergy_frame, "ResNet.pb", "inputs", "outputs");
+   framePredCollection qgHBHEJetCollection;
+   qgHBHEJetCollection.putPredCollection(vHBHEenergyClass);
+   qgHBHEJetCollection.putFrameCollection(vHBHEenergy_frame);
+   qgHBHEJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+   qgHBHEJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+   HBHEJetCollection.push_back(qgHBHEJetCollection);
    }
    else {
-     vHBHEenergyClass.push_back(-1);
+     //vHBHEenergyClass.push_back(-1);
      std::cout<<" >> QGInference Prediction of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
+	   
+     framePredCollection qgHBHEJetCollection;
+     qgHBHEJetCollection.putPredCollection(vpredictions);
+     qgHBHEJetCollection.putFrameCollection(empty_vec);
+     qgHBHEJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+     qgHBHEJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+     HBHEJetCollection.push_back(qgHBHEJetCollection);
     }
    }
    std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
