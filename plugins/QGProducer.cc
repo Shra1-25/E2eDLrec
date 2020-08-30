@@ -249,8 +249,8 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 				
     }
     else {
-     //vECALstitchedClass.push_back(-1);
-     //vTracksAtECALstitchedPtClass.push_back(-1);
+     vECALstitchedClass.push_back(-1);
+     vTracksAtECALstitchedPtClass.push_back(-1);
      framePredCollection qgECALstitchedJetCollection;
      qgECALstitchedJetCollection.putPredCollection(vpredictions);
      qgECALstitchedJetCollection.putFrameCollection(empty_vec);
@@ -316,7 +316,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    HBHEJetCollection.push_back(qgHBHEJetCollection);
    }
    else {
-     //vHBHEenergyClass.push_back(-1);
+     vHBHEenergyClass.push_back(-1);
      std::cout<<" >> QGInference Prediction of HBHE energy: "<<vpredictions[0]<<std::endl;
 	   
      framePredCollection qgHBHEJetCollection;
