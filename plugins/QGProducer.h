@@ -136,8 +136,6 @@ class QGProducer : public edm::stream::EDProducer<> {
       
       typedef std::vector<reco::PFCandidate>  PFCollection;
       edm::EDGetTokenT<PFCollection> pfCollectionT_;
-      //std::vector<std::vector<float>> vEB_frame; //= std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
-      //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
       std::vector<std::vector<float>> vHBHEenergy_frame;
       std::vector<std::vector<float>> vECALstitched_frame;
       std::vector<std::vector<float>> vTracksAtECALstitchedPt_frame;
@@ -150,9 +148,6 @@ class QGProducer : public edm::stream::EDProducer<> {
    
       unsigned int nPho;
      
-      //std::vector<vector<float>> croppingFrames   (std::vector<float>&, int ,int, int, int, int, int);
-      //std::vector<vector<float>> frameStriding    (std::vector<float>&, int, int, int, int);
-      //int predict_tf                              (std::vector<std::vector<float>>&, string, string, string);
       std::string mode_;  // EventLevel / JetLevel
       std::vector<int> vJetIdxs;
       bool doJets_;
@@ -181,12 +176,7 @@ class QGProducer : public edm::stream::EDProducer<> {
       std::vector<int> vPreselPhoIdxs_;*/
       int nTotal, nPassed;
 };
-//static const float zs = 0.;
-/*static const int EB_IPHI_MIN = EBDetId::MIN_IPHI;//1;
-static const int EB_IPHI_MAX = EBDetId::MAX_IPHI;//360;
-static const int EB_IETA_MIN = EBDetId::MIN_IETA;//1;
-static const int EB_IETA_MAX = EBDetId::MAX_IETA;//85;
-static const float zs = 0.;*/
+
 
 #endif
 //DEFINE_FWK_MODULE(QGProducer);
