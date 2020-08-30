@@ -17,19 +17,16 @@ options.register('EGModelName',
     default='e_vs_ph_model.pb',
     mult=VarParsing.VarParsing.varType.string,
     info = "EGInference Model name")
-    )
 # Name of the QGInference model to be used for inference.
 options.register('QGModelName',
     default='ResNet.pb',
     mult=VarParsing.VarParsing.varType.string,
     info = "QGInference Model name")
-    )
 # Name of the TopInference model to be used for inference.
 options.register('TopQuarksModelName',
     default='ResNet.pb',
     mult=VarParsing.VarParsing.varType.string,
     info = "TopQuarks Inference Model name")
-    )
 options.parseArguments()
 
 process = cms.Process("Classifier")
