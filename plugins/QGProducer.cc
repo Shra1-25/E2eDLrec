@@ -62,6 +62,9 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  produces<std::vector<float>>("HBHEenergyClass");
  produces<std::vector<int>>("ak4JetSeedieta");
  produces<std::vector<int>>("ak4JetSeediphi");
+ produces<qgJetCollection>("TracksAtECALstitchedJetCollectionPt");
+ produces<qgJetCollection>("ECALstitchedJetCollection");
+ produces<qgJetCollection>("HBHEJetCollection");
 }
 
 QGProducer::~QGProducer()
