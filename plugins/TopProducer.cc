@@ -84,21 +84,22 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<" >> Running TopProducer."<<std::endl;
    edm::Handle<edm::SortedCollection<framePredCollection>> HBHEjetCollection_handle;
    iEvent.getByToken(HBHEjetCollectionT_, HBHEjetCollection_handle);
-   edm::SortedCollection<framePredCollection> HBHEjetCollection = *HBHEjetCollection_handle;
+   edm::SortedCollection<framePredCollection> qgHBHEjetCollection = *HBHEjetCollection_handle;
 	
    edm::Handle<edm::SortedCollection<framePredCollection>> ECALstitchedJetCollection_handle;
    iEvent.getByToken(ECALstitchedJetCollectionT_, ECALstitchedJetCollection_handle);
-   edm::SortedCollection<framePredCollection> ECALstitchedJetCollection = *ECALstitchedJetCollection_handle;
+   edm::SortedCollection<framePredCollection> qgECALstitchedJetCollection = *ECALstitchedJetCollection_handle;
    
    edm::Handle<edm::SortedCollection<framePredCollection>> TracksAtECALstitchedJetCollectionPt_handle;
    iEvent.getByToken(TracksAtECALstitchedJetCollectionPtT_, TracksAtECALstitchedJetCollectionPt_handle);
-   edm::SortedCollection<framePredCollection> TracksAtECALstitchedJetCollectionPt = *TracksAtECALstitchedJetCollectionPt_handle;
+   edm::SortedCollection<framePredCollection> qgTracksAtECALstitchedJetCollectionPt = *TracksAtECALstitchedJetCollectionPt_handle;
 
    // Code (Commented below) to verify ECALstitched and TracksAtECALstitchd jet collection branch of edm root file	
-   std::cout<<"Current size of HBHE jet collection: "<<HBHEjetCollection.size()<<std::endl;
-   std::cout<<"Current size of ECAL stitched jet collection: "<<ECALstitchedJetCollection.size()<<std::endl;
-   std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<TracksAtECALstitchedJetCollectionPt.size()<<std::endl;
-   std::vector<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollectionPt};
+   std::cout<<"Current size of HBHE jet collection: "<<qgHBHEjetCollection.size()<<std::endl;
+   std::cout<<"Current size of ECAL stitched jet collection: "<<qgECALstitchedJetCollection.size()<<std::endl;
+   std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<qgTracksAtECALstitchedJetCollectionPt.size()<<std::endl;
+   std::cout<<"Following verification processes are in the above order."<<std::endl;
+   std::vector<qgJetCollection> vqgJetCollection={qgHBHEjetCollection, qgECALstitchedJetCollection, qgTracksAtECALstitchedJetCollectionPt};
    for (qgJetCollection qgJetCollection_itr : vqgJetCollection){
    float seedx,seedy;
    for (int frameidx=0;frameidx<int(qgJetCollection_itr.size());frameidx++){
