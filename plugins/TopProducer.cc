@@ -99,7 +99,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<"Current size of ECAL stitched jet collection: "<<ECALstitchedJetCollection.size()<<std::endl;
    std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<TracksAtECALstitchedJetCollectionPt.size()<<std::endl;
    std::vector<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollectionPt};
-   for (std::vector<qgJetCollection> qgJetCollection_itr :vqgJetCollection){
+   for (qgJetCollection qgJetCollection_itr :vqgJetCollection){
    float seedx,seedy;
    for (int frameidx=0;frameidx<int(qgJetCollection_itr.size());frameidx++){
 	seedx = qgJetCollection_itr[frameidx].getIetaSeed();
