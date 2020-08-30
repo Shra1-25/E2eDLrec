@@ -260,7 +260,7 @@ void DetImgProducer::fillTracksAtECALstitched ( const edm::Event& iEvent, const 
       //hEvt_EE_tracksQPt[iz_]->Fill( phi, eta, iTk->charge()*iTk->pt() );
 
 
-      const double z0 = ( !vtxs.empty() ? iTk->dz(vtxs[0].position()) : iTk->dz() );
+      //const double z0 = ( !vtxs.empty() ? iTk->dz(vtxs[0].position()) : iTk->dz() );
 
       // if is PV
       /*if(fabs(z0) < z0PVCut_){
