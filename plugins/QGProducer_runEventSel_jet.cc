@@ -24,11 +24,11 @@ void QGProducer::branchesEvtSel_jet ( TTree* tree, edm::Service<TFileService> &f
   tree->Branch("jetSeed_ieta",   &vJetSeed_ieta_);
 
   // Fill branches in explicit jet selection
-  if ( jetSelection == "dijet_gg_qq" ) {
+  /*if ( jetSelection == "dijet_gg_qq" ) {
     branchesEvtSel_jet_dijet_gg_qq( tree, fs );
   } else {
     branchesEvtSel_jet_dijet( tree, fs );
-  }
+  }*/
 
 } // branchesEvtSel_jet()
 
