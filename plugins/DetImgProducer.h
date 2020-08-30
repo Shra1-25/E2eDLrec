@@ -133,13 +133,6 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       std::vector<float> vECALadj_tracksPt_[Nadjproj];
       std::vector<float> vECALadj_tracks_[Nadjproj];
       std::vector<float> vECALadj_tracksPt_max_[Nadjproj];
-      //vector<int> vJetSeed_iphi_;
-      //vector<int> vJetSeed_ieta_;
-      //std::vector<std::vector<float>> vEB_frame = std::vector<std::vector<float>> (vEB_frame_height,std::vector<float> (vEB_frame_width, 0.0));
-      //float EB_frame[vEB_frame_height][vEB_frame_width];
-      //std::vector<float> vEB_flat_frame = std::vector<float> (vEB_frame_height*vEB_frame_width,0.0);
-      //std::vector<std::vector<float>> vEB_photon_frames;
-      //std::vector<int> vclasses;
       
       TH1F *h_sel;
       TH1F * hSC_pT;
@@ -221,12 +214,6 @@ class DetImgProducer : public edm::stream::EDProducer<> {
       std::vector<int> vPreselPhoIdxs_;
       int nTotal=0;
       int nPassed=0;
-      
-//void produce(edm::Event& iEvent, const edm::EventSetup& iSetup);
-//void predict_tf();
-//void beginStream(edm::StreamID);
-//void endStream();
-//void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 };
 
 static const bool debug = false;
