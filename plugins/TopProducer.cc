@@ -205,10 +205,10 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<float>vTracksAtECALadjPt=*TracksAtECALadjPt_handle;
    /*std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
    std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;*/
-   TopQjetCollection HBHEJetCollection;
-   TopQjetCollection ECALStitchedJetCollection;
-   TopQjetCollection TracksAtECALstitchedJetCollectionPt;
-   TopQjetCollection TracksAtECALadjJetCollectionPt;
+   topqJetCollection HBHEJetCollection;
+   topqJetCollection ECALStitchedJetCollection;
+   topqjetCollection TracksAtECALstitchedJetCollectionPt;
+   topqjetCollection TracksAtECALadjJetCollectionPt;
 	
    std::vector<float>vECALstitchedClass;
    std::vector<float>vTracksAtECALstitchedPtClass;
@@ -255,7 +255,6 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     framePredCollection topqECALstitchedJetCollection;
     framePredCollection topqTracksAtECALstitchedJetCollection;
     framePredCollection topqTracksAtECALadjJetCollection;
-			
 				
     topqECALstitchedJetCollection.putPredCollection(vECALstitchedClass);
     topqTracksAtECALstitchedJetCollection.putPredCollection(vTracksAtECALstitchedPtClass);
@@ -269,6 +268,8 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     topqECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
     topqTracksAtECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
     topqTracksAtECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+    topqTracksAtECALadjJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+    topqTracksAtECALadjJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
 				
     ECALstitchedJetCollection.push_back(topqECALstitchedJetCollection);
     TracksAtECALstitchedJetCollectionPt.push_back(topqTracksAtECALstitchedJetCollection);
@@ -286,12 +287,19 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      topqECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
      ECALstitchedJetCollection.push_back(topqECALstitchedJetCollection);
 	    
-     framePredCollection qgTracksAtECALstitchedJetCollection;
+     framePredCollection topqTracksAtECALstitchedJetCollection;
      topqTracksAtECALstitchedJetCollection.putPredCollection(vpredictions);
      topqTracksAtECALstitchedJetCollection.putFrameCollection(empty_vec);
      topqTracksAtECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
      topqTracksAtECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
      TracksAtECALstitchedJetCollectionPt.push_back(topqTracksAtECALstitchedJetCollection);
+	    
+     framePredCollection topqTracksAtECALadjJetCollection;
+     topqTracksAtECALadjJetCollection.putPredCollection(vpredictions);
+     topqTracksAtECALadjJetCollection.putFrameCollection(empty_vec);
+     topqTracksAtECALadjJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+     topqTracksAtECALadjJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+     TracksAtECALadjJetCollectionPt.push_back(topqTracksAtECALadjJetCollection);
     
      std::cout<<" >> TopInference Prediction of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
      std::cout<<" >> TopInference Prediction of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
@@ -354,6 +362,14 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      HBHEJetCollection.push_back(topqHBHEJetCollection);
     }
    }
+   std::unique_ptr<topqJetCollection> HBHEJetCollection_edm (new topqJetCollection(HBHEJetCollection));
+   iEvent.put(std::move(HBHEJetCollection_edm),"TopQhbheJetCollection");
+   std::unique_ptr<topqJetCollection> ECALstitchedJetCollection_edm (new topqJetCollection(ECALstitchedJetCollection));
+   iEvent.put(std::move(ECALstitchedJetCollection_edm),"TopQecalStitchedJetCollection");
+   std::unique_ptr<topqJetCollection> TracksAtECALstitchedJetCollectionPt_edm (new topqJetCollection(TracksAtECALstitchedJetCollectionPt));
+   iEvent.put(std::move(TracksAtECALstitchedJetCollectionPt_edm),"TopQtracksAtECALstitchedJetCollectionPt");
+   std::unique_ptr<topqJetCollection> TracksAtECALadjJetCollectionPt_edm (new topqJetCollection(TracksAtECALadjJetCollectionPt_edm));
+   iEvent.put(std::move(TracksAtECALadjJetCollectionPt_edm),"TopQtracksAtECALadjJetCollectionPt");
    std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
    iEvent.put(std::move(vECALstitchedClass_edm),"TopQecalStitchedClass");
    std::unique_ptr<std::vector<float>> vTracksAtECALstitchedPtClass_edm (new std::vector<float>(vTracksAtECALstitchedPtClass));
