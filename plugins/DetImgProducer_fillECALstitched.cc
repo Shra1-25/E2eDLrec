@@ -1,5 +1,5 @@
 //#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
-#include "E2eDLrec/plugins/DetImgProducer.h"
+#include "E2eDL/E2eDLrec/plugins/DetImgProducer.h"
 
 // Fill stitched EEm_EB_EEp image /////////////////////............/
 // Store all ECAL event rechits into a stitched EEm_EB_EEp image 
