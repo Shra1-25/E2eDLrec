@@ -200,6 +200,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::Handle<std::vector<float>> HBHEenergy_handle;
    iEvent.getByToken(HBHEenergy_token, HBHEenergy_handle);
    
+   std::vector<std::vector<float>> empty_vec;
    std::vector<float>vECALstitched=*ECALstitched_energy_handle;
    std::vector<float>vTracksAtECALstitchedPt=*TracksAtECALstitchedPt_handle;
    std::vector<float>vTracksAtECALadjPt=*TracksAtECALadjPt_handle;
