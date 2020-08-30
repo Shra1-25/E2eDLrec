@@ -20,7 +20,7 @@
 // system include files
 //#include <memory>
 //#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
-#include "E2eDLrec/plugins/DetImgProducer.h"
+#include "E2e/E2eDLrec/plugins/DetImgProducer.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 
 using namespace tensorflow;
