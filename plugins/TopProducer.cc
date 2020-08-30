@@ -32,7 +32,7 @@ TopProducer::TopProducer(const edm::ParameterSet& iConfig)
  ipTagInfoCollectionT_   = consumes<std::vector<reco::CandIPTagInfo> > (iConfig.getParameter<edm::InputTag>("ipTagInfoCollection"));
  HBHEjetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("HBHEjetCollection"));
  ECALstitchdJetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("ECALstitchdJetCollection"));
- TracksAtECALstitchedJetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("TracksAtECALstitchedJetCollection"));
+ TracksAtECALstitchedJetCollectionPtT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("TracksAtECALstitchedJetCollectionPt"));
   
  mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
@@ -87,15 +87,15 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.getByToken(ECALstitchedJetCollectionT_, ECALstitchedJetCollection_handle);
    edm::SortedCollection<framePredCollection> ECALstitchedJetColection = *ECALstitchedJetCollection_handle;
    
-   edm::Handle<edm::SortedCollection<framePredCollection>> TracksAtECALstitchedJetCollection_handle;
-   iEvent.getByToken(HBHEjetCollectionT_, TracksAtECALstitchedJetCollection_handle);
-   edm::SortedCollection<framePredCollection> TracksAtECALstitchedJetCollection = *TracksAtECALstitchedJetCollection_handle;
+   edm::Handle<edm::SortedCollection<framePredCollection>> TracksAtECALstitchedJetCollectionPt_handle;
+   iEvent.getByToken(TracksAtECALstitchedJetCollectionPtT_, TracksAtECALstitchedJetCollectionPt_handle);
+   edm::SortedCollection<framePredCollection> TracksAtECALstitchedJetCollectionPt = *TracksAtECALstitchedJetCollectionPt_handle;
 
    // Code (Commented below) to verify ECALstitched and TracksAtECALstitchd jet collection branch of edm root file	
    std::cout<<"Current size of HBHE jet collection: "<<HBHEjetCollectio.size()<<std::endl;
    std::cout<<"Current size of ECAL stitched jet collection: "<<ECALstitchedJetColection.size()<<std::endl;
-   std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<TracksAtECALstitchedJetCollection.size()<<std::endl;
-   std::vector<<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollection};
+   std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<TracksAtECALstitchedJetCollectionPt.size()<<std::endl;
+   std::vector<<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollectionPt};
    for (qgJetCollection:vqgJetCollection){
    float seedx,seedy;
    for (int frameidx=0;frameidx<int(qgJetCollection.size());frameidx++){
