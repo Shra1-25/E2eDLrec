@@ -33,7 +33,7 @@ TopInference = cms.EDProducer('TopProducer'
     , ipTagInfoCollection = cms.InputTag("pfImpactParameterTagInfos")
     , HBHEjetCollection = cms.InputTag("QGInference","QGhbheJetCollection")
     , ECALstitchedJetCollection = cms.InputTag("QGInference","QGecalStitchedJetCollection")
-    , TracksAtECALstitchedJetCollection = cms.InputTag("QGInference","QGtracksAtECALstitchedJetCollection")
+    , TracksAtECALstitchedJetCollection = cms.InputTag("QGInference","QGtracksAtECALstitchedJetCollectionPt")
     , mode = cms.string("JetLevel")
     
     , siPixelRecHitCollection = cms.InputTag('siPixelRecHits')
