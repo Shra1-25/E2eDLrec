@@ -265,8 +265,8 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      qgTracksAtECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
      TracksAtECALstitchedJetCollectionPt.push_back(qgTracksAtECALstitchedJetCollection);
     
-     std::cout<<" >> QGInference Prediction of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
-     std::cout<<" >> QGInference Prediction of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
+     std::cout<<" >> QGInference Prediction of Stitched ECAL: "<<vpredictions[0]<<std::endl;
+     std::cout<<" >> QGInference Prediction of Tracks at Stitched ECAL: "<<vpredictions[0]<<std::endl;
     }
    }
    std::cout<<std::endl; //Stitched ECAL and their track frames created.
@@ -317,7 +317,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }
    else {
      //vHBHEenergyClass.push_back(-1);
-     std::cout<<" >> QGInference Prediction of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
+     std::cout<<" >> QGInference Prediction of HBHE energy: "<<vpredictions[0]<<std::endl;
 	   
      framePredCollection qgHBHEJetCollection;
      qgHBHEJetCollection.putPredCollection(vpredictions);
