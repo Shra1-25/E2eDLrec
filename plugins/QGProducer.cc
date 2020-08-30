@@ -64,7 +64,7 @@ QGProducer::QGProducer(const edm::ParameterSet& iConfig)
  produces<std::vector<int>>("ak4JetSeediphi");
  produces<qgJetCollection>("TracksAtECALstitchedJetCollectionPt");
  produces<qgJetCollection>("ECALstitchedJetCollection");
- produces<qgJetCollection>("HBHEJetCollection");
+ produces<qgJetCollection>("HBHEjetCollection");
 }
 
 QGProducer::~QGProducer()
@@ -327,6 +327,13 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      HBHEJetCollection.push_back(qgHBHEJetCollection);
     }
    }
+	
+   std::unique_ptr<qgJetCollection> HBHEJetCollection_edm (new qgJetCollection(HBHEJetCollection));
+   iEvent.put(std::move(HBHEJetColection_edm),"HBHEjetCollection");
+   std::unique_ptr<qgJetCollection> HBHEJetCollection_edm (new qgJetCollection(HBHEJetCollection));
+   iEvent.put(std::move(HBHEJetColection_edm),"ECALstitchedJetCollection");
+   std::unique_ptr<qgJetCollection> HBHEJetCollection_edm (new qgJetCollection(HBHEJetCollection));
+   iEvent.put(std::move(HBHEJetColection_edm),"TracksAtECALstitchedJetCollection");
    std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
    iEvent.put(std::move(vECALstitchedClass_edm),"ECALstitchedClass");
    std::unique_ptr<std::vector<float>> vTracksAtECALstitchedPtClass_edm (new std::vector<float>(vTracksAtECALstitchedPtClass));
