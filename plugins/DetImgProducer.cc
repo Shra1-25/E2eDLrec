@@ -33,8 +33,10 @@
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/Utilities/interface/StreamID.h"*/
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
-#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
+//#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+#include "E2eDLrec/plugins/DetImgProducer.h"
+//#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
+#include "E2eDLrec/plugins/Tensorflow.h"
 
 using namespace tensorflow;
 using namespace std;
