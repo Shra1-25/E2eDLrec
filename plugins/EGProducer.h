@@ -10,7 +10,7 @@
 // user include files
 //#include "ProdTutorial/E2eDlRecClasses/interface/framePredCollection.h"
 //#include "ProdTutorial/E2eDLrecClasses/interface/framePredCollection.h"
-#include "E2eDLrecClasses/interface/framePredCollection.h"
+#include "E2eDL/E2eDLrecClasses/interface/framePredCollection.h"
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/stream/EDProducer.h"
 //#include "FWCore/Framework/interface/one/EDAnalyzer.h"
