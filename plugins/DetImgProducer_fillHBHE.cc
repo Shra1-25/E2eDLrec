@@ -1,4 +1,5 @@
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+//#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+#include "E2eDLrec/plugins/DetImgProducer.h"
 
 TH2F *hEvt_HBHE_energy;
 TProfile2D *hHBHE_energy_EB;
