@@ -95,8 +95,8 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::SortedCollection<framePredCollection> TracksAtECALstitchedJetCollectionPt = *TracksAtECALstitchedJetCollectionPt_handle;
 
    // Code (Commented below) to verify ECALstitched and TracksAtECALstitchd jet collection branch of edm root file	
-   std::cout<<"Current size of HBHE jet collection: "<<HBHEjetCollectio.size()<<std::endl;
-   std::cout<<"Current size of ECAL stitched jet collection: "<<ECALstitchedJetColection.size()<<std::endl;
+   std::cout<<"Current size of HBHE jet collection: "<<HBHEjetCollection.size()<<std::endl;
+   std::cout<<"Current size of ECAL stitched jet collection: "<<ECALstitchedJetCollection.size()<<std::endl;
    std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<TracksAtECALstitchedJetCollectionPt.size()<<std::endl;
    std::vector<<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollectionPt};
    for (qgJetCollection:vqgJetCollection){
