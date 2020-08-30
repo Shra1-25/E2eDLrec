@@ -18,21 +18,7 @@
 
 
 // system include files
-/*#include <memory>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-
-// user include files
-#include "FWCore/Framework/interface/Frameworkfwd.h"
-#include "FWCore/Framework/interface/stream/EDProducer.h"
-
-#include "FWCore/Framework/interface/Event.h"
-#include "FWCore/Framework/interface/MakerMacros.h"
-
-#include "FWCore/ParameterSet/interface/ParameterSet.h"
-#include "FWCore/Utilities/interface/StreamID.h"*/
+//#include <memory>
 //#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "E2eDLrec/plugins/DetImgProducer.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
@@ -40,31 +26,6 @@
 using namespace tensorflow;
 using namespace std;
 
-
-//
-// class declaration
-//
-
-/*class DetImgProducer : public edm::stream::EDProducer<> {
-   public:
-      explicit DetImgProducer(const edm::ParameterSet&);
-      ~ProducerTest();
-
-      static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
-
-   private:
-      virtual void beginStream(edm::StreamID) override;
-      virtual void produce(edm::Event&, const edm::EventSetup&) override;
-      virtual void endStream() override;
-
-      //virtual void beginRun(edm::Run const&, edm::EventSetup const&) override;
-      //virtual void endRun(edm::Run const&, edm::EventSetup const&) override;
-      //virtual void beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
-      //virtual void endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
-
-      // ----------member data ---------------------------
-       
-};*/
 
 DetImgProducer::DetImgProducer(const edm::ParameterSet& iConfig)
 {
@@ -185,61 +146,7 @@ DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    using namespace edm;
    nTotal++;
    // ----- Apply event selection cuts ----- //
-   /*bool passedSelection = false;
-   if ( doJets_ ) {
-     std::cout<<" >> doJets set"<<std::endl;
-     passedSelection = runEvtSel_jet( iEvent, iSetup );
-     std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
-     std::cout<<" >> The jet seeds are (ieta,iphi): ";
-     if (vJetSeed_ieta_.size()==0){vJetSeed_ieta_.push_back(-1); vJetSeed_iphi_.push_back(-1); std::cout<<"(-1, -1)"<<std::endl;}
-     else{
-     	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		std::cout<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<") ";
-     	}
-     	std::cout<<std::endl;
-     }
-     if (vJetSeed_ieta_.size()==vJetSeed_iphi_.size()){
-     	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		if(vJetSeed_ieta_[idx]>=0){vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);}  //5 EB xtals per HB tower
-		if(vJetSeed_iphi_[idx]>=0){vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);}  //5 EB xtals per HB tower
-		//std::cout<<vJetSeed_ieta_[idx]<<" "<<vJetSeed_iphi_[idx];
-     	}
-     }
-     std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
-     std::unique_ptr<std::vector<int>> JetSeediphi_edm (new std::vector<int>(vJetSeed_iphi_));
-     iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
-     iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
-     vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
-   } else {
-     std::cout<<" >> doJets not set"<<std::endl;
-     passedSelection = runEvtSel( iEvent, iSetup );
-     std::cout<<" >> Size of JetSeed vector (JetSeed_eta_size, JetSeed_phi_size) is: ("<<vJetSeed_ieta_.size()<<", "<<vJetSeed_iphi_.size()<<")"<<std::endl;
-     std::cout<<" The jet seeds are (ieta,iphi): ";
-     if (vJetSeed_ieta_.size()==0){vJetSeed_ieta_.push_back(-1); vJetSeed_iphi_.push_back(-1); std::cout<<"(-1, -1)"<<std::endl;}
-     else{
-	   for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		std::cout<<" The jet seeds are (ieta,iphi): "<<"("<<vJetSeed_ieta_[idx]<<","<<vJetSeed_iphi_[idx]<<") ";
-     	}
-     	std::cout<<std::endl;
-     }
-     if (vJetSeed_ieta_.size()==vJetSeed_iphi_.size()){
-     	for (int idx=0;idx<int(vJetSeed_ieta_.size());idx++){
-     		if(vJetSeed_ieta_[idx]>=0){vJetSeed_ieta_[idx]=int(vJetSeed_ieta_[idx]*5+2);}  //5 EB xtals per HB tower
-		if(vJetSeed_iphi_[idx]>=0){vJetSeed_iphi_[idx]=int(vJetSeed_iphi_[idx]*5+2);}  //5 EB xtals per HB tower
-		//std::cout<<vJetSeed_ieta_[idx]<<" "<<vJetSeed_iphi_[idx];
-     	}
-     }
-     std::unique_ptr<std::vector<int>> JetSeedieta_edm (new std::vector<int>(vJetSeed_ieta_));
-     std::unique_ptr<std::vector<int>> JetSeediphi_edm (new std::vector<int>(vJetSeed_iphi_));
-     iEvent.put(std::move(JetSeedieta_edm),"JetSeedieta");
-     iEvent.put(std::move(JetSeediphi_edm),"JetSeediphi");
-     vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
-   }
-
-   if ( !passedSelection ) {
-     h_sel->Fill( 0. );;
-     return;
-   }*/
+   
    //auto photon_classes = std::make_unique<float>(10.0);
    fillEB( iEvent, iSetup );
    std::unique_ptr<std::vector<float>> EBenergy_edm (new std::vector<float>(vEB_energy_));
@@ -315,60 +222,6 @@ DetImgProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    //vEB_energy=read_vEB_energy(vec_size);
    return;
 }
-/*void ProducerTest::predict_tf(){
- tensorflow::Session* session;
- tensorflow::GraphDef graph_def;
- tensorflow::SessionOptions opts;
- std::vector<tensorflow::Tensor> outputs; // Store outputs
- std::string graph_definition="\\home\\cmsusr\\CMSSW_10_6_8\\src\\ProdTutorial\\ProducerTest\\plugins\\graph3.pb";
- 
- tensorflow::Tensor x(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 32}));
- tensorflow::Tensor y(tensorflow::DT_FLOAT, tensorflow::TensorShape({100, 8}));
- auto _XTensor = x.matrix<float>();
- auto _YTensor = y.matrix<float>();
- _XTensor.setRandom();
- _YTensor.setRandom();
- 
- TF_CHECK_OK(ReadBinaryProto(Env::Default(), graph_definition, &graph_def));
- // load the graph definition, i.e. an object that contains the computational graph
- //tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef("graph3.pb");
- // Set GPU options
- //graph::SetDefaultDevice("/gpu:0", &graph_def);
- //opts.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.5);
- //opts.config.mutable_gpu_options()->set_allow_growth(true);
- 
- // create a new session
- //TF_CHECK_OK(NewSession(opts, &session));
- 
- // Load graph into session
- TF_CHECK_OK(session->Create(graph_def));
- 
- // create a session
- //session = tensorflow::createSession(graphDef);
- 
- // Initialize our variables
- TF_CHECK_OK(session->Run({}, {}, {"init_all_vars_op"}, nullptr));
- //tensorflow::run(session, {}, {"init_all_vars_op"}, nullptr);
- 
- //for (int i = 0; i < 10; ++i) {
-        
- TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {"cost"}, {}, &outputs)); // Get cost
- //tensorflow::run(session, { { "x", x }, {"y", y} }, { "cost" }, &outputs);
- float cost = outputs[0].scalar<float>()(0);
- std::cout << "Cost: " <<  cost << std::endl;
- //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
- //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
- outputs.clear();
-  
- session->Close();
- delete session;
- //std::cout<<_YTensor(0,0)<<" "<<_YTensor(0,1)<<" "<<_YTensor(0,2)<<" "<<_YTensor(0,3)<<" "<<_YTensor(0,4)<<" "<<_YTensor(0,5)<<" "<<_YTensor(0,6)<<" "<<_YTensor(0,7)<<" "<<_YTensor(0,8)<<" "<<_YTensor(0,9)<<endl;
- //std::cout<<_YTensor(1,0)<<" "<<_YTensor(1,1)<<" "<<_YTensor(1,2)<<" "<<_YTensor(1,3)<<" "<<_YTensor(1,4)<<" "<<_YTensor(1,5)<<" "<<_YTensor(1,6)<<" "<<_YTensor(1,7)<<" "<<_YTensor(1,8)<<" "<<_YTensor(1,9)<<endl;
- std::cout<<"All done"<<endl;
- // cleanup
- //tensorflow::closeSession(session);
- //delete graphDef;
-}*/
 
 // ------------ method called once each stream before processing any runs, lumis or events  ------------
 void
@@ -429,165 +282,6 @@ DetImgProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
   descriptions.addDefault(desc);
 }
 
-/*const reco::PFCandidate*
-DetImgProducer::getPFCand(edm::Handle<PFCollection> pfCands, float eta, float phi, float& minDr, bool debug ) {
-
-  minDr = 10;
-  const reco::PFCandidate* minDRCand = nullptr;
-  
-  for ( PFCollection::const_iterator iPFC = pfCands->begin();
-        iPFC != pfCands->end(); ++iPFC ) {
-
-    const reco::Track* thisTrk = iPFC->bestTrack();
-    if ( !thisTrk ) continue;
-
-    float thisdR = reco::deltaR( eta, phi, thisTrk->eta(), thisTrk->phi() );
-    if (debug) std::cout << "\tthisdR: " << thisdR << " " << thisTrk->pt() << " " << iPFC->particleId() << std::endl;
-
-    const reco::PFCandidate& thisPFCand = (*iPFC);
-      
-    if ( (thisdR < 0.01) && (thisdR <minDr) ) {
-      minDr    = thisdR; 
-      minDRCand = &thisPFCand;
-    }
-  }
-
-  return minDRCand;  
-}
-
-const reco::Track*
-DetImgProducer::getTrackCand(edm::Handle<reco::TrackCollection> trackCands, float eta, float phi, float& minDr, bool debug ) {
-
-  minDr = 10;
-  const reco::Track* minDRCand = nullptr;
-  reco::Track::TrackQuality tkQt_ = reco::Track::qualityByName("highPurity");
-
-  for ( reco::TrackCollection::const_iterator iTk = trackCands->begin();
-        iTk != trackCands->end(); ++iTk ) {
-    if ( !(iTk->quality(tkQt_)) ) continue;  
-
-    float thisdR = reco::deltaR( eta, phi, iTk->eta(),iTk->phi() );
-    if (debug) std::cout << "\tthisdR: " << thisdR << " " << iTk->pt() << std::endl;
-
-    const reco::Track& thisTrackCand = (*iTk);
-      
-    if ( (thisdR < 0.01) && (thisdR <minDr) ) {
-      minDr    = thisdR; 
-      minDRCand = &thisTrackCand;
-    }
-  }
-
-  return minDRCand;  
-}
-
-
-
-
-int DetImgProducer::getTruthLabel(const reco::PFJetRef& recJet, edm::Handle<reco::GenParticleCollection> genParticles, float dRMatch , bool debug ){
-  if ( debug ) {
-    std::cout << " Mathcing reco jetPt:" << recJet->pt() << " jetEta:" << recJet->eta() << " jetPhi:" << recJet->phi() << std::endl;
-  }
-
-  for (reco::GenParticleCollection::const_iterator iGen = genParticles->begin();
-       iGen != genParticles->end();
-       ++iGen) {
-
-    // From: (page 7/ Table 1.5.2)
-    //https://indico.desy.de/indico/event/7142/session/9/contribution/31/material/slides/6.pdf
-    //code range explanation:
-    // 11 - 19 beam particles
-    // 21 - 29 particles of the hardest subprocess
-    // 31 - 39 particles of subsequent subprocesses in multiparton interactions
-    // 41 - 49 particles produced by initial-state-showers
-    // 51 - 59 particles produced by final-state-showers
-    // 61 - 69 particles produced by beam-remnant treatment
-    // 71 - 79 partons in preparation of hadronization process
-    // 81 - 89 primary hadrons produced by hadronization process
-    // 91 - 99 particles produced in decay process, or by Bose-Einstein effects
-
-    // Do not want to match to the final particles in the shower
-    if ( iGen->status() > 99 ) continue;
-    
-    // Only want to match to partons/leptons/bosons
-    if ( iGen->pdgId() > 25 ) continue;
-
-    float dR = reco::deltaR( recJet->eta(),recJet->phi(), iGen->eta(),iGen->phi() );
-
-    if ( debug ) std::cout << " \t >> dR " << dR << " id:" << iGen->pdgId() << " status:" << iGen->status() << " nDaught:" << iGen->numberOfDaughters() << " pt:"<< iGen->pt() << " eta:" <<iGen->eta() << " phi:" <<iGen->phi() << " nMoms:" <<iGen->numberOfMothers()<< std::endl;
-
-    if ( dR > dRMatch ) continue; 
-    if ( debug ) std::cout << " Matched pdgID " << iGen->pdgId() << std::endl;
-
-    return iGen->pdgId();
-
-  } // gen particles 
-
-
-
-
-
-  return -99;
-}
-
-
-float DetImgProducer::getBTaggingValue(const reco::PFJetRef& recJet, edm::Handle<edm::View<reco::Jet> >& recoJetCollection, edm::Handle<reco::JetTagCollection>& btagCollection, float dRMatch, bool debug ){
-
-  // loop over jets
-  for( edm::View<reco::Jet>::const_iterator jetToMatch = recoJetCollection->begin(); jetToMatch != recoJetCollection->end(); ++jetToMatch )
-    {
-      reco::Jet thisJet = *jetToMatch;
-      float dR = reco::deltaR( recJet->eta(),recJet->phi(), thisJet.eta(),thisJet.phi() );
-      if(dR > 0.1) continue;
-
-      size_t idx = (jetToMatch - recoJetCollection->begin());
-      edm::RefToBase<reco::Jet> jetRef = recoJetCollection->refAt(idx);
-
-      if(debug) std::cout << "btag discriminator value = " << (*btagCollection)[jetRef] << std::endl;
-      return (*btagCollection)[jetRef];
-  
-    }
-
-  if(debug){
-    std::cout << "ERROR  No btag match: " << std::endl;
-    
-    // loop over jets
-    for( edm::View<reco::Jet>::const_iterator jetToMatch = recoJetCollection->begin(); jetToMatch != recoJetCollection->end(); ++jetToMatch )
-      {
-	const reco::Jet thisJet = *jetToMatch;
-	std::cout << "\t Match attempt pt: " <<  thisJet.pt() << " vs " <<  recJet->pt()
-		  << " eta: " << thisJet.eta() << " vs " << recJet->eta()
-		  << "phi: "<< thisJet.phi() << " vs " << recJet->phi()
-		  << std::endl;
-	float dR = reco::deltaR( recJet->eta(),recJet->phi(), thisJet.eta(),thisJet.phi() );
-	std::cout << "dR " << dR << std::endl;
-      }
-  }    
-
-  return -99;
-}*/
-
-
-
-/*
-//____ Fill FC diphoton variables _____//
-void RecHitAnalyzer::fillFC ( const edm::Event& iEvent, const edm::EventSetup& iSetup ) {
-  edm::Handle<reco::PhotonCollection> photons;
-  iEvent.getByToken(photonCollectionT_, photons);
-  vFC_inputs_.clear();
-  int ptOrder[2] = {0, 1};
-  if ( vPho_[1].Pt() > vPho_[0].Pt() ) {
-      ptOrder[0] = 1;
-      ptOrder[1] = 0;
-  }
-  for ( int i = 0; i < 2; i++ ) {
-    vFC_inputs_.push_back( vPho_[ptOrder[i]].Pt()/m0_ );
-    vFC_inputs_.push_back( vPho_[ptOrder[i]].Eta() );
-  }
-  vFC_inputs_.push_back( TMath::Cos(vPho_[0].Phi()-vPho_[1].Phi()) );
-} // fillFC() 
-*/
-
-//define this as a plug-in
 
 //define this as a plug-in
 DEFINE_FWK_MODULE(DetImgProducer);
