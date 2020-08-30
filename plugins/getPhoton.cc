@@ -1,8 +1,12 @@
 //#include "ProdTutorial/ProducerTest/plugins/QGProducer.h"
-#include "ProdTutorial/ProducerTest/plugins/EGProducer.h"
+/*#include "ProdTutorial/ProducerTest/plugins/EGProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
 #include "ProdTutorial/ProducerTest/plugins/croppingFrames.h"
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"*/
+#include "E2eDLrec/plugins/EGProducer.h"
+#include "E2eDLrec/plugins/predict_tf.h"
+#include "E2eDLrec/plugins/croppingFrames.h"
+#include "E2eDLrec/plugins/DetImgProducer.h"
 #include <fstream>
 #include <sstream>
 
@@ -131,54 +135,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     continue;
   }
   nPho++;
-  /*int start_x=0;
-  int end_x=0;
-  int start_y=0;
-  //int end_y=0;
-  int buff_x=0;
-  int buff_y=0;
-  if (iphi_Emax<vEB_frame_width/2-1){
-   start_y=0;
-   buff_y=vEB_frame_width/2-1-iphi_Emax;
-   buff_y=vEB_energy_width-buff_y;
-  }
-  else {
-   start_y=iphi_Emax-vEB_frame_width/2+1;
-   buff_y=0;
-  }
-  if (iphi_Emax>vEB_energy_width-vEB_frame_width/2-1){
-   //end_y=vEB_energy_width-1;
-  }
-  else {
-   //end_y=iphi_Emax+vEB_frame_width/2;
-  }
-  if (ieta_Emax<vEB_frame_height/2-1){
-   start_x=0;
-   buff_x=vEB_frame_height/2-1-ieta_Emax;
-  }
-  else {
-   start_x=ieta_Emax-vEB_frame_height/2+1;
-    buff_x=0;
-  }
-  if (ieta_Emax>vEB_energy_height-vEB_frame_height/2-1){
-   end_x=vEB_energy_height-1;
-  }
-  else {
-   end_x=ieta_Emax+vEB_frame_height/2;
-  }
-  for (int x_idx = start_x; x_idx<=end_x;x_idx++){
-   for (int y_idx = 0; y_idx<vEB_frame_width;y_idx++){
-    vEB_frame[x_idx-start_x+buff_x][y_idx]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+buff_y+start_y)%vEB_energy_width];
-    vEB_flat_frame[(x_idx-start_x+buff_x)*vEB_frame_width+y_idx]=vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
-    //std::cout<<"("<<x_idx-start_x+buff_x<<","<<y_idx<<"): "<<vEB_frame[x_idx-start_x+buff_x][y_idx]<<" "<<vEB_energy_[x_idx*vEB_energy_width+(y_idx+start_y+buff_y)%vEB_energy_width];
-   }
-   //std::cout<<std::endl;
-  }
   
-  vEB_photon_frames.push_back(vEB_flat_frame);
-  std::cout<<" >> Size of frame is:"<<"("<<vEB_frame.size()<<", "<<vEB_frame[0].size()<<")"<<endl;
-  std::cout<<" >> E_max at ("<<ieta_Emax<<", "<<iphi_Emax<<")is: "<<vEB_energy_[ieta_Emax*vEB_energy_width+iphi_Emax]<<endl;
-  std::cout<<" >> Current Photon frame is: "<<iP+1<<"/"<<photons->size()<<std::endl;*/
   vEB_frame=croppingFrames(vEB_energy_, ieta_Emax, iphi_Emax, 170,360,32,32);
   /*for(int x_idx=0; x_idx<int(vEB_frame.size()); x_idx++){
     for (int y_idx=0; y_idx<int(vEB_frame[0].size()); y_idx++){
@@ -209,6 +166,5 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
     std::cout<<endl;
   }*/
  }
- //vEB_photonFrames.push_back(vEB_flat_frame);
  return;
 }
