@@ -109,7 +109,7 @@ void QGProducer::fillEvtSel_jet_dijet( const edm::Event& iEvent, const edm::Even
 
   edm::Handle<reco::VertexCollection> vertexInfo;
   iEvent.getByToken(vertexCollectionT_, vertexInfo);
-  const reco::VertexCollection& vtxs = *vertexInfo;
+  //const reco::VertexCollection& vtxs = *vertexInfo;
 	      
  
   h_dijet_jet_nJet->Fill( vJetIdxs.size() );
