@@ -31,6 +31,9 @@ TopInference = cms.EDProducer('TopProducer'
     , pfCollection = cms.InputTag("particleFlow")
     , jetTagCollection    = cms.InputTag("pfCombinedInclusiveSecondaryVertexV2BJetTags")
     , ipTagInfoCollection = cms.InputTag("pfImpactParameterTagInfos")
+    , HBHEjetCollection = cms.InputTag("QGInference","HBHEjetCollection")
+    , ECALstitchedJetCollection = cms.InputTag("QGInference","ECALstitchedJetCollection")
+    , TracksAtECALstitchedJetCollection = cms.InputTag("QGInference","TracksAtECALstitchedJetCollection")
     , mode = cms.string("JetLevel")
     
     , siPixelRecHitCollection = cms.InputTag('siPixelRecHits')
