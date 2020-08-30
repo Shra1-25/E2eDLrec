@@ -3,10 +3,10 @@
 #include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
 #include "ProdTutorial/ProducerTest/plugins/croppingFrames.h"
 #include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"*/
-#include "E2eDLrec/plugins/EGProducer.h"
-#include "E2eDLrec/plugins/predict_tf.h"
-#include "E2eDLrec/plugins/croppingFrames.h"
-#include "E2eDLrec/plugins/DetImgProducer.h"
+#include "E2eDL/E2eDLrec/plugins/EGProducer.h"
+#include "E2eDL/E2eDLrec/plugins/predict_tf.h"
+#include "E2eDL/E2eDLrec/plugins/croppingFrames.h"
+#include "E2eDL/E2eDLrec/plugins/DetImgProducer.h"
 #include <fstream>
 #include <sstream>
 
