@@ -104,7 +104,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    for (int frameidx=0;frameidx<int(qgJetCollection_itr.size());frameidx++){
 	seedx = qgJetCollection_itr[frameidx].getIetaSeed();
    	seedy = qgJetCollection_itr[frameidx].getIphiSeed();
-	std::cout<<"Verifying seed "<<frameidx+1<"/"<<qgJetCollection_its.size()<<std::endl;
+	std::cout<<"Verifying seed "<<frameidx+1<"/"<<qgJetCollection_itr.size()<<std::endl;
 	std::vector<float> ph_pred=qgJetCollection_itr[frameidx].getPredCollection();
    	std::cout<<" >> Class Object Seeds are: ";
     	std::cout<<"["<<seedx<<", "<<seedy<<"], ";
