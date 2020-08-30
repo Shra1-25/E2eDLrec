@@ -114,6 +114,9 @@ class TopProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<TrackingRecHitCollection> TRKRecHitCollectionT_;
       edm::EDGetTokenT<edm::View<reco::Jet> > recoJetsT_;
       edm::EDGetTokenT<EBDigiCollection>     EBDigiCollectionT_;
+      edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> HBHEjetCollectionT_;
+      edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> ECALstitchedJetCollectionT_;
+      edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> TracksAtJetCollectionT_;
       static const int nPhotons = 2;
    
       TH1F *h_sel;
@@ -171,6 +174,8 @@ class TopProducer : public edm::stream::EDProducer<> {
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );*/
       //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
       
+      typedef edm::SortedCollection<framePredCollection> qgJetCollection;
+      typedef edm::SortedCollection<framePredCollection> topJetCollection;
       
       /*std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
