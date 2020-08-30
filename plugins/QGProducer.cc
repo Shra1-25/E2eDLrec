@@ -101,14 +101,14 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     	else {
 		std::cout<<" >> Size of temp_frame: ("<<temp_frame.size()<<", "<<temp_frame[0].size()<<std::endl;
     		std::vector<float> temp_pred=predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
-		std::cout<<" >> Class Object model predictions of seed "<<frameidx<<"/"<<vEB_photonFrames.size()<<" are: [";
+		std::cout<<" >> Class Object model predictions of seed "<<frameidx+1<<"/"<<vEB_photonFrames.size()<<" are: [";
     		for (int idx=0;idx<int(temp_pred.size());idx++){
       			std::cout<<temp_pred[idx]<<", ";
       		}
 		std::cout<<"]"<<std::endl;
 	}
 	
-	std::cout<<" >> Stored predictions for seed "<<frameidx<<" are: [";
+	std::cout<<" >> Stored predictions for seed "<<frameidx+1<<" are: [";
 	for (int idx=0;idx<int(ph_pred.size());idx++){	
 	   std::cout<<ph_pred[idx]<<", ";
 	}
