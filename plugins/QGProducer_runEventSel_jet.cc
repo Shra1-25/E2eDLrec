@@ -61,20 +61,20 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
 	   
 	// Jet selection criteria
     	if ( std::abs(iJet->pt())  < minJetPt_ ) {keepJet = false; 
-		std::cout<<"     * Selection failed at Jet index: "<<iJ<<" because abs(pt) < minJetPt_ --> pt: "<<std::abs(iJet->pt())<<" minJetPt_: "<<minJetPt_<<". Adding "<<iphi_<<" to JetSeediphi and "<<ieta_<<" JetSeedieta vectors."<<std::endl;
+		std::cout<<"     * Selection failed at Jet index: "<<iJ+1<<" because abs(pt) < minJetPt_ --> pt: "<<std::abs(iJet->pt())<<" minJetPt_: "<<minJetPt_<<". Adding "<<iphi_<<" to JetSeediphi and "<<ieta_<<" JetSeedieta vectors."<<std::endl;
 		vJetSeed_iphi_.push_back( iphi_ );
     		vJetSeed_ieta_.push_back( ieta_ );
     		nJet++;					 
 	}
     	else if ( std::abs(iJet->eta()) > maxJetEta_ ) {keepJet = false; 
-		std::cout<<"     * Selection failed at Jet index: "<<iJ<<" because abs(eta) > maxJetEta_ --> eta: "<<std::abs(iJet->eta())<<" maxJetEta_: "<<maxJetEta_<<". Adding "<<iphi_<<" to JetSeediphi and "<<ieta_<<" JetSeedieta vectors."<<std::endl;
+		std::cout<<"     * Selection failed at Jet index: "<<iJ+1<<" because abs(eta) > maxJetEta_ --> eta: "<<std::abs(iJet->eta())<<" maxJetEta_: "<<maxJetEta_<<". Adding "<<iphi_<<" to JetSeediphi and "<<ieta_<<" JetSeedieta vectors."<<std::endl;
 		vJetSeed_iphi_.push_back( iphi_ );
     		vJetSeed_ieta_.push_back( ieta_ );
     		nJet++;					  
 	}
 	//std::cout<<" # keepJet: "<<keepJet<<" --> pt: "<<std::abs(iJet->pt())<<", eta: "<<std::abs(iJet->eta())<<", minJetPt: "<<minJetPt_<<", maxJetEta: "<<maxJetEta_<<std::endl;
 	if (keepJet){
-	if ( debug ) std::cout << " >> jet[" << iJ << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
+	if ( debug ) std::cout << " >> jet[" << iJ+1 << "]Pt:" << iJet->pt()  << " Eta:" << iJet->eta()  << " Phi:" << iJet->phi() 
 			   << " jetE:" << iJet->energy() << " jetM:" << iJet->mass() << std::endl;
 	HcalDetId hId( spr::findDetIdHCAL( caloGeom, iJet->eta(), iJet->phi(), false ) );
     	if ( hId.subdet() != HcalBarrel && hId.subdet() != HcalEndcap ){
@@ -134,7 +134,7 @@ bool QGProducer::runEventSel_jet ( const edm::Event& iEvent, const edm::EventSet
     	if ( HBHE_IETA_MAX_HE-1 - ietaAbs_ < image_padding ) { 
       	if ( debug ) std::cout << " Fail HE edge cut " << std::endl;
       	vFailedJetIdx_.push_back(iJ);
-	std::cout<<"     * Failed Jet seed at index: "<<iJ<<" seed is too close to the edge of HE. Adding -1 to JetSeediphi and JetSeedieta vectors."<<std::endl;
+	std::cout<<"     * Failed Jet seed at index: "<<iJ+1<<" seed is too close to the edge of HE. Adding -1 to JetSeediphi and JetSeedieta vectors."<<std::endl;
 	ieta_=-1;
 	iphi_=-1;
 	vJetSeed_iphi_.push_back( iphi_ );
