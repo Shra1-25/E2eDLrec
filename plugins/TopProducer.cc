@@ -207,8 +207,8 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;*/
    topqJetCollection HBHEJetCollection;
    topqJetCollection ECALStitchedJetCollection;
-   topqjetCollection TracksAtECALstitchedJetCollectionPt;
-   topqjetCollection TracksAtECALadjJetCollectionPt;
+   topqJetCollection TracksAtECALstitchedJetCollectionPt;
+   topqJetCollection TracksAtECALadjJetCollectionPt;
 	
    std::vector<float>vECALstitchedClass;
    std::vector<float>vTracksAtECALstitchedPtClass;
