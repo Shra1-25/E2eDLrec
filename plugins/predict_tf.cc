@@ -66,7 +66,7 @@ std::vector<float> predict_tf(std::vector<std::vector<float>>& vinputFrame, stri
  //TF_CHECK_OK(session->Run({{"x", x}, {"y", y}}, {}, {"train"}, nullptr)); // Train
  //tensorflow::run(session, { { "x", x }, {"y", y} }, {}, {"train"}, &outputs);
  std::cout<<" >> Number of samples is: "<<outputs.size()<<std::endl;
- float classifier_out = outputs[0].matrix<float>()(0,0);
+ //float classifier_out = outputs[0].matrix<float>()(0,0);
  //std::cout << "Output 0: " <<  max_out << std::endl;
  std::vector<int> out_size;
  std::vector<float> predictions;
