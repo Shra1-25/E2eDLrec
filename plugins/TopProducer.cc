@@ -116,7 +116,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     	else {
 		std::cout<<" >> Size of temp_frame: ("<<temp_frame.size()<<", "<<temp_frame[0].size()<<std::endl;
     		std::vector<float> temp_pred=predict_tf(temp_frame,"ResNet.pb","inputs","outputs");
-		std::cout<<" >> Class Object model predictions of seed "<<frameidx<<"/"<<qgJetCollection_itr.size()<<" are: [";
+		std::cout<<" >> Class Object model predictions of seed "<<frameidx+1<<"/"<<qgJetCollection_itr.size()<<" are: [";
     		for (int idx=0;idx<int(temp_pred.size());idx++){
       			std::cout<<temp_pred[idx]<<", ";
       		}
