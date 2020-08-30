@@ -171,7 +171,9 @@ class QGProducer : public edm::stream::EDProducer<> {
       void branchesEB             ( TTree*, edm::Service<TFileService>& );
       void branchesPhotonSel      ( TTree*, edm::Service<TFileService>& );*/
       //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
-      
+      typedef edm::SortedCollection<framePredCollection> HBHEJetCollection;
+      typedef edm::SortedCollection<framePredCollection> ECALstitchedJetCollection;
+      typedef edm::SortedCollection<framePredCollection> TracksAtECALJetCollectionPt;
       
       /*std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
