@@ -1,5 +1,7 @@
-#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+/*#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"*/
+#include "E2eDLrec/plugins/TopProducer.h"
+#include "E2eDLrec/plugins/DetImgProducer.h"
 // Run event selection ////////////////////////////////
 
 extern TH1F *h_m0;
