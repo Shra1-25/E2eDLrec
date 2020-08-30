@@ -1,6 +1,9 @@
 /*#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
 #include "DataFormats/BTauReco/interface/JetTag.h"
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"*/
+/*#include "E2eDL/E2eDLrec/plugins/TopProducer.h"
+#include "DataFormats/BTauReco/interface/JetTag.h"
+#include "E2eDL/E2eDLrec/plugins/DetImgProducer.h
 
 using std::vector;
 using std::cout;
