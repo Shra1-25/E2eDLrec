@@ -65,7 +65,7 @@ bool TopProducer::runEvtSel ( const edm::Event& iEvent, const edm::EventSetup& i
   int nPhoTrg = 0;
 
   // Perform photon pre-selection
-  float dR, m0;
+  //float dR, m0;
   float leadPhoPt = 0.;
   math::PtEtaPhiELorentzVectorD vDiPho;
   std::vector<int> vPhoIdxs;
