@@ -188,11 +188,11 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      file2<<"\n";
     }*/
     //vECALstitchedClass.push_back(predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid"));
-    vECALstitchedClass = predict_tf(vECALstitched_frame, "qg_model.pb", "inputs","softmax_1/Sigmoid");
+    vECALstitchedClass = predict_tf(vECALstitched_frame, "ResNet.pb", "inputs","outputs");
     //vTracksAtECALstitchedPtClass.push_back(predict_tf(vTracksAtECALstitchedPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
-    vTracksAtECALstitchedPtClass = predict_tf(vTracksAtECALstitchedPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid");
+    vTracksAtECALstitchedPtClass = predict_tf(vTracksAtECALstitchedPt_frame, "ResNet.pb", "inputs", "outputs");
     //vTracksAtECALadjPtClass.push_back(predict_tf(vTracksAtECALadjPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
-    vTracksAtECALadjPtClass = predict_tf(vTracksAtECALadjPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid");
+    vTracksAtECALadjPtClass = predict_tf(vTracksAtECALadjPt_frame, "ResNet.pb", "inputs", "outputs");
     }
     else {
      vECALstitchedClass.push_back(-1);
@@ -241,7 +241,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     file3<<"\n";
    }*/
    //vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
-   vHBHEenergyClass = predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid");
+   vHBHEenergyClass = predict_tf(vHBHEenergy_frame, "ResNet.pb", "inputs", "outputs");//"softmax_1/Sigmoid");
    }
    else {vHBHEenergyClass.push_back(-1);
      std::cout<<" >> TopInference Prediction of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
