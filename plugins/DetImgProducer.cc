@@ -1,9 +1,9 @@
 // -*- C++ -*-
 //
-// Package:    ProdTutorial/DetImgProducer
+// Package:    E2eDLrec/plugins/DetImgProducer
 // Class:      DetImgProducer
 // 
-/**\class ProducerTest DetImgProducer.cc ProdTutorial/ProducerTest/plugins/DetImgProducer.cc
+/**\class ProducerTest DetImgProducer.cc E2eDLrec/plugins/DetImgProducer.cc
 
  Description: [one line class summary]
 
@@ -35,8 +35,7 @@
 #include "FWCore/Utilities/interface/StreamID.h"*/
 //#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "E2eDLrec/plugins/DetImgProducer.h"
-//#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
-#include "E2eDLrec/plugins/Tensorflow.h"
+#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 
 using namespace tensorflow;
 using namespace std;
