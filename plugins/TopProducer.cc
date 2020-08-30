@@ -1,8 +1,14 @@
-#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
+/*#include "ProdTutorial/ProducerTest/plugins/TopProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
 #include "ProdTutorial/ProducerTest/plugins/croppingFrames.h"
 #include "ProdTutorial/ProducerTest/plugins/frameStriding.h"
+#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"*/
+#include "E2eDLrec/plugins/TopProducer.h"
+#include "E2eDLrec/plugins/DetImgProducer.h"
+#include "E2eDLrec/plugins/predict_tf.h"
+#include "E2eDLrec/plugins/croppingFrames.h"
+#include "E2eDLrec/plugins/frameStriding.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
 #include <fstream>
 
