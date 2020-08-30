@@ -4,7 +4,7 @@
 #include "FWCore/Utilities/interface/Exception.h"
 
 int test_tf(){
-  ProducerTest pred=new ProducerTest();
+  DetImgProducer pred=new DetImgProducer();
   pred.produce();
   return 1;
 }
