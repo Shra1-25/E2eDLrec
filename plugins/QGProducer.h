@@ -12,7 +12,7 @@
 //#include "FWCore/Framework/interface/one/EDAnalyzer.h"
 //#include "FWCore/Framework/src/one/implementorsMethods.h"
 //#include "ProdTutorial/E2eDLrecClasses/interface/framePredCollection.h"
-#include "E2eDLrecClasses/interface/framePredCollection.h"
+#include "E2eDL/E2eDLrecClasses/interface/framePredCollection.h"
 
 #include "DataFormats/EcalRecHit/interface/EcalRecHitCollections.h"
 #include "DataFormats/EcalDigi/interface/EcalDigiCollections.h"
