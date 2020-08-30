@@ -1,5 +1,5 @@
 //#include "ProdTutorial/ProducerTest/plugins/frameStriding.h"
-#include "E2eDLrec/plugins/frameStriding.h"
+#include "E2eDL/E2eDLrec/plugins/frameStriding.h"
 
 std::vector<std::vector<float>> frameStriding(std::vector<float>& vDetFrame, int rows, int columns, int rowstrides, int colstrides){
   std::vector<std::vector<float>> vStridedFrame ((rows*rowstrides), std::vector<float> (columns*colstrides,0));
