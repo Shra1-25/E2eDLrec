@@ -1,5 +1,5 @@
 //#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
-#include "E2eDLrec/plugins/DetImgProducer.h"
+#include "E2eDL/E2eDLrec/plugins/DetImgProducer.h"
 //#include "Calibration/IsolatedParticles/interface/DetIdFromEtaPhi.h"
 
 // Fill adjustable EEm_EB_EEp image /////////////////////............/
