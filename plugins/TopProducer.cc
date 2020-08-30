@@ -64,6 +64,7 @@ TopProducer::TopProducer(const edm::ParameterSet& iConfig)
  produces<std::vector<int>>("ak8JetSeedieta");
  produces<std::vector<int>>("ak8JetSeediphi");
  produces<topqJetCollection>("TopQtracksAtECALstitchedJetCollectionPt");
+ produces<topqJetCollection>("TopQtracksAtECALadjJetCollectionPt");
  produces<topqJetCollection>("TopQecalStitchedJetCollection");
  produces<topqJetCollection>("TopQhbheJetCollection");
 }
