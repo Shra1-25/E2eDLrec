@@ -175,7 +175,7 @@ class TopProducer : public edm::stream::EDProducer<> {
       //void fill_photons             ( const edm::Event&, const edm::EventSetup& );
       
       typedef edm::SortedCollection<framePredCollection> qgJetCollection;
-      typedef edm::SortedCollection<framePredCollection> topJetCollection;
+      typedef edm::SortedCollection<framePredCollection> topqJetCollection;
       
       /*std::vector<float> vIphi_Emax_;
       std::vector<float> vIeta_Emax_;
