@@ -65,7 +65,7 @@ bool QGProducer::runEvtSel ( const edm::Event& iEvent, const edm::EventSetup& iS
   int nPhoTrg = 0;
 
   // Perform photon pre-selection
-  float dR, m0;
+  float m0; //dR;
   float leadPhoPt = 0.;
   math::PtEtaPhiELorentzVectorD vDiPho;
   std::vector<int> vPhoIdxs;
