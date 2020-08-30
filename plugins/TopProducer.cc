@@ -30,9 +30,9 @@ TopProducer::TopProducer(const edm::ParameterSet& iConfig)
  recoJetsT_              = consumes<edm::View<reco::Jet> >(iConfig.getParameter<edm::InputTag>("recoJetsForBTagging"));
  jetTagCollectionT_      = consumes<reco::JetTagCollection>(iConfig.getParameter<edm::InputTag>("jetTagCollection"));
  ipTagInfoCollectionT_   = consumes<std::vector<reco::CandIPTagInfo> > (iConfig.getParameter<edm::InputTag>("ipTagInfoCollection"));
- HBHEjetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("HBHEjetCollection"));
- ECALstitchdJetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("ECALstitchdJetCollection"));
- TracksAtECALstitchedJetCollectionPtT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("TracksAtECALstitchedJetCollectionPt"));
+ HBHEjetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("QGhbheJetCollection"));
+ ECALstitchedJetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("QGecalStitchedJetCollection"));
+ TracksAtECALstitchedJetCollectionPtT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("QGtracksAtECALstitchedJetCollectionPt"));
   
  mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
@@ -57,12 +57,15 @@ TopProducer::TopProducer(const edm::ParameterSet& iConfig)
      branchesEvtSel( TopTree, fs );
    }
 		
- produces<std::vector<float>>("TopQECALstitchedClass");
- produces<std::vector<float>>("TopQTracksAtECALstitchedPtClass");
- produces<std::vector<float>>("TopQTracksAtECALadjPtClass");
- produces<std::vector<float>>("TopQHBHEenergyClass");
+ produces<std::vector<float>>("TopQecalStitchedClass");
+ produces<std::vector<float>>("TopQtracksAtECALstitchedPtClass");
+ produces<std::vector<float>>("TopQtracksAtECALadjPtClass");
+ produces<std::vector<float>>("TopQhbheEnergyClass");
  produces<std::vector<int>>("ak8JetSeedieta");
  produces<std::vector<int>>("ak8JetSeediphi");
+ produces<qgJetCollection>("TopQtracksAtECALstitchedJetCollectionPt");
+ produces<qgJetCollection>("TopQecalStitchedJetCollection");
+ produces<qgJetCollection>("TopQhbheJetCollection");
 }
 
 TopProducer::~TopProducer()
@@ -296,13 +299,13 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     }
    }
    std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
-   iEvent.put(std::move(vECALstitchedClass_edm),"TopQECALstitchedClass");
+   iEvent.put(std::move(vECALstitchedClass_edm),"TopQecalStitchedClass");
    std::unique_ptr<std::vector<float>> vTracksAtECALstitchedPtClass_edm (new std::vector<float>(vTracksAtECALstitchedPtClass));
-   iEvent.put(std::move(vTracksAtECALstitchedPtClass_edm),"TopQTracksAtECALstitchedPtClass");
+   iEvent.put(std::move(vTracksAtECALstitchedPtClass_edm),"TopQtracksAtECALstitchedPtClass");
    std::unique_ptr<std::vector<float>> vTracksAtECALadjPtClass_edm (new std::vector<float>(vTracksAtECALadjPtClass));
-   iEvent.put(std::move(vTracksAtECALadjPtClass_edm),"TopQTracksAtECALadjPtClass");
+   iEvent.put(std::move(vTracksAtECALadjPtClass_edm),"TopQtracksAtECALadjPtClass");
    std::unique_ptr<std::vector<float>> vHBHEenergyClass_edm (new std::vector<float>(vHBHEenergyClass));
-   iEvent.put(std::move(vHBHEenergyClass_edm),"TopQHBHEenergyClass");
+   iEvent.put(std::move(vHBHEenergyClass_edm),"TopQhbheEnergyClass");
    std::cout<<std::endl;
 
    TopTree->Fill();
