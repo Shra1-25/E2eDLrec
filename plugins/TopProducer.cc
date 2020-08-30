@@ -30,6 +30,9 @@ TopProducer::TopProducer(const edm::ParameterSet& iConfig)
  recoJetsT_              = consumes<edm::View<reco::Jet> >(iConfig.getParameter<edm::InputTag>("recoJetsForBTagging"));
  jetTagCollectionT_      = consumes<reco::JetTagCollection>(iConfig.getParameter<edm::InputTag>("jetTagCollection"));
  ipTagInfoCollectionT_   = consumes<std::vector<reco::CandIPTagInfo> > (iConfig.getParameter<edm::InputTag>("ipTagInfoCollection"));
+ HBHEjetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("HBHEjetCollection"));
+ ECALstitchdJetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("ECALstitchdJetCollection"));
+ TracksAtECALstitchedJetCollectionT_ = consumes<edm::SortedCollection<framePredCollection> > (iConfig.getParameter<edm::InputTag>("TracksAtECALstitchedJetCollection"));
   
  mode_      = iConfig.getParameter<std::string>("mode");
  minJetPt_  = iConfig.getParameter<double>("minJetPt");
@@ -76,6 +79,51 @@ void
 TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    std::cout<<" >> Running TopProducer."<<std::endl;
+   edm::Handle<edm::SortedCollection<framePredCollection>> HBHEjetCollection_handle;
+   iEvent.getByToken(HBHEjetCollectionT_, HBHEjetCollection_handle);
+   edm::SortedCollection<framePredCollection> HBHEjetCollection = *HBHEjetCollection_handle;
+	
+   edm::Handle<edm::SortedCollection<framePredCollection>> ECALstitchedJetCollection_handle;
+   iEvent.getByToken(ECALstitchedJetCollectionT_, ECALstitchedJetCollection_handle);
+   edm::SortedCollection<framePredCollection> ECALstitchedJetColection = *ECALstitchedJetCollection_handle;
+   
+   edm::Handle<edm::SortedCollection<framePredCollection>> TracksAtECALstitchedJetCollection_handle;
+   iEvent.getByToken(HBHEjetCollectionT_, TracksAtECALstitchedJetCollection_handle);
+   edm::SortedCollection<framePredCollection> TracksAtECALstitchedJetCollection = *TracksAtECALstitchedJetCollection_handle;
+
+   // Code (Commented below) to verify ECALstitched and TracksAtECALstitchd jet collection branch of edm root file	
+   std::cout<<"Current size of HBHE jet collection: "<<HBHEjetCollectio.size()<<std::endl;
+   std::cout<<"Current size of ECAL stitched jet collection: "<<ECALstitchedJetColection.size()<<std::endl;
+   std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<TracksAtECALstitchedJetCollection.size()<<std::endl;
+   std::vector<<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollection};
+   for (qgJetCollection:vqgJetCollection){
+   float seedx,seedy;
+   for (int frameidx=0;frameidx<int(qgJetCollection.size());frameidx++){
+	seedx = qgJetCollection[frameidx].getIetaSeed();
+   	seedy = qgJetCollection[frameidx].getIphiSeed();
+	std::vector<float> ph_pred=qgJetCollection[frameidx].getPredCollection();
+   	std::cout<<" >> Class Object Seeds are: ";
+    	std::cout<<"["<<seedx<<", "<<seedy<<"], ";
+   	std::cout<<std::endl;
+   	std::vector<std::vector<float>> temp_frame=qgJetCollection[frameidx].getFrameCollection();
+   	if (temp_frame.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<<std::endl;
+    	else {
+		std::cout<<" >> Size of temp_frame: ("<<temp_frame.size()<<", "<<temp_frame[0].size()<<std::endl;
+    		std::vector<float> temp_pred=predict_tf(temp_frame,"e_vs_ph_model.pb","inputs","softmax_1/Sigmoid");
+		std::cout<<" >> Class Object model predictions of seed "<<frameidx<<"/"<<qgJetCollection.size()<<" are: [";
+    		for (int idx=0;idx<int(temp_pred.size());idx++){
+      			std::cout<<temp_pred[idx]<<", ";
+      		}
+	}
+	std::cout<<"]"<<std::endl;
+	std::cout<<" >> Stored predictions for seed "<<frameidx<<" are: [";
+	for (int idx=0;idx<int(ph_pred.size());idx++){	
+	   std::cout<<ph_pred[idx]<<", ";
+	}
+      	std::cout<<"]"<<std::endl;
+    }
+   }
+	
    using namespace edm;
    nTotal++;
    vJetSeed_ieta_.clear(); vJetSeed_iphi_.clear();
