@@ -99,17 +99,18 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<"Current size of ECAL stitched jet collection: "<<ECALstitchedJetCollection.size()<<std::endl;
    std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<TracksAtECALstitchedJetCollectionPt.size()<<std::endl;
    std::vector<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollectionPt};
-   for (qgJetCollection qgJetCollection_itr :vqgJetCollection){
+   for (qgJetCollection qgJetCollection_itr : vqgJetCollection){
    float seedx,seedy;
    for (int frameidx=0;frameidx<int(qgJetCollection_itr.size());frameidx++){
 	seedx = qgJetCollection_itr[frameidx].getIetaSeed();
    	seedy = qgJetCollection_itr[frameidx].getIphiSeed();
+	std::cout<<"Verifying seed "<<frameidx+1<"/"<<qgJetCollection_its.size()<<std::endl;
 	std::vector<float> ph_pred=qgJetCollection_itr[frameidx].getPredCollection();
    	std::cout<<" >> Class Object Seeds are: ";
     	std::cout<<"["<<seedx<<", "<<seedy<<"], ";
    	std::cout<<std::endl;
    	std::vector<std::vector<float>> temp_frame=qgJetCollection_itr[frameidx].getFrameCollection();
-   	if (temp_frame.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<<std::endl;
+   	if (temp_frame.size()==0) std::cout<<" >> Empty photon frame collection for the curent seed."<<std::endl;
     	else {
 		std::cout<<" >> Size of temp_frame: ("<<temp_frame.size()<<", "<<temp_frame[0].size()<<std::endl;
     		std::vector<float> temp_pred=predict_tf(temp_frame,"ResNet.pb","inputs","outputs");
@@ -117,9 +118,10 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     		for (int idx=0;idx<int(temp_pred.size());idx++){
       			std::cout<<temp_pred[idx]<<", ";
       		}
+		std::cout<<"]"<<std::endl;
 	}
-	std::cout<<"]"<<std::endl;
-	std::cout<<" >> Stored predictions for seed "<<frameidx<<" are: [";
+	
+	std::cout<<" >> Stored predictions for seed "<<frameidx+1<<" are: [";
 	for (int idx=0;idx<int(ph_pred.size());idx++){	
 	   std::cout<<ph_pred[idx]<<", ";
 	}
@@ -203,6 +205,11 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::vector<float>vTracksAtECALadjPt=*TracksAtECALadjPt_handle;
    /*std::vector<int>vJetSeed_ieta=*JetSeed_ieta_handle;
    std::vector<int>vJetSeed_iphi=*JetSeed_iphi_handle;*/
+   TopQjetCollection HBHEJetCollection;
+   TopQjetCollection ECALStitchedJetCollection;
+   TopQjetCollection TracksAtECALstitchedJetCollectionPt;
+   TopQjetCollection TracksAtECALadjJetCollectionPt;
+	
    std::vector<float>vECALstitchedClass;
    std::vector<float>vTracksAtECALstitchedPtClass;
    std::vector<float>vTracksAtECALadjPtClass;
@@ -244,11 +251,47 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     vTracksAtECALstitchedPtClass = predict_tf(vTracksAtECALstitchedPt_frame, "ResNet.pb", "inputs", "outputs");
     //vTracksAtECALadjPtClass.push_back(predict_tf(vTracksAtECALadjPt_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
     vTracksAtECALadjPtClass = predict_tf(vTracksAtECALadjPt_frame, "ResNet.pb", "inputs", "outputs");
+				
+    framePredCollection topqECALstitchedJetCollection;
+    framePredCollection topqTracksAtECALstitchedJetCollection;
+    framePredCollection topqTracksAtECALadjJetCollection;
+			
+				
+    topqECALstitchedJetCollection.putPredCollection(vECALstitchedClass);
+    topqTracksAtECALstitchedJetCollection.putPredCollection(vTracksAtECALstitchedPtClass);
+    topqTracksAtECALadjJetCollection.putPredCollection(vTracksAtECALadjPtClass);
+				
+    topqECALstitchedJetCollection.putFrameCollection(vECALstitched_frame);
+    topqTracksAtECALstitchedJetCollection.putFrameCollection(vTracksAtECALstitchedPt_frame);
+    topqTracksAtECALadjJetCollection.putFrameCollection(vTracksAtECALadjPt_frame);
+				
+    topqECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+    topqECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+    topqTracksAtECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+    topqTracksAtECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+				
+    ECALstitchedJetCollection.push_back(topqECALstitchedJetCollection);
+    TracksAtECALstitchedJetCollectionPt.push_back(topqTracksAtECALstitchedJetCollection);
+    TracksAtECALadjJetCollectionPt.push_back(topqTracksAtECALadjJetCollection);
     }
     else {
      vECALstitchedClass.push_back(-1);
      vTracksAtECALstitchedPtClass.push_back(-1);
      vTracksAtECALadjPtClass.push_back(-1);
+	    
+     framePredCollection topqECALstitchedJetCollection;
+     topqECALstitchedJetCollection.putPredCollection(vpredictions);
+     topqECALstitchedJetCollection.putFrameCollection(empty_vec);
+     topqECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+     topqECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+     ECALstitchedJetCollection.push_back(topqECALstitchedJetCollection);
+	    
+     framePredCollection qgTracksAtECALstitchedJetCollection;
+     topqTracksAtECALstitchedJetCollection.putPredCollection(vpredictions);
+     topqTracksAtECALstitchedJetCollection.putFrameCollection(empty_vec);
+     topqTracksAtECALstitchedJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+     topqTracksAtECALstitchedJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+     TracksAtECALstitchedJetCollectionPt.push_back(topqTracksAtECALstitchedJetCollection);
     
      std::cout<<" >> TopInference Prediction of Stitched ECAL: "<<vECALstitchedClass[idx]<<std::endl;
      std::cout<<" >> TopInference Prediction of Tracks at Stitched ECAL: "<<vTracksAtECALstitchedPtClass[idx]<<std::endl;
@@ -293,9 +336,22 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    }*/
    //vHBHEenergyClass.push_back(predict_tf(vHBHEenergy_frame, "qg_model.pb", "inputs", "softmax_1/Sigmoid"));
    vHBHEenergyClass = predict_tf(vHBHEenergy_frame, "ResNet.pb", "inputs", "outputs");//"softmax_1/Sigmoid");
+   framePredCollection topqHBHEJetCollection;
+   topqHBHEJetCollection.putPredCollection(vHBHEenergyClass);
+   topqHBHEJetCollection.putFrameCollection(vHBHEenergy_frame);
+   topqHBHEJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+   topqHBHEJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+   HBHEJetCollection.push_back(topqHBHEJetCollection);
    }
-   else {vHBHEenergyClass.push_back(-1);
+   else {
+     vHBHEenergyClass.push_back(-1);
      std::cout<<" >> TopInference Prediction of HBHE energy: "<<vHBHEenergyClass[idx]<<std::endl;
+     framePredCollection qgHBHEJetCollection;
+     topqHBHEJetCollection.putPredCollection(vpredictions);
+     topqHBHEJetCollection.putFrameCollection(empty_vec);
+     topqHBHEJetCollection.putIetaSeed(vJetSeed_ieta_[idx]);
+     topqHBHEJetCollection.putIphiSeed(vJetSeed_iphi_[idx]);
+     HBHEJetCollection.push_back(topqHBHEJetCollection);
     }
    }
    std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
