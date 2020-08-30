@@ -183,6 +183,7 @@ QGProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.getByToken(HBHEenergy_token, HBHEenergy_handle);
    
    std::vector<std::vector<float>> empty_vec;
+   qgJetCollection HBHEJetCollection;
    qgJetCollection ECALstitchedJetCollection;
    qgJetCollection TracksAtECALstitchedJetCollectionPt;
    std::vector<float>vECALstitched=*ECALstitched_energy_handle;
