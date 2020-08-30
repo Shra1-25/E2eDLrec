@@ -58,14 +58,6 @@ std::vector<std::vector<float>> croppingFrames(std::vector<float>& vdetector_ima
    }
    //std::cout<<std::endl;
   }
-  /*for (int x_idx=0;x_idx<frame_height;x_idx++){
-   for (int y_idx=0;y_idx<frame_width;y_idx++){ 
-    std::cout<<"("<<x_idx<<","<<y_idx<<"): "<<vframe[x_idx][y_idx]<<" ";
-    frame_file<<vframe[x_idx][y_idx];
-    if (y_idx<(frame_width-1)){frame_file<<",";}
-   }
-    frame_file<<"\n";
-  }*/
   //vEB_photon_frames.push_back(vEB_flat_frame);
   std::cout<<" >> Size of frame is:"<<"("<<vframe.size()<<", "<<vframe[0].size()<<")"<<endl;
   //std::cout<<" >> E_max at ("<<ieta_seed<<", "<<iphi_seed<<")is: "<<vdetector_image[ieta_seed*detImg_width+iphi_seed]<<std::endl;
