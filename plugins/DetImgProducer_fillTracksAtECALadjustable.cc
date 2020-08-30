@@ -276,7 +276,7 @@ void DetImgProducer::fillTracksAtECALadjustable ( const edm::Event& iEvent, cons
   //int iphi_, ieta_, iz_, idx_;
   //int ieta_global, ieta_signed;
   //int ieta_global_offset, ieta_signed_offset;
-  float eta, phi, trackPt_, trackQPt_,trackD0_, trackDz_;
+  float eta, phi, trackPt_; //trackQPt_,trackD0_, trackDz_;
   GlobalPoint pos;
 
   edm::ESHandle<MagneticField> magfield;
