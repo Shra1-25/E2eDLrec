@@ -370,7 +370,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    iEvent.put(std::move(ECALstitchedJetCollection_edm),"TopQecalStitchedJetCollection");
    std::unique_ptr<topqJetCollection> TracksAtECALstitchedJetCollectionPt_edm (new topqJetCollection(TracksAtECALstitchedJetCollectionPt));
    iEvent.put(std::move(TracksAtECALstitchedJetCollectionPt_edm),"TopQtracksAtECALstitchedJetCollectionPt");
-   std::unique_ptr<topqJetCollection> TracksAtECALadjJetCollectionPt_edm (new topqJetCollection(TracksAtECALadjJetCollectionPt_edm));
+   std::unique_ptr<topqJetCollection> TracksAtECALadjJetCollectionPt_edm (new topqJetCollection(TracksAtECALadjJetCollectionPt));
    iEvent.put(std::move(TracksAtECALadjJetCollectionPt_edm),"TopQtracksAtECALadjJetCollectionPt");
    std::unique_ptr<std::vector<float>> vECALstitchedClass_edm (new std::vector<float>(vECALstitchedClass));
    iEvent.put(std::move(vECALstitchedClass_edm),"TopQecalStitchedClass");
