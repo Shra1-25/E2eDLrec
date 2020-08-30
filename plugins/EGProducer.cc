@@ -1,7 +1,11 @@
-#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
+/*#include "ProdTutorial/ProducerTest/plugins/DetImgProducer.h"
 #include "ProdTutorial/ProducerTest/plugins/EGProducer.h"
 #include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
-#include "ProdTutorial/ProducerTest/plugins/predict_tf.h"
+#include "ProdTutorial/ProducerTest/plugins/predict_tf.h"*/
+#include "E2eDLrec/plugins/DetImgProducer.h"
+#include "E2eDLrec/plugins/EGProducer.h"
+#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
+#include "E2eDLrec/plugins/predict_tf.h"
 //#include <fstream>
 
 EGProducer::EGProducer(const edm::ParameterSet& iConfig)
