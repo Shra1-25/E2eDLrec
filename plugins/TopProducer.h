@@ -116,7 +116,7 @@ class TopProducer : public edm::stream::EDProducer<> {
       edm::EDGetTokenT<EBDigiCollection>     EBDigiCollectionT_;
       edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> HBHEjetCollectionT_;
       edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> ECALstitchedJetCollectionT_;
-      edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> TracksAtJetCollectionPtT_;
+      edm::EDGetTokenT<edm::SortedCollection<framePredCollection>> TracksAtECALstitchedJetCollectionPtT_;
       static const int nPhotons = 2;
    
       TH1F *h_sel;
