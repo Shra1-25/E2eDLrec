@@ -102,7 +102,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   if ( Emax <= zs ) {
     std::cout<<" >> EB_energy is less than zero: "<<Emax<<std::endl;
     std::cout<<" >> Prediction: -1"<<std::endl; 
-    vpredictions.push_back(-1);
+    //vpredictions.push_back(-1);
     framePredCollection photonJetCollection;
     photonJetCollection.putPredCollection(vpredictions);
     photonJetCollection.putFrameCollection(empty_vec);
@@ -120,7 +120,7 @@ void EGProducer::get_photons ( const edm::Event& iEvent, const edm::EventSetup& 
   if ( ieta_Emax > 169 - 16 || ieta_Emax < 15 )  // seed centered on [15,15] so must be padded by 15 below and 16 above
   {  
     std::cout<<" >> Prediction: -1"<<std::endl;
-    vpredictions.push_back(-1);
+    //vpredictions.push_back(-1);
     framePredCollection photonJetCollection;
     photonJetCollection.putPredCollection(vpredictions);
     photonJetCollection.putFrameCollection(empty_vec);
