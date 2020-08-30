@@ -88,7 +88,7 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 	
    edm::Handle<edm::SortedCollection<framePredCollection>> ECALstitchedJetCollection_handle;
    iEvent.getByToken(ECALstitchedJetCollectionT_, ECALstitchedJetCollection_handle);
-   edm::SortedCollection<framePredCollection> ECALstitchedJetColection = *ECALstitchedJetCollection_handle;
+   edm::SortedCollection<framePredCollection> ECALstitchedJetCollection = *ECALstitchedJetCollection_handle;
    
    edm::Handle<edm::SortedCollection<framePredCollection>> TracksAtECALstitchedJetCollectionPt_handle;
    iEvent.getByToken(TracksAtECALstitchedJetCollectionPtT_, TracksAtECALstitchedJetCollectionPt_handle);
@@ -98,17 +98,17 @@ TopProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    std::cout<<"Current size of HBHE jet collection: "<<HBHEjetCollection.size()<<std::endl;
    std::cout<<"Current size of ECAL stitched jet collection: "<<ECALstitchedJetCollection.size()<<std::endl;
    std::cout<<"Current size of Tracks at ECAL stitched jet collection: "<<TracksAtECALstitchedJetCollectionPt.size()<<std::endl;
-   std::vector<<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollectionPt};
-   for (qgJetCollection:vqgJetCollection){
+   std::vector<qgJetCollection> vqgJetCollection={HBHEjetCollection, ECALstitchedJetCollection, TracksAtECALstitchedJetCollectionPt};
+   for (std::vector<qgJetCollection> qgJetCollection_itr :vqgJetCollection){
    float seedx,seedy;
-   for (int frameidx=0;frameidx<int(qgJetCollection.size());frameidx++){
-	seedx = qgJetCollection[frameidx].getIetaSeed();
-   	seedy = qgJetCollection[frameidx].getIphiSeed();
-	std::vector<float> ph_pred=qgJetCollection[frameidx].getPredCollection();
+   for (int frameidx=0;frameidx<int(qgJetCollection_itr.size());frameidx++){
+	seedx = qgJetCollection_itr[frameidx].getIetaSeed();
+   	seedy = qgJetCollection_itr[frameidx].getIphiSeed();
+	std::vector<float> ph_pred=qgJetCollection_itr[frameidx].getPredCollection();
    	std::cout<<" >> Class Object Seeds are: ";
     	std::cout<<"["<<seedx<<", "<<seedy<<"], ";
    	std::cout<<std::endl;
-   	std::vector<std::vector<float>> temp_frame=qgJetCollection[frameidx].getFrameCollection();
+   	std::vector<std::vector<float>> temp_frame=qgJetCollection_itr[frameidx].getFrameCollection();
    	if (temp_frame.size()==0) std::cout<<" >> Empty photon frame collection for all the seeds."<<std::endl;
     	else {
 		std::cout<<" >> Size of temp_frame: ("<<temp_frame.size()<<", "<<temp_frame[0].size()<<std::endl;
